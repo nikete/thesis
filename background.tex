@@ -1,0 +1,189 @@
+\chapter{Background and Preliminaries}
+\label{cha:background}
+
+%\epigraph{Desvar\'io laborioso y empobrecedor el de componer vastos libros; el de explayar en quinientas p\'aginas una idea cuya perfecta exposici\'on oral cabe en pocos minutos.{Jorge Luis Borges,Pr\'ologo de Ficciones.}
+
+%Los deterministas niegan que haya en el mundo un solo hecho posible, id est un hecho que pudo acontecer; una moneda simboliza nuestro libre albedrío. (“El Zahir”)
+
+
+We first provide a overview of the theoretical background that underpins this work.
+The literatures on elicitation and bandits have remained largely separate, despite their dualistic nature (asking and telling), and the background section largely reflects this. The closest to a contact point is perhaps that for the fully supervised online learning, a series of models that map specific market scoring rule based algorithms to learning problems, started in ChenVaughan on the equivalence between market scoring rules and regularized follow the leader algorithms, and several later works TODO CITE.
+
+
+
+\section{Background}
+
+Statistical algorithms can be understood game theoretically, and this is particularly natural in the sequential (online) setting, \cite{cesa2006prediction} provide a unified treatment from a worst case game theoretic perspective of many such prediction tasks.
+The game theoretic constructs in these literatures largely consider the underlying structures to be zero-sum and thus use a adversarial model of nature to construct strategies that have good worst case properties, in other words this is game theory in the style of Von Neumann and Morgensten 1948.
+
+The seminal contributions of \cite{nash1950equilibrium} and  \cite{aumann1976agreeing}, providing the notions of nash equilibrium and common knowledge that are vital to construct  mechanisms where uncertainty can be considered strategically outside zero sum games.
+A literature developed mostly within economics, is focused on games where the aggregation of information leads to choices that affect the aggregate payoffs of the game, i.e.  are not zero sum. 
+This literature,  developing largely out of the analysis of auctions, is crucial in providing a basis for our understanding of eliciting advice from multiple experts for decision making, and the fundamental constructs we use in it.
+
+
+A place where the posibility that the action the algorithm selects is nto the one carried out in the world appears in the Incentive Compatible exploration literature. There the focus is on motivating subjects (in our terminology) who are expected utility maximizers to actually take the action the mechanism chooses (again in our terminology) without using payments. In section TODO we carefully analize the relation between this problem and ours, where not all subjects necesitate being and the extra information the experts bring to bear allows us to sidestep such imposibilities.
+
+
+
+\subsection{Notation and Conventions}
+
+The notation used for the two parts of this thesis is a compromise between the standards of the bandit algorithms and mechanism design literatures. In particular, we refer to rewards as directly observable after the action is taken, skipping the explicit notation that maps actions to outcomes and utility functions which map those outcomes to rewards. The reader wishing to move the analysis more explciitly in the mechansim design tradition can replace the observed rewards with a utility function of the agent over the realized outcome; this however sets our agents up as utility maximizers, in a sense\footnote{At the very least in the sense of Spinozas Ethics, since by taking the utility function and incentives as fixed, we have made the choice inevitable}, limitting the freedom that the analysis grants them.
+
+Social choice function: a mapping 
+
+Direct Mechanism: A mechanism where the message space is the signal (type) space and
+the outcome function is the social choice function.
+
+Bayes Nash Equilibrium: A specification of individual strategies as a function of information
+such that no individual can gain by a unilateral change of strategies.
+
+
+Bayesian Incentive Compatibility: A property of a direct mechanism requiring
+that truth be a Bayesian equilibrium.
+
+
+
+\subsection{Elicitation and Mechanism Design}
+
+
+
+The equivalence between trading shares and eliciting beliefs from a single agent by the means of scoring rules first appears in \cite{savage1971elicitation}
+%The correspondence between trading shares and eliciting beliefs from a single agent by the means of scoring rules was first noted by Savage (1971), who also provided additional techni- cal details. 
+Hanson (2003), Pennock (2006), and Chen and Pennock (2007) discussed this cor- respondence for the case of MSR. The study of automated market makers goes back to Black (1971a, 1971b), while formal analysis of inventory-based market makers goes back to Amihud and Mendelson (1980).
+
+
+%Under the basic MSR (introduced by Hanson (2003, 2007), though the idea of repeatedly using a proper scoring rule to help forecasters aggregate infor- mation goes back to McKelvey and Page (1990))
+%Note also that if each player behaves myopically in each period, the prediction that he will make is his posterior belief about the expected value of the security, given his initial information and the history of revisions up to that point, and thus the “game” turns into the communication process of Geanakoplos and Polemarchakis (1982).
+
+Proper scoring rules
+
+Brier, incentives for forecasts (that are fully observable, or where the forecast does not affect the actions that it is contiengent on)
+
+Logarithmic market scoring rule (LMSR)
+
+
+
+
+\section{Information Revelation and Aggregation in Markets}
+TODO: rewrite 
+\quote{The question of information revelation and aggregation in markets has attracted the attention of many economists, beginning with Hayek (1945). Grossman (1976) formally showed that in a market equilibrium, the result- ing price aggregates information dispersed among n-types of informed traders, each of whom gets a “piece of information.” In his model, individual traders are small relative to the market, strategic foundations for players’ behavior are lacking, and the results rely on particular functional forms (e.g., i.i.d. normal errors in signals received by the players; normal prior; etc.). Radner (1979) introduced the concept of Rational Expectations Equilibrium (REE) and showed that generically, a fully revealing REE exists, with prices aggre- gating all information dispersed among traders. Radner’s paper, however, also lacks strategic foundations. A series of papers explored the question of con- vergence to REE in various dynamic processes (see, e.g., Hellwig (1982), and Dubey, Geanakoplos, and Shubik (1987), for models of centralized trading; Wolinsky (1990), and Golosov, Lorenzoni, and Tsyvinski (2011), for models of decentralized trading; and McKelvey and Page (1986), and Nielsen, Bran- denburger, Geanakoplos, McKelvey, and Page (1990), for models that extend the basic communication process of Geanakoplos and Polemarchakis (1982) to more complex settings in which agents’ beliefs are iteratively updated in re- sponse to repeated public observations of summary statistics of their actions). In all of these papers, however, it is assumed that each trader ignores the ef- fect of his behavior on the evolution of the trading process, as a result behaving non-strategically along at least one dimension. P
+
+roper strategic foundations for the concept of perfect competition with differentially informed agents are offered by the stream of literature studying bidding behavior in single and double auctions (Wilson (1977), Milgrom (1981), Pesendorfer and Swinkels (1997), Kremer (2002), Reny and Perry (2006)). Information aggregation results in these papers, however, rely on the assumption that the market is large, that is, the number of bidders goes to infinity and individual traders become small relative to the market. They also rely on various symmetry assumptions. No such assumptions are made in the current paper, and the number of traders is finite and fixed.
+
+Kyle (1985) offered a model of dynamic insider trading, in which the single informed trader takes into account the nonnegligible impact of his actions on market prices. In the continuous version of the model, as time approaches the end of the trading interval, the price of the traded security converges to its true value known by the insider. Foster and Viswanathan (1996) and Back, Cao, and Willard (2000) extended the model to the case of multiple, differentially informed strategic traders. In the continuous case, the price of the traded secu- rity converges to its expected value conditional on the traders’ pooled informa- tion. In the discrete case with a finite number of trading periods, convergence is approximate. These models rely on very special functional form assumptions (symmetry, normality, etc.), which allow the authors to construct explicit for- mulas for particular (“linear”) equilibria. Laffont and Maskin (1990) criticized this reliance of the results of Kyle (1985) on linear trading strategies; argued that such models inherently have multiple equilibria; presented a model of a trading game with a single informed trader and multiple equilibria, in some of which the informed trader’s information is not revealed; and concluded that “in a model in which private information is possessed by a trader who is big enough to affect prices, the information efficiency of prices breaks down” and “the efficient market hypothesis may well fail if there is imperfect competi- tion.” The results of the current paper show that the conclusions of Kyle (1985), Foster and Viswanathan (1996), and Back, Cao, and Willard (2000) regarding the convergence of the price of a security to its expected value conditional on the traders’ pooled information do not, in fact, depend on the specific func- tional form assumptions or on the choice of equilibrium: if the traded security is separable, its price converges to its expected value conditional on the pooled information in every equilibrium. In the case of a single informed trader, as in Laffont and Maskin (1990), every security is separable, and so information always gets aggregated. The contrasting conclusions of Laffont and Maskin are thus driven by the specifics of their model, not by the fact that they explicitly consider multiple equilibria. In the case of multiple partially informed traders, the securities considered in Foster and Viswanathan (1996) and Back, Cao, and Willard (2000) have payoffs that are linear in traders’ signals, and so, as the results of this paper show, information about such securities always gets aggregated as well.
+
+This model is based on the market scoring rule (MSR) of Hanson (2003, 2007). In MSR games, there are no noise or liquidity traders and no strategic market makers; the only players are the strategic par- tially informed traders. There is also an automated market maker. This mar- ket maker, in expectation, loses money (though at most a finite, ex ante known amount), facilitating trade and price discovery. (Without a “source” of prof- its, there would be no trading; see Milgrom and Stokey (1982) and Sebenius and Geanakoplos (1983).) Trading proceeds as follows. The uninformed mar- ket maker makes an initial, publicly observed prediction about the value of a security. The first informed strategic player can revise that number and make his own prediction, which is also observed by everyone. Then the second player can further modify the prediction, and so on until the last player, after which the first player can again modify the prediction, and the cycle repeats an infinite number of times. The fact that there is an infinite number of trading periods does not mean that the game never ends. Rather, it is a convenient discrete analogue of continuous trading, with trades taking place at times t0 < t1 < · · · in a bounded time interval. Sometime after the trading is over, the true value of the security is revealed, and each prediction is evaluated according to a strictly proper scoring rule s (e.g., under the quadratic scoring rule, each prediction is penalized by the square of its error; see Section 2.2 for further details). The payoff of a player from each revision is the difference between the score of his prediction and the score of the previous prediction—in essence, the player “buys out” the previous prediction and replaces it with his own. The total pay- off of a player in the game is the sum of payoffs from all his revisions. Players are risk-neutral. The discounted MSR (Dimitrov and Sami (2008)) is similar, except that the total payoff of a player is equal to the discounted sum of pay- offs from all his revisions, where the payoff from a revision made at time $t_k$ is multiplied by $I^2k$ for some $ i< 1$.
+While my primary reason for studying this model is to illustrate the intu- ition behind information aggregation in the main model and thus make that result more transparent, information aggregation in MSR-based models is also of independent interest, for several reasons. First, such models can be viewed as generalizations of the communication processes of Geanakoplos and Pole- marchakis (1982) and other papers in this tradition, in which several differen- tially informed agents sequentially announce their beliefs about the value of a random variable (or the probability of an event), and those beliefs eventually
+converge to a common posterior. In those papers, it is assumed that the agents make truthful announcements, and strategic issues are ignored. Discounted MSR includes this truthful process as a special case, I= 0 (strictly speaking, the case I = 0 is ruled out in this paper, but it is easy to show that as I becomes small, in any equilibrium, players will behave almost myopically, i.e., will reveal their expectations almost truthfully), and at the same time makes it possible to examine the role of strategic behavior (for β > 0). The results of this paper show that, for separable securities, information aggregation does not depend on whether agents behave strategically or myopically.
+Second, the MSR model includes as a special case a basic model of trading
+with an automated inventory-based market maker who offers to buy or sell
+shares in the security at price p that is a function of the (possibly negative) net
+inventory the market maker holds at that moment. Specifically, suppose the
+market maker starts with zero net inventory, sets the price for the security as
+a continuous decreasing function p(z), where z is the total amount of shares
+he holds in his inventory (i.e., the more he holds, the less he is willing to pay
+for additional shares), and commits to buying or selling shares according to
+that price schedule. Thus, if his current inventory is z0, and a trader decides
+to sell (z − z ) units of the security to the market maker, the market maker 1 0 􏰋z1
+will pay that trader z0 p(z ̃)dz ̃ for the (z1 −z0) units. The current price of the security will move from p(z0) to p(z1). If the true value of the security then
+turns out to be equal to x, then the trader’s payoff from this transaction will be equal to 􏰋 z1 p(z ̃) dz ̃ − x(z1 − z0) = 􏰋 z1 (p(z ̃) − x) dz ̃􏰷 Thus, it is strictly optimal
+z0 z0
+(myopically) for the trader to pick z1 in such a way that p(z1) is equal to his
+belief about the value of the security (assuming the image of function p(·)
+includes that value). His payoff from this transaction is equal to his payoff from
+scoring rule s(y􏰸x)= 0 (p(z ̃)−x)dz ̃, where zy =p−1(y), that is, p(zy)=y.2 Finally, note that while the market maker in this setting expects to lose money, the worst possible loss is bounded and can be controlled by adjusting the parameters of the rule. Another attractive feature of MSR in practice (rel- ative to, say, continuous double auctions) is that a player can instantaneously make his prediction/trade at any time, without having to wait for another player who is willing to take the other side of the trade or to submit a limit order and wait for it to be filled. These features make MSR attractive for use in internal corporate prediction markets, and it is in fact used for that purpose: compa- nies like Consensus Point and Inkling Markets operate MSR-based prediction
+markets for Ford, Chevron, Best Buy, General Electric, and many other large corporations.3 Thus, the question of whether information in MSR-based pre- diction markets gets aggregated has direct practical implications.
+Two recent papers have studied the equilibrium behavior of traders in MSR games.4 Chen, Reeves, Pennock, Hanson, Fortnow, and Gonen (2007) consid- ered undiscounted games based on a particular scoring rule—logarithmic (see Section 2.2). In their model, the security can take one of two different values, and the number of revisions is finite. They found that if traders’ signals are in- dependent conditional on the value of the security, then it is an equilibrium for each trader in each period to behave myopically, that is, to make the predic- tion equal to his posterior belief. They also provided an example of a market in which signals are not conditionally independent and one of the traders has an incentive to behave non-myopically. Dimitrov and Sami (2008) also considered games based on the logarithmic scoring rule. In their models, in contrast to Chen et al., traders observe independent signals. Each realization of the vector of signals corresponds to a particular value of the security. The number of trad- ing periods is infinite. Dimitrov and Sami found that, in that case, in the MSR game with no discounting, myopic behavior is generically not an equilibrium and, moreover, there is no equilibrium in which all uncertainty is guaranteed to get resolved after a finite number of periods. They then introduced a two- player, two-signal MSR game with discounting, and proved that in that game, information gets aggregated in the limit, under the additional assumption that the “complementarity bound” of the security is positive. They reported that, based on their sample configurations, the bound is not always zero, but did not provide any sufficient conditions for it to be positive. In contrast to Chen et al. (2007) and Dimitrov and Sami (2008), the current paper’s information aggregation results (1) do not rely on the independence or conditional inde- pendence of signals, allowing instead for general information structures with any number of players; (2) do not depend on discounting; and (3) provide a sharp characterization of securities for which information always gets aggre- gated and those for which, under some priors, price may not converge to the expected value conditional on the traders’ pooled information.}
+
+Ostrovsky studies information aggregation in dynamic markets with a finite number of partially informed strategic traders. It shows that, for a broad class of securities, information in such markets always gets aggregated. Trading takes place in a bounded time interval, and in every equilibrium, as time approaches the end of the interval, the market price of a “separable” security converges in probability to its expected value conditional on the traders’ pooled information. If the security is “non-separable,” then there exists a common prior over the states of the world and an equilibrium such that information does not get aggregated. The class of separable securities includes, among others, Arrow–Debreu securities, whose value is 1 in one state of the world and 0 in all others, and “additive” securities, whose value can be interpreted as the sum of traders’ signals.
+
+%Consider the following example from Geanakoplos and Polemarchakis (1982).
+%EXAMPLE1: Therearetwoagents,1and2,andfourstatesoftheworld,Ω=
+%{A􏰸B􏰸C􏰸D}. The prior is P(ω) = 1 for every ω ∈ Ω. The security is X(A) = 4
+%X(D) = 1 and X(B) = X(C) = −1. Partitions are Π1 = {{A􏰸B}􏰸{C􏰸D}} and Π2 ={{A􏰸C}􏰸{B􏰸D}}.
+
+%In the example, by construction, it is common knowledge that each player’s expectation of the value of the security is zero, even though it is also common knowledge that the actual value of the security is not zero, and that the traders’ pooled information would be sufficient to determine the security’s value. Thus, even if the traders repeatedly and truthfully announce their posteriors, as in Geanakoplos and Polemarchakis (1982), they will never learn the true value of the security. 
+
+
+
+\subsection{Decision Markets}
+
+\quote{Prediction markets have served as a reliable tool for estimating the winners of political elections and sports games [Berg et al., 2001]. However, due to legal restrictions severely limiting their use, the latest wave of prediction markets have focused not on the general, but on the specific. Instead of creating large-scale markets
+on publicly verifiable events, these services bill themselves as accu- mulators of organizational knowledge on specific internal (e.g., cor- porate) events. For instance, the prediction market startup Inkling Markets suggests that companies use their service “to uncover and quantify risk in your organization". The recently launched Crowd- cast lists questions like “When will your product really ship?" and “How much will it really cost?" on their homepage.
+We contend that the current corporate prediction markets do not actually capture the problems most prominent for their clients. The chief challenge facing businesses is not whether the decisions they have made will prove successful, but rather what actions to take to assure the best chance of success.
+Our work approaches this issue directly. In our model, a princi- pal has to choose an action from a set of possibilities (e.g., “Hire additional sales staff", “Double R&D funding") in order to maxi- mize the probability of achieving a desirable outcome (e.g., “Be- come the top-grossing company in our market space", “Sell more than a million widgets", or “Achieve profitability by the end of the year"). The principal elicits from an expert, for each action, the probability of achieving the desired outcome. Based on those prob- abilities, the principal then (deterministically) chooses an action ac- cording to a decision rule. Upon success or failure in achieving the desired outcome, the principal rewards the expert according to a pre-determined scoring rule. Three functions define the space: the decision rule, the payoff for success, and the payoff for failure.
+We first prove general properties of the way these functions re- late. We then provide an in-depth study of the most natural de- terministic decision rule, the max decision rule, which selects the action that has the highest reported success probability. For the single-agent setting, we show that no symmetric scoring rule, nor the asymmetric ones from the literature, give the agent the right in- centives. We construct an asymmetric scoring rule that does, and provide a characterization of a space of such rules.
+Along the same lines as the original construction of market scor- ing rules [Hanson, 2003, 2007, Pennock and Sami, 2007], we con- tinue by attempting to expand our scoring rule system into an auto- mated market maker for our multiagent setting, to create decision markets. Surprisingly, we show that every market of this kind suf- fers from a peculiar type of manipulability, where an agent benefits from exaggerating the success probability of a suboptimal action. We show that this kind of manipulability applies even under an in- finite stream of self-interested agents visiting the market—even if each agent’s beliefs about the probabilities are exactly accurate. We design families of asymptotically-optimal pricing rules for decision markets that minimize manipulability.
+Finally, we study two alternate decision market designs. We show the first one suffers from significant manipulability of a dif- ferent kind, and for the second we show a new kind of no-trade result. 	
+We initiated the study of decision rules and decision markets in settings where a principal needs to select an action and is advised by a self-interested but decision-agnostic expert about the success probabilities of alternative actions.
+We began by investigating the properties of general deterministic decision rules in the context of eliciting from a single expert. We proved results about the relations between the principal’s decision rule and the rules that specify the expert’s payoff if the desired out- come is, and is not, achieved. For the most natural decision rule (where the principal takes the action with highest success probabil- ity), we showed that no symmetric scoring rule, nor any of Win- kler’s asymmetric scoring rules, are quasi-strictly proper. We char- acterized the set of differentiable quasi-strictly proper scoring rules and constructed an asymmetric scoring rule that is quasi-strictly proper.
+Moving to decision markets where multiple experts interact by trading, we showed a surprising impossibility for every automated market maker, where an agent is incentivized to artificially raise the price of a non-optimal action (again under the decision rule where the principal takes the action with highest success probability). To counter this impossibility, we constructed two families of asymp- totically optimal pricing rules against this form of manipulation, one additively optimal and the other multiplicatively optimal. Fi- nally, we considered two alternative market designs for decision markets. The first, in which all outcomes live in the same proba- bility universe, has even worse incentives (for the final participant). The second, in which the experts trade on the probability of the outcome occurring unconditionally, exhibits a new kind of no-trade result.
+There are many interesting research directions in this new area.
+The first would be examining the space of discontinuous scoring rules, being aware that such rules would nevertheless have to obey Theorem 2. Another area of exploration would be combinatorial decision rules, in which the principal could take more than one of the available actions.
+We focused on deterministic decision rules because they are nat-
+ural. It is known that adding randomness can significantly increase
+the incentive-compatible feasible space of mechanisms in other settings— prominent examples include voting [Gibbard, 1977] and sybill-proof (false name resistant) voting [Wagman and Conitzer, 2008]. Future research should study randomized decision rules in our setting as
+well. Trivial randomized solutions—like shifting ε probability to
+each action—do not get around our impossibilities, like the nonex- istence of strictly proper scoring rules (because the manipulations
+in our examples and proofs yield the manipulator benefits that are
+not infinitesimally small).
+It would also be interesting to explore a larger characterization of the peculiar no-trade impossibility of Section 3.4.2. Does it apply in other economic interactions besides markets of this sort? The key seems to be that any action an agent takes has negative utility because of the effects of taking that action.
+Another important direction concerns what happens when agents are interested in the action taken by the principal. For instance, an expert could advocate doubling a company’s advertising bud- get because she works in the marketing department. This type of setting is related to recent work by Shi et al. [2009], who study a setting where an agent can perform an action after a market runs such that the market can incentivize the agent to act counter to the principal’s goal. Whether or not the agents can take actions after the decision market, it would desirable to use decision markets to balance the utilities of agents impacted by the principal’s decision with the principal’s desire to achieve his goal.}
+
+
+\subsection{Bandits}
+
+Decisions over mutually exclusive actions that affect reward naturally lead to partial supervision or feedback.
+Bandit problems are concerned with optimal repeated decision-making in the presence of uncertainty and partial feedback. 
+The main challenge is to trade-off exploration and exploitation, so as to collect enough samples to estimate the rewards from different strategies whilst also strongly biasing samples towards those actions most likely to yield high rewards.  
+
+Prediction with expert advice is a general abstract framework for studying sequential prediction problems, formulated as repeated games between a player and an adversary.
+A well studied example of prediction game is the following is the contextual bandit setting: In each round, nature reveals some context, the adversary privately assigns a loss value to each action in a fixed set.
+Then the player chooses an action (possibly using randomization), incurs the corresponding loss, the player only observes the loss of the chosen action, but not that of other actions.
+The goal of the player is to control static regret, which is defined as the excess loss incurred by the player as compared to the best fixed action given the context over a sequence of rounds.
+
+
+\subsubsection{Thompson Sampling}
+
+A Very natural algorithm with good practial performance, \cite{thompson:33}, the static regret of which has only been recently analized. 
+
+\subsubsection{Exp3}
+
+Maximally robust guarantees, in particular wrt non-stochastic nature of underlying sequences. Useful when we wish to create hierarchical bandits, as even when the original sequence is IID the sequence that results from a bandits algorithms choices will not be by construnction.
+
+%\subsection{Extensions}
+
+
+
+\subsubsection{Beyond Partial or Full Supervision}
+
+Partial observability graph Allows interpolation between full supervision and bandit feedback, shows sharp separations into three classes. 
+
+When we generalize the notion of compliance-awareness to general awareness of variables 
+
+Vapnik introduced a related notion of side-information into the supervised setting with his learning under privileged information framework \cite{vapnik:09}.
+
+Priviledged Information and Generalized Distilation
+ \cite{Lopez-Paz16} show a generalization of distillation, which captures 
+
+
+\subsection{Decisions}
+
+\quote{If we relax the need to elicit probabilities, the problem can be solved straightforwardly. For instance, it is trivial to incentivize an agent to truthfully report which action has the highest probability of achieving a desired outcome. This can be done by simply giving the agent a lump sum payment if the outcome is reached, which aligns the incentives of the agent and the principal.} \cite{othman2010decision}
+
+
+
+
+\subsection{Information Design and Incentive Compatible Bandits}
+
+Information Design, Bayesian Persuasion, and Bayes Correlated Equilibrium,  American Economic Review Papers and Proceedings, 2016, 106, 586-591, with Stephen Morris
+
+\cite{mansour2015bayesian}
+
+
+
+\cite{dreber2015using}
+use a prediction market to estimate the reproducibility of scientific research
+
+
+a incromprehensible paper, but it is a trivial corolary of the folk theorem (TODO: cites beyond Della Penna and Reid 2012, Chen and ) is that any mechanism that settles before the event occurs has the multiple equilibria. Further if one agent has larger cpaital than the others he can force the settlement to favor him (you might be right, but he is more liquid) %http://bjll.org/index.php/jpm/article/view/1148

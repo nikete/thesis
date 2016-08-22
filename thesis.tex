@@ -1,0 +1,84 @@
+
+\documentclass[11pt, a4paper]{book}
+
+\input{macros}            
+
+\title{Decisions, Learning and Games: \\ You've Got To Have Freedom.}
+\author{Nicol\'as Della Penna}
+\date{\today}
+
+\renewcommand{\thepage}{\roman{page}}
+
+\makeindex
+\begin{document}
+
+\pagestyle{empty}
+\thispagestyle{empty}
+\input{titlepage}
+
+\input{frontmatter}
+\cleardoublepage
+\pagestyle{empty}
+\input{dedication}
+
+\cleardoublepage
+\pagestyle{empty}
+\input{ack}
+
+\cleardoublepage
+\pagestyle{headings}
+\input{abstract}
+
+%% Table of contents
+\cleardoublepage
+\pagestyle{headings}
+\markboth{Contents}{Contents}
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatter
+\part{Introduction and Preliminaries}
+\input{intro}
+\input{background}
+\part{Compliance Aware Bandits}
+
+
+\input{intro.tex}
+\input{model.tex}
+\input{algo.tex}
+%\input{data.tex}
+\input{results.tex}
+\input{further.tex}
+
+
+
+%\clearpage
+\input{bound.tex}
+\input{fullsims.tex}
+
+\part{Mechanism for Optimal Decision Elicitation from Many Experts}
+\chapter{A Single Decision with Good Incentives and Freedom}
+\label{cha:market}
+\epigraph{Give the people what they want\\ when they want it \\
+And they wants it all the time}{Parliament \\ Supergroovalisticprosifunkstication}
+\input{market}
+\chapter{A sequence of subjects}
+We consider a natural setting that generalizes both previous models.
+\input{twosides}
+%\part{Conclusion}
+%\input{conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Here begins the end matter
+
+%%\input{appendix}
+
+\backmatter
+
+\bibliographystyle{anuthesis}
+\bibliography{dmarket,Bandits-with-Noncompliance/compliance}
+
+\printindex
+
+\end{document}

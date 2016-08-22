@@ -1,0 +1,19 @@
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\vspace{-1em}
+
+
+Maintaining subjects freedom to decide imposes structure and constraints on learning systems that aim to guide those decisions. Two natural sources to learn to make good decisions are past experiences and advice from others. Both are affected by subjects freedom to ultimately act as they wish; giving rise to learning theoretic and game theoretic repercussions respectively.
+
+To study the first we extend the standard bandit setting: after the algorithm chooses an action, the subject may actually carry out a different action and then this is observed along with the reward. Algorithms whose choice of action are mediated by a subject can gain from awareness of the subjects' actual actions, which we term compliance awareness. We present algorithms that take advantage of compliance awareness, while maintaining worst case regret bounds up to multiplicative constants.  We study their empirical finite sample performance on synthetic and simulations with real data from clinical trials. Finally we draw connections to a broader machine learning literature on learning with privileged information and generalized distiliation.  
+%Where, instead of a compliance variable which maps to the action space, arbitrary variables observed after the action has been chosen by the algorithm can be taken into account.
+
+To study the advice of others, we consider the literature on incentivizing multiple experts by a decision maker that will take an action and receive a reward about which the experts may have information. Existing mechanisms for multiple experts are known not to be truthful, even in the limited sense of myopic incentive compatibility, unless the decision maker renounces their ability to always take on the best ex-post action and commits to a randomized strategy with full support. We present a new class of mechanisms based on second price auctions that maintain subjects freedom. Experts submit their private information, and the algorithm auctions of the rights to a share of the reward of the subject, who then has freedom to pick the action they desire after observing the submitted information. We show several situations in which existing mechanisms fail and this one succeeds. We also consider strategic limitations of this mechanism beyond the myopic setting that arrise due to information complementarities, and practical considerations in its implementation in real institutions.
+
+
+We conclude by considering a combined setting: a sequence of subjects each receiving advice elicited from a fixed set of experts then taking an action. Repeatedly running the mechanism for the single shot setting is not incentive compatible. 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "paper"
+%%% End: 
