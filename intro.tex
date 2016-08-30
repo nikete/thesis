@@ -10,21 +10,24 @@ That thing is called free, which exists solely by the necessity of its own natur
 \section{Thesis Statement}
 \label{sec:thesisstatement}
 
-Freedom of subjects that take actions imposes structure and constraints on learning systems that aim to inform those decisions. 
+Freedom of the subjects that take actions imposes structure and constraints on learning systems that aim to inform those decisions. 
 
 \section{Problem Statement}
 \label{sec:problemstatement}
 
 
-An algorithm seeks to help a doctor facing a sequence of patients for which there is an established and a novel treatment. A patient seeks to elicit information form experts to select the optimal treatment for their condition. In both situations, it is natural to consider the  that the patients have the last say on what treatment they take. That is, the \emph{subject} who takes the action and lives through its consequences, retains their freedom; their actions not entirely externaly determined.
-The two motivating doctor patient interactions above are found relfected in two literatures. The first, in the classic bandit seting \cite{thompson:33,gittins1979bandit,bubeck:12}, the seccond, is the much more recent and relatively obscure, decision markets \cite{berg2003prediction,hanson2002decision,othman2010decision,boutilier2012eliciting,chen2014eliciting}. In both literatures it is widely assumed that the action the algorithm or mechanism selects is the one carried out by the subject. This is implicit in most of the bandit literature, where no variable encodes the potential distinction between the algorithms and subjects choices of actions. It is explcit in the decisions market literautre, where mechanisms based on sequential proper scoring rules over markets contigent on the action taken (and which void the markets contigent on the actions not taken), require not only that the subject follow the mechanisms choice, but makes use of the fact that this cuases the play of aparently dominated actions with positive probability to create the right incentives for the experts. 
+An algorithm seeks to help a doctor facing a sequence of patients for which there is an established and a novel treatment. A patient seeks to elicit information form experts to select the optimal treatment for their condition. In both situations, it is natural to consider the  that the patients have the last say on what treatment they take. More abstractly, the \emph{subject} who takes the action and lives through its consequences, retains their freedom; their actions not entirely externaly determined by the system that helps inform them.
+
+These two motivating interaction patterns, minus the freedom, above are found reflected in two literatures. The first, in the classic bandit seting \cite{thompson:33,gittins1979bandit,bubeck:12}, the seccond, is the much more recent and relatively obscure, decision markets \cite{berg2003prediction,hanson2002decision,othman2010decision,boutilier2012eliciting,chen2014eliciting}. In both literatures it is widely assumed that the action the algorithm or mechanism selects is the one carried out by the subject. This is implicit in most of the bandit literature, where no variable encodes the potential distinction between the algorithms and subjects choices of actions, and little consideration is given to the posibility they can differ (incentive compatible bandits are the exception). It is explcit in the decision market literautre, where mechanisms based on sequential proper scoring rules over markets contigent on the action taken (and which void the markets contigent on the actions not taken), require not only that the subject follow the mechanisms choice, but makes use of the play of aparently dominated actions with positive probability to create the incentives for the experts. 
 
 Operationally, in the bandit setting our notion of subjects freedom can be captured by considering, in addition to the usual variable which encodes the action that the algorithm  or mechanism selects, a seccond variable for the action that the subject actually takes. Naively using such a variable and just replacing (a sublinear regret algorithm) the chosen with the observed action leads to linear regret in the worst case. 
 
-In the mechanism design problem of expert elicitation for decision making, maintaining freedom rules out classes of mechanisms that rely on the subject taking dominated actions with positive probability. Previously no  mechanisms that are incentive compatible with many experts where the subject retains its freedom (is not knowingly required to take an ex-post dominated action with positive probability) where known \cite{chen2014eliciting}.
+In the mechanism design problem of expert elicitation for decision making, maintaining freedom rules out classes of mechanisms that rely on the subject taking dominated actions with positive probability. Previously no  mechanisms that are incentive compatible with many experts where the subject retains its freedom (is not knowingly required to take an ex-post dominated action with positive probability) where known \cite{othman2010decision,chen2014eliciting}.
+
+
+
 
 \section{Thesis Goals: Algorithms and Mechanisms under Subject Freedom}
-
 
 We first turn to the purely learning theoretic implications of subjects freedom. The first cocneptual observation is that if subjects have freedoms we should not assume that the actions the algorithm selects are those that are indeed carried out in the world, and that valuable information can be learnt from observing when that is the case, and what hapens when it is not.
 Formally, by extending the bandit setting to account for compliance awreness on the part of the algorithm of the action that takes place relative to that chosen. We present bandit algorithms that use compliance awareness and empirically  outperform their standard variants, while preserving worst case regret guarantees up to multiplicative constants. 
@@ -32,19 +35,16 @@ Formally, by extending the bandit setting to account for compliance awreness on 
 We then turn to purely strategic considerations, focusing on incentivizing the elicitation of an optimal action from multiple experts; this problemis analogous to the prediction market in the way that bandits are analogoous to the online fully supervised exert problem. 
 We present the first mechanism that can elicit decision  information from multiple experts without committing to taking dominated actions with positive probability. 
 
-
 Finally we consider a natural hybrid setting, where a sequence of subjects makes decisions and each can receive advice from a fixed set of experts that the mechanism seeks to incentivize. Repeated use of the single-agent multi-expert mechanism fails to explore. We present a market structure that incentivizes exploration.
 
 
 
 \section{Scope and Limitations}
 
-In the bandit setting we assume the decisions we take do not affect underlying state of the system. (i.e. patients might not be IID, but we are not worrying about say the evolutionary dynamcis of the disease; i.e. good for learning to carry out trauma surgury, perhaps not so good for antibiotics).  Separable incentives accross patients :the patients have no interest in each others outcomes. 
+In the bandit setting we assume the decisions we take do not affect underlying state of the system. (i.e. patients might not be IID, but we are not worrying about say the evolutionary dynamcis of the disease; i.e. good for learning to carry out trauma surgury, not so good for antibiotics).  Separable incentives accross patients: the patients have no interest in each others outcomes. 
 In the expert elicitation for decision setting, we assume no inherent interest of experts on actions (i.e. the expert doctors offering advice have no conflict of interest; would not profit more from carrying out a specfic treatmnet) 
 
 When we focus on incentive compatibility, we do so for the experts, not the subject. Assuming a  utility maximizing subject, one that uses the max decision rule, restricts the freedom of that subject. For example, to have unstale preferences, that will change once the mechansim commences. This brings both limits and possibilities. While it limits the richness of the mechaniss we can use (since we need to account for a subject that may or may not respond to incentives), it also liberates the analysis from constraints created by assuming all subjects are rational. For example, in bayesian incentive compatible bandit exploration, \cite{mansour2015bayesian}, there are priors over arms rewards where some arms are never explored, even through they may be optimal with positive probability \footnote{they might even be optimal with probability almost one half}. The posibility of some share of agents not being rational, means the mechanism can explore such arms.
-
-
 
 While the direct deicsion elicitation mechanism we propose nicely sidesteps the mainproblems of previously proposed mechanism, it makes very strong use of a common prior assumption that extends over both compliance probabilities fo subjects and a common prior probability distribution accross experts over their joint signals. The canonical concern of Wilson (1987) 
 
@@ -56,14 +56,14 @@ conduct useful analyses of practical problems. Only by
 repeated weakening of common knowledge assumptions
 will the theory approximate reality}
 
-motivates our seccond mechanism, which retains the structure of the direct mechanism but replaces signals with bids. We then analize different canonical information structures to understand when information fails to aggregate appropiately in this setting. 
+motivates our seccond mechanism, which retains the structure of the direct mechanism but replaces signals with bids. We analize different information structures to understand when information can still aggregate appropiately in this setting.
 
 
 \section{Thesis Outline}
 \label{sec:outline}
 
-First we provide some background on the two settings that this thesis makes contributions in  Chapter~\ref{cha:background}. Then we present two novel classes of algorithms and associated regret guarantees that take into account the underlying freedom not to comply with an algorithms chosen treatment in Chapter~\ref{cha:bandit}. We then study the empirical performance  of these algorithms based on both synthetic and real data in Chapter~\ref{cha:empirical}. 
+First we provide background on the two settings that this thesis makes contributions in  Chapter~\ref{cha:background}. Then we present two novel classes of algorithms and associated regret guarantees that take into account the underlying freedom not to comply with an algorithms chosen treatment in Chapter~\ref{cha:bandit}. We then study the empirical performance  of these algorithms based on both synthetic and real data in Chapter~\ref{cha:empirical}. 
 
-We then turn our attention to eliciting an optimal action, and offer the first incentive compatible algorithm for elicitation from multiple experts that does not restrict the agents freedom in Chapter~\ref{cha:market}, and show it to be optimal while exploring some of its practical limitations from its fundamental use of a common prior, and what is lost when we move to a sipler mechanism that relies on bids instead of signals. We then turn to a novel version of the problem with not only multiple experts, but also multiple subjects that arrive sequentially, which we term \emph{two sided decision markets} in Chapter~\ref{cha:twosided}. We propose a extension of simple mechanism based on a sequence of seccond price auctions that internalizes the benefits of exploration.
+We then turn our attention to eliciting an optimal action, and offer the first incentive compatible algorithm for elicitation from multiple experts that does not restrict the agents freedom in Chapter~\ref{cha:market}, and show it to be optimal while exploring some of its practical limitations from its fundamental use of a common prior, and what is lost when we move to a sipler mechanism that relies on bids instead of signals. We then turn to a novel version of the problem with not only multiple experts, but also multiple subjects that arrive sequentially, which we term \emph{two sided decision markets} in Chapter~\ref{cha:twosided}. We propose a extension of the simple mechanism based on a sequence of seccond price auctions that internalizes the benefits of exploration.
 
 %We then explore some  Chapter~\ref{cha:conclusion}.

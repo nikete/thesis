@@ -1,6 +1,8 @@
-
 \documentclass[11pt, a4paper]{book}
 
+
+%\input{bandit/defs}
+%\input{advice/defs}
 \input{macros}            
 
 \title{Decisions, Learning and Games: \\ You've Got To Have Freedom.}
@@ -41,43 +43,51 @@
 \part{Introduction and Preliminaries}
 \input{intro}
 \input{background}
+
+
 \part{Compliance Aware Bandits}
 
+\chapter{Model and Algorithms}
+\input{bandit/intro.tex}
+\input{bandit/model.tex}
+\input{bandit/nonstationaryalgo.tex}
+\input{bandit/thompalgo.tex}
 
-\input{intro.tex}
-\input{model.tex}
-\input{algo.tex}
-%\input{data.tex}
-\input{results.tex}
-\input{further.tex}
+\chapter{Empirical Evaluation}
+\input{bandit/results.tex}
 
-
-
-%\clearpage
-\input{bound.tex}
-\input{fullsims.tex}
 
 \part{Mechanism for Optimal Decision Elicitation from Many Experts}
+
 \chapter{A Single Decision with Good Incentives and Freedom}
 \label{cha:market}
 \epigraph{Give the people what they want\\ when they want it \\
 And they wants it all the time}{Parliament \\ Supergroovalisticprosifunkstication}
-\input{market}
-\chapter{A sequence of subjects}
+\input{advice/market}
+
+\chapter{A Sequence of Subjects}
 We consider a natural setting that generalizes both previous models.
-\input{twosides}
-%\part{Conclusion}
-%\input{conclusion}
+\input{advice/twosides}
+
+
+
+\part{Conclusion and Appendix}
+\input{conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Here begins the end matter
 
 %%\input{appendix}
 
+%\input{bandit/further.tex}
+%\input{bandit/bound.tex}
+%\input{fbandit/ullsims.tex}
+
+
 \backmatter
 
 \bibliographystyle{anuthesis}
-\bibliography{dmarket,Bandits-with-Noncompliance/compliance}
+\bibliography{advice/dmarket,bandit/compliance}
 
 \printindex
 

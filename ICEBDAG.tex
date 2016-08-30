@@ -1,0 +1,21 @@
+\begin{tikzpicture}[scale=2, transform shape]
+% nodes %
+\node[text centered] (a) {$a$};
+\node[left = 1.5 of a, text centered] (c) {$c$};
+\node[right=1.5 of a, text centered] (r) {$r$};
+\node[right=1.5 of a, text centered] (M) {$M$};
+\node[draw, rectangle, dashed, above = 1 of a, text centered] (u) {$u$};
+\node[draw, rectangle, dashed, above = 1 of a, left = 1.5 of a, text centered] (s) {$s$};
+ 
+% edges %
+\draw[->, line width= 1] (s) --  (a);
+\draw[->, line width= 1] (u) --  (s);
+\draw[->, line width= 1] (M) --  (a);
+\draw[->, line width= 1] (M) --  (c);
+\draw[->, line width= 1] (c) --  (a);
+\draw [->, line width= 1] (a) -- (r);
+%\draw[->,red, line width= 1,dashed] (u) --node {X} (c);
+\draw[->,line width= 1] (u) --(r);
+\draw[->,line width= 1] (u) -- (a);
+%\draw[->, red, line width=1,dashed] (c) to  [out=270,in=270, looseness=0.5] node{X} (r);
+\end{tikzpicture}

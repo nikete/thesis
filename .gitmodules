@@ -1,0 +1,6 @@
+[submodule "bandit"]
+	path = bandit
+	url = https://github.com/nikete/Bandits-with-Noncompliance
+[submodule "advice"]
+	path = advice
+	url = https://github.com/nikete/Decision-Advice-Good-Incentives-Freedom
