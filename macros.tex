@@ -1,6 +1,11 @@
 \usepackage{svn-multi}
 \svnid{$Id$}
 \usepackage{prelim2e}
+
+\usepackage{listings}
+\usepackage{appendix}
+%\usepackage{bookmark}
+
 \renewcommand{\PrelimWords}{Draft Copy \svnkw{Id}}
 \newcommand*{\mysvnrev}{\svnrev}
 \usepackage[hyperindex=true,
@@ -63,16 +68,19 @@
 \usepackage{times,bbm,amsthm,comment,amssymb,amsmath,amsfonts, mathtools, hhline, enumerate}
 
 \usepackage{subfigure} 
-\usepackage{algorithm,algpseudocode}
+%\usepackage{algorithm,algpseudocode}
 %\usepackage{algorithmic}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
 
 \mathtoolsset{
 showonlyrefs=true%true % or false in draft mode
 }
 
-\newcommand{\DBA}[1]{{\bf\color{red} [DBA: #1]}}
-\newcommand{\NPD}[1]{{\bf\color{red} [NPD: #1]}}
-\newcommand{\MDR}[1]{{\bf\color{red} [MKR: #1]}}
+
+\newcommand{\DBA}[1]{{\bf\color{blue} [DBA: #1]}}
+\newcommand{\NDP}[1]{{\bf\color{blue} [NDP: #1]}}
 
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}
@@ -124,7 +132,7 @@ showonlyrefs=true%true % or false in draft mode
 \newcommand*\Loss{\ensuremath{\mathcal L}}
 \newcommand*\error{\mathcal E}
 
-
+\newtheorem{mech}{Mechanism}
 \newtheorem{thm}{Theorem}
 \newtheorem{cor}{Corollary}
 \newtheorem{prop}{Proposition}
@@ -136,7 +144,6 @@ showonlyrefs=true%true % or false in draft mode
 \theoremstyle{remark}
 \newtheorem*{idea}{Proof idea}
 \newtheorem*{rem}{Remark}
-\newtheorem{ex}{Exercise}
 \newtheorem*{qu}{Question}
-\newtheorem{challenge}{Challenge}
+\newtheorem{conjecture}{Conjecture}
 

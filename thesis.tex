@@ -1,8 +1,5 @@
 \documentclass[11pt, a4paper]{book}
 
-
-%\input{bandit/defs}
-%\input{advice/defs}
 \input{macros}            
 
 \title{Decisions, Learning and Games: \\ You've Got To Have Freedom.}
@@ -40,7 +37,6 @@
 \listoftables
 
 \mainmatter
-\part{Introduction and Preliminaries}
 \input{intro}
 \input{background}
 
@@ -59,29 +55,38 @@
 
 \part{Mechanism for Optimal Decision Elicitation from Many Experts}
 
-\chapter{A Single Decision with Good Incentives and Freedom}
+\chapter{A Single Decision}
 \label{cha:market}
-\epigraph{Give the people what they want\\ when they want it \\
-And they wants it all the time}{Parliament \\ Supergroovalisticprosifunkstication}
+%\epigraph{Give the people what they want\\ when they want it \\
+%And they wants it all the time}{Parliament \\ Supergroovalisticprosifunkstication}
 \input{advice/market}
 
 \chapter{A Sequence of Subjects}
-We consider a natural setting that generalizes both previous models.
+%We consider a natural setting that generalizes both previous models.
 \input{advice/twosides}
 
-
-
-\part{Conclusion and Appendix}
 \input{conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Here begins the end matter
 
-%%\input{appendix}
+%%
+%\begin{appendices}
 
-%\input{bandit/further.tex}
-%\input{bandit/bound.tex}
-%\input{fbandit/ullsims.tex}
+%\include{bandit/tables/stroke.tex}
+
+%\include{bandit/tables/ex1.tex}
+%\include{bandit/tables/ex3.tex}
+%\include{bandit/tables/ex4.tex}
+%\include{bandit/tables/ex5.tex}
+
+%\lstinputlisting[language=Python, firstline=37, lastline=45]{source_filename.py}
+\appendix 
+\chapter{Source Code to Simulations}
+\lstinputlisting[language=Python]{bandit/sim.py}
+
+\chapter{Results Tables from Simulation}
+\include{bandit/tables/ex2.tex}
 
 
 \backmatter
