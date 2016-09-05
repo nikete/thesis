@@ -71,22 +71,21 @@
 % Here begins the end matter
 
 %%
-%\begin{appendices}
-
-%\include{bandit/tables/stroke.tex}
-
-%\include{bandit/tables/ex1.tex}
-%\include{bandit/tables/ex3.tex}
-%\include{bandit/tables/ex4.tex}
-%\include{bandit/tables/ex5.tex}
-
 %\lstinputlisting[language=Python, firstline=37, lastline=45]{source_filename.py}
 \appendix 
 \chapter{Source Code to Simulations}
 \lstinputlisting[language=Python]{bandit/sim.py}
 
 \chapter{Results Tables from Simulation}
-\include{bandit/tables/ex2.tex}
+
+%\include{bandit/tables/stroke.tex}
+\input{bandit/tables/ex2.tex}
+
+%\include{bandit/tables/ex1.tex}
+%\include{bandit/tables/ex3.tex}
+%\include{bandit/tables/ex4.tex}
+%\include{bandit/tables/ex5.tex}
+
 
 
 \backmatter
