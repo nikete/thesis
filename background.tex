@@ -42,29 +42,40 @@ When there are multiple agents beyond nature interacting, as in elicitation from
 In particular, the notions of nash equilibrium \cite{nash1950equilibrium} and common knowledge \cite{aumann1976agreeing} provide a useful starting point to thinking about such settings, through they leave us with an embarrassment of riches in terms of the potetial equilibrium set.
 
 
-\subsection{Learning with Expert Advice}
+
+\subsection{Online Learning}
 
 
-The central object of analysis in the learning with expert advice framework is the \emph{regret} of an algorithm. This is defined as the diference in the cumulative reward between the algorithm and the reward that would have been obtained by some benchmark. 
+The central object of analysis in the online learning (also known as learning with expert advice) framework is the \emph{regret} of an algorithm. This is defined as the diference in the cumulative reward between the algorithm and the reward that would have been obtained by some benchmark. 
 The most common benchmark is the best fixed action in hindsight, and this is termed \emph{static regret}. When in this thesis we use the term regret without further modfiers, we are refering to this notion.
 
-Two main settings appear in the literature in terms of how the play of nature is carried out: in the stochastic setting the adversary picks a distribution over actions at the start of the game form which IID draws are later made, in the oblivious adversary setting it selects a specific sequence of play before the game begins.
+Two main settings appear in the literature for the play of the adversary is carried out: in the stochastic setting the adversary picks a distribution over actions at the start of the game form which IID draws are later made, in the oblivious adversary setting it selects a specific sequence of play before the game begins. Both choices are made with knowledge of the strategy of the learner, which is thus necesarily randomized in the oblivious adversarial case.
 
+A crucial aspect of the expert advice setting is the feedback model; two fundamental extremes are full feedback, where after realizing a action the reward that would have been obtained for any other choice of action is also revealed, and the bandit setting where only the reward of the chosen action is revealed. 
+A Partial observability graph Allows interpolation between full supervision and bandit feedback, shows sharp separations into three classes. 
 
 
 \subsection{Mechanism Design}
 
 How to structure a game so as to incentivize self interested agents to achieve some objective, is the central question of mechanism design.
-Each agents information is characterized by \emph{signals} which are informative of the underlying state of the world. 
-We say a mechanism is \emph{incentive compatible} when agents report their true signals to the 
-Ideally one would like to search for mechanisms that are  \emph{dominant strategy} incentive compatible. 
+Each agents information is characterized by their \emph{signal} (in the literature often also called their \emph{type} , particularly when it describes a private valuation of that agent of a good) which allows the agent to narrow down which realization of possible states of the world they are in. 
+
+We say a mechanism is \emph{incentive compatible} when agents report their true signals to the mechanism. 
+Without any further assumptions (i.e. without a probability distribution over said states of the world) signals are of limited use beyond situations with a dominant strategy equilibrium.
+% TODO this needs a lot of refinement.
+A very large literature exist on efficient mechanisms, particularly auctions, in the bayesian setting
+
+Ideally one would like to search for mechanisms that are  \emph{dominant strategy} incentive compatible.
+For many objectives of interest such mechanisms do not exist (as we will see in Chapter )
 
 
 % % THERE EXISTS AN EXTENSIVE LITERATURE on efficient auctions and mechanism
 % % design. A lot of attention has been devoted to the case where each agent i has a
 % % quasi-linear utility function that depends on the chosen social alternative, on
 % % information or signal privately known to  . i, and on a monetary transfer, but
-% % does not depend on information available to other agents. In this framework, a
+% % does not depend on information available to other agents. 
+
+% In this framework, a
 % % prominent role is played by the Clarke-Groves-Vickrey CGV mechanisms see 
 % % Clark 1971 , Groves 1973 , Vickrey 1961 . These are mechanisms that ensure 
 % % both that an efficient decision is taken and that truthful revelation of privately
@@ -124,12 +135,13 @@ Ideally one would like to search for mechanisms that are  \emph{dominant strateg
 \section{Bandits}
 
 Decisions over mutually exclusive actions that affect reward naturally lead to partial supervision.
+The 
 
 Bandit problems are concerned with optimal repeated decision-making in the presence of uncertainty and partial supervision, while being simpler than full reinforcement learning in that they limit the underlying state of the system to evolve in a manner indepedent of the set of actions carried out. 
 
 % make a note of the bandit process this being not strictly true as when you play an arm you allow the state in that arm to transition...
 
-The main challenge is to trade-off exploration and exploitation, so as to collect enough samples to estimate the rewards from different strategies whilst also strongly biasing samples towards those actions most likely to yield high rewards.  
+The main challenge is to trade-off exploration and exploitation, so as to collect enough samples to estimate the rewards from different potentially optimal actions whilst also strongly biasing samples towards those actions most likely to yield high rewards.  
 
  A prediction game that is central to the later part of this thesis is the contextual bandit setting: In each round, nature reveals some context, the adversary privately assigns a loss value to each action in a fixed set.
  Then the player chooses an action (possibly using randomization), incurs the corresponding loss, the player only observes the loss of the chosen action, but not that of other actions.
@@ -137,6 +149,59 @@ The main challenge is to trade-off exploration and exploitation, so as to collec
 
 %Formally this can be defined as 
 %TODO copy pasta terms from chapter
+
+\subsection{Contextual Bandits}
+
+
+% \subsection{Notation}
+
+
+% For the purpose of this paper, we consider the multi-armed bandit problem with contextual information.  Following previous work~\cite{Langford08Epoch}, we call it a \emph{contextual bandit problem}.\footnote{In the
+% literature, contextual bandits are sometimes called bandits with covariate~\cite{Woodroofe79One}, associative reinforcement learning~\cite{Kaelbling94AssociativeFunctions}, bandits with expert advice~\cite{Auer02Nonstochastic}, bandits with side information~\cite{Wang05Bandit}, and associative bandits~\cite{Strehl06Experience}.}
+% %To make the framework more general (which our empirical study will adopt in
+% %\secref{sec:application}), we also allow the set of arms to change over time.
+% Formally, we define by $\Aset=\{1,2,\ldots,K\}$ the set of arms, and
+% a contextual-bandit algorithm $\Aalg$ interacts with the
+% \emph{world} in discrete trials $t=1,2,3,\ldots$.  In trial $t$:
+% %
+% In this process, the \emph{total $T$-trial payoff} of $\Aalg$ is defined as
+% \[
+% G_\Aalg(T) \defeq \E_D\left[\sum_{t=1}^T r_{t,a_t}\right],
+% \]
+
+
+
+
+% where the expectation $\E_D[\cdot]$ is defined w.r.t. the i.i.d. generation
+% process of $(\vecb{x}_t,r_{t,1},\ldots,r_{t,K})$ according to distribution $D$
+% (and the algorithm $\Aalg$ as well if it is not deterministic).
+% Similarly, given a policy $\pi$ that maps contexts to actions, $\pi:\Cset\mapsto\Aset$, we define its total $T$-trial payoff by
+% \[
+% G_\pi(T) \defeq \E_D\left[\sum_{t=1}^T r_{t,\pi(\vecb{x}_t)}\right]=T\cdot\E_D\left[r_{1,\pi(\vecb{x}_1)}\right],
+% \]
+% where the second equality is due to our i.i.d. assumption.
+% Given a reference set $\Pi$ of policies, we define the \emph{optimal expected $T$-trial payoff with respect to $\Pi$} as
+% \[
+% G^*(T) \defeq \max_{\pi\in\Pi} G_\pi(T).
+% \]
+% For convenience, we also define the per-trial payoff of an algorithm or policy,
+% which is defined, respectively, by
+% \begin{eqnarray*}
+% g_\Aalg &\defeq& \frac{G_\Aalg(T)}{T} \\
+% g_\pi &\defeq& \frac{G_\pi(T)}{T} = \E_D\left[r_{1,\pi(\vecb{x}_1)}\right].
+% \end{eqnarray*}
+% %
+% Much research in multi-armed bandit problems is devoted to developing algorithms
+% with large total payoff.  Formally, we may search for an algorithm
+% minimizing \emph{regret} with respect to the optimal arm-selection
+% strategy in $\Pi$.  Here, the $T$-trial regret $R_\Aalg(T)$
+% of algorithm $\Aalg$ with respect to $\Pi$ is defined by
+% %(\lihong{We may not need to define regret for this paper.})
+% \begin{eqnarray}
+% R_\Aalg(T) \defeq G^*(T) - G_\Aalg(T). \label{eqn:regret-def}
+% \end{eqnarray}
+% %
+% An important special case of the general contextual bandit problem is the well-known \emph{$K$-armed bandit} in which the context $\vecb{x}_t$ remains constant for all $t$.  Since both the arm set and contexts are constant at every trial, they have no effect on a bandit algorithm, and so we will also refer to this type of bandit as a \emph{context-free} bandit.
 
 
 \subsection{Algorithms}
@@ -281,7 +346,7 @@ Subjects freedom makes no difference in the analysis of these fully supervised s
 
 Another notable difference between the decision and 
 
-
+Learning performance of prediction markets with Kelly bettors\cite{beygelzimer2012learning}
 
 \subsection{Information Design and Incentive Compatible Bandits}
 
@@ -340,12 +405,27 @@ In particular, by focusing on eliciting probabilities after decisions has been m
 
 
 
-
+% We address this manipulation and construct and characterize decision markets
+% that, in expectation, always score predictions for their accuracy. Markets
+% with this property are myopically incentive compatible, since participants always
+% maximize their score for a prediction by honestly revealing their private beliefs.
+% Instead of a scoring rule, these markets use a decision scoring rule that accounts
+% for the likelihood actions are taken when scoring predictions. When the decision
+% maker risks taking an action at random, a decision scoring rule can amplify
+% the scores of unlikely actions and reduce the scores of likely ones, making risk
+% neutral participants indifferent to their affects on the decision. We show this
+% willingness to take an action at random is a requirement for these markets, and
+% reducing this risk increases the decision maker’s potential loss. While we do not
+% directly discuss information aggregation in decision markets, we demonstrate a
+% correspondence between their perfect Bayesian equilibria and those of a set of
+% prediction markets.
 
 \section{Related Work}
 
 
 \subsection{Mechanisms and the Price of Anarchy}
+
+The online learning and mechanism design branches of game theory are not entirely disjoint. 
 
 Ideally one would like mechanisms that have good equilibria in the sense of efficiency and truthfulness, where learning dynamics can help arrive on those equilibria. 
 In a sense, dominant strategy and BNE are the limits of purely deductive learning, since the optiomal action can be deduced purely from the structure of the game before it is played. 
@@ -517,22 +597,6 @@ This style of analysis does not explicitly sole for equilibrium, instead it trie
 % others depends here on i’s signal, incentive compatible transfers must neutralize
 % this influence.
 
-
-
-% %\subsection{Extensions}
-
-
-
-% \subsubsection{Beyond Partial or Full Supervision}
-
-% Partial observability graph Allows interpolation between full supervision and bandit feedback, shows sharp separations into three classes. 
-
-% When we generalize the notion of compliance-awareness to general awareness of variables 
-
-% Vapnik introduced a related notion of side-information into the supervised setting with his learning under privileged information framework \cite{vapnik:09}.
-
-% Priviledged Information and Generalized Distilation
-%  \cite{Lopez-Paz16} show a generalization of distillation, which captures 
 
 
 % \subsection{Decisions}
@@ -916,6 +980,7 @@ This style of analysis does not explicitly sole for equilibrium, instead it trie
 % % . However, online environments
 % % are typically not stable.
 
+
 % % In this paper, we study learning outcomes in games with a dynamically changing player population.
 % % As stated in (Fudenberg and Levine 1998, p. 4), the fact that players extrapolate across
 % % games they view as similar is an important reason learning has relevance in a real-world situation.
@@ -982,34 +1047,6 @@ This style of analysis does not explicitly sole for equilibrium, instead it trie
 
 
 
-% Efficient Partial Monitoring with Prior Information
-% Hastagiri P Vanchinathan
-% Dept. of Computer Science
-% ETH Zurich, Switzerland ¨
-% hastagiri@inf.ethz.ch
-% Gabor Bart ´ ok´
-% Dept. of Computer Science
-% ETH Zurich, Switzerland ¨
-% bartok@inf.ethz.ch
-% Andreas Krause
-% Dept. of Computer Science
-% ETH Zurich, Switzerland ¨
-% krausea@ethz.ch
-% Abstract
-% Partial monitoring is a general model for online learning with limited feedback: a
-% learner chooses actions in a sequential manner while an opponent chooses outcomes.
-% In every round, the learner suffers some loss and receives some feedback based on
-% the action and the outcome. The goal of the learner is to minimize her cumulative
-% loss. Applications range from dynamic pricing to label-efficient prediction to dueling
-% bandits. In this paper, we assume that we are given some prior information about the
-% distribution based on which the opponent generates the outcomes. We propose BPM, a
-% family of new efficient algorithms whose core is to track the outcome distribution with
-% an ellipsoid centered around the estimated distribution. We show that our algorithm
-% provably enjoys near-optimal regret rate for locally observable partial-monitoring
-% problems against stochastic opponents. As demonstrated with experiments on synthetic
-% as well as real-world data, the algorithm outperforms previous approaches, even for very
-% uninformed priors, with an order of magnitude smaller regret and lower running time.
-
 
 %https://arxiv.org/pdf/1201.6429v2.pdf
 % Bounding the inefficiency of outcomes in generalized second price auctions.
@@ -1074,3 +1111,35 @@ This style of analysis does not explicitly sole for equilibrium, instead it trie
 % One feature of our results is that they hold for a variety of models regarding the rationality and the beliefs
 % of the players. This robustness is particularly important in large-scale auctions conducted over the Internet,
 % where assumptions of full information and/or perfect rationality of the participants are unreasonably strong.
+
+
+
+%for furhter bandit with self interested advisors
+
+% Efficient Partial Monitoring with Prior Information
+% Hastagiri P Vanchinathan
+% Dept. of Computer Science
+% ETH Zurich, Switzerland ¨
+% hastagiri@inf.ethz.ch
+% Gabor Bart ´ ok´
+% Dept. of Computer Science
+% ETH Zurich, Switzerland ¨
+% bartok@inf.ethz.ch
+% Andreas Krause
+% Dept. of Computer Science
+% ETH Zurich, Switzerland ¨
+% krausea@ethz.ch
+% Abstract
+% Partial monitoring is a general model for online learning with limited feedback: a
+% learner chooses actions in a sequential manner while an opponent chooses outcomes.
+% In every round, the learner suffers some loss and receives some feedback based on
+% the action and the outcome. The goal of the learner is to minimize her cumulative
+% loss. Applications range from dynamic pricing to label-efficient prediction to dueling
+% bandits. In this paper, we assume that we are given some prior information about the
+% distribution based on which the opponent generates the outcomes. We propose BPM, a
+% family of new efficient algorithms whose core is to track the outcome distribution with
+% an ellipsoid centered around the estimated distribution. We show that our algorithm
+% provably enjoys near-optimal regret rate for locally observable partial-monitoring
+% problems against stochastic opponents. As demonstrated with experiments on synthetic
+% as well as real-world data, the algorithm outperforms previous approaches, even for very
+% uninformed priors, with an order of magnitude smaller regret and lower running time.

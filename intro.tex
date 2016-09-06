@@ -10,7 +10,7 @@ That thing is called free, which exists solely by the necessity of its own natur
 \section{Thesis Statement}
 \label{sec:thesisstatement}
 
-Freedom of the subjects that take actions imposes structure and constraints on learning systems that aim to inform those decisions. 
+The freedom of decision making subjects that take actions, impose structure and constraints on learning systems that aim to inform those decisions. 
 
 \section{Problem Statement}
 \label{sec:problemstatement}
@@ -27,7 +27,7 @@ In the mechanism design problem of expert elicitation for decision making, maint
 
 
 
-\section{Thesis Goals: Algorithms and Mechanisms under Subject Freedom}
+\section{Thesis Contributions: Algorithms and Mechanisms with Subjects Freedom}
 
 We first turn to the purely learning theoretic implications of subjects freedom. The first cocneptual observation is that if subjects have freedoms we should not assume that the actions the algorithm selects are those that are indeed carried out in the world, and that valuable information can be learnt from observing when that is the case, and what hapens when it is not.
 Formally, by extending the bandit setting to account for compliance awreness on the part of the algorithm of the action that takes place relative to that chosen. We present bandit algorithms that use compliance awareness and empirically  outperform their standard variants, while preserving worst case regret guarantees up to multiplicative constants. 
@@ -35,7 +35,10 @@ Formally, by extending the bandit setting to account for compliance awreness on 
 We then turn to purely strategic considerations, focusing on incentivizing the elicitation of an optimal action from multiple experts; this problemis analogous to the prediction market in the way that bandits are analogoous to the online fully supervised exert problem. 
 We present the first mechanism that can elicit decision  information from multiple experts without committing to taking dominated actions with positive probability. 
 
-Finally we consider a natural hybrid setting, where a sequence of subjects makes decisions and each can receive advice from a fixed set of experts that the mechanism seeks to incentivize. Repeated use of the single-agent multi-expert mechanism fails to explore. We present a market structure that incentivizes exploration.
+Finally we consider a natural hybrid setting, where a sequence of subjects makes decisions and each can receive advice from a fixed set of experts that the mechanism seeks to incentivize.
+The model for this setting is extremely general, having as special cases: standard, compliance aware and contextual bandits, as well as decision markets.
+We prove that in natural information structures the repeated sequential use of the single-agent multi-expert mechanism fails to explore or aggregate information efficiently.
+We present a novel and practical market structure that incentivizes exploration, information revelation, and aggregation with selfish experts.
 
 
 
@@ -57,6 +60,11 @@ repeated weakening of common knowledge assumptions
 will the theory approximate reality}
 
 motivates our seccond mechanism, which retains the structure of the direct mechanism but replaces signals with bids. We analize different information structures to understand when information can still aggregate appropiately in this setting.
+
+
+\section{Collaboration}
+
+The chapter on compliance aware bandits contains material that has been coauthored with David Balduzzi and Mark D. Reid, and appears in \cite{della2016compliance}. The work on decision elicitation from multiple experts has benefited from feedback with David Balduzzi and Mark D. Reid.
 
 
 \section{Thesis Outline}
