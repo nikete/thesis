@@ -3,6 +3,12 @@
 \usepackage{prelim2e}
 
 \usepackage{listings}
+\lstset{
+    frame=single,
+    breaklines=true,
+    postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}
+}
+
 \usepackage{appendix}
 %\usepackage{bookmark}
 \usepackage{import}
@@ -81,8 +87,6 @@ showonlyrefs=true%true % or false in draft mode
 }
 
 
-\newcommand{\DBA}[1]{{\bf\color{blue} [DBA: #1]}}
-\newcommand{\NDP}[1]{{\bf\color{blue} [NDP: #1]}}
 
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}

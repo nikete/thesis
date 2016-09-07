@@ -1,10 +1,57 @@
 \chapter{Conclusion}
 \label{cha:conc}
-%Summary your thesis and discuss what you are going to do in the future in Section~\ref{sec:future}.
+
+We provide a summary of thesis and discuss future directions in which to extend this work in in Section~\ref{sec:future}.
 
 
-\section{Future Work}
-\label{sec:future}
+
+
+%When learning, it can be useful to look not only at our recommendations, but also how those recommendations were carried out by others. This is the case even when our incentives and those of others involved are perfectly aligned. 
+The first part of the thesis introduced compliance information into the bandit setting. 
+Compliance-information reflects the treatment actually taken by the patient, rather than the algorithm's recommendation. 
+In many cases (perhaps most cases in practice) compliance information can be used to accelerate learning. Unfortunately, however, naively incorporating compliance information leads to algorithms with linear regret.% as seen in example~\ref{eg:rich} and figure~2. 
+We have therefore developed hybrid strategies that are the first algorithms that simultaneously incorporate compliance information while maintaining a worst-case guarantee. 
+
+The seccond part of the thesis studied the elicitation of information from self interested experts for decision making.
+For the single decision case, which had previously been analized in the decisions market literature, we introduce the first incentive compatible for experts and efficient mechanism.
+It achieves the incentive compatibility for the experts without requiring randomized strategies with full support as previous mechanisms, and entry into the mechanism is positive expectation for both useful experts and subjects.
+We also introduced the first model for the repeated case, which generalizes both the one shot and contextual bandit models.
+At a conceptual level this shows a novel link between decision markets and online learning with partial feedback.
+We also presented the first mechanism for this setting, 
+
+
+%several smaller contributions
+%the recycling trick in chapter 2
+%To the best of our knowledge, the use of such over-represented signals spaces in mechanism design (that is using a report space that is strictly bigger than the signal type space) is novel, through the literature is vast, and it seems like a natural idea once the mechanism does not have access to the prior (if there is access tot he prior the mechanism can simply).
+
+
+%Compliance information will arise whenever bandit algorithms provide recommendations to humans, suggesting the setting will be of increasing importance in future. An important open problem is to characterize the \emph{advantage} that hybrid algorithms have over algorithms using the \chosen\, protocol, as a function of the structure of the compliance behavior. It is also likely that the algorithms proposed here are far from optimal in the finite setting, and that there is room to improve upon their performance.
+% One obvious place is by plugin in more sophisticated baseline algorithms, cite Thor optimally confident UCB. 
+%Note that in the asymptotic regime, these algorithms are basically optimal  ?
+
+
+\subsection{More Practical Mechanisms for the one shot setting}
+While many decision do repeat themsleves with new subjects, including those that motivate most papers in the one shot decision market literautre , others are more unique. 
+
+We did not find a satisfactory practical mechanism for this case.
+The crucial problem is how to estimate the counterfactual reward obtained had a different action been taken.
+Some form of peer elicitation seems inevitable, but it is unclear how to combine with the signal aggregation aspects of optimal decision advise that are embodied by the bidding mechanism. 
+A knowledge-free peer prediction mechanism that does not require knowledge of the information structure and
+can truthfully elicit private information for a set of information structures close to the maximal set is proposed in \cite{zhang2014elicitability}. 
+Attempting to combine this mechanism with the rest of the bid and signal mechanism is an interesting challenge in future work. 
+
+\subsection{Online Learning and Markets}
+
+we provided a link decision markets to bandit problems
+
+
+
+\subsection{Generalization}
+
+The final model explored in the thesis has the previous two chapters as special cases, as well as a number of standard models in the literature.
+The bandit model has a vast range of extensions and special cases in which more specialized algoirthms can make substantial progress; it is interesting to consider the self-interested experts variations of those settings and see if more specialized mechanisms can also do better.
+One potential 
+
 
 Natural directions for further generalization beyond our final model are:
 
@@ -12,8 +59,12 @@ Natural directions for further generalization beyond our final model are:
 
 \item Settings with more supervision. Prediction markets and learning from expert advice have a tight connection, and as we have seen so do bandits and decisions markets. However, the two connections are quite different. Is it possible to extend feedback graphs and other notions that interpolate between the bandit and full supervision settings to take into account incentivising experts as in our model. 
 
-\item General sources of information that are observed after the action has been chosen by the algorithm. Compliance has a very specific structural relation to , what can be said generically about what structure the ifnroation has to have to be useful
+\item General sources of information that are observed after the action has been chosen by the algorithm. Compliance has a very specific structural relation to , what can be said generically about what structure the ifnroation has to have to be useful.
 
 \end{enumerate}
+
+A Nash Bayes analysis of the final proposed mechanism might also be interesting, prhaps most interesting would be to understand how fast .
+Proxy mechanisms, where each agent fully reveals their signal to a intermediate regret minimization algorithm, and when all regret minimization algorithms representing the arious agents together can converge faster on the optimal solution in the style of \cite{syrgkanis2015fast}
+
 
 

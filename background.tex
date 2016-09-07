@@ -3,6 +3,10 @@
 
 %\epigraph{Desvar\'io laborioso y empobrecedor el de componer vastos libros; el de explayar en quinientas p\'aginas una idea cuya perfecta exposici\'on oral cabe en pocos minutos.{Jorge Luis Borges,Pr\'ologo de Ficciones.}
 
+% % from PLnG PredBook: Perdition, burning, and flames (a hell of a book)	
+% ...beware of mathematicians, and all those who make empty prophecies. The danger already exists that the mathematicians have made a covenant with the devil to darken the spirit and to confine man in the bonds of Hell.    St. Augustine, De Genesi ad Litteram libri duodecim. Liber Secundus, 17, 37.
+
+
 %Los deterministas niegan que haya en el mundo un solo hecho posible, id est un hecho que pudo acontecer; una moneda simboliza nuestro libre albedrÃ­o. (€œEl Zahir€)
 
 Learning what action to take to maximize a reward is a fundamental problem in decision theory. In it's modern form, using game theory to analize and guide the development of good strategies, is initiated with the same
@@ -28,8 +32,9 @@ When we speak of two agents signals being identical,
 %The prior
 %When taking expectations when it is not relevant we omit noting the prior $P$ explcitly. 
 
-All models in the thesis use finite action spaces. In the strategic setting this gurantees the existance of Nash Eqilibria. 
-ince actions involve reports of signals ($s$), this contraints all signals to also be discrete; note this does not constraint the underlying latent variables ($u$) to be discrete.
+All models in the thesis use finite action spaces. 
+In the strategic setting this gurantees the existance of Nash Eqilibria. 
+Since actions involve reports of signals $s$, this contraints all signals to also be discrete; note this does not constraint the underlying latent state of the world $u$ to be discrete.
 
 
 
@@ -46,91 +51,79 @@ In particular, the notions of nash equilibrium \cite{nash1950equilibrium} and co
 \subsection{Online Learning}
 
 
-The central object of analysis in the online learning (also known as learning with expert advice) framework is the \emph{regret} of an algorithm. This is defined as the diference in the cumulative reward between the algorithm and the reward that would have been obtained by some benchmark. 
-The most common benchmark is the best fixed action in hindsight, and this is termed \emph{static regret}. When in this thesis we use the term regret without further modfiers, we are refering to this notion.
+The central object of analysis in the online learning (also known as learning with expert advice) framework is the \emph{regret} of an algorithm (the forecaster). This is defined as the diference in the cumulative reward between the algorithm and the reward that would have been obtained by some benchmark. 
+The most common benchmark is the best fixed action in hindsight, and this is termed \emph{static regret}. 
+When in this thesis we use the term regret without further modfiers, we are refering to this notion.
 
-Two main settings appear in the literature for the play of the adversary is carried out: in the stochastic setting the adversary picks a distribution over actions at the start of the game form which IID draws are later made, in the oblivious adversary setting it selects a specific sequence of play before the game begins. Both choices are made with knowledge of the strategy of the learner, which is thus necesarily randomized in the oblivious adversarial case.
+Two main settings appear in the literature for the play of the enviorment is carried out: in the stochastic setting an adversary picks a distribution over actions at the start of the game form which IID draws are later made, in the nonstochastic (oblivious) adversary setting it selects a specific sequence of play before the game begins. Both choices are made with knowledge of the strategy of the learner, which is thus necesarily randomized in the nonstochastic adversarial case.
 
-A crucial aspect of the expert advice setting is the feedback model; two fundamental extremes are full feedback, where after realizing a action the reward that would have been obtained for any other choice of action is also revealed, and the bandit setting where only the reward of the chosen action is revealed. 
-A Partial observability graph Allows interpolation between full supervision and bandit feedback, shows sharp separations into three classes. 
+The basic structure of a online learning game is as follows.
+
+For each round:
+\begin{enumerate}
+\item the environment chooses an action without revealing it
+\item the algorithm chooses a probability distribution over the set of N actions and draws
+\item the algorithm observes the reward which depends on its realized action and the realized action of the enviorment
+\end{enumerate}
+
+A crucial aspect of online learning is the feedback model; two fundamental extremes are full feedback, where after realizing a reward the reward that would have been obtained for any other choice of action  by the algorithm is also revealed, and the bandit setting where only the reward of the chosen action is revealed. 
+More generally, prediction with partial monitoring \cite{cesa2006regret}, generalizes this as follows
+
+
+\begin{enumerate}
+\item the environment chooses an action without revealing it
+\item the algorithm chooses a probability distribution over the set of N actions and draws
+\item the algorithm receives the reward which depends on its realized action and the realized action of the enviorment
+\item the feedback is revealed to the forecaster
+\end{enumerate}
+
+Where the feedback and loss matricies are known. In the case where the feedback exactly pins down the value of the reward of the algorithm for any possible choice of the algorithms action on that period, it is the full information setting, when it pins down the reward only for the taken action it is the bandit setting.
 
 
 \subsection{Mechanism Design}
 
 How to structure a game so as to incentivize self interested agents to achieve some objective, is the central question of mechanism design.
-Each agents information is characterized by their \emph{signal} (in the literature often also called their \emph{type} , particularly when it describes a private valuation of that agent of a good) which allows the agent to narrow down which realization of possible states of the world they are in. 
+The two central objectives are \emph{efficiency}, that the sum of utlities be as great as possible, and revenue optimality, that the principal which runs the mechanism receives maximal net payment.
+In our setting, we are interested in \emph{efficiency}, that is allocating the right choice of action, the rest of this and future section thus focus on mechanisms in relation to that objective.
 
+Each agents information is characterized by their \emph{signal} which allows the agent to narrow down which realization of possible states of the world they are in. In the literature often also called an agents \emph{type} , particularly when it describes a private valuation of that agent of a good.
 We say a mechanism is \emph{incentive compatible} when agents report their true signals to the mechanism. 
 Without any further assumptions (i.e. without a probability distribution over said states of the world) signals are of limited use beyond situations with a dominant strategy equilibrium.
 % TODO this needs a lot of refinement.
-A very large literature exist on efficient mechanisms, particularly auctions, in the bayesian setting
 
-Ideally one would like to search for mechanisms that are  \emph{dominant strategy} incentive compatible.
-For many objectives of interest such mechanisms do not exist (as we will see in Chapter )
+Ideally one would like to search for mechanisms that are  \emph{strictly dominant strategy} incentive compatible.
+For many objectives of interest such mechanisms do not exist, and optimal decision elicitation will turn out to be one of them. 
+It is worth noting that a \emph{weak} dominant strategy mechanism for optimal decision elicitation is trivial: if the payment to the experts is 0 for all possible states of the world, then any action is weakly dominant, including truthfulness. 
+For this reason in the substantative chapters we will simply use the term \emph{dominant strategy} and focus on strictly dominat mechanisms. 
 
+A canonical problem in mechanism design is where each agent $i$ has a quasi-linear utility function that depends on the chosen social alternative, on their private signal, and on monetary transfers, but not on the information available to other agents.
+This is known as \emph{private values}.
+A class of mechanisms known as Vickrey-Clarke-Groves (VCG)  (Vickrey 1961, Clark 1971 , Groves 1973)
+These mechanisms guarantee that truthful revelation of private information is dominant strategy for each agent, that is they are dominant \emph{incentive compatible}, and that the \emph{efficient} decision is taken. 
+This holds for arbitrary dimension and distributions of signals.
+Under indepedence of signal draws between agents, \cite{jehiel2001efficient} provide a efficient mechanism for the case where the quasi linear utility function of agent $i$ can depend on all agents private signals. 
 
-% % THERE EXISTS AN EXTENSIVE LITERATURE on efficient auctions and mechanism
-% % design. A lot of attention has been devoted to the case where each agent i has a
-% % quasi-linear utility function that depends on the chosen social alternative, on
-% % information or signal privately known to  . i, and on a monetary transfer, but
-% % does not depend on information available to other agents. 
+Many settings of interest, including ours, do not in general have dominant strategy mechanisms. 
+The literature in microeconomcis where mechanism design emerged largely dealt with this by using a probability distribution over signals, and the problem treated as one of  \emph{bayesian} mechanism design.
+The designer then seeks to optimize the objective in expectation over this distribution, while the agents incentives are relaxed relative to dominant strategies, to require that their actions be a best response in expectation to distribution of actions of other agents.
 
-% In this framework, a
-% % prominent role is played by the Clarke-Groves-Vickrey CGV mechanisms see 
-% % Clark 1971 , Groves 1973 , Vickrey 1961 . These are mechanisms that ensure 
-% % both that an efficient decision is taken and that truthful revelation of privately
-% % held information is a dominant strategy for each agent.
-% %  The result holds for
-% % %arbitrary dimensions of signal spaces and for arbitrary signals€™ distributions.
-% % In this paper we study the case where each agent has a quasi-linear utility
-% % function having as arguments signals received by all agents and the chosen
-% % social alternative. Hence, besides allocative externalities, we allow for informational
-% % %externalities, and we speak of €˜interdependent valuations. Signals may
-% % be multi-dimensional, but we assume that they are independently drawn across
-% % agents. Signal independence is the most seriously restrictive assumption;}
+In a bayesian game there are three stages of knownledge of the agents:
+\begin{itemize}
+ \item ex ante: before values are drawn from the distribution, the agents know this distribution but not their own types (or others). 
+ \item interim: after the agents learn their types, but before playing in the game. The agents kow their distribution and that the other agent types are drawn from the prior distribution conditioned on her own type.
+ \item ex post: the game has been played and the actions of all agents are known.
+\end{itemize}
 
-
-
-%http://users.eecs.northwestern.edu/~hartline/papers/bayesian-mechanism-design-2013.pdf
- bayesian mechanism design
-% In the classic microeconomic treatment of mechanism design, the
-% non-pointwise-optimality of mechanisms is resolved by formulating the
-% problem as one of Bayesian design. A distribution over the preferences
-% of the agents is given, and the designer seeks to optimize her objective in
-% expectation over this distribution. For any specific distribution, there
-% is such an optimal mechanism. The Bayesian assumption also allows
-% the strategic incentives of the agents to be relaxed. Given that the
-% agents’ preferences are drawn from a distribution, instead of requiring a
-% mechanism to have dominant strategies, mechanisms can be considered
-% where agents’ actions are best responses to the distribution of actions
-% of other agents.
-% Both the Bayesian and worse-case (henceforth, prior-free) frameworks
-% for mechanism design have merits and, recognizing this, a
-% Bayesian branch of algorithmic mechanism design has emerged.
-% Paramount of study in Bayesian algorithmic mechanism design are
-% algorithmic techniques, approximation, and computational issues.
+A simple but fundamental result in mechanism design is the Revelation Principle.
+For any mechanism and equilibrium of the mechanism, there exists a incentive compatible mechanism with the same equilibrium.
+The reason is that one can wrap the original non incentive compatible mechanism, with a mechanism that takes a report, assuemd turthful, and simulates its optimal play in the original mechanism to pick its payments and allocations, thus achieving the same equilibrium but from the truthful reports. 
+It holds in a vast range of situations in both Bayes-Nash and Dominant Strategy sense of equilibrium. 
+It however fails to hold for natural settings in optimal decision elicitaion: when agents only
+ learn their types over time, or when the mechanism designer does not know the prior (and thus cant simulate).
+The learning of types of over time is inevitable in the learning setting where there is a sequence of subjects, while in one-off markets a common prior over the signal distribution seems almost imposible.
 
 
-% In Bayesian games it is useful to distinguish between stages of the
-% game in terms of the knowledge sets of the agents. The three stages of
-% a Bayesian game are ex ante, interim, and ex post. The ex ante stage
-% is before values are drawn from the distribution. Ex ante, the agents
-% know this distribution but not their own types. The interim stage is
-% immediately after the agents learn their types, but before playing in
-% the game. In the interim, an agent knows her own type and assumes
-% the other agent types are drawn from the prior distribution conditioned
-% on her own type, i.e., via Bayesian updating. In the ex post stage, the
-% game is played and the actions of all agents are known.
-
-% Proposition 2.1 (Revelation Principle, Myerson [74]). For any
-% mechanism and Bayes-Nash (resp. dominant strategy) equilibrium of
-% the mechanism, there exists a Bayesian (resp. dominant strategy) incentive
-% compatible mechanism with the same equilibrium.
-% The revelation principle fails to hold in some environments of
-% interest. Two such environments, for instance, are where agents only
-% learn their values over time, or where the mechanism designer does not know the prior and cant simulate.
-
-
+%With regards to maximizing the future social welfare in a dynamic setting, there are elegant extensions of the efficient (VCG) mechanism that are applicable to quite general dynamic settings by [Bergemann and V¨alim¨aki 2010; Parkes and Singh 2003; Athey and Segal 2007].
 
 \section{Bandits}
 
@@ -1143,3 +1136,8 @@ This style of analysis does not explicitly sole for equilibrium, instead it trie
 % problems against stochastic opponents. As demonstrated with experiments on synthetic
 % as well as real-world data, the algorithm outperforms previous approaches, even for very
 % uninformed priors, with an order of magnitude smaller regret and lower running time.
+
+
+
+%\cite{epstein1999revelation}
+% In modelling competition among mechanism designers, it is necessary to specify the set of feasible mechanisms. These specifications are often borrowed from the optimal mechanism design literature and exclude mechanisms that are natural in a competitive environment, for example, mechanisms that depend on the mechanisms chosen by competitors. This paper constructs a set of mechanisms that is universal in that any specific model of the feasible set can be embedded in it. An equilibrium for a specific model is robust if and only if it is an equilibrium also for the universal set of mechanisms. A key to the construction is a language for describing mechanisms that is not tied to any preconceived notions of the nature of competition. 
