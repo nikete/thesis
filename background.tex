@@ -3,6 +3,7 @@
 
 %\epigraph{Desvar\'io laborioso y empobrecedor el de componer vastos libros; el de explayar en quinientas p\'aginas una idea cuya perfecta exposici\'on oral cabe en pocos minutos.{Jorge Luis Borges,Pr\'ologo de Ficciones.}
 
+
 % % from PLnG PredBook: Perdition, burning, and flames (a hell of a book)	
 % ...beware of mathematicians, and all those who make empty prophecies. The danger already exists that the mathematicians have made a covenant with the devil to darken the spirit and to confine man in the bonds of Hell.    St. Augustine, De Genesi ad Litteram libri duodecim. Liber Secundus, 17, 37.
 
@@ -14,8 +15,8 @@ Learning what action to take to maximize a reward is a fundamental problem in de
 
 We first provide a overview of the game theoretical background that underpins all aspects of this work.
 % The literatures on bandits and decision markets have remained largely separate, 
-We then present the building blocks from the two branches of it, bandit algorithms and mechanism design, that are used in our contributions.
-We finalize the chapter by giving an overview of related work that we do not build upon but none the less informs or motivates our analysis.
+We then present the building blocks from the two branches, bounded regret bandit algorithms and mechanism design, that are used in our contributions.
+We finalize the chapter by giving an overview of related work that we do not build upon, but none the less informs or motivates our analysis: most notably the analysis of results form randomized controlled trials inthe medical literautre. 
 
 
 
@@ -37,8 +38,8 @@ In the strategic setting this gurantees the existance of Nash Eqilibria.
 Since actions involve reports of signals $s$, this contraints all signals to also be discrete; note this does not constraint the underlying latent state of the world $u$ to be discrete.
 
 
-
-\section{Game Theory}
+\section{Background}
+\subsection{Game Theory}
 
 Statistical learning algorithms can be understood game theoretically as a game between a forecaster and nature.This is particularly natural in the sequential (online) setting, and a framework termed Learning with Expert Advice and \cite{cesa2006prediction} provide a unified treatment from a worst case game theoretic perspective of many such learning settings and algorithms.
 This literature largely consider the underlying structures to be zero-sum and thus use a adversarial model of nature to construct strategies that have good worst case properties. In other words this is game theory in the style of Von Neumann and Morgensten 1948. The framework was applied to the setting of sequential experiments initially by Wald, and the bandit formalism introduced by \cite{robbins1952some}.
@@ -48,7 +49,7 @@ In particular, the notions of nash equilibrium \cite{nash1950equilibrium} and co
 
 
 
-\subsection{Online Learning}
+\subsubsection{Online Learning}
 
 
 The central object of analysis in the online learning (also known as learning with expert advice) framework is the \emph{regret} of an algorithm (the forecaster). This is defined as the diference in the cumulative reward between the algorithm and the reward that would have been obtained by some benchmark. 
@@ -80,7 +81,7 @@ More generally, prediction with partial monitoring \cite{cesa2006regret}, genera
 Where the feedback and loss matricies are known. In the case where the feedback exactly pins down the value of the reward of the algorithm for any possible choice of the algorithms action on that period, it is the full information setting, when it pins down the reward only for the taken action it is the bandit setting.
 
 
-\subsection{Mechanism Design}
+\subsubsection{Mechanism Design}
 
 How to structure a game so as to incentivize self interested agents to achieve some objective, is the central question of mechanism design.
 The two central objectives are \emph{efficiency}, that the sum of utlities be as great as possible, and revenue optimality, that the principal which runs the mechanism receives maximal net payment.
@@ -125,7 +126,7 @@ The learning of types of over time is inevitable in the learning setting where t
 
 %With regards to maximizing the future social welfare in a dynamic setting, there are elegant extensions of the efficient (VCG) mechanism that are applicable to quite general dynamic settings by [Bergemann and V¨alim¨aki 2010; Parkes and Singh 2003; Athey and Segal 2007].
 
-\section{Bandits}
+\subsection{Bandits}
 
 Decisions over mutually exclusive actions that affect reward naturally lead to partial supervision.
 The 
@@ -143,61 +144,6 @@ The main challenge is to trade-off exploration and exploitation, so as to collec
 %Formally this can be defined as 
 %TODO copy pasta terms from chapter
 
-\subsection{Contextual Bandits}
-
-
-% \subsection{Notation}
-
-
-% For the purpose of this paper, we consider the multi-armed bandit problem with contextual information.  Following previous work~\cite{Langford08Epoch}, we call it a \emph{contextual bandit problem}.\footnote{In the
-% literature, contextual bandits are sometimes called bandits with covariate~\cite{Woodroofe79One}, associative reinforcement learning~\cite{Kaelbling94AssociativeFunctions}, bandits with expert advice~\cite{Auer02Nonstochastic}, bandits with side information~\cite{Wang05Bandit}, and associative bandits~\cite{Strehl06Experience}.}
-% %To make the framework more general (which our empirical study will adopt in
-% %\secref{sec:application}), we also allow the set of arms to change over time.
-% Formally, we define by $\Aset=\{1,2,\ldots,K\}$ the set of arms, and
-% a contextual-bandit algorithm $\Aalg$ interacts with the
-% \emph{world} in discrete trials $t=1,2,3,\ldots$.  In trial $t$:
-% %
-% In this process, the \emph{total $T$-trial payoff} of $\Aalg$ is defined as
-% \[
-% G_\Aalg(T) \defeq \E_D\left[\sum_{t=1}^T r_{t,a_t}\right],
-% \]
-
-
-
-
-% where the expectation $\E_D[\cdot]$ is defined w.r.t. the i.i.d. generation
-% process of $(\vecb{x}_t,r_{t,1},\ldots,r_{t,K})$ according to distribution $D$
-% (and the algorithm $\Aalg$ as well if it is not deterministic).
-% Similarly, given a policy $\pi$ that maps contexts to actions, $\pi:\Cset\mapsto\Aset$, we define its total $T$-trial payoff by
-% \[
-% G_\pi(T) \defeq \E_D\left[\sum_{t=1}^T r_{t,\pi(\vecb{x}_t)}\right]=T\cdot\E_D\left[r_{1,\pi(\vecb{x}_1)}\right],
-% \]
-% where the second equality is due to our i.i.d. assumption.
-% Given a reference set $\Pi$ of policies, we define the \emph{optimal expected $T$-trial payoff with respect to $\Pi$} as
-% \[
-% G^*(T) \defeq \max_{\pi\in\Pi} G_\pi(T).
-% \]
-% For convenience, we also define the per-trial payoff of an algorithm or policy,
-% which is defined, respectively, by
-% \begin{eqnarray*}
-% g_\Aalg &\defeq& \frac{G_\Aalg(T)}{T} \\
-% g_\pi &\defeq& \frac{G_\pi(T)}{T} = \E_D\left[r_{1,\pi(\vecb{x}_1)}\right].
-% \end{eqnarray*}
-% %
-% Much research in multi-armed bandit problems is devoted to developing algorithms
-% with large total payoff.  Formally, we may search for an algorithm
-% minimizing \emph{regret} with respect to the optimal arm-selection
-% strategy in $\Pi$.  Here, the $T$-trial regret $R_\Aalg(T)$
-% of algorithm $\Aalg$ with respect to $\Pi$ is defined by
-% %(\lihong{We may not need to define regret for this paper.})
-% \begin{eqnarray}
-% R_\Aalg(T) \defeq G^*(T) - G_\Aalg(T). \label{eqn:regret-def}
-% \end{eqnarray}
-% %
-% An important special case of the general contextual bandit problem is the well-known \emph{$K$-armed bandit} in which the context $\vecb{x}_t$ remains constant for all $t$.  Since both the arm set and contexts are constant at every trial, they have no effect on a bandit algorithm, and so we will also refer to this type of bandit as a \emph{context-free} bandit.
-
-
-\subsection{Algorithms}
 
 We now provide a brief overview of two algorithms that are important buidling blocks in our later analysis. 
 
@@ -255,16 +201,28 @@ We now provide a brief overview of two algorithms that are important buidling bl
 
 %Beyond IID and Static Regret: E
 
-\section{Information Aggregation and Incentives}
+
+
+
+\subsection{Information Aggregation and Incentives}
 
 A literature in economics and particularly mechanism design, is centered on when and how information can be aggregated from multiple agents that receive signals about the state of the world, and have various degrees of strategic sophistication in their actions.
 
 explain myopic incentive compatible
 
-
-% \subsection{Information Revelation and Aggregation in Markets}
+\subsubsection{Information Revelation and Aggregation in Markets}
 % TODO: rewrite 
-% %\quote{The question of information revelation and aggregation in markets has attracted the attention of many economists, beginning with Hayek (1945). Grossman (1976) formally %showed that in a market equilibrium, the result- ing price aggregates information dispersed among n-types of informed traders, each of whom gets a €œpiece of information.€ In his model, individual traders are small relative to the market, strategic foundations for players€™ behavior are lacking, and the results rely on particular functional forms (e.g., i.i.d. normal errors in signals received by the players; normal prior; etc.). Radner (1979) introduced the concept of Rational Expectations Equilibrium (REE) and showed that generically, a fully revealing REE exists, with prices aggre- gating all information dispersed among traders. Radner€™s paper, however, also lacks strategic foundations. A series of papers explored the question of con- vergence to REE in various dynamic processes (see, e.g., Hellwig (1982), and Dubey, Geanakoplos, and Shubik (1987), for models of centralized trading; Wolinsky (1990), and Golosov, Lorenzoni, and Tsyvinski (2011), for models of decentralized trading; and McKelvey and Page (1986), and Nielsen, Bran- denburger, Geanakoplos, McKelvey, and Page (1990), for models that extend the basic communication process of Geanakoplos and Polemarchakis (1982) to more complex settings in which agents€™ beliefs are iteratively updated in re- sponse to repeated public observations of summary statistics of their actions). In all of these papers, however, it is assumed that each trader ignores the ef- fect of his behavior on the evolution of the trading process, as a result behaving non-strategically along at least one dimension. P
+
+
+% %\quote{The question of information revelation and aggregation in markets has attracted the attention of many economists, beginning with
+
+Going back to at least Hayek (1945) economists have been concerned with how market mechanisms can aggregate information dispersed accross different agents. The original argument by Hayek phrased in contemporary machine learning terms is that the information reauired to make economic decisions efficiently is largely local, and that central aggregation and optimization is unfeasable, while market prices transmit enough non-local information to make the resulting decisions.
+
+
+
+%Grossman (1976) formally showed that in a market equilibrium, the result- ing price aggregates information dispersed among n-types of informed traders, each of whom gets a €œpiece of information.€ In his model, individual traders are small relative to the market, strategic foundations for players€™ behavior are lacking, and the results rely on particular functional forms (e.g., i.i.d. normal errors in signals received by the players; normal prior; etc.).
+
+% Radner (1979) introduced the concept of Rational Expectations Equilibrium (REE) and showed that generically, a fully revealing REE exists, with prices aggre- gating all information dispersed among traders. Radner€™s paper, however, also lacks strategic foundations. A series of papers explored the question of con- vergence to REE in various dynamic processes (see, e.g., Hellwig (1982), and Dubey, Geanakoplos, and Shubik (1987), for models of centralized trading; Wolinsky (1990), and Golosov, Lorenzoni, and Tsyvinski (2011), for models of decentralized trading; and McKelvey and Page (1986), and Nielsen, Bran- denburger, Geanakoplos, McKelvey, and Page (1990), for models that extend the basic communication process of Geanakoplos and Polemarchakis (1982) to more complex settings in which agents€™ beliefs are iteratively updated in re- sponse to repeated public observations of summary statistics of their actions). In all of these papers, however, it is assumed that each trader ignores the ef- fect of his behavior on the evolution of the trading process, as a result behaving non-strategically along at least one dimension. P
 
 % % roper strategic foundations for the concept of perfect competition with differentially informed agents are offered by the stream of literature studying bidding behavior in single and double auctions (Wilson (1977), Milgrom (1981), Pesendorfer and Swinkels (1997), Kremer (2002), Reny and Perry (2006)). Information aggregation results in these papers, however, rely on the assumption that the market is large, that is, the number of bidders goes to infinity and individual traders become small relative to the market. They also rely on various symmetry assumptions. No such assumptions are made in the current paper, and the number of traders is finite and fixed.
 
@@ -305,6 +263,51 @@ explain myopic incentive compatible
 % %In the example, by construction, it is common knowledge that each player€™s expectation of the value of the security is zero, even though it is also common knowledge that the actual value of the security is not zero, and that the traders€™ pooled information would be sufficient to determine the security€™s value. Thus, even if the traders repeatedly and truthfully announce their posteriors, as in Geanakoplos and Polemarchakis (1982), they will never learn the true value of the security. 
 
 
+\subsection{Incentivizing Infomration Aggregation without Ground Truth: Peer Prediction}
+
+
+% Peer-prediction [18] is a (meta-)mechanism which, given any proper scoring rule, produces a
+% mechanism to elicit privately-held, non-verifiable information from self-interested agents. Formally,
+% truth-telling is a strict Nash equilibrium of the mechanism. Unfortunately, there may be
+% other equilibria as well (including uninformative equilibria where all players simply report the
+% same fixed signal, regardless of their true signal) and, typically, the truth-telling equilibrium
+% does not have the highest expected payoff. The main result of this paper is to show that, in the
+% symmetric binary setting, by tweaking peer-prediction, in part by carefully selecting the proper
+% scoring rule it is based on, we can make the truth-telling equilibrium focal—that is, truth-telling
+% has higher expected payoff than any other equilibrium.
+% Along the way, we prove the following: in the setting where agents receive binary signals we
+% 1) classify all equilibria of the peer-prediction mechanism; 2) introduce a new technical tool for
+% understanding scoring rules, which allows us to make truth-telling pay better than any other
+% informative equilibrium; 3) leverage this tool to provide an optimal version of the previous result;
+% that is, we optimize the gap between the expected payoff of truth-telling and other informative
+% equilibria; and 4) show that with a slight modification to the peer-prediction framework, we
+% can, in general, make the truth-telling equilibrium focal—that is, truth-telling pays more than
+% any other equilibrium (including the uninformative equilibria).
+
+Note that information 
+
+% http://arxiv.org/abs/1605.01021
+% Information elicitation mechanisms, such as Peer Prediction [Miller 2005] and Bayesian Truth Serum [Prelec 2004], are designed to reward agents for honestly reporting their private information, even when this information cannot be directly verified. Information elicitation mechanisms, such as these, are cleverly designed so that truth-telling is a strict Bayesian Nash Equilibrium. However, a key challenge that has arisen is that there are typically many other non-truthful equilibrium as well, and it is important that truth-telling not only be an equilibrium, but be paid more than other equilibrium so that agents do not coordinate on a non-informative equilibria. Several past works have overcome this challenge in various setting using clever techniques, but a new technique was required for each new setting. 
+% Our main contribution in this paper is providing a framework for designing information elicitation mechanisms where truth-telling is the highest paid equilibrium, even when the mechanism does not know the common prior. We define information monotone functions which can measure the amount of "information" contained in agents' reports such that the function is greater in the truthful equilibrium than in non-truthful equilibria. We provide several interesting information monotone functions ( f -disagreement, f-mutual information, f -information gain) in different settings. Aided by these theoretical tools, we (1) extend Dasgupta and Ghosh[2013]'s mechanism to the non-binary setting with an additional assumption that agents are asked to answer a large number of a priori similar questions; (2) reprove the main results of Prelec[2004], Dasgupta and Ghosh[2013] and a weaker version of Kong and Schoenebeck[2016] in our framework. Our framework thus provides both new mechanisms and a deeper understanding of prior results.
+
+% http://arxiv.org/pdf/1603.07751v1.pdf
+% Peer-prediction is a mechanism which elicits privately-held, non-variable information from
+% self-interested agents—formally, truth-telling is a strict Bayes Nash equilibrium of the mechanism.
+% The original Peer-prediction mechanism suffers from two main limitations: (1) the
+% mechanism must know the “common prior” of agents’ signals; (2) additional undesirable and
+% non-truthful equilibria exist which often have a greater expected payoff than the truth-telling
+% equilibrium. A series of results has successfully weakened the known common prior assumption.
+% However, the equilibrium multiplicity issue remains a challenge.
+% In this paper, we address the above two problems. In the setting where a common prior
+% exists but is not known to the mechanism we show (1) a general negative result applying to a
+% large class of mechanisms showing truth-telling can never pay strictly more in expectation than
+% a particular set of equilibria where agents collude to “relabel” the signals and tell the truth
+% after relabeling signals; (2) provide a mechanism that has no information about the common
+% prior but where truth-telling pays as much in expectation as any relabeling equilibrium and
+% pays strictly more than any other symmetric equilibrium; (3) moreover in our mechanism, if
+% the number of agents is sufficiently large, truth-telling pays similarly to any equilibrium close
+% to a “relabeling” equilibrium and pays strictly more than any equilibrium that is not close to a
+% relabeling equilibrium.
 
 
 
@@ -341,7 +344,7 @@ Another notable difference between the decision and
 
 Learning performance of prediction markets with Kelly bettors\cite{beygelzimer2012learning}
 
-\subsection{Information Design and Incentive Compatible Bandits}
+\subsection{Incentive Compatible Bandits and Information Design}
 
 % Information Design, Bayesian Persuasion, and Bayes Correlated Equilibrium,  American Economic Review Papers and Proceedings, 2016, 106, 586-591, with Stephen Morris
 
@@ -414,6 +417,13 @@ In particular, by focusing on eliciting probabilities after decisions has been m
 % prediction markets.
 
 \section{Related Work}
+
+
+\subsection{Medical Applications of }
+
+
+@article{yu1979antimicrobial},
+Antimicrobial selection by a computer. A blinded evaluation by infectious diseases experts.
 
 
 \subsection{Mechanisms and the Price of Anarchy}
@@ -1137,7 +1147,36 @@ This style of analysis does not explicitly sole for equilibrium, instead it trie
 % as well as real-world data, the algorithm outperforms previous approaches, even for very
 % uninformed priors, with an order of magnitude smaller regret and lower running time.
 
+\subsection{Reducing Mechanism Design to Learning}
+
+%https://arxiv.org/pdf/1109.2067v1.pdf
+% We consider the problem of converting an arbitrary approximation algorithm for a single-parameter optimization problem into a computationally efficient truthful mechanism. We ask for reductions that are black-box, meaning that they require only oracle access to the given algorithm and in particular do not require explicit knowledge of the problem constraints. Such a reduction is known to be possible, for example, for the social welfare objective when the goal is to achieve Bayesian truthfulness and preserve social welfare in expectation. We show that a black-box reduction for the social welfare objective is not possible if the resulting mechanism is required to be truthful in expectation and to preserve the worst-case approximation ratio of the algorithm to within a subpolynomial factor. Further, we prove that for other objectives such as makespan, no black-box reduction is possible even if we only require Bayesian truthfulness and an average-case performance guarantee.
+
+
+
+%http://www.cs.cmu.edu/~ninamf/papers/md_ml_jcss.pdf
+% We use techniques from sample-complexity in machine learning to reduce problems
+% of incentive-compatible mechanism design to standard algorithmic questions, for a
+% broad class of revenue-maximizing pricing problems. Our reductions imply that for
+% these problems, given an optimal (or β-approximation) algorithm for an algorithmic
+% pricing problem, we can convert it into a (1 + )-approximation (or β(1 + )-
+% approximation) for the incentive-compatible mechanism design problem, so long as
+% the number of bidders is sufficiently large as a function of an appropriate measure
+% of complexity of the class of allowable pricings. We apply these results to the problem
+% of auctioning a digital good, to the attribute auction problem which includes a
+% wide variety of discriminatory pricing problems, and to the problem of item-pricing
+% in unlimited-supply combinatorial auctions. From a machine learning perspective,
+% these settings present several challenges: in particular, the “loss function” is discontinuous,
+% is asymmetric, and has a large range. We address these issues in part by
+% introducing a new form of covering-number bound that is especially well-suited to
+% these problems and may be of independent interest.
+
 
 
 %\cite{epstein1999revelation}
 % In modelling competition among mechanism designers, it is necessary to specify the set of feasible mechanisms. These specifications are often borrowed from the optimal mechanism design literature and exclude mechanisms that are natural in a competitive environment, for example, mechanisms that depend on the mechanisms chosen by competitors. This paper constructs a set of mechanisms that is universal in that any specific model of the feasible set can be embedded in it. An equilibrium for a specific model is robust if and only if it is an equilibrium also for the universal set of mechanisms. A key to the construction is a language for describing mechanisms that is not tied to any preconceived notions of the nature of competition. 
+
+
+simon1961aggregation,
+Aggregation of variables in dynamic systems
+

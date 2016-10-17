@@ -1,4 +1,4 @@
-\chapter{Introduction}x
+\chapter{Introduction}
 \label{cha:intro}
 
 
@@ -10,7 +10,7 @@ That thing is called free, which exists solely by the necessity of its own natur
 \section{Thesis Statement}
 \label{sec:thesisstatement}
 
-The freedom of decision making subjects that take actions, impose structure and constraints on learning systems that aim to inform those decisions. 
+The freedom of subjects that make decisions impose structure and constraints on learning systems that aim to inform those decisions. 
 
 \section{Problem Statement}
 \label{sec:problemstatement}
@@ -26,8 +26,43 @@ In the mechanism design problem of expert elicitation for decision making, maint
 
 
 
+\section{Decisions}
 
-\section{Thesis Contributions: Algorithms and Mechanisms with Subjects Freedom}
+Decision making, as understood in this thesis, is concerned with selecting an action so as to achieve a favorable outcome. 
+Examples of decision making problems are prescribing a treatment to a patient, 
+
+These can be contrasted with prediction problems, which consist of guessing the short term evolution of certain phenomena (cite PLG).
+The key distinction is that the agent making predictions is passive in relation to the world, while the decision maker is attempt it to affect it.
+While predicting a given stock price tommorrow is a predicito problem (we can observe the price that occurs tommorrow and score any counterfactual prediction), deciding weather to fill an order that arrives in the market is a decision problem (if we fill the order we will not observe tommorrow the state of the market had we not filled the order, and vice versa)
+
+
+We assume the decisions we take do not affect underlying state of the system. (i.e. patients might not be IID, but we are not worrying about say the evolutionary dynamcis of the disease; i.e. good for learning to carry out trauma surgury, not so good for antibiotics).  Separable incentives accross patients: the patients have no interest in each others outcomes. 
+In the expert elicitation for decision setting, we assume no inherent interest of experts on actions (i.e. the expert doctors offering advice have no conflict of interest; would not profit more from carrying out a specfic treatmnet) 
+
+
+\section{Learning}
+
+
+One can do well in a decision problem if one can solve all the prediction problems that condition on the different actions well.
+This beings is to the key difficulty, by its very nature we will not be able to observe the outcomes conditional on the actions we will not take. 
+
+Taking into accounter subjects freedom can make learning in settings possible where it is not without it.
+A particularly interesting such class, which arises naturally in personalized medicine and lifestyle interventions, is when $K/T > 1$
+
+
+\section{Games}
+
+
+
+
+\section{Freedom}
+
+In the classical analyis of bandit algorithms (cites), the strategy that the algorithm embodies is equated with that of the agent that takes the actions and receives the rewards.
+We term this agent the \emph{subject}
+
+
+
+\section{Thesis Contributions}
 
 We first turn to the purely learning theoretic implications of subjects freedom. The first cocneptual observation is that if subjects have freedoms we should not assume that the actions the algorithm selects are those that are indeed carried out in the world, and that valuable information can be learnt from observing when that is the case, and what hapens when it is not.
 Formally, by extending the bandit setting to account for compliance awreness on the part of the algorithm of the action that takes place relative to that chosen. We present bandit algorithms that use compliance awareness and empirically  outperform their standard variants, while preserving worst case regret guarantees up to multiplicative constants. 
@@ -44,9 +79,6 @@ We present a novel and practical market structure that incentivizes exploration,
 
 \section{Scope and Limitations}
 
-In the bandit setting we assume the decisions we take do not affect underlying state of the system. (i.e. patients might not be IID, but we are not worrying about say the evolutionary dynamcis of the disease; i.e. good for learning to carry out trauma surgury, not so good for antibiotics).  Separable incentives accross patients: the patients have no interest in each others outcomes. 
-In the expert elicitation for decision setting, we assume no inherent interest of experts on actions (i.e. the expert doctors offering advice have no conflict of interest; would not profit more from carrying out a specfic treatmnet) 
-
 When we focus on incentive compatibility, we do so for the experts, not the subject. Assuming a  utility maximizing subject, one that uses the max decision rule, restricts the freedom of that subject. For example, to have unstale preferences, that will change once the mechansim commences. This brings both limits and possibilities. While it limits the richness of the mechaniss we can use (since we need to account for a subject that may or may not respond to incentives), it also liberates the analysis from constraints created by assuming all subjects are rational. For example, in bayesian incentive compatible bandit exploration, \cite{mansour2015bayesian}, there are priors over arms rewards where some arms are never explored, even through they may be optimal with positive probability \footnote{they might even be optimal with probability almost one half}. The posibility of some share of agents not being rational, means the mechanism can explore such arms.
 
 While the direct deicsion elicitation mechanism we propose nicely sidesteps the mainproblems of previously proposed mechanism, it makes very strong use of a common prior assumption that extends over both compliance probabilities fo subjects and a common prior probability distribution accross experts over their joint signals. The canonical concern of Wilson (1987) 
@@ -60,6 +92,24 @@ repeated weakening of common knowledge assumptions
 will the theory approximate reality}
 
 motivates our seccond mechanism, which retains the structure of the direct mechanism but replaces signals with bids. We analize different information structures to understand when information can still aggregate appropiately in this setting.
+
+\begin{tabular}{llll}
+\toprule
+Setting & Subjects & Information & Solution Concept\\
+\midrule
+Forecasting & T sequential & past rewards for all actions & Minimax  \\
+Bandit & T sequential & past rewards for taken action  &  Minimax  \\
+Peer Prediction & 1 & N strategic agents & BNE \\
+Prediction Market & 1 & N strategic agents, ex post reward for all actions & Myopic Incentive Compatibility, BNE\\
+Decision Market & 1 & N strategic agents, ex post reward for taken action & BNE  \\
+Compliance Aware Bandit & T sequential & past rewards and actual actions taken & minimax \\
+Sequential Optimal Decision Elicitation  & T sequential &  N strategic agents and past rewards for chosen actions & BNE and minimax \\
+\bottomrule
+\end{tabular}
+
+Minimax is wrt oblivious adversary sequence or IID
+
+
 
 
 \section{Collaboration}
