@@ -2,23 +2,29 @@
 \label{cha:intro}
 
 
-
-\epigraph{
-That thing is called free, which exists solely by the necessity of its own nature, and of which the action is determined by itself alone. On the other hand, that thing is necessary, or rather constrained, which is determined by something external to itself to a fixed and definite method of existence or action.}{\textit{Spinoza \\Ethics, Part I, Definition VII}}
-
-
 \section{Thesis Statement}
 \label{sec:thesisstatement}
 
-A decision maker's freedom has both positive and normative implications for the design of learning systems that aim to inform them. Positively, awareness of the use of that freedom can improve the performance of bandit algorithms. Normatively, it motivates maintaining the subject's freedom as a criterion in optimal decision elicitation mechanisms.
+Freedom can defined as the absence of necessity, coercion, or constraint in choice or action.\footnote{Merriam-webster dictionary}
+A decision maker's freedom has both positive and normative implications for the design of learning systems that aim to inform them. 
+Positively, awareness of that freedom can improve the performance of bandit algorithms. 
+Normatively, it motivates maintaining the subject's freedom as a criterion in optimal decision elicitation mechanisms.
 
 \section{Problem Statement}
 \label{sec:problemstatement}
 
+Consider the following two situations:
 
-An algorithm seeks to help a doctor facing a sequence of patients for which there is an established and a novel treatment. A patient seeks to elicit information from experts to select the optimal treatment for their condition. In both situations, it is natural to consider that the patients have the last say on what treatment they take. In a more abstract sense, the \emph{subject} who takes the action and lives through its consequences retains their freedom; their actions are not entirely externally determined by the system which helps to inform them.
+\begin{enumerate}
+\item An algorithm seeks to help a doctor facing a sequence of patients for which there is an established and a novel treatment. 
+\item A patient seeks to elicit information from experts to select the optimal treatment for their condition.
+\end{enumerate}
 
-These two motivating interaction patterns, with the exception of the emphasis on the subject's freedom, are found reflected in two literatures: the first is the classic bandit seting \cite{thompson:33,gittins1979bandit,bubeck:12}; the second is the more recent and relatively obscure literature on decision markets \cite{berg2003prediction,hanson2002decision,othman2010decision,boutilier2012eliciting,chen2014eliciting}. In both literatures it is widely assumed that the action selected by the algorithm or mechanism is the one carried out by the subject. This is implicit in most of the bandit literature, where no variable encodes the potential distinction between the algorithms and subject's choices of actions, and little consideration is given to the posibility that they can differ (incentive compatible bandits are the exception to this rule). The subject's follow-through of the algorithm or mechanism's selected action is explicit in the decision market literature, where mechanisms based on sequential proper scoring rules over markets contigent on the action taken (and which void the markets contigent on the actions not taken) require not only that the subject follow the mechanism's choice, but makes use of the play of apparently dominated actions with positive probability to create the incentives for the experts.
+In both situations, it is natural to consider that the patients have the last say on what treatment they take.
+In a more abstract sense, the \emph{subject} who takes the action and lives through its consequences retains their freedom; their actions are not externally determined by the system which helps to inform them.
+\emph{Maintaining freedom} for the subject in decision support thus requires that the actions the system chooses need not be those the subject takes.
+
+These two motivating interaction patterns, with the exception of the emphasis on the subject's freedom, are found reflected in two literatures: the first is the classic bandit seting \cite{thompson:33,bubeck:12}; the second is the more recent and relatively obscure literature on decision markets \cite{berg2003prediction,hanson2002decision,othman2010decision,boutilier2012eliciting,chen2014eliciting}. In both literatures it is widely assumed that the action selected by the algorithm or mechanism is the one carried out by the subject. This is implicit in most of the bandit literature, where no variable encodes the potential distinction between the algorithm's and subject's choices of actions, and little consideration is given to the posibility that they can differ (incentive compatible bandits are the exception to this rule). The subject's follow-through of the algorithm or mechanism's selected action is explicit in the decision market literature, where mechanisms based on sequential proper scoring rules over markets contigent on the action taken (and which void the markets contigent on the actions not taken) require not only that the subject follow the mechanism's choice, but makes use of the play of apparently dominated actions with positive probability to create the incentives for the experts.
 
 Operationally, in the bandit setting our notion of the subject's freedom can be captured by considering, in addition to the usual variable which encodes the action that the algorithm  or mechanism selects, a second variable for the action that the subject actually takes. Naively using such a variable and simply replacing the chosen with the observed action (in a standard worst case sublinear regret algorithm) leads to linear regret in the worst case.
 
@@ -26,50 +32,75 @@ In the mechanism design problem of expert elicitation for decision making, maint
 
 
 
+\section{Freedom}
+
+This thesis takes freedom of subjects as imperative, and seeks to incorporate it into the design of algorithms and mechanisms were it is relevant.
+Our conception of freedom is that the subject should be free, in the following sense:
+
+\quote{
+That thing is called free, which exists solely by the necessity of its own nature, and of which the action is determined by itself alone. On the other hand, that thing is necessary, or rather constrained, which is determined by something external to itself to a fixed and definite method of existence or action.}{\textit{Spinoza \\Ethics, Part I, Definition VII}}
+
+
+We term the agent that carries out the action the \emph{subject}, and conceive them as free in this sense. They are thus not bound to follow the actions selected by the algorithm or mechanism. 
+
+This freedom is inherently present in many situations, and thus ignoring it limits the power of models to capture reality. 
+In medical settings, subjects (patients) often don't do as they are told. Approximately 50\% of patients suffering from chronic illness do not take prescribed medications \cite{sabate:03}. It is safe to assume that the rate at which patients or doctors will follow the recommendations provided by an algorithm will fall well short of 100\%. 
+Unfortunately, despite its importance in medical applications \cite{vrijens:12,hugtenburg:13}, compliance has not been analysed in the bandit literature. 
+In the vast majority of analysis of bandit algorithms (with the notable exception of incentive compatible bandit algorithms \cite{kremer2014implementing,mansour2015bayesian}), the strategy that the algorithm embodies is equated with that of the agent that takes the actions, without further analysis.
+
+In the decision market models previously proposed in the literature, incentive compatibility for the experts necessitates \cite{othman2010decision,chen2014eliciting} violate this requirement that the subject be free, by dictating that the distribution of actions they take have full support.
+
+
 \section{Decisions}
 
-Decision making, as understood in this thesis, is concerned with selecting an action so as to achieve a favorable outcome. 
-Examples of decision making problems are prescribing a treatment to a patient, 
+Decision making, as understood in this thesis, is concerned with selecting an action so as to achieve a favourable outcome. 
+Examples of such decision making problems are:
 
-These can be contrasted with prediction problems, which consist of guessing the short term evolution of certain phenomena (cite PLG).
-The key distinction is that the agent making predictions is passive in relation to the world, while the decision maker attempts to affect it.
-While predicting a given stock price tommorrow is a prediction problem (we can observe the price that occurs tommorrow and score any counterfactual prediction), deciding whether to fill an order that arrives in the market is a decision problem (if we fill the order we will not observe tommorrow the state of the market had we not filled the order, and vice versa).
+\begin{enumerate}
+\item  prescribing a treatment to a patient so as to maximize their quality adjusted life years.
+\item selecting which ad to display to a web user so as to maximize the probability the user will click on the ad. 
+\item advising a company on which of competing projects to invest in to maximize their profits.
+\end{enumerate}
 
+The literature on bandit algorithms was originally motivated by the first, and this is the motivating application in this thesis. More recent working within computer science has often had some variation of the second as the motivating application. The third has been the motivating application in the decision markets literature. 
 
-We assume that the decisions we take do not affect the underlying state of the system (i.e. patients might not be IID, but we are not worrying about, say, the evolutionary dynamics of the disease; this approach is good for learning to carry out trauma surgury, not so good for antibiotics).  Separable incentives emerge across patients: the patients have no interest in each others' outcomes. 
-In the expert elicitation for decision setting, we assume no inherent interest of experts on actions (i.e. the expert doctors offering advice have no conflict of interest and would not profit more from carrying out a specfic treatment).
+Decision problems can be contrasted with prediction problems.
+In a prediction problem, the canonical example being weather forecasting, the performance of any strategy can be directly evaluated once the event of interest is realized.
+In a decision problem, the performance of strategies that take actions that differ from those that were used is inherently counter-factual. 
 
+In the settings with a sequence of decisions,  we assume that a decision does not directly affect  future decisions. That is, while the underlying state of the system may be changing, the decisions do not affect it's evolution.
+
+In the expert elicitation for decision setting, we assume no inherent interest of experts on actions. For example, the expert doctors offering advice have no conflict of interest and would not profit more from carrying out a specific treatment.
 
 \section{Learning}
 
-
-One can do well in a decision problem if one can successfully solve all the prediction problems that condition on the different actions.
-This beings is to the key difficulty, by its very nature we will not be able to observe the outcomes conditional on the actions we will not take. 
+We focus on two distinct sources of learning, and their interaction.
+First, as has been the focus on the machine learning literature on online learning, we consider learning from experience in a setting where a choice from a finite set of $K$ possible actions is sequentially repeated $T$ times.
+Second, as is the focus on the decisions market literature, we consider learning form a set of $N$ \emph{experts} who may have information about which of $K$ actions is best in a given situation.
 
 Taking into account the subject's freedom can make learning in settings possible where it is not without doing so.
-A particularly interesting class of this type which arises naturally in personalized medicine and lifestyle interventions, is when $K/T > 1$
+A particularly relevant class of learning settings were this canbe true, which arises naturally in personalized medicine and lifestyle interventions, is when $K/T > 1$.
+
+On the other hand, providing freedom to subject can render infeasible mechanisms that seek to create the right incentives to learn from experts, by dictating the distribution over the $K$ actions that will take place.
+In particular all past incentive compatible mechanisms for $N>1$ experts have required that the distribution over the $K$ actions have full support.
 
 
 \section{Games}
 
 Algorithms for bandit problems have long been analysed within game theory.
-Worst case (minimax) bounds, faster rates (and nash equilibrium) when others use the same algorithm (CITE).
-Mechanisms for optimal decision elicitation (decision markets) make even more fundamental use of game theory, bringing equilibrium considerations and not just worst case concerns to the forefront.
-Our focus is on the game theoretic aspects of the experts offering the advice, and we structure our assumptions so as to 
-
-
-\section{Freedom}
-
-In the vast majority of analyis of bandit algorithms (with the notable exception of incentive compatible bandit algorithms CITE), the strategy that the algorithm embodies is equated with that of the agent that takes the actions and receives the rewards.
-We term this agent the \emph{subject}, and provide him freedom, in the sense that he is not bound to follow the actions selected by the algorithm.
-
+This has largely focused on the use of worst case guarantees that result from minimax analysis of zero sum games against an adversary.
+Game theory plays a even more fundamental role in mechanisms for optimal decision elicitation such as decision markets. 
+Since equilibrium considerations and not just worst case concerns are inherent to the setting.
+Our focus in the equilibrium based analysis is on the strategic aspects of the experts offering the advice, and we structure our assumptions so as to largely remove game theoretic considerations on the subjects.
 
 \section{Thesis Contributions}
 
-We first turn to the purely learning theoretic implications of subject's freedom. The first conceptual observation is that if subjects have freedoms we should not assume that the actions the algorithm selects are those that are indeed carried out in the world, and that valuable information can be learnt from observing when that is the case, and what happens when it is not.
-Formally, this is done by extending the bandit setting to account for compliance awareness on the part of the algorithm of the action that takes place relative to that chosen. We present bandit algorithms that use compliance awareness and empirically outperform their standard variants, while preserving worst case regret guarantees up to multiplicative constants. 
+We first turn to the purely learning theoretic implications of subject's freedom.
+The first conceptual observation is that if subjects have freedom we should not assume that the actions the algorithm selects are those that are carried out in the world. Valuable information can be learnt from observing when that is the case, and what happens when it is not.
+Formally, this is done by extending the bandit setting to account for compliance awareness on the part of the algorithm of the action that takes place relative to that chosen.
+We present bandit algorithms that use compliance awareness and empirically outperform their standard variant, while preserving worst case regret guarantees up to multiplicative constants. 
 
-We then turn to purely strategic considerations, focusing on incentivizing the elicitation of an optimal action from multiple experts; this problem is analogous to the prediction market in the way that bandits are analogoous to the online fully supervised expert problem. 
+We then turn to purely strategic considerations, focusing on incentivizing the elicitation of an optimal action from multiple experts.
 We present the first mechanism that can elicit decision information from multiple experts without committing to taking dominated actions with positive probability. 
 
 Finally we consider a natural hybrid setting, where a sequence of subjects makes decisions and each can receive advice from a fixed set of experts that the mechanism seeks to incentivize.
@@ -78,22 +109,23 @@ We prove that in natural information structures the repeated sequential use of t
 We present a novel and practical market structure that incentivizes exploration, information revelation, and aggregation with selfish experts.
 
 
-\section{Scope and Limitations}
+\section{Scope}
 
-When we focus on incentive compatibility, we do so for the experts, not the subject. Assuming a utility maximizing subject - one that uses the max decision rule - restricts the freedom of that subject. For example, having unstable preferences that will change once the mechansim commences brings both limits and possibilities. While it limits the richness of the mechanics we can use (since we need to account for a subject that may or may not respond to incentives), it also liberates the analysis from constraints created by assuming all subjects are rational. For example, in bayesian incentive compatible bandit exploration, \cite{mansour2015bayesian}, there are priors over arms rewards where some arms are never explored, even through they may be optimal with positive probability \footnote{they might even be optimal with a probability of almost one half}. The posibility of some share of agents not being rational means the mechanism can explore such arms.
+When we focus on incentive compatibility, we do so for the experts, not the subject.
+Assuming a utility maximizing subject - one that uses the max decision rule - restricts the freedom of that subject.
+For example, having unstable preferences that will change once the mechanism commences brings both limits and possibilities.
+While it limits the richness of the mechanics we can use (since we need to account for a subject that may or may not respond to incentives), it also liberates the analysis from constraints created by assuming all subjects are rational. 
+For example, in bayesian incentive compatible bandit exploration, \cite{mansour2015bayesian}, there are priors over arms rewards where some arms are never explored, even through they may be optimal with positive probability \footnote{they might even be optimal with a probability of almost one half}. The possibility of some share of agents not being rational means the mechanism can explore such arms.
 
-While the direct deicsion elicitation mechanism we propose nicely sidesteps the main problems of previously proposed mechanism, it makes very strong use of a common prior assumption that extends over both compliance probabilities of subjects and a common prior probability distribution accross experts over their joint signals. The canonical concern of Wilson (1987):
+While the direct decision elicitation mechanism we propose sidesteps the main problems of previously proposed mechanism, it makes very strong use of a common prior assumption that extends over both compliance probabilities of subjects and a common prior probability distribution accross experts over their joint signals. This creates a tension with canonical concern of Wilson (1987):
 
-\quote{Game theory has a great advantage in explicitly analyzing the consequences of trading rules that presumably are really common knowledge; it is deficient to the extent it assumes other features to be common knowledge, such as one agentâs probability assessment
-about anotherâs preferences or information. I foresee
-the progress of game theory as depending on successive
-reductions in the base of common knowledge required to
-conduct useful analyses of practical problems. Only by
-repeated weakening of common knowledge assumptions
-will the theory approximate reality}
+\quote{Game theory has a great advantage in explicitly analyzing the consequences of trading rules that presumably are really common knowledge; it is deficient to the extent it assumes other features to be common knowledge, such as one agents probability assessment about another's preferences or information. I foresee the progress of game theory as depending on successive reductions in the base of common knowledge required to conduct useful analyses of practical problems. Only by repeated weakening of common knowledge assumptions will the theory approximate reality.}
 
-motivates our seccond mechanism, which retains the structure of the direct mechanism but replaces signals with bids. We analyze different information structures to understand when information can still aggregate appropriately in this setting.
+This motivates our second mechanism, which retains the structure of the direct mechanism but replaces signals with bids. We analyse different information structures to understand when information can still aggregate appropriately in this setting.
 
+The relation between the different setting considered in this thesis and in the literature is summarized in the table bellow.
+
+\begin{table}
 \begin{tabular}{llll}
 \toprule
 Setting & Subjects & Information & Solution Concept\\
@@ -106,23 +138,23 @@ Decision Market & 1 & N strategic agents, ex post reward for taken action & BNE 
 Compliance Aware Bandit & T sequential & past rewards and actual actions taken & minimax \\
 Sequential Optimal Decision Elicitation  & T sequential &  N strategic agents and past rewards for chosen actions & BNE and minimax \\
 \bottomrule
-\end{tabular}
-
-Minimax is wrt oblivious adversary sequence or IID
-
-
+\end{tabular} 
+\caption{Relation between learning settings in the thesis and literature.}
+\end{table}
 
 
-\section{Collaboration}
+\section{Publications and Collaborations}
 
-The chapter on compliance aware bandits contains material that has been coauthored with David Balduzzi and Mark D. Reid, and appears in \cite{della2016compliance}. The work on decision elicitation from multiple experts has benefited from feedback with David Balduzzi and Mark D. Reid.
+Most of chapters 3 and 4 on compliance aware bandits appears in \cite{della2016compliance}. The work in Chapters 5 and 6 on decision elicitation from multiple experts has benefited from feedback with David Balduzzi.
+
+During the course of the PhD I also collaborated on related publications in: prediction markets \cite{frongillo2012interpreting}, market making \cite{kinathil2014closed,kinathil2016symbolic}, crowdsourcing \cite{della2012crowd} and medical applications \cite{della2016out}.
 
 
 \section{Thesis Outline}
 \label{sec:outline}
 
 First we provide background on the two settings that this thesis makes contributions in  Chapter~\ref{cha:background}. Then we present two novel classes of algorithms and associated regret guarantees that take into account the underlying freedom not to comply with an algorithm's chosen treatment in Chapter~\ref{cha:bandit}. We then study the empirical performance  of these algorithms based on both synthetic and real data in Chapter~\ref{cha:empirical}. 
-
-We then turn our attention to eliciting an optimal action, and offer the first incentive compatible algorithm for elicitation from multiple experts that does not restrict the agent's freedom in Chapter~\ref{cha:market}, and show it to be optimal while exploring some of its practical limitations from its fundamental use of a common prior, and what is lost when we move to a simpler mechanism that relies on bids instead of signals. We then turn to a novel version of the problem with not only multiple experts, but also multiple subjects that arrive sequentially, which we term \emph{two sided decision markets} in Chapter~\ref{cha:twosided}. We propose a extension of the simple mechanism based on a sequence of seccond price auctions that internalises the benefits of exploration.
+We then turn our attention to eliciting an optimal action, and offer the first incentive compatible algorithm for elicitation from multiple experts that does not restrict the agent's freedom in Chapter~\ref{cha:market}, and show it to be optimal while exploring some of its practical limitations from its extensive use of a common prior, and what is lost when we move to a simpler mechanism that relies on bids instead of signals.
+Finally we present a novel setting with both multiple experts and multiple subjects that arrive sequentially, which we term \emph{two sided decision markets} in Chapter~\ref{cha:twosided}. We propose a extension of the simple mechanism based on a sequence of second price auctions that internalises the benefits of exploration, while rewarding only valuable experts.
 
 %We then explore some  Chapter~\ref{cha:conclusion}.

@@ -81,25 +81,53 @@
 %%
 %\lstinputlisting[language=Python, firstline=37, lastline=45]{source_filename.py}
 \appendix 
-\chapter{Source Code to Simulations}
-\lstinputlisting[language=Python]{bandit/sim.py}
+% \chapter{Source Code to Simulations}
+% \lstinputlisting[language=Python]{bandit/sim.py}
 
-\chapter{Results Tables from Simulation}
+\chapter{Results Tables for Simulations}
 
-%\include{bandit/tables/stroke.tex}
+\rotatebox{90}{
+\begin{table}
+\input{bandit/tables/stroke.tex}
+\caption{International Stroke Trial Simulation Results}
+\end{table}}
+
+\rotatebox{90}{
+\begin{table}
+\input{bandit/tables/ex1.tex}
+\caption{Example 1 Simulation Results}
+\end{table}}
+
+\rotatebox{90}{
+\begin{table}
 \input{bandit/tables/ex2.tex}
+\caption{Example 2 Simulation Results}
+\end{table}}
 
-%\include{bandit/tables/ex1.tex}
-%\include{bandit/tables/ex3.tex}
-%\include{bandit/tables/ex4.tex}
-%\include{bandit/tables/ex5.tex}
+\rotatebox{90}{
+\begin{table}
+\input{bandit/tables/ex3.tex}
+\caption{Example 3 Simulation Results}
+\end{table}}
+
+\rotatebox{90}{
+\begin{table}
+\input{bandit/tables/ex4.tex}
+\caption{Example 4 Simulation Results}
+\end{table}}
+
+\rotatebox{90}{
+\begin{table}
+\input{bandit/tables/ex5.tex}
+\caption{Example 5 Simulation Results}
+\end{table}}
 
 
 
 \backmatter
 
 \bibliographystyle{anuthesis}
-\bibliography{advice/dmarket,bandit/compliance}
+\bibliography{thesis}
 
 \printindex
 
