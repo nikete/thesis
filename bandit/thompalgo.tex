@@ -1,0 +1,127 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{Worst Case Linear Regret in the Number of Arms to compliance unawareness when K > T}
+
+When $K$ is very large relative to $T$, most actions in $K$ are a-priori unlikely to be optimal \emph{and} noncompliers are not fundamentally different from compliers in their response to treatment but rather are better informed and pick high reward arms,  the advantage of the compliance awareness can be large.
+
+For example imagine having a 200 subjects arriving sequentially IID and 10000 arms, one of which has a reward of 1 with probability 0.99 , the other 10000 having expected reward of 0.
+Consider a situation where half the subjects know the identify of the high reward arm.
+With compliance awareness with probability $1-(1/2)^t$ we will have observed at least one noncompliant subject and discovered the high reward arm.
+While if compliance unaware we have at most a 1/100 chance of finding the right arm (since only 100 subjects will check the arm we tell them:  100/10000), and further when we see a reward of one we do not know if it is because the chosen arm $c_t$ was the one with high reward or if the subject is not complying, so in fact the probability is bellow 1\%.
+
+\NDP{formalize into proof and make more generic algebraic example.}
+
+
+\section{Compliance Awareness with IID rewards}
+
+
+In a IID setting the previous strategy achieves a suboptimal bound.
+%TODO: of what?
+ Here we consider a different strategy to guarantee low regret specilaiazed for IID settings which achieves the optimal bound up to multiplicative factors. 
+
+
+
+The strategy starts from the observation that Thompson sampling often outperforms other bandit algorithms in stochastic settings \cite{thompson:33, chapelle:11} and has logarithmic regret \cite{agrawal:12, kaufmann:12}. A natural goal is to design an algorithm that performs like Thompson sampling under the \chosen\, protocol in the long-run -- since Thompson sampling under \chosen\, is guaranteed to match the best action in hindsight in $O(\log T)$ time -- but also takes advantage of compliance information when Thompson sampling has \emph{not} converged onto sampling a single arm with high probability. Note that under the IID setting it is not possible to obtain a stronger expected regret bound than static regret. 
+
+The proposed algorithm, \texttt{TB}, uses a algorithm that does not have guarantees (is not certified) and a Thompson Sampling based algorithm. Unlike \texttt{HB} it does not stack them, but instead uses the Thomson algorithm to bound the behaviour of the uncertified algoirthm. For example, 
+% adds one more component to the hierarchical bandit: a Thompson sampler that learns from arm-pulls according to the \chosen\, protocol.
+%distinguishing between chosen protocol and the exploration policy
+The Thompson sampler is initially unbiased between arms; as it learns, the probabilities it assigns to arms become increasingly concentrated. \texttt{TB} takes advantage of Thompson sampling's uncertainty about which arm to pull in early rounds to safely introduce compliance information. \texttt{TB} draws two samples: if they agree, it plays a third Thompson sample. If they disagree it plays the arm chosen by the hierarchical bandit.
+Intuitively, if Thompson sampling is uncertain, then \texttt{TB} tends to use the \texttt{uncertified} bandit. As the sampler's confidence increases, \texttt{TB} is more likely to follow its advice. The next theorem shows that initially mixing in side information has no qualitative effect on the algorithm's regret, which grows as $\log(T)$. 
+ %The experiments in section~\ref{sec:results} show that \texttt{TB} performs significantly better than both the hierarchical bandit and the base protocols.
+
+
+
+\begin{algorithm}[tb]
+   \caption{\texttt{ThompsonBounded (TB)}}
+   %\label{alg:tb}
+   \begin{algorithmic}   
+   \STATE {\bfseries Input:} Bandit algorithm $\cH$
+   \STATE {\bfseries Input:} \texttt{Thompson} sampler under \chosen\, protocol
+   	 \FOR{$t=1$ {\bfseries to} $T$}
+	\STATE Sample $t$ and $t'$ from \texttt{Thompson}
+	\IF{$t=t'$} 
+	\STATE Pull arm sampled from \texttt{Thompson}
+	\ELSE
+	\STATE Pull arm chosen by $\cH$
+	\ENDIF
+	\STATE Incur loss, update algorithm used to pull arm
+   	\ENDFOR
+   	\end{algorithmic}
+\end{algorithm}
+
+
+
+\begin{thm}\label{thm:tb}
+	The regret of \texttt{TB} is bounded by
+	\begin{equation}
+		\regret_{\texttt{TB}}(T) \leq O(\log T).
+	\end{equation}
+\end{thm}
+
+\begin{proof}	
+	Suppose without loss of generality that arm 1 yields a higher average payoff. Let $p_j$ be the probability that \texttt{Thompson} assigns to arm $j$ on round $t$, so that $p_F=\sum_{j=2}^kp_j$ is the probability that Thompson sampling does \emph{not} pulling arm 1. The probability that \texttt{TB} follows the \texttt{uncertified} is then 
+	$1-\sum_{j=1}^kp_j^2  = 
+	    1-(1-p_F)^2 - \sum_{j=2}^{k-1}p_j^2 \leq 2p_F.$
+	The additional expected regret from deviating from Thompson sampling is therefore at most twice the regret \texttt{Thompson} incurs by pulling suboptimal arms. Finally, it was shown in \cite{agrawal:12,kaufmann:12} that Thompson sampling has logarithmic regret.
+\end{proof}
+
+The algorithm can be generalized beyond the use of while preserving the bound. Note that the above proof makes no use of any property of \texttt{HB}, thus we can replace it with any other bandit algoith, including ones that do not have regret bounds. One natural variation is to use actual  \actual\ or \comply\ depending on weather a priori the expected effects on noncompliance include noncompliance conditional on unobservable heterogeneity of patients  (in which case comply would make sense) or selection towards more effective treatments (in which ) that have homogenous effects accross subjects.
+
+While for the case of bernoulli rewards and no context, the pulling of the arm twice is unnesesary, we could instead use the expected probability of a pull and square it, and use the resulting probability, it does have the advantage of black boxing the details for the underlying thomspson sampling implementaiton, which enables the use of beleifs where deriving precise probabilities is expensive but samplign is not. 
+%TODO clear up
+
+
+\subsection{Hierarchical Bandit with Thompson sampler base.}
+
+
+Using  \texttt{EXP3} at the top-level and a \texttt{ThompsonSampler} in the  bottom-level also yields a no-regret algorithm. In practice, we modify the Thompson sampler to incorporate importance weighting.
+
+\begin{algorithm}
+   \caption{\texttt{ThompsonBounded (TB)}}
+   \label{alg:dt}
+   \begin{algorithmic}   
+   \STATE {\bfseries Input:} Bandit algorithm $\cH$
+   \STATE {\bfseries Input:} \texttt{Thompson} sampler under \chosen\, protocol
+   	 \FOR{$t=1$ {\bfseries to} $T$}
+	\STATE Sample $t$ and $t'$ from \texttt{Thompson}
+	\IF{$t=t'$} 
+	\STATE Pull arm sampled from \texttt{Thompson}
+	\ELSE
+	\STATE Pull arm chosen by $\cH$
+	\ENDIF
+	\STATE Incur loss, update algorithm used to pull arm
+   	\ENDFOR
+   	\end{algorithmic}
+\end{algorithm}
+
+
+
+Algorithm~\ref{alg:bts} (\texttt{BTS}) shows how to modify the Thompson sampler for use as a bottom-level algorithm in \texttt{HB}. The modification applies the importance weighting trick: replace $1$ in Thompson sampling with $\tilde{1}=1/p$, where $p$ is the probability that the top-level bandit calls \texttt{BTS} on the given round. 
+
+
+\begin{algorithm}[tb]
+   \caption{\texttt{Base Thompson Sampler (BTS)}}
+   \label{alg:bts}
+   \begin{algorithmic}
+   	\STATE {\bfseries Input:} Probability $p$ that \texttt{BTS} is called by top-bandit\\
+   	\STATE Set $\tilde{1}\leftarrow 1/p$
+   	 \STATE For each arm $i$ sample $\theta_i\sim\beta(S_i +\tilde{1},F_i +\tilde{1})$
+	\STATE Play arm $i^{(t)} := \argmax_i \theta_i$ and observe reward $r^{(t)}$
+	\STATE Sample $b$ from Bernoulli with success probability $r^{(t)}$
+	\STATE If $b=1$ then $S_i \leftarrow S_i + \tilde{1}$ else $F_i\leftarrow F_i+\tilde{1}$
+   	\end{algorithmic}
+\end{algorithm}
+
+
+
+
+\section{Data-efficiency.}
+
+As described, the hybrid algorithms are data-inefficient since, despite the i.i.d. assumption on the patient population, the certified strategies only learn when they are executed. We describe a \emph{recycling trick} to improve the efficiency of the certified strategies. 
+
+A naive approach to increase data-efficiency is to reward the certified strategy on rounds where the executed strategy selects the same action as the certified strategy. However, this introduces a systematic bias. For example, consider two strategies: the first always picks arm 1, the second picks arms 1 and 2 with equal probability. Running a top-level algorithm that picks both with equal probability results in a mixed distribution biased towards arm 1.
+
+The recycling trick stores actions and subsequent rewards by non-certified strategies in a cache. When there is at least one of each action in the cache, the certified strategy is rewarded on rounds where it was not executed by sampling, without replacement, from the cache. Sampling without replacement is important in our setting since it prevents early unrepresentative samples introducing a bias into the behavior of the certified strategy through repeated sampling. A related trick, referred to as ``experience replay'' was introduced in reinforcement learning in \cite{Mnih:2015wq}. 

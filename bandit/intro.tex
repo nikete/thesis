@@ -1,0 +1,48 @@
+%!TEX root = main.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{bandintro}
+
+People often don't do as they are told. Approximately 50\% of patients suffering from chronic illness do not take prescribed medications \cite{sabate:03}. It is safe to assume that the rate at which patients or doctors will follow the recommendations provided by an algorithm will fall well short of 100\%. 
+Unfortunately, despite its importance in medical applications \cite{vrijens:12,hugtenburg:13}, compliance has not been analyzed in the bandit literature. 
+
+In this chapter, we introduce compliance awareness into the \emph{bandit setting} \cite{bubeck:12}. %Bandit problems are concerned with optimal repeated decision-making in the presence of uncertainty . The main challenge is to trade-off exploration and exploitation, so as to collect enough samples to estimate the rewards from different strategies whilst also strongly biasing samples towards those actions most likely to yield high rewards.  
+Our running example is an algorithm that recommends treatments to patients. For concreteness, consider a mobile app that encourages patients who have recently suffered a stroke to carry out various low intensity interventions that may be beneficial in preventing future strokes.
+These could be as simple as meditating, going for a walk or taking an aspirin.
+The effects of the interventions on the probability of a future stroke may be small. The social benefits of collectively choosing the most effective interventions, however, may be large.
+ 
+There are other settings in which compliance information is available. For example, an algorithm could recommend treatments to doctors. Whether or not the doctor then prescribes the recommended treatment to the patient is extremely informative, since the doctor may make observations and have access to background knowledge that is not available to the algorithm.
+A quite different setting is online advertising, where bandit algorithms are extensively applied to recommend which ad to display \cite{graepel:10,mcmahan:13}. In practice, the recommendations provided by the bandit may not be followed. For example, sales teams often have hand-written rules that override the bandit in certain situations. %Alternatively, the algorithm may assign a user to a treatment on their laptop, and when the user is not logged in, expose him to a different treatment on their mobile.
+Clearly, the bandit algorithm should be able to learn more efficiently if it is provided  with information about which ads were actually shown.
+
+In the classic multi-armed bandit setting, the player chooses one of $k$-arms on each round and receives a reward \cite{auer:02b,auer:02}. The player is not told what the reward would have been had it chosen a different arm. The goal is to minimize the cumulative regret over a series of $T$ rounds. In the more general compliance setting, the action chosen by the algorithm is not necessarily the action that is finally carried out, see section~\ref{sec:formal}. Instead, a compliance process mediates between the algorithm's recommendation and the action that is actually taken. Importantly, the compliance process may depend on latent characteristics of the subject of the decision. We focus on the case where the outcome of the compliance process is observable.
+
+Unfortunately, compliance information is a two-edged sword. There are settings where it is useful; but  it can also lead to linear regret. We develop sublinear regret algorithms that incorporate compliance information.
+
+
+\subsection{Outline.}
+Section~\ref{sec:noncompliance} introduces the formal compliance setting and introduces three protocols for incorporating compliance information into bandit algorithms. Each protocol has strengths and weaknesses. The simplest protocol ignores compliance information -- yielding the classical setting where standard regret bounds hold. If, instead of attending to its recommendations, the bandit attends to whether the patient actually takes the treatment, then it is possible to learn faster than without compliance information. On the other hand, there are no guarantees on convergence when an algorithm attends purely to the compliance of patients and ignores its own prior recommendations -- examples of linear regret are provided in section~\ref{sec:protocols}. 
+
+A natural goal is thus to simultaneously incorporate compliance information whilst preserving the no-regret guarantees of the classical setting. We then present two hybrid algorithms that do both. The first, \texttt{HB} is in a two-level bandit algorithm. The bottom-level learns three experts that specialize on difference kinds of compliance information. The top-level is another bandit that learns which expert performs optimally. The algorithm thus has no-regret against both the treatments and two natural reward protocols that incorporate compliance information. The second algorithm, \texttt{TB}, rapidly converges to Thompson sampling with standard guarantees. However, when Thompson sampling is unsure about which arm to pull, the algorithm takes advantage of the uncertainty to introduce arm-pulls sampled from \texttt{HierchicalBandit}.
+
+Empirically, \texttt{TB} achieves a surplus of 8.9 extra survivals (that is, human lives) relative to the randomized baseline.
+The \texttt{HB} algorithm with \texttt{Epsilon Greedy} as the base algorithm achieves a surplus of 9.2.
+In contrast, the best performing strategy that is not compliance aware is Thompson sampling, which yields 7.9 extra survivals.
+
+
+
+\subsection{Comparison with other bandit settings.}
+It is useful to compare noncompliance with other bandit settings. Partial monitoring is concerned with situations where the player only partial observes its loss \cite{alon:15}. Our setting is an extension of the bandit setting, where additional compliance-information is provided. Whether or not a patient complies is a form of side-information. However, in contrast to the side-information available to contextual bandits, compliance is only observed \emph{after} an arm is pulled. An interesting question, left for future work, is how contextual and compliance information can both be incorporated into bandit algorithms.
+
+Hybrid algorithms were previously proposed in the best-of-both-worlds scenario \cite{bubeck:12a,seldin:14}, where the goal is to construct a bandit that plays optimally in both stochastic and adversarial environments. Vapnik introduced a related notion of side-information into the supervised setting with his learning under privileged information framework \cite{vapnik:09}. 
+An important point of comparison is the bandits with unobserved confounders model introduced in \cite{bareinboim:15}. That paper was motivated using an extended example involving two subpopulations (drunk and sober) gambling in a casino. Since we are primarily interested in clinical applications, we map their example onto two subpopulations of patients, rich and poor. Suppose that rich patients always take the treatment (since they can afford it) and that they are also healthier in general. Poor patients only take the treatment when prescribed by a doctor.
+
+Barenboim et al observe that the question ``what is the patient's expected reward when taking the treatment (formally: $\expec[R|{A=1}]$)?'' is confounded by the latent variable \texttt{wealth}. Estimating the effect of the treatment -- which may differ between poor and rich patients -- requires more refined questions. In our notation: 
+``what is the patient's expected reward when taking the treatment, given she is wealthy (formally: $\expec[R|{A=1}, \text{always-taker}]$)?'' and  ``what is the patient's expected reward when taking the treatment, given she is poor (formally: $\expec[R|{A=1}, \text{complier}]$)'', see example~\ref{eg:rich}.
+The solution proposed in \cite{bareinboim:15} is based on the regret decision criterion (RDC), which estimates the optimal action according to $\argmax_{a}\expec[R|A=a,\text{patient's inclination}]$, where the action chosen, $A=a$, may \emph{differ} from the patient's latent inclination. Essentially, computing the RDC requires imposing interventions via the $do(\cdot)$ operator. However, overruling a patient or doctor's decision is often impossible and/or unethical in clinical settings. The counterfactual information required to compute the RDC may therefore not be available in practice.
+Compliance information does not act as a direct substitute for the $do(\cdot)$ operator. However, compliance information is often readily available and, as we show below, can be used to ameliorate the effect of confounders by giving a partial view into the latent structure of the population that the bandit is interacting with.
+
+
+
+
+

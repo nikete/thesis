@@ -1,0 +1,122 @@
+
+
+
+we consider three types of noncompliance: corrective, where subjects move to the higher reward choice, indepdent where subjects noncompliance pattern is indepdent of the rewards of their chosen actions, and cofounded where latent variables u affect both rewards and noncomplance.
+
+Conjecture: in the first two ACTUAL beats CHOSEN. PERPOLICY wins when cofoudns mean noncompliers distribution of rewards conditional on actual is sufficiently different from compliers.
+
+
+
+
+
+Conjecture: If there is no join selection, i.e. if noncompliance is indepdent of rewards, then best strategy is to use what was actually done. While thi has unbounded worst case regret when noncompliance is linked to rewards through a latent vairable that jointly dtermines them, you cannot do better than it when the compliance is indepedent of rewards. Further, when there is very substantial noncompliance the gap in regret can be very substantial.
+
+We present an algorithm that motivated by the principle of optimisim in the face of uncertainty attempts to exploit the knowledge in actual taken actions while checking for a link between noncompliance and rewards, ad reverting to a safer bounded regret strategy if they appear to be joined in a detrimental way. 
+
+ Conjecture 1: meta algorithm bounds: there is some dilutaiotn of the underlying bounds from applying them recursively, in particular doublebandit exp3 preserves bounds (even when $r_t$ is iid the rewards results from picking weather to use actual or chosen in a bandit are not IID). 
+
+
+
+
+	 \textbf{Questions.}
+	We are faced with two challenges in the noncompliance setting. Firstly, how to use information encoded in ACTUAL to reduce the number of deaths. Clearly, this is a question where asymptotics are not a priority. Secondly, how to gauge the efficacy of treatments. As shown above, CHOSEN's estimates can be completely independent of the actual rewards.
+	\begin{itemize}
+		\item Can we do better by paying attention to ACTUAL and looking for signs of wisdom?
+		\item Can we ensure that we learn the efficacy of treatments, not just minimizes losses?
+	\end{itemize}
+
+
+
+\subsection{Snippets}
+
+
+Conjecture 5: in the 2 arm, binary reward case, and imposing symetry between arms (in what sense?) there are only 5 base strategies (everything else is a convex combination of them?), they are:
+actual - chosen
+sheep (``per policy'', do as they are told, intersection of actual and chosen) - blacksheep (is the complement, learn only from those that did not do)
+LATE
+
+example of convex combination; pick mix of IV/LATE and OLS/MEAN 
+
+
+
+
+To preserve the sublinear regret bound of the standard algorithms in the case with noncompliance, the action the bandit considers must be $c_t$. 
+If $a_t$ is considered then latent noncompliance process can lead to unbounded regret by having the algorithm settle on a bad action:
+
+Let $C$ (chosen) denote the action chosen by the bandit, 
+%U (latent) be the unobservable to the bandit variables, 
+$A$ (actual) be the action that is realised by the process, 
+and $R$ denote the reward. For simplicity, we assume the action space is discrete, or even binary, and the rewards are in $[0,1]$. In the standard bandit setting, only $C$ is observed (or alternatively, both $C$ and $A$ are observed, but $C=A$ with probability 1). In the compliance-aware setting, the bandit observes both the chosen arm ($C$) and the arm pulled by the agent ($A$), and these are not equal in general. 
+
+
+\paragraph{Latent variables.}
+ and after observing this and a hideen (to the decision maker) random variable $u_t$ the subject
+(or patient or environment) carries out an action $a_t(c_t,u_t)\in A$ (the actual action).
+Simultanously a adversary picks unobservable characteristics $u_t$ and reward function $r_t : A → [0, 1]$. 
+The agent observes $a_t$ and receives the reward $r_t(a_t,u_t)$ .
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{unbounded regret.}
+
+Algorithms that do not consider noncompliance can have unbounded regret relative to those that do.
+example: frequetly shifting distribution and maximaly helpfull noncompliers. extreme case, noncoliance only when choice not optimal, distribution shifts every two time steps.
+
+Conjecture: As noncompliance becomes more severe chosen converges slower, while actual remains unafected or improves
+
+as the proportion of noncompliers becomes large, the effect of chosen becomes more diluted, and convergence suffers. Can we say anything about how this enters the bounds of say UCB or Exp3 ? 
+
+conjecture: For the indepedent noncompliance situation actual is optimal.
+sketch: 
+
+\textbf{Key observations.}
+	\begin{itemize}
+		\item \emph{CHOSEN can perform well without learning.}\\
+		In the extreme of the corrective noncompliance scenario where subjects always correct suboptimal assignments, CHOSEN doesn't learn at all despite performing excellently as measured by regret (but notice everything has regret 0 here) \\
+		Synthetic example.
+	\end{itemize}	
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Snippets}
+
+
+A standard bandit algorithm after chooses an action it observes the reward.
+
+A bandit that is aware of noncompliance after it chooses an arm, observes 2 variables, the reward and the arm that was actually pulled.
+
+Three simple strategies can turn use a standard bandit algorithm into one for the noncompliance setting:
+
+CHOSEN: update the reward of the arm the algorithm has chosen. Effectively ignores the noncompliance that took place, not using the seccond variable of which arm was pulled at all. Preserves the standard vanishing regret bounds.
+
+ACTUAL: update the reward of the arm that was actually pulled, as if it had been the chosen one  in a standard algorithm. Ignores the original choice the algorithm made. Has unbounded worst-case regret.
+
+COMPLIERS-ONLY: only update the rewards when the chosen arm and the pulled arm are the same. This ignores the outcomes of the noncomplient subjects. Has unbounded worst-case regret.
+
+A further strategy involves estimating the causal effect of taking the treatment on those that comply (the Local Average Treatment Effect). We put this asside for now (have several implementations, empirical results are meh, will check again)
+
+A meta strategy , DOUBLE or HYBRID, uses the above strategies as arms. We have two variaitons at the moment DoubleBanditAll, which updates the rewards of the higher level bandit at all time steps, and DoubleDisagreements, whcih only updates the high er level bandits when the different underlying substrategies want to play different arms (the reard is given the the arm corresponding to the base substrategy that selected the actually picked arm).
+The current implmenetion uses the same algorithm for the base as for the higher level. Notice ven when the rewards of the underlying game are IID, the higher level game becomes non-IID sinc the algorithms choices depend on it's previous eeceied rewards. 
+
+ \textbf{Hybrid algorithm.}
+	\begin{itemize}
+		\item No-regret bound in appendix for EXP3 as Meta. 
+		\item Different bound for Greedy as Meta
+		\item Important open question: the bounds are far too loose.
+	\end{itemize}
+
+
+While intent to treat (ITT) should always be considered, potentially valuable information is contained in estimates that make use of the actual treatment received and not only the one assigned.
+ \cite{shrier:13}
+
+
+
+
+"Estimating treatment effect in the presence of non-compliance measured with error: precision and robustness of data analysis methods" \cite{kenna:04}
+
+
+"When a choice has to be made in favour of one of two populations the cost of sampling 
+(experimenting) in order to obtain information on which to base the decision must be balanced against the cost of making the wrong choice. Wald's (1950) minimax procedure " (maurice)
+
+%ntoeimportance for personalization
+%A simple, and commonly used (outside of medicine), statistical approach is to simply delete instances of noncompliance from the dataset during preprocessing.
+%For example, a recent monograph on Bayesian adaptive clinical trials remarks ``somewhat embarrassing [$\ldots$] everything we do in this book assumes compliance'' \cite{berry:10}. 

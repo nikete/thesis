@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study rank="120">
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on December 16, 2015</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT00307333</url>
+  </required_header>
+  <id_info>
+    <org_study_id>10845</org_study_id>
+    <nct_id>NCT00307333</nct_id>
+  </id_info>
+  <brief_title>Impact of Heart Rate Characteristics Monitoring in Neonates</brief_title>
+  <acronym>HeRO</acronym>
+  <official_title>Impact of Heart Rate Characteristics Monitoring in Neonates</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>University of Virginia</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>National Institutes of Health (NIH)</agency>
+      <agency_class>NIH</agency_class>
+    </collaborator>
+    <collaborator>
+      <agency>Medical Predictive Science Corporation</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>University of Virginia</source>
+  <oversight_info>
+    <authority>United States: Food and Drug Administration</authority>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      Hypothesis: Fewer neonates managed using information from heart rate characteristics (HRC)
+      will require intubation and mechanical ventilation as a result of sepsis and sepsis-like
+      illness.
+
+      Infants will be randomly assigned to one of two groups. One group of infants will have the
+      HRC index known to the physicians caring for them, and physicians will use the HRC index as
+      they desire to aid in clinical management.
+
+      Infants in the other group will have the HRC index recorded, but this information will not
+      be displayed to the physicians caring for the infants.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Following randomization, infants will be managed as usual practice. The treating physicians
+      of the HRC-display group will be able to utilize the HRC score to assist in the care of the
+      infant. The physicians of the no-display group will provide care as per standard.
+
+      Clinical symptoms will be treated according to the medical discretion of each physician.
+      Cultures will be obtained and antibiotics administered as per the medical discretion of the
+      physicians.
+
+      Clinical, culture results, antibiotic administration, ventilator use, and outcome at 120
+      days data will be collected on the infants as well as their HRC score calculated by the HeRO
+      heart rate characteristics monitor.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>August 2005</start_date>
+  <completion_date type="Actual">May 2011</completion_date>
+  <primary_completion_date type="Actual">February 2011</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Randomized, Endpoint Classification: Efficacy Study, Intervention Model: Parallel Assignment, Masking: Open Label, Primary Purpose: Diagnostic</study_design>
+  <primary_outcome>
+    <measure>Number of Ventilator-free Days</measure>
+    <time_frame>120 days</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Duration of Hospital Stay</measure>
+    <time_frame>120 days</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Days on Antibiotics</measure>
+    <time_frame>120 days</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Mortality</measure>
+    <time_frame>120 days</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Actual">3003</enrollment>
+  <condition>Sepsis</condition>
+  <arm_group>
+    <arm_group_label>1</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Very low birth weight infants with their HRC index continuously displayed. Clinicians can utilize the HRC score to develop treatment plan.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>2</arm_group_label>
+    <arm_group_type>No Intervention</arm_group_type>
+    <description>Very low birth weight infants for whom the HRC index is not displayed. Infants receive standard of care treatment.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Device</intervention_type>
+    <intervention_name>HeRO heart rate characteristics monitor</intervention_name>
+    <description>24 hour continuous HRC monitoring with display</description>
+    <arm_group_label>1</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Infants admitted to NICU
+
+          -  Birth weight &lt; 1500 grams
+
+          -  Gestational age &lt; or = 32 weeks
+
+          -  Informed consent obtained from parent
+
+        Exclusion Criteria:
+
+          -  Evidence of sustained cardiac arrhythmia
+
+          -  Use of an electronic pacemaker
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>N/A</minimum_age>
+    <maximum_age>32 Weeks</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Joseph R Moorman, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>University of Virginia</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>University of Alabama at Birmingham</name>
+      <address>
+        <city>Birmingham</city>
+        <state>Alabama</state>
+        <zip>35294</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University of Miami</name>
+      <address>
+        <city>Miami</city>
+        <state>Florida</state>
+        <zip>33101</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Winnie Plamer Hospital for Women and Babies</name>
+      <address>
+        <city>Orlando</city>
+        <state>Florida</state>
+        <zip>32806</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Wake Forest University Health Sciences</name>
+      <address>
+        <city>Winston-Salem</city>
+        <state>North Carolina</state>
+        <zip>27157</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Milton S. Hershey Medical Center</name>
+      <address>
+        <city>Hershey</city>
+        <state>Pennsylvania</state>
+        <zip>17033</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Greenville Hospital System</name>
+      <address>
+        <city>Greenville</city>
+        <state>South Carolina</state>
+        <zip>29617</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Vanderbilt Children's Hospital</name>
+      <address>
+        <city>Nashville</city>
+        <state>Tennessee</state>
+        <zip>37232</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University of Virginia</name>
+      <address>
+        <city>Charlottesville</city>
+        <state>Virginia</state>
+        <zip>22908</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <verification_date>May 2013</verification_date>
+  <lastchanged_date>May 16, 2013</lastchanged_date>
+  <firstreceived_date>March 24, 2006</firstreceived_date>
+  <firstreceived_results_date>April 3, 2012</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>very low birth weight infants</keyword>
+  <keyword>heart rate characteristics</keyword>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>Yes</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+
+  <clinical_results>
+
+    <participant_flow>
+      <group_list>
+        <group group_id="P1">
+          <title>Intervention</title>
+          <description>Very low birth weight infants with their HRC index continuously displayed. Clinicians can utilize the HRC score to develop treatment plan.</description>
+        </group>
+        <group group_id="P2">
+          <title>Control</title>
+          <description>Very low birth weight infants for whom the HRC index is not displayed. Infants receive standard of care treatment.</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="1511"/>
+                <participants group_id="P2" count="1492"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="1500"/>
+                <participants group_id="P2" count="1489"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="11"/>
+                <participants group_id="P2" count="3"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Lost to Follow-up</title>
+              <participants_list>
+                <participants group_id="P1" count="11"/>
+                <participants group_id="P2" count="3"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <group_list>
+        <group group_id="B1">
+          <title>Intervention</title>
+          <description>Very low birth weight infants with their HRC index continuously displayed. Clinicians can utilize the HRC score to develop treatment plan.</description>
+        </group>
+        <group group_id="B2">
+          <title>Control</title>
+          <description>Very low birth weight infants for whom the HRC index is not displayed. Infants receive standard of care treatment.</description>
+        </group>
+        <group group_id="B3">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <measure_list>
+        <measure>
+          <title>Number of Participants</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="1511"/>
+                <measurement group_id="B2" value="1492"/>
+                <measurement group_id="B3" value="3003"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>&lt;=18 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1511"/>
+                <measurement group_id="B2" value="1492"/>
+                <measurement group_id="B3" value="3003"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Between 18 and 65 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="0"/>
+                <measurement group_id="B2" value="0"/>
+                <measurement group_id="B3" value="0"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>&gt;=65 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="0"/>
+                <measurement group_id="B2" value="0"/>
+                <measurement group_id="B3" value="0"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <description>correct as reported</description>
+          <units>years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="0.54" spread="0.054"/>
+                <measurement group_id="B2" value="0.54" spread="0.054"/>
+                <measurement group_id="B3" value="0.54" spread="0.054"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Female</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="791"/>
+                <measurement group_id="B2" value="767"/>
+                <measurement group_id="B3" value="1558"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Male</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="720"/>
+                <measurement group_id="B2" value="725"/>
+                <measurement group_id="B3" value="1445"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Region of Enrollment</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>United States</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1511"/>
+                <measurement group_id="B2" value="1492"/>
+                <measurement group_id="B3" value="3003"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Number of Ventilator-free Days</title>
+        <time_frame>120 days</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Intervention</title>
+            <description>Very low birth weight infants with their HRC index continuously displayed. Clinicians can utilize the HRC score to develop treatment plan.</description>
+          </group>
+          <group group_id="O2">
+            <title>Control</title>
+            <description>Very low birth weight infants for whom the HRC index is not displayed. Infants receive standard of care treatment.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="1500"/>
+                  <measurement group_id="O2" value="1489"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Number of Ventilator-free Days</title>
+            <units>days</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="95.9" spread="35.1"/>
+                  <measurement group_id="O2" value="93.6" spread="37.8"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+            </group_id_list>
+            <non_inferiority>No</non_inferiority>
+            <p_value>0.08</p_value>
+            <method>t-test, 2 sided</method>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Duration of Hospital Stay</title>
+        <time_frame>120 days</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Intervention</title>
+            <description>Very low birth weight infants with their HRC index continuously displayed. Clinicians can utilize the HRC score to develop treatment plan.</description>
+          </group>
+          <group group_id="O2">
+            <title>Control</title>
+            <description>Very low birth weight infants for whom the HRC index is not displayed. Infants receive standard of care treatment.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="1511"/>
+                  <measurement group_id="O2" value="1492"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Duration of Hospital Stay</title>
+            <units>days</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="59.6" spread="33.7"/>
+                  <measurement group_id="O2" value="58.7" spread="34.5"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <non_inferiority>No</non_inferiority>
+            <p_value>0.47</p_value>
+            <method>t-test, 2 sided</method>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Days on Antibiotics</title>
+        <time_frame>120 days</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Intervention</title>
+            <description>Very low birth weight infants with their HRC index continuously displayed. Clinicians can utilize the HRC score to develop treatment plan.</description>
+          </group>
+          <group group_id="O2">
+            <title>Control</title>
+            <description>Very low birth weight infants for whom the HRC index is not displayed. Infants receive standard of care treatment.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="1500"/>
+                  <measurement group_id="O2" value="1489"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Days on Antibiotics</title>
+            <units>days</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="15.7" spread="19.4"/>
+                  <measurement group_id="O2" value="15.0" spread="19.1"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <non_inferiority>No</non_inferiority>
+            <p_value>0.31</p_value>
+            <method>t-test, 2 sided</method>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Mortality</title>
+        <time_frame>120 days</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Intervention</title>
+            <description>Very low birth weight infants with their HRC index continuously displayed. Clinicians can utilize the HRC score to develop treatment plan.</description>
+          </group>
+          <group group_id="O2">
+            <title>Control</title>
+            <description>Very low birth weight infants for whom the HRC index is not displayed. Infants receive standard of care treatment.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="1500"/>
+                  <measurement group_id="O2" value="1489"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Mortality</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="122"/>
+                  <measurement group_id="O2" value="152"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <non_inferiority>No</non_inferiority>
+            <param_type>Hazard Ratio (HR)</param_type>
+            <param_value>0.78</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>0.61</ci_lower_limit>
+            <ci_upper_limit>0.99</ci_upper_limit>
+            <estimate_desc>HR = hazard for intervention / hazard for control</estimate_desc>
+          </analysis>
+        </analysis_list>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <time_frame>120 days follow-up</time_frame>
+      <group_list>
+        <group group_id="E1">
+          <title>Intervention</title>
+          <description>Very low birth weight infants with their HRC index continuously displayed. Clinicians can utilize the HRC score to develop treatment plan.</description>
+        </group>
+        <group group_id="E2">
+          <title>Control</title>
+          <description>Very low birth weight infants for whom the HRC index is not displayed. Infants receive standard of care treatment.</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="122" subjects_at_risk="1500"/>
+                <counts group_id="E2" subjects_affected="152" subjects_at_risk="1489"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Investigations</title>
+            <event_list>
+              <event>
+                <sub_title>Mortality [120 days]</sub_title>
+                <counts group_id="E1" events="122" subjects_affected="122" subjects_at_risk="1500"/>
+                <counts group_id="E2" events="152" subjects_affected="152" subjects_at_risk="1489"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Joseph R. Moorman, MD</name_or_title>
+      <organization>University of Virginia</organization>
+      <phone>434-982-3367</phone>
+      <email>rm3h@virginia.edu</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>

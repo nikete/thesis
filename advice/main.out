@@ -1,0 +1,25 @@
+\BOOKMARK [1][-]{section.1}{Model}{}% 1
+\BOOKMARK [1][-]{section.2}{A Simple Reward Sharing Mechanism}{}% 2
+\BOOKMARK [2][-]{subsubsection.2.0.1}{Limitations}{section.2}% 3
+\BOOKMARK [1][-]{section.3}{Freedom and Limits to Defiance}{}% 4
+\BOOKMARK [1][-]{section.4}{Scoring Rule and Void Decision Market Mechanisms}{}% 5
+\BOOKMARK [1][-]{section.5}{Efficient Optimal Decision Elicitation}{}% 6
+\BOOKMARK [2][-]{subsection.5.1}{Incentive Compatibility and Efficient}{section.5}% 7
+\BOOKMARK [2][-]{subsection.5.2}{Potential Negative Expetation for Subject}{section.5}% 8
+\BOOKMARK [1][-]{section.6}{Rational Entry}{}% 9
+\BOOKMARK [2][-]{subsection.6.1}{A sufficient condition for dominat truthfulness in reports}{section.6}% 10
+\BOOKMARK [2][-]{subsection.6.2}{Noncompliance and Incentive Compatibility}{section.6}% 11
+\BOOKMARK [1][-]{section.7}{The signal reporting vcg mechanism can work even when utilities are not part of the common prior}{}% 12
+\BOOKMARK [1][-]{section.8}{A bidding mehcnaism }{}% 13
+\BOOKMARK [2][-]{subsection.8.1}{Interpreting bids}{section.8}% 14
+\BOOKMARK [2][-]{subsection.8.2}{A sufficient separability condition for efficiency}{section.8}% 15
+\BOOKMARK [1][-]{section.9}{Tradeoff between Dominant Strategy Incentive Compatible and Expressivity}{}% 16
+\BOOKMARK [2][-]{subsection.9.1}{A sufficient condition}{section.9}% 17
+\BOOKMARK [1][-]{section.10}{Two-sides}{}% 18
+\BOOKMARK [1][-]{section.11}{A sequence of one shot mechanisms does not explore}{}% 19
+\BOOKMARK [1][-]{section.12}{A Direct Mechanism with Strong Common knowledge}{}% 20
+\BOOKMARK [1][-]{section.13}{A Practical Bid Based Mechanism}{}% 21
+\BOOKMARK [1][-]{section.14}{Efficiency of the mechanism}{}% 22
+\BOOKMARK [2][-]{subsection.14.1}{One Action per Expert is not enough for incentive compatibility}{section.14}% 23
+\BOOKMARK [2][-]{subsection.14.2}{A sufficient condition; Expert signals only informative about one action}{section.14}% 24
+\BOOKMARK [1][-]{section.15}{Incentive Compatibility for Subjects}{}% 25

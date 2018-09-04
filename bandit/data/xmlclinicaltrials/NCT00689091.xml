@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study rank="194">
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on December 16, 2015</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT00689091</url>
+  </required_header>
+  <id_info>
+    <org_study_id>HUM00013626</org_study_id>
+    <nct_id>NCT00689091</nct_id>
+  </id_info>
+  <brief_title>Bispectral Index (BIS) Versus Electronic Alerts in the Prevention of Anesthesia Awareness: the Michigan Awareness Control Study</brief_title>
+  <acronym>MACS</acronym>
+  <official_title>A Prospective, Randomized, Controlled Trial Comparing Bispectral Index Monitoring to Electronic Alerts for Prevention of Awareness During Anesthesia in the General Population</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>University of Michigan</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>Foundation for Anesthesia Education and Research</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+    <collaborator>
+      <agency>American Society of Anesthesiologists</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+    <collaborator>
+      <agency>Washington University School of Medicine</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+    <collaborator>
+      <agency>University of Chicago</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+    <collaborator>
+      <agency>University of Manitoba</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>University of Michigan</source>
+  <oversight_info>
+    <authority>United States: Institutional Review Board</authority>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      Awareness during anesthesia is a problem receiving increased attention by patients,
+      clinicians, and the general public. The incidence of intraoperative awareness has been
+      reported to be between 1-2/1000 cases, but recent data suggest that this may be an
+      overestimate. The Bispectral Index (BIS) Monitor is an electroencephalographic method of
+      assessing depth of anesthesia that has been shown in one study to reduce the incidence of
+      awareness during anesthesia in the high-risk population (Myles et al, 2004). In the study of
+      Myles et al, the number needed to treat (NNT) in order to prevent one case of awareness in
+      the high-risk population was 138, with an associated cost of approximately US$2200. Since
+      the NNT and the associated cost of treatment would be much higher in the general population,
+      the efficacy of the BIS monitor in preventing awareness in all anesthetized patients needs
+      to be clearly established. Furthermore, recent data suggest that the BIS may not be useful
+      in the high-risk population. The investigators propose a prospective, randomized, controlled
+      trial comparing the BIS monitor to electronic alerts based on non-electroencephalographic
+      gauges of anesthetic depth.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Electronic alerts have been developed and employed at our institution and have been shown to
+      increase compliance with both clinical and administrative tasks (O'Reilly et al, 2006;
+      Kheterpal et al, 2007). The investigators have developed electronic alerts for the purpose
+      of informing the clinician of potentially insufficient anesthesia based on minimum alveolar
+      concentration (MAC). The algorithm is as follows:
+
+        -  Every 5 minutes the alerting system checks every active case in our operating rooms. It
+           takes approximately 1 second for this scan of all active cases to occur.
+
+        -  Conditions for an &quot;active case&quot; are:
+
+             1. data capture is possible (i.e., not a paper record)
+
+             2. data capture is active (i.e., &quot;patient in room&quot; has been electronically entered
+                and end-tidal [Et] CO2 is detected)
+
+             3. case has been identified as a general anesthetic
+
+             4. &quot;anesthesia induction end&quot; has already been documented
+
+             5. request for recovery room bed or transport to an intensive care unit has not been
+                documented
+
+             6. surgical dressing completion has not been documented
+
+        -  The alerting system checks the most recent value (within a specified time period) of:
+
+             1. Et Sevoflurane (MAC=2.0)
+
+             2. Et Isoflurane (MAC=1.2)
+
+             3. Et Desflurane (MAC=6)
+
+             4. Et Nitrous Oxide (MAC=105) and compares it to the MAC of each agent. It adds the
+                resulting MAC values together for &quot;current total MAC.&quot;
+
+        -  The system then checks for a charted propofol infusion in mcg/kg/min and divides by
+           150, assuming that 150 mcg/kg/min is &quot;1.0 MAC&quot; for propofol. The analogous concept of
+           MAC for propofol is &quot;Cp50&quot;- the plasma or blood concentrations at which 50% of patients
+           do not move in response to a noxious stimulus. Since the investigators do not have the
+           technology at our institution to calculate Cp50 or Cp50-awake, the investigators have
+           chosen the above propofol dose as an initial value based on clinical experience. The
+           resultant MAC equivalent is added to current total MAC.
+
+        -  The system next checks for a dexmedetomidine infusion with a rate of 0.2 mcg/kg/hour or
+           greater. If present, it multiplies the current total inhalational MAC by 2, as
+           dexmedetomidine can reduce MAC by 50%.
+
+        -  At this point, the &quot;current total MAC&quot; is defined as: Et Sevo /2 + Et Iso /1.2 + Et
+           Des/6 + Et Nitrous /105 + propofol rate (in mcg/kg/min)/150. If dexmedetomidine is &gt;0.2
+           mcg/kg/hour, inhalational MAC is multiplied by 2.
+
+        -  If this total mac &lt; 0.50, it checks to see if a bolus of propofol, midazolam,
+           etomidate, or thiopental has been given in the preceding 10 minutes.
+
+        -  It alerts the clinician signed into the case within 30-60 seconds if total age-adjusted
+           MAC &lt; 0.50 AND no bolus has been documented in the last 10 minutes.
+
+      This will be the protocol in the MAC-guided group. In the BIS-guided group an electronic
+      alert will be sent if the BIS value is &gt;60. If an alert is triggered, the clinician
+      electronically signed into the case receives an alphanumeric page stating &quot;Potentially
+      insufficient anesthesia, please check vaporizers and intravenous lines.&quot;
+
+      The investigators are collaborating with Washington University, the University of Chicago,
+      and the University of Mannitoba, who will also be testing a MAC-based protocol in comparison
+      to the BIS.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>May 2008</start_date>
+  <completion_date type="Actual">June 2010</completion_date>
+  <primary_completion_date type="Actual">April 2010</primary_completion_date>
+  <phase>Phase 4</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Randomized, Endpoint Classification: Efficacy Study, Intervention Model: Parallel Assignment, Masking: Double Blind (Subject, Investigator), Primary Purpose: Prevention</study_design>
+  <primary_outcome>
+    <measure>The Percentage of Incidences With Explicit Recall in the BIS Versus MAC Alert Groups.</measure>
+    <time_frame>Outcome of awareness is assessed 30-days after the operation</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>By modified intention-to-treat analysis</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Meta-Analysis of Awareness Events in Conjunction With the BAG-RECALL Study Based at Washington University.</measure>
+    <time_frame>Outcome of awareness is assessed</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Incidence of Post-traumatic Stress Disorder.</measure>
+    <time_frame>Outcome of post-traumatic stress disorder as it relates to awareness is assessed</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Predictors of Post-traumatic Stress Disorder Based on the Type of Awareness Event.</measure>
+    <time_frame>Outcome of post-traumatic stress disorder is assessed with the covariate of awareness</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Incidence and Type of Dreams During Anesthesia in Conjunction With MAC or BIS Values.</measure>
+    <time_frame>Outcomes of dreams is assessed</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>The Relationship Between Cumulative Deep Hypnotic Time, Anesthetic Doses, and Mortality.</measure>
+    <time_frame>Outcome of mortality is assessed</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Relationship Between BIS Values and Hemodynamic Parameters.</measure>
+    <time_frame>Outcome of hemodynamic stability is assessed</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Analysis of Interrupted Monitoring During the Use of the BIS.</measure>
+    <time_frame>Outcome of BIS monitoring is assessed</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Effect of Electronic Alerts on the Clinical Behavior of the Anesthesia Provider.</measure>
+    <time_frame>Outcome of the number of electronic alerts generated is assessed</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>BIS Values and Anesthetic Dosing of Chronic Pain Patients.</measure>
+    <time_frame>Outcome of chronic pain patients will be assessed</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Overall Use of Anesthetics Comparing the BIS to MAC Alerts.</measure>
+    <time_frame>Anesthetic dosing will be assessed</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>PACU Pain Scores, Neurologic Exam, and Discharge Time in Relationship to BIS Values.</measure>
+    <time_frame>Outcome of pain scores, neurologic exam and discharge time will be assessed</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Incidence of Post-operative Nausea and Vomiting in Relationship to BIS Values.</measure>
+    <time_frame>outcome of post-operative nausea and vomiting will be assessed</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Anesthetic Induction Doses, Hypotension, and BIS Values.</measure>
+    <time_frame>Outcome of hypotension in relationship to induction doses and BIS values will be assessed</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Comparison of Retrospective vs. Prospective Approaches to Assessing the Incidence of Awareness</measure>
+    <time_frame>Outcome of awareness will be assessed</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Comparison of the Prospective and Retrospective Approaches to the Study Awareness Incidence.</measure>
+    <time_frame>Outcome of awareness will be assessed</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Actual">22185</enrollment>
+  <condition>Awareness During General Anesthesia</condition>
+  <arm_group>
+    <arm_group_label>BIS group</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>This group will have BIS values visible and will receive alerts when the value is &gt;60.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>MAC Alert</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>This group will receive an alert if total MAC (including intravenous infusions) is &lt;0.5 age-adjusted.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Device</intervention_type>
+    <intervention_name>Bispectral Index Monitor</intervention_name>
+    <description>Comparison of two different alerting protocols. One using the bispectral index monitor and one using the MAC alerting protocols.</description>
+    <arm_group_label>BIS group</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Device</intervention_type>
+    <intervention_name>Electronic MAC alert</intervention_name>
+    <description>Comparison of two different alerting protocols. One using the bispectral index monitor and one using the MAC alerting protocols.</description>
+    <arm_group_label>MAC Alert</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  At least 18 years of age, English-speaking, available for follow-up interview at one
+             month.
+
+        Exclusion Criteria:
+
+          -  Pre-existing neurologic or neuropsychiatric condition, surgical manipulation around
+             forehead, not available for follow-up interview.
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>George A. Mashour, M.D., Ph.D.</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>University of Michigan</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>University of Michigan Medical School, University Hospital</name>
+      <address>
+        <city>Ann Arbor</city>
+        <state>Michigan</state>
+        <zip>48109</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <verification_date>November 2014</verification_date>
+  <lastchanged_date>November 14, 2014</lastchanged_date>
+  <firstreceived_date>May 29, 2008</firstreceived_date>
+  <firstreceived_results_date>December 12, 2013</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Principal Investigator</responsible_party_type>
+    <investigator_affiliation>University of Michigan</investigator_affiliation>
+    <investigator_full_name>George Mashour</investigator_full_name>
+    <investigator_title>Assistant Professor of Anesthesiology and Neurosurgery</investigator_title>
+  </responsible_party>
+  <keyword>Awareness</keyword>
+  <keyword>BIS Monitor</keyword>
+  <keyword>electronic alerts</keyword>
+  <keyword>minimum</keyword>
+  <keyword>alveolar</keyword>
+  <keyword>concentration</keyword>
+  <is_fda_regulated>No</is_fda_regulated>
+  <has_expanded_access>No</has_expanded_access>
+
+  <clinical_results>
+
+    <participant_flow>
+      <pre_assignment_details>22,185 patients were recruited but 584 were excluded after recruitment due to change in anesthetic technique, case cancellation, withdrawal, or death. Therefore, 21,601 patients were randomized.</pre_assignment_details>
+      <group_list>
+        <group group_id="P1">
+          <title>Bispectral Index Group</title>
+          <description>This group will have BIS values visible and will receive alerts when the value is &gt;60.
+Bispectral Index Monitor: Comparison of two different alerting protocols. One using the bispectral index monitor and one using the MAC alerting protocols.</description>
+        </group>
+        <group group_id="P2">
+          <title>Minimum Anesthesia Contration Alert</title>
+          <description>This group will receive an alert if total MAC (Minimum Anesthesia Concenration) (including intravenous infusions) is &lt;0.5 age-adjusted.
+Electronic MAC alert: Comparison of two different alerting protocols. One using the bispectral index monitor and one using the MAC alerting protocols.</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="10831"/>
+                <participants group_id="P2" count="10770"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="9460"/>
+                <participants group_id="P2" count="9376"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="1371"/>
+                <participants group_id="P2" count="1394"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <group_list>
+        <group group_id="B1">
+          <title>Bispectral Index Group</title>
+          <description>This group will have BIS values visible and will receive alerts when the value is &gt;60.
+Bispectral Index Monitor: Comparison of two different alerting protocols. One using the bispectral index monitor and one using the MAC alerting protocols.</description>
+        </group>
+        <group group_id="B2">
+          <title>Minimum Anesthesia Concentration Alert</title>
+          <description>This group will receive an alert if total MAC (including intravenous infusions) is &lt;0.5 age-adjusted.
+Electronic MAC alert: Comparison of two different alerting protocols. One using the bispectral index monitor and one using the MAC alerting protocols.</description>
+        </group>
+        <group group_id="B3">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <measure_list>
+        <measure>
+          <title>Number of Participants</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="9460"/>
+                <measurement group_id="B2" value="9376"/>
+                <measurement group_id="B3" value="18836"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <units>years</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="53" lower_limit="41" upper_limit="64"/>
+                <measurement group_id="B2" value="53" lower_limit="41" upper_limit="64"/>
+                <measurement group_id="B3" value="53" lower_limit="41" upper_limit="64"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Female</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="5,223"/>
+                <measurement group_id="B2" value="5,175"/>
+                <measurement group_id="B3" value="10398"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Male</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="4,237"/>
+                <measurement group_id="B2" value="4,201"/>
+                <measurement group_id="B3" value="8438"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>The Percentage of Incidences With Explicit Recall in the BIS Versus MAC Alert Groups.</title>
+        <description>By modified intention-to-treat analysis</description>
+        <time_frame>Outcome of awareness is assessed 30-days after the operation</time_frame>
+        <safety_issue>Yes</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>BIS Group</title>
+            <description>This group will have BIS values visible and will receive alerts when the value is &gt;60.
+Bispectral Index Monitor: Comparison of two different alerting protocols. One using the bispectral index monitor and one using the MAC alerting protocols.</description>
+          </group>
+          <group group_id="O2">
+            <title>MAC Alert</title>
+            <description>This group will receive an alert if total MAC (including intravenous infusions) is &lt;0.5 age-adjusted.
+Electronic MAC alert: Comparison of two different alerting protocols. One using the bispectral index monitor and one using the MAC alerting protocols.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="9460"/>
+                  <measurement group_id="O2" value="9376"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>The Percentage of Incidences With Explicit Recall in the BIS Versus MAC Alert Groups.</title>
+            <description>By modified intention-to-treat analysis</description>
+            <units>Percentage of participants/30days</units>
+            <param>Number</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="0.08" lower_limit="0.04" upper_limit="0.16"/>
+                  <measurement group_id="O2" value="0.12" lower_limit="0.07" upper_limit="0.21"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Meta-Analysis of Awareness Events in Conjunction With the BAG-RECALL Study Based at Washington University.</title>
+        <time_frame>Outcome of awareness is assessed</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Incidence of Post-traumatic Stress Disorder.</title>
+        <time_frame>Outcome of post-traumatic stress disorder as it relates to awareness is assessed</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Predictors of Post-traumatic Stress Disorder Based on the Type of Awareness Event.</title>
+        <time_frame>Outcome of post-traumatic stress disorder is assessed with the covariate of awareness</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Incidence and Type of Dreams During Anesthesia in Conjunction With MAC or BIS Values.</title>
+        <time_frame>Outcomes of dreams is assessed</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>The Relationship Between Cumulative Deep Hypnotic Time, Anesthetic Doses, and Mortality.</title>
+        <time_frame>Outcome of mortality is assessed</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Relationship Between BIS Values and Hemodynamic Parameters.</title>
+        <time_frame>Outcome of hemodynamic stability is assessed</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Analysis of Interrupted Monitoring During the Use of the BIS.</title>
+        <time_frame>Outcome of BIS monitoring is assessed</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Effect of Electronic Alerts on the Clinical Behavior of the Anesthesia Provider.</title>
+        <time_frame>Outcome of the number of electronic alerts generated is assessed</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>BIS Values and Anesthetic Dosing of Chronic Pain Patients.</title>
+        <time_frame>Outcome of chronic pain patients will be assessed</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Overall Use of Anesthetics Comparing the BIS to MAC Alerts.</title>
+        <time_frame>Anesthetic dosing will be assessed</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>PACU Pain Scores, Neurologic Exam, and Discharge Time in Relationship to BIS Values.</title>
+        <time_frame>Outcome of pain scores, neurologic exam and discharge time will be assessed</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Incidence of Post-operative Nausea and Vomiting in Relationship to BIS Values.</title>
+        <time_frame>outcome of post-operative nausea and vomiting will be assessed</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Anesthetic Induction Doses, Hypotension, and BIS Values.</title>
+        <time_frame>Outcome of hypotension in relationship to induction doses and BIS values will be assessed</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Comparison of Retrospective vs. Prospective Approaches to Assessing the Incidence of Awareness</title>
+        <time_frame>Outcome of awareness will be assessed</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Comparison of the Prospective and Retrospective Approaches to the Study Awareness Incidence.</title>
+        <time_frame>Outcome of awareness will be assessed</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <group_list>
+        <group group_id="E1">
+          <title>Bispectral Index Group</title>
+          <description>This group will have BIS values visible and will receive alerts when the value is &gt;60.
+Bispectral Index Monitor: Comparison of two different alerting protocols. One using the bispectral index monitor and one using the MAC alerting protocols.</description>
+        </group>
+        <group group_id="E2">
+          <title>Miniumum Anesthesia Concentration Alert</title>
+          <description>This group will receive an alert if total MAC (including intravenous infusions) is &lt;0.5 age-adjusted.
+Electronic MAC alert: Comparison of two different alerting protocols. One using the bispectral index monitor and one using the MAC alerting protocols.</description>
+        </group>
+      </group_list>
+      <other_events>
+        <frequency_threshold>0</frequency_threshold>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="9460"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="9376"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Cardiac disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Non life threatening adverse events</sub_title>
+                <description>No adverse events resulted from this study</description>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="9460"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="9376"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Dr. George A Mashour</name_or_title>
+      <organization>University of Michigan</organization>
+      <phone>734-936-4280</phone>
+      <email>gmashour@med.umich.edu</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>

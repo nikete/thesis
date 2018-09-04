@@ -1,0 +1,124 @@
+%!TEX root = main.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[ruled]{algorithm2e}
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\usepackage[numbers,sort&compress]{natbib} % for citet
+\SetArgSty{textrm}  % for algorithm2e
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
+%\doi{XXXXXXX.XXXXXXX}% TeXSupport
+
+\newcommand{\DBA}[1]{{\color{blue} {\bf[ DBA}: #1 {\bf]}}}
+\newcommand{\NDP}[1]{{\color{red} {\bf[ NDP}: #1 {\bf]}}}
+
+
+
+% Any additional packages needed should be included after jmlr2e.
+% Note that jmlr2e.sty includes epsfig, amssymb, natbib and graphicx,
+% and defines many common macros, such as 'proof' and 'example'.
+%
+% It also sets the bibliographystyle to plainnat; for more information on
+% natbib citation styles, see the natbib documentation, a copy of which
+% is archived at http://www.jmlr.org/format/natbib.pdf
+
+\usepackage{cite}
+
+
+\usepackage[l2tabu, orthodox]{nag}
+\usepackage{mathtools,datetime}
+\mathtoolsset{
+showonlyrefs=true % or false in draft mode
+}
+\usepackage{comment}
+\usepackage{amsmath, subfigure, dsfont, amsfonts, amssymb, graphicx, enumerate, xspace, cancel, verbatim}
+\usepackage[colorlinks,pdfpagelabels,citecolor=blue,plainpages=false]{hyperref}
+
+\newcommand*{\bfrac}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\weight}{weight}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argsup}{argsup}
+\DeclareMathOperator*{\arginf}{arginf}
+\DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\expec}{\mathbb E}
+\DeclareMathOperator*{\exphat}{\hat{\mathbb E}}
+\newcommand{\grad}{\operatorname{\nabla}}
+
+\newcommand{\eod}{{${}$\\}}
+\newcommand{\X}{{\mathbf X}}
+\newcommand{\bS}{{\mathbf S}}
+\newcommand{\x}{{\mathbf x}}
+\newcommand{\bq}{{\mathbf q}}
+\newcommand{\bu}{{\mathbf u}}
+\newcommand{\bC}{{\mathbf C}}
+\newcommand{\Pt}{{\mathbf P}}
+\newcommand{\bD}{{\mathbf D}}
+\newcommand{\bE}{{\mathbf E}}
+\newcommand{\bz}{{\mathbf z}}
+\newcommand{\bd}{{\mathbf d}}
+\newcommand{\bi}{{\mathbf i}}
+\newcommand{\bbf}{{\mathbf f}}
+\newcommand{\bL}{{\mathbf L}}
+\newcommand{\bbb}{{\mathbf b}}
+\newcommand{\bG}{{\mathbf G}}
+\newcommand{\bh}{{\mathbf h}}
+\newcommand{\bo}{{\mathbf o}}
+\newcommand{\ba}{{\mathbf a}}
+\newcommand{\bZ}{{\mathbf Z}}
+\newcommand{\y}{{\mathbf y}}
+\newcommand{\G}{{\mathsf{G}}}
+\newcommand{\g}{{\mathsf g}}
+\newcommand{\cS}{{\mathcal{S}}}
+\newcommand{\cT}{{\mathcal{T}}}
+\newcommand{\V}{{\mathcal{V}}}
+\newcommand{\bv}{{\mathbf{v}}}
+\newcommand{\cP}{{\mathcal{P}}}
+\newcommand{\cG}{{\mathcal{G}}}
+\newcommand{\cU}{{\mathcal{U}}}
+\newcommand{\cW}{{\mathcal{W}}}
+\newcommand{\bA}{{\mathbf{A}}}
+\newcommand{\bI}{{\mathbf{I}}}
+\newcommand{\bB}{{\mathbf{B}}}
+\newcommand{\bP}{{\mathbf{P}}}
+\newcommand{\be}{{\mathbf{e}}}
+\newcommand{\bp}{{\mathbf{p}}}
+\newcommand{\cY}{{\mathcal{Y}}}
+\newcommand{\cO}{{\mathcal{O}}}
+\newcommand{\cX}{{\mathcal{X}}}
+\newcommand{\cI}{{\mathcal{I}}}
+\newcommand{\ccH}{{\mathcal{H}}}
+\newcommand{\cC}{{\mathcal{C}}}
+\newcommand{\xn}{{\mathbf{a}}}
+\newcommand{\indic}{{\mathds 1}}
+
+
+\newtheorem{thm}{Theorem}
+\newtheorem{meta}{Metatheorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{defn}{Definition}
+\newtheorem{algol}{Algorithm}
+\newtheorem{assn}{Assumption}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{mech}{Mechanism}
+\newtheorem{rem}{Remark}
+\newtheorem{eg}{Example}
+\newtheorem{con}{Conjecture}
+% Different font in captions
+
+
+% Definitions of handy macros can go here
+\newcommand{\fracpartial}[2]{\frac{\partial #1}{\partial  #2}}
+
+% Heading arguments are {volume}{year}{pages}{submitted}{published}{author-full-names}
+

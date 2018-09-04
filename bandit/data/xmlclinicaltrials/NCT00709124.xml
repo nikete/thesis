@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study rank="176">
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on December 16, 2015</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT00709124</url>
+  </required_header>
+  <id_info>
+    <org_study_id>NA_00017423</org_study_id>
+    <nct_id>NCT00709124</nct_id>
+  </id_info>
+  <brief_title>Use of Neuromuscular Electrostimulation (NMES) for Treatment or Prevention of ICU-Associated Weakness</brief_title>
+  <acronym>NMES</acronym>
+  <official_title>Use of Neuromuscular Electrostimulation (NMES) for Treatment or Prevention of ICU-Associated Weakness</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Johns Hopkins University</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>National Heart, Lung, and Blood Institute (NHLBI)</agency>
+      <agency_class>NIH</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>Johns Hopkins University</source>
+  <oversight_info>
+    <authority>United States: Institutional Review Board</authority>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of this study is to investigate whether neuromuscular electrostimulation (NMES)
+      will decrease ICU-associated weakness. The investigators believe that 60 minutes of daily
+      NMES will improve strength and function in those who have had extended ICU stays, as well as
+      decrease critical illness myopathy as an etiology of weakness in the critically ill.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Survivors of critical illness frequently have significant, debilitating and persistent
+      weakness after discharge from the intensive care unit (ICU). This weakness can persist for
+      up to 4 years after ICU discharge. There are few interventions that have been successful in
+      reducing or preventing weakness. Neuromuscular electrostimulation (NMES) therapy is
+      beneficial in other populations of weak and functionally limited patients, such as those
+      with chronic respiratory failure requiring mechanical ventilation, severe chronic
+      obstructive pulmonary disease and end-stage congestive heart failure. We propose a
+      randomized clinical trial to evaluate the efficacy of 60 minutes of NMES versus sham
+      therapy, applied to the bilateral lower extremities, to reduce ICU-associated weakness in
+      patients with acute respiratory failure. Our specific aims are to determine if NMES therapy
+      will: 1) increase strength of the 3 treated lower extremity muscle groups (i.e., pretibial,
+      triceps surae, and quadriceps), 2) improve important clinical outcomes (i.e., functional
+      status, duration of mechanical ventilation, length of ICU and hospital stay, in-hospital
+      mortality, and total hospital charges), 3) reduce critical illness myopathy as an etiology
+      of weakness in clinically weak ICU patients. We hypothesize that NMES therapy will reduce
+      ICU-associated weakness, and improve clinical and functional outcomes. Additionally, the
+      rates of critical illness myopathy as an etiology of weakness in clinically weak ICU
+      patients will be lower in those receiving NMES versus sham therapy. Since there is no single
+      test that is optimal for measuring muscle strength in the critically ill, we will employ
+      four non-invasive measures: manual muscle testing (MMT), hand held dynamometry (HHD),
+      handgrip dynamometry (HGD), and maximal inspiratory pressure (MIP). With no existing
+      therapeutic options available, our study explores the potential of NMES as a feasible
+      intervention to reduce ICU-associated weakness.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>June 2008</start_date>
+  <completion_date type="Actual">April 2013</completion_date>
+  <primary_completion_date type="Actual">April 2013</primary_completion_date>
+  <phase>Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Randomized, Endpoint Classification: Efficacy Study, Intervention Model: Parallel Assignment, Masking: Single Blind (Outcomes Assessor), Primary Purpose: Prevention</study_design>
+  <primary_outcome>
+    <measure>Lower Extremity Strength, at Hospital Discharge, of 3 Bilateral Muscle Groups (Pretibial, Triceps Surae, and Quadriceps) Measured Via MMT Using a Composite Medical Research Council (MRC) Score</measure>
+    <time_frame>At hospital discharge</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Range 0 to 30 with higher score better. The composite score is a simple sum of the individual scores from the 3 bilateral muscle groups</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Individual Muscle Strength: Pretibial, Triceps Surae, and Quadriceps (MRC Score) Between Those Who Receive NMES vs. Sham Sessions</measure>
+    <time_frame>ICU and hospital discharge</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Overall Body Strength: 6 Bilateral Muscle Groups in Arms and Legs (MRC Composite Score) Between Those Who Receive NMES vs. Sham Sessions</measure>
+    <time_frame>ICU and hospital discharge</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Overall Body Strength: Hand Grip Between Those Who Receive NMES vs. Sham Sessions</measure>
+    <time_frame>ICU and hospital discharge</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Respiratory Muscle Strength: Maximum Inspiratory Pressure (MIP) Between Those Who Receive NMES vs. Sham Sessions</measure>
+    <time_frame>ICU and hospital discharge</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Functional Status as Measured by Modified Functional Independence Measurement (FIM) Score Between Those Receiving NMES vs. Sham Sessions</measure>
+    <time_frame>ICU and hospital discharge</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Duration of Mechanical Ventilation</measure>
+    <time_frame>At hospital discharge</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>ICU and Hospital Length of Stay</measure>
+    <time_frame>Hospital discharge</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>ICU and In-hospital Mortality</measure>
+    <time_frame>Hospital discharge</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Total Hospital Charges</measure>
+    <time_frame>Hospital discharge</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Hospital Discharge Destination (e.g., Home, Rehab Facility)</measure>
+    <time_frame>Hospital discharge</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Lower Extremity Strength, at Hospital Discharge, of 3 Bilateral Muscle Groups (Pretibial, Triceps Surae, and Quadriceps) Measured Via MMT Using a Composite Medical Research Council (MRC) Score</measure>
+    <time_frame>At ICU discharge</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Mean Change in Subject's Lower Extremity MRC Composite Score From Baseline</measure>
+    <time_frame>At ICU and Hospital discharge</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>ICU Delirium</measure>
+    <time_frame>Number of days with delirium in the ICU</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Subgroup Analysis</measure>
+    <time_frame>See description</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>For patients with &gt;= 7 days of mechanical ventilation, we will compare the 2 groups for the following outcomes: Lower extremity muscle strength, mean change in MRC score from baseline to ICU discharge, mean change in MRC score from baseline to hospital discharge, and composite whole body MRC score at ICU dischare and at hospital discharge.</description>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Actual">36</enrollment>
+  <condition>Intensive Care Unit</condition>
+  <condition>Muscle Weakness</condition>
+  <arm_group>
+    <arm_group_label>NMES</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>60 minute daily NMES sessions every day for the duration of subject's ICU stay.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Sham</arm_group_label>
+    <arm_group_type>Sham Comparator</arm_group_type>
+    <description>60 minute sham sessions every day for the duration of subjects ICU stay. No voltage will be applied to those receiving sham sessions.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Device</intervention_type>
+    <intervention_name>Neuromuscular Electrostimulation (NMES) CareStim Muscle Stimulation Device (Care Rehab; McLean, VA)</intervention_name>
+    <description>60 minute NMES sessions will be applied to three muscle groups of the lower extremities (quadriceps, pretibial, and triceps surae). Sessions start at study entry, and will occur every day for the duration of subject's ICU stay.</description>
+    <arm_group_label>NMES</arm_group_label>
+    <other_name>CareStim Muscle Stimulation Device (Care Rehab; McLean, VA)</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Device</intervention_type>
+    <intervention_name>Sham</intervention_name>
+    <description>60 minute NMES sessions will be applied to three muscle groups of the lower extremities (quadriceps, pretibial, and triceps surae). Sessions start at study entry, and will occur every day for the duration of subject's ICU stay. Sham groups will NOT have voltage applied.</description>
+    <arm_group_label>Sham</arm_group_label>
+    <other_name>CareStim Muscle Stimulation Device (Care Rehab; McLean, VA)</other_name>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  1 day of mechanical ventilation with an expectation of requiring ≥2 additional days
+             of ICU stay in a Johns Hopkins Intensive Care Unit (ICU)
+
+        Exclusion Criteria:
+
+          -  Unable to understand or speak English due to language barrier or cognitive impairment
+             prior to admission
+
+          -  Unable to independently transfer from bed to chair at baseline prior to hospital
+             admission
+
+          -  Known primary systemic neuromuscular disease (e.g. Guillian-Barre) at ICU admission
+
+          -  Known intracranial process that is associated with localizing weakness (e.g. cerebral
+             vascular accident) at ICU admission
+
+          -  Transferred from another ICU outside of the Johns Hopkins system after &gt;4 consecutive
+             days of mechanical ventilation
+
+          -  Moribund (i.e. &gt;90% probability of patient mortality in the next 96 hours)
+
+          -  Anticipated transfer to another ICU for care (e.g. awaiting organ transplantation and
+             transfer to surgical ICU)
+
+          -  Any pacemaker (e.g., cardiac, diaphragm) or implanted cardiac defibrillator
+
+          -  Pregnancy
+
+          -  Body mass index ≥35 kg/m2
+
+          -  Any limitation in life support other than a sole no-CPR order
+
+          -  Known or suspected malignancy in the legs
+
+          -  Unable to treat or evaluate both lower extremities (e.g., bilateral amputation,
+             bilateral skin lesions)
+
+          -  ICU length of stay &gt;7 days prior to enrollment
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Dale Needham, MD, PhD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Johns Hopkins University</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>Johns Hopkins Hospital</name>
+      <address>
+        <city>Baltimore</city>
+        <state>Maryland</state>
+        <zip>21287</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <verification_date>April 2015</verification_date>
+  <lastchanged_date>April 13, 2015</lastchanged_date>
+  <firstreceived_date>July 1, 2008</firstreceived_date>
+  <firstreceived_results_date>March 30, 2015</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Principal Investigator</responsible_party_type>
+    <investigator_affiliation>Johns Hopkins University</investigator_affiliation>
+    <investigator_full_name>Dale Needham</investigator_full_name>
+    <investigator_title>Professor</investigator_title>
+  </responsible_party>
+  <keyword>Respiration, Artificial</keyword>
+  <keyword>Critical Illness</keyword>
+  <keyword>Intensive Care Units</keyword>
+  <keyword>Electric Stimulation Therapy</keyword>
+  <keyword>Muscle Weakness</keyword>
+  <keyword>Paresis</keyword>
+  <keyword>Mechanically</keyword>
+  <keyword>Ventilated</keyword>
+  <keyword>Patients</keyword>
+  <keyword>Admitted</keyword>
+  <keyword>Medical</keyword>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>Yes</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Muscle Weakness</mesh_term>
+    <mesh_term>Paresis</mesh_term>
+  </condition_browse>
+
+  <clinical_results>
+
+    <participant_flow>
+      <recruitment_details>3 medical and surgical ICUs at Johns Hopkins Hospitals screened for recruitment from 2008-2009 and 2010-2013 (39 months in total). Recruitment suspended for 17 consecutive months between 2009-2010 due to lack of staffing</recruitment_details>
+      <pre_assignment_details>2 patients (both randomized to the intervention group) were withdrawn PRIOR to any initiation of intervention due to new data arising after randomization (and before intervention initiation) that indicated the subject met the pre-existing exclusion criteria.</pre_assignment_details>
+      <group_list>
+        <group group_id="P1">
+          <title>NMES</title>
+          <description>60 minute daily NMES sessions every day for the duration of subject's ICU stay.
+Neuromuscular Electrostimulation (NMES) CareStim Muscle Stimulation Device (Care Rehab; McLean, VA): 60 minute NMES sessions will be applied to three muscle groups of the lower extremities (quadriceps, pretibial, and triceps surae). Sessions start at study entry, and will occur every day for the duration of subject's ICU stay.</description>
+        </group>
+        <group group_id="P2">
+          <title>Sham</title>
+          <description>60 minute sham sessions every day for the duration of subjects ICU stay. No voltage will be applied to those receiving sham sessions.
+Sham: 60 minute NMES sessions will be applied to three muscle groups of the lower extremities (quadriceps, pretibial, and triceps surae). Sessions start at study entry, and will occur every day for the duration of subject's ICU stay. Sham groups will NOT have voltage applied.</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="16"/>
+                <participants group_id="P2" count="18"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="12"/>
+                <participants group_id="P2" count="17"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="4"/>
+                <participants group_id="P2" count="1"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Death</title>
+              <participants_list>
+                <participants group_id="P1" count="3"/>
+                <participants group_id="P2" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>encephalopathy; can't do assessment</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <group_list>
+        <group group_id="B1">
+          <title>NMES</title>
+          <description>60 minute daily NMES sessions every day for the duration of subject's ICU stay.
+Neuromuscular Electrostimulation (NMES) CareStim Muscle Stimulation Device (Care Rehab; McLean, VA): 60 minute NMES sessions will be applied to three muscle groups of the lower extremities (quadriceps, pretibial, and triceps surae). Sessions start at study entry, and will occur every day for the duration of subject's ICU stay.</description>
+        </group>
+        <group group_id="B2">
+          <title>Sham</title>
+          <description>60 minute sham sessions every day for the duration of subjects ICU stay. No voltage will be applied to those receiving sham sessions.
+Sham: 60 minute NMES sessions will be applied to three muscle groups of the lower extremities (quadriceps, pretibial, and triceps surae). Sessions start at study entry, and will occur every day for the duration of subject's ICU stay. Sham groups will NOT have voltage applied.</description>
+        </group>
+        <group group_id="B3">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <measure_list>
+        <measure>
+          <title>Number of Participants</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="16"/>
+                <measurement group_id="B2" value="18"/>
+                <measurement group_id="B3" value="34"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <units>years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="54" spread="16"/>
+                <measurement group_id="B2" value="56" spread="18"/>
+                <measurement group_id="B3" value="55" spread="16"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Female</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="9"/>
+                <measurement group_id="B2" value="8"/>
+                <measurement group_id="B3" value="17"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Male</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="7"/>
+                <measurement group_id="B2" value="10"/>
+                <measurement group_id="B3" value="17"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Region of Enrollment</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>United States</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="16"/>
+                <measurement group_id="B2" value="18"/>
+                <measurement group_id="B3" value="34"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Lower Extremity Strength, at Hospital Discharge, of 3 Bilateral Muscle Groups (Pretibial, Triceps Surae, and Quadriceps) Measured Via MMT Using a Composite Medical Research Council (MRC) Score</title>
+        <description>Range 0 to 30 with higher score better. The composite score is a simple sum of the individual scores from the 3 bilateral muscle groups</description>
+        <time_frame>At hospital discharge</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>NMES</title>
+            <description>60 minute daily NMES sessions every day for the duration of subject's ICU stay.
+Neuromuscular Electrostimulation (NMES) CareStim Muscle Stimulation Device (Care Rehab; McLean, VA): 60 minute NMES sessions will be applied to three muscle groups of the lower extremities (quadriceps, pretibial, and triceps surae). Sessions start at study entry, and will occur every day for the duration of subject's ICU stay.</description>
+          </group>
+          <group group_id="O2">
+            <title>Sham</title>
+            <description>60 minute sham sessions every day for the duration of subjects ICU stay. No voltage will be applied to those receiving sham sessions.
+Sham: 60 minute NMES sessions will be applied to three muscle groups of the lower extremities (quadriceps, pretibial, and triceps surae). Sessions start at study entry, and will occur every day for the duration of subject's ICU stay. Sham groups will NOT have voltage applied.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="12"/>
+                  <measurement group_id="O2" value="17"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Lower Extremity Strength, at Hospital Discharge, of 3 Bilateral Muscle Groups (Pretibial, Triceps Surae, and Quadriceps) Measured Via MMT Using a Composite Medical Research Council (MRC) Score</title>
+            <description>Range 0 to 30 with higher score better. The composite score is a simple sum of the individual scores from the 3 bilateral muscle groups</description>
+            <units>units (range 0-30; higher is better)</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="28" spread="2"/>
+                  <measurement group_id="O2" value="27" spread="3"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Individual Muscle Strength: Pretibial, Triceps Surae, and Quadriceps (MRC Score) Between Those Who Receive NMES vs. Sham Sessions</title>
+        <time_frame>ICU and hospital discharge</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Overall Body Strength: 6 Bilateral Muscle Groups in Arms and Legs (MRC Composite Score) Between Those Who Receive NMES vs. Sham Sessions</title>
+        <time_frame>ICU and hospital discharge</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Overall Body Strength: Hand Grip Between Those Who Receive NMES vs. Sham Sessions</title>
+        <time_frame>ICU and hospital discharge</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Respiratory Muscle Strength: Maximum Inspiratory Pressure (MIP) Between Those Who Receive NMES vs. Sham Sessions</title>
+        <time_frame>ICU and hospital discharge</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Functional Status as Measured by Modified Functional Independence Measurement (FIM) Score Between Those Receiving NMES vs. Sham Sessions</title>
+        <time_frame>ICU and hospital discharge</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Duration of Mechanical Ventilation</title>
+        <time_frame>At hospital discharge</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>ICU and Hospital Length of Stay</title>
+        <time_frame>Hospital discharge</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>ICU and In-hospital Mortality</title>
+        <time_frame>Hospital discharge</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Total Hospital Charges</title>
+        <time_frame>Hospital discharge</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Hospital Discharge Destination (e.g., Home, Rehab Facility)</title>
+        <time_frame>Hospital discharge</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Lower Extremity Strength, at Hospital Discharge, of 3 Bilateral Muscle Groups (Pretibial, Triceps Surae, and Quadriceps) Measured Via MMT Using a Composite Medical Research Council (MRC) Score</title>
+        <time_frame>At ICU discharge</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Mean Change in Subject’s Lower Extremity MRC Composite Score From Baseline</title>
+        <time_frame>At ICU and Hospital discharge</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>ICU Delirium</title>
+        <time_frame>Number of days with delirium in the ICU</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Subgroup Analysis</title>
+        <description>For patients with &gt;= 7 days of mechanical ventilation, we will compare the 2 groups for the following outcomes: Lower extremity muscle strength, mean change in MRC score from baseline to ICU discharge, mean change in MRC score from baseline to hospital discharge, and composite whole body MRC score at ICU dischare and at hospital discharge.</description>
+        <time_frame>See description</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+    </outcome_list>
+
+    <certain_agreements>
+      <pi_employee>All Principal Investigators ARE employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Dr Dale Needham</name_or_title>
+      <organization>Johns Hopkins University School of Medicine</organization>
+      <phone>(410) 955-3467</phone>
+      <email>dale.needham@jhmi.edu</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>

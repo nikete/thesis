@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study rank="160">
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on December 16, 2015</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT00201240</url>
+  </required_header>
+  <id_info>
+    <org_study_id>BMTCTN0303</org_study_id>
+    <secondary_id>U01HL069254</secondary_id>
+    <secondary_id>U01HL069249</secondary_id>
+    <secondary_id>U01HL069278</secondary_id>
+    <secondary_id>U01HL069294</secondary_id>
+    <secondary_id>U01HL069315</secondary_id>
+    <secondary_id>U01HL069348</secondary_id>
+    <secondary_id>284</secondary_id>
+    <nct_id>NCT00201240</nct_id>
+  </id_info>
+  <brief_title>Acute Myeloid Leukemia T Cell Depletion to Improve Transplants in Adults With Acute Myeloid Leukemia (BMT CTN 0303)</brief_title>
+  <official_title>A Single Arm, Multicenter Phase II Trial of Transplants of HLA-Matched, CD34+ Enriched, T Cell Depleted Peripheral Blood Stem Cells Isolated by the CliniMACS System in the Treatment of Patients With AML in First or Second Morphologic Complete Remission (BMT CTN #0303)</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>National Heart, Lung, and Blood Institute (NHLBI)</agency>
+      <agency_class>NIH</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>Blood and Marrow Transplant Clinical Trials Network</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+    <collaborator>
+      <agency>National Cancer Institute (NCI)</agency>
+      <agency_class>NIH</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>National Heart, Lung, and Blood Institute (NHLBI)</source>
+  <oversight_info>
+    <authority>United States: Food and Drug Administration</authority>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      This study is a single arm Phase II, multicenter trial. It is designed to determine whether
+      the anticipated endpoints for a T cell depleted transplant arm of a planned prospective
+      randomized trial comparing T cell depleted and unmodified hematopoietic allografts are
+      likely to be achieved in a multicenter study conducted by the Blood and Marrow Transplant
+      Clinical Trials Network (BMT CTN or Network). The study population is patients with acute
+      myeloid leukemia (AML) in first or second morphologic complete remission. The enrollment is
+      45 patients.
+
+      Based on published results of unmodified transplants from HLA-matched siblings applied to
+      patients with AML in first or second morphologic complete remission, a significant
+      improvement in results with a graft modified as specified in this protocol would be expected
+      if disease-free survival (DFS) at 6 months was greater than 75%, the true incidence of
+      transplant-related mortality at 1 year was less than 30%, and the DFS rate at 2 years was
+      greater 70% for patients transplanted in first remission and less than 60% for patients
+      transplanted in second remission. Additional secondary endpoints include the following:
+      graft failure rate and incidences of acute grade II-IV and chronic graft-versus-host disease
+      (GVHD). Additionally, the trial will have target specific doses of CD34+ progenitors and
+      CD3+ T cells to be obtained following fractionation with the CliniMACS system. Based on the
+      results of this trial, a Phase III trial comparing T cell depleted peripheral blood stem
+      cell transplants (PBSCT) with unmanipulated bone marrow or unmanipulated PBSCT will be
+      designed.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      BACKGROUND:
+
+      Allogeneic hematopoietic cell transplantation is an accepted therapy for AML. Transplants of
+      unmodified HLA-matched related bone marrow or peripheral blood stem cells following
+      conditioning with total body irradiation (TBI) and cyclophosphamide or VP-16 or busulfan and
+      cyclophosphamide have led to sustained DFS rates of 45-60% for adults transplanted in first
+      complete remission (CR1) and 40-53% for patients transplanted in second complete remission
+      (CR2). In several single center and multicenter cooperative group prospective trials
+      comparing HLA-matched allogeneic transplants to chemotherapy in the treatment of AML in CR1,
+      DFS rates for the transplant arm were almost invariably superior; however, these advantages
+      were statistically significant in only a minority of the cooperative group studies
+      conducted. In each study, the risk of relapse was significantly lower for patients receiving
+      allogeneic transplants. However, this advantage was counterbalanced by transplant-related
+      mortality, principally reflecting infections complicating GVHD and its treatment.
+
+      DESIGN NARRATIVE:
+
+      Despite increased risks of infection, development of effective T cell depletion (TCD)
+      techniques for prevention of GVHD and tolerable modifications of regimens for pre-transplant
+      cytoreduction that secure consistent engraftment offer the potential for significant
+      decreases in transplant-related mortality. Furthermore, the use of TCD transplants in the
+      treatment of patients with AML is not associated with substantial increases in the incidence
+      of relapse. Several single center trials indicate highly encouraging long-term results,
+      particularly for patients with AML in CR1 or CR2. Although the number of cases in each
+      single center series is limited, the consistency of the results suggests that the use of an
+      effective technique for TCD together with an adequate cytoreductive regimen might yield
+      transplant results superior to those achieved with unmodified grafts.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>June 2005</start_date>
+  <completion_date type="Actual">December 2013</completion_date>
+  <primary_completion_date type="Actual">December 2013</primary_completion_date>
+  <phase>Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Endpoint Classification: Safety/Efficacy Study, Intervention Model: Single Group Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <primary_outcome>
+    <measure>Probability of Disease-free Survival (DFS) at 6 Months Post-transplant (Death or Relapse Will be Considered Events for This Endpoint)</measure>
+    <time_frame>6 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>The primary analysis will consist of estimating the 6-month DFS (from day of enrollment) probability based on the Kaplan-Meier product limit estimator. The 6-month DFS probability and confidence interval will be calculated. All registered patients will be considered for this analysis.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Leukemia Relapse</measure>
+    <time_frame>6, 12, and 24 months</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Neutrophil Engraftment</measure>
+    <time_frame>28 day</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Platelet Engraftment</measure>
+    <time_frame>100 day, 6 months, 1 year</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Graft Failure</measure>
+    <time_frame>28 and 100 day</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Acute Graft-versus-host Disease</measure>
+    <time_frame>100 day</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Chronic Graft-versus-host Disease</measure>
+    <time_frame>100 day, 6 months, 1 year</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Transplant Related Mortality</measure>
+    <time_frame>100 day</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Determination of Infusional Toxicity</measure>
+    <time_frame>28 day</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Disease-free Survival</measure>
+    <time_frame>1 year, 2 years</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Overall Survival</measure>
+    <time_frame>6 months, 1 year, 2 years</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>CD34+ and CD3+ Cell Doses</measure>
+    <time_frame>Day 0</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Post-transplant Lymphoproliferative Disorder (PTLD)</measure>
+    <time_frame>6 months, 1 year, 2 years</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <number_of_arms>1</number_of_arms>
+  <enrollment type="Actual">47</enrollment>
+  <condition>Leukemia, Myelocytic, Acute</condition>
+  <arm_group>
+    <arm_group_label>CD34+ selection with CliniMACS device</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>T cell depletion using Miltenyi device</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Device</intervention_type>
+    <intervention_name>CD34+ selection with CliniMACS device</intervention_name>
+    <description>CD34+ cell selection will be performed according to procedures given in the CliniMACS Users Operating Manual and institutional Standard Operating Procedures (SOPs) in place and validated at the study sites. CliniMACS (Miltenyi device) to target CD34+ &gt;5 x 10*6/kg and CD3+ &lt; 1 x 10*5/kg</description>
+    <arm_group_label>CD34+ selection with CliniMACS device</arm_group_label>
+    <other_name>T Cell Depletion</other_name>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Patients with AML with or without prior history of myelodysplastic syndrome based on
+             the World Health Organization criteria at the following stages:
+
+               -  First morphologic complete remission (CR)
+
+               -  Second morphologic CR
+
+          -  If prior history of central nervous system (CNS) involvement, no evidence of active
+             CNS leukemia during the pre-transplant evaluation (no evidence of leukemic blasts in
+             cerebrospinal fluid)
+
+          -  First or second CR was achieved after no more than two cycles of induction (or
+             re-induction for patients in second CR) chemotherapy
+
+          -  No more than 6 months elapsed from documentation of CR to transplant for patients in
+             first CR, or 3 months for patients in second CR.
+
+          -  A 6/6 HLA antigen (A, B, DRB1)-compatible sibling donor; the match may be determined
+             at serologic level for HLA-A and HLA-B loci; DRB1 must be matched at least at
+             low-resolution using DNA typing techniques; HLA-C will be typed at the serologic
+             level, but not included in the match algorithm
+
+          -  Karnofsky performance status greater than 70%
+
+          -  Life expectancy greater than 8 weeks
+
+          -  Diffusing capacity of the lung for carbon monoxide (DLCO) of at least 40% (corrected
+             for hemoglobin) with no symptomatic pulmonary disease
+
+          -  Left ventricular ejection fraction (LVEF) by Multi Gated Acquisition Scan (MUGA) or
+             echocardiogram greater than 40%
+
+          -  Serum creatinine greater than 2 mg/dL, bilirubin greater than 2 mg/dL, and alanine
+             aminotransferase (ALT) and aspartate aminotransferase (AST) levels at least 3 times
+             the upper limit of normal at time of enrollment
+
+          -  Willingness of both the patient and the donor to participate
+
+        Exclusion Criteria:
+
+          -  M3-AML (acute promyelocytic leukemia) in first CR
+
+          -  Acute leukemia following blast transformation of prior chronic myelogenous leukemia
+             (CML) or other myeloproliferative disease
+
+          -  M4Eo-AML with inv 16 in first CR
+
+          -  AML with t(8;21) in first CR
+
+          -  Participation in other clinical trials that involve investigational drugs or devices
+             except with permission from the Medical Monitor
+
+          -  Evidence of active Hepatitis B or C infection or evidence of cirrhosis
+
+          -  HIV positive
+
+          -  Uncontrolled diabetes mellitus
+
+          -  If proven or probable invasive fungal infection, infection must be controlled;
+             patients may be on prophylactic anti-fungal agents, but are not permitted to be on
+             anti-fungal agents for therapeutic purposes (i.e., active treatment for disease)
+
+          -  Uncontrolled viral or bacterial infection (currently taking medication without
+             clinical improvement)
+
+          -  Documented allergy to iron dextran or murine proteins
+
+          -  Pregnant or breastfeeding; women of childbearing age must avoid becoming pregnant
+             while in the study
+
+          -  Prior autologous or allogeneic hematopoietic stem cell transplantation (HSCT)
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>65 Years</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Steven Devine, MD</last_name>
+    <role>Study Chair</role>
+    <affiliation>Ohio State/Arthur G. James Cancer Hospital</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Parameswaran Hari, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Medical College of Wisconsin</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Hillard Lazarus, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>University Hospitals of Cleveland/Case Western</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Lloyd Damon, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>University of California, San Francisco</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Richard O'Reilly, MD</last_name>
+    <role>Study Chair</role>
+    <affiliation>Memorial Sloan Kettering Cancer Center</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Robert Soiffer, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Dana Farber Cancer Institute/Brigham &amp; Women's Hospital</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Anthony Stein, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>City of Hope National Medical Center</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>John DiPersio, MD, PhD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Washington University/Barnes Jewish Hospital</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Edward Stadtmauer, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>University of Pennsylvania</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>City of Hope National Medical Center</name>
+      <address>
+        <city>Duarte</city>
+        <state>California</state>
+        <zip>91010</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University of California, San Francisco</name>
+      <address>
+        <city>San Francisco</city>
+        <state>California</state>
+        <zip>94143</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Dana Farber Cancer Institute/Brigham &amp; Women's Hospital</name>
+      <address>
+        <city>Boston</city>
+        <state>Massachusetts</state>
+        <zip>02114</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Memorial Sloan-Kettering Cancer Center</name>
+      <address>
+        <city>New York City</city>
+        <state>New York</state>
+        <zip>10021</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University Hospitals of Cleveland/Case Western</name>
+      <address>
+        <city>Cleveland</city>
+        <state>Ohio</state>
+        <zip>44106</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Ohio State/Arthur G. James Cancer Hospital</name>
+      <address>
+        <city>Columbus</city>
+        <state>Ohio</state>
+        <zip>43210</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University of Pennsylvania Cancer Center</name>
+      <address>
+        <city>Philadelphia</city>
+        <state>Pennsylvania</state>
+        <zip>19104</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Medical College of Wisconsin</name>
+      <address>
+        <city>Milwaukee</city>
+        <state>Wisconsin</state>
+        <zip>53211</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <link>
+    <url>http://www.bmtctn.net</url>
+    <description>Blood and Marrow Transplant Clinical Trials Network Website</description>
+  </link>
+  <results_reference>
+    <citation>Keever-Taylor CA, Devine SM, Soiffer RJ, Mendizabal A, Carter S, Pasquini MC, Hari PN, Stein A, Lazarus HM, Linker C, Goldstein SC, Stadtmauer EA, O'Reilly RJ. Characteristics of CliniMACS® System CD34-enriched T cell-depleted grafts in a multicenter trial for acute myeloid leukemia-Blood and Marrow Transplant Clinical Trials Network (BMT CTN) protocol 0303. Biol Blood Marrow Transplant. 2012 May;18(5):690-7. doi: 10.1016/j.bbmt.2011.08.017. Epub 2011 Aug 26.</citation>
+    <PMID>21875505</PMID>
+  </results_reference>
+  <results_reference>
+    <citation>Devine SM, Carter S, Soiffer RJ, Pasquini MC, Hari PN, Stein A, Lazarus HM, Linker C, Stadtmauer EA, Alyea EP 3rd, Keever-Taylor CA, O'Reilly RJ. Low risk of chronic graft-versus-host disease and relapse associated with T cell-depleted peripheral blood stem cell transplantation for acute myelogenous leukemia in first remission: results of the blood and marrow transplant clinical trials network protocol 0303. Biol Blood Marrow Transplant. 2011 Sep;17(9):1343-51. doi: 10.1016/j.bbmt.2011.02.002. Epub 2011 Feb 12.</citation>
+    <PMID>21320619</PMID>
+  </results_reference>
+  <results_reference>
+    <citation>Pasquini MC, Devine S, Mendizabal A, Baden LR, Wingard JR, Lazarus HM, Appelbaum FR, Keever-Taylor CA, Horowitz MM, Carter S, O'Reilly RJ, Soiffer RJ. Comparative outcomes of donor graft CD34+ selection and immune suppressive therapy as graft-versus-host disease prophylaxis for patients with acute myeloid leukemia in complete remission undergoing HLA-matched sibling allogeneic hematopoietic cell transplantation. J Clin Oncol. 2012 Sep 10;30(26):3194-201. doi: 10.1200/JCO.2012.41.7071. Epub 2012 Aug 6.</citation>
+    <PMID>22869882</PMID>
+  </results_reference>
+  <verification_date>June 2015</verification_date>
+  <lastchanged_date>June 23, 2015</lastchanged_date>
+  <firstreceived_date>September 16, 2005</firstreceived_date>
+  <firstreceived_results_date>May 14, 2012</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>Yes</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Leukemia, Myeloid</mesh_term>
+    <mesh_term>Leukemia, Myeloid, Acute</mesh_term>
+  </condition_browse>
+
+  <clinical_results>
+
+    <participant_flow>
+      <recruitment_details>Patients were recruited from October2005 through December 2008</recruitment_details>
+      <group_list>
+        <group group_id="P1">
+          <title>T Cell Depletion</title>
+          <description>T cell depletion using Miltenyi device for patients with acute myeloid leukemia (AML) in first or second complete remission</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="47"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="44"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="3"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <group_list>
+        <group group_id="B1">
+          <title>T Cell Depletion</title>
+          <description>T cell depletion using Miltenyi device for patients with AML in first or second complete remission</description>
+        </group>
+      </group_list>
+      <measure_list>
+        <measure>
+          <title>Number of Participants</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="44"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age, Customized</title>
+          <description>Age of the participant in years</description>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>&lt;20</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="0"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>20-29</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="7"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>30-39</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="4"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>40-49</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="14"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>50-59</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="19"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Female</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="28"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Male</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="16"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Race/Ethnicity, Customized</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>White</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="42"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Other</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="2"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Region of Enrollment</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>United States</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="44"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Karnofsky Performance Status</title>
+          <description>Karnofsky performance status of participants at baseline. The range is 0 to 100 with 100 being the best.</description>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>100%</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="17"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>90%</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="17"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>80%</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="8"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>70%</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="2"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Leukemia stage</title>
+          <description>First complete remission (CR1) is achieved after an initial treatment. Second complete remission (CR2) is achieved after a second treatment when a relapse has occured. Complete remission (CR) is defined according to the revised recommendations of the international working group: Cheson BD, Bennett JM, Kopecky KJ, Buchner T, Willman CL, Estey EH, et al. Revised recommendations of the international working group for diagnosis, standardization of response criteria, treatment outcomes, and reporting standards for therapeutic trials in acute myeloid leukemia. J Clin Oncol 21(24): 4642-9, 2003.</description>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>CR1</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="37"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>CR2</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="7"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Cytogenetic risk</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Favorable</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Intermediate</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="28"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Unfavorable</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="14"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Unknown</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Recipient CMV Status</title>
+          <description>Cytomegalovirus (CMV)</description>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Positive</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="17"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Negative</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="27"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Probability of Disease-free Survival (DFS) at 6 Months Post-transplant (Death or Relapse Will be Considered Events for This Endpoint)</title>
+        <description>The primary analysis will consist of estimating the 6-month DFS (from day of enrollment) probability based on the Kaplan-Meier product limit estimator. The 6-month DFS probability and confidence interval will be calculated. All registered patients will be considered for this analysis.</description>
+        <time_frame>6 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All transplanted patients</population>
+        <group_list>
+          <group group_id="O1">
+            <title>T Cell Depletion</title>
+            <description>T cell depletion using Miltenyi device for patients with AML in first or second complete remission</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="44"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Probability of Disease-free Survival (DFS) at 6 Months Post-transplant (Death or Relapse Will be Considered Events for This Endpoint)</title>
+            <description>The primary analysis will consist of estimating the 6-month DFS (from day of enrollment) probability based on the Kaplan-Meier product limit estimator. The 6-month DFS probability and confidence interval will be calculated. All registered patients will be considered for this analysis.</description>
+            <units>percentage of patients</units>
+            <param>Number</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="82" lower_limit="70" upper_limit="93"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Leukemia Relapse</title>
+        <time_frame>6, 12, and 24 months</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Neutrophil Engraftment</title>
+        <time_frame>28 day</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Platelet Engraftment</title>
+        <time_frame>100 day, 6 months, 1 year</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Graft Failure</title>
+        <time_frame>28 and 100 day</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Acute Graft-versus-host Disease</title>
+        <time_frame>100 day</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Chronic Graft-versus-host Disease</title>
+        <time_frame>100 day, 6 months, 1 year</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Transplant Related Mortality</title>
+        <time_frame>100 day</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Determination of Infusional Toxicity</title>
+        <time_frame>28 day</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Disease-free Survival</title>
+        <time_frame>1 year, 2 years</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Overall Survival</title>
+        <time_frame>6 months, 1 year, 2 years</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>CD34+ and CD3+ Cell Doses</title>
+        <time_frame>Day 0</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Post-transplant Lymphoproliferative Disorder (PTLD)</title>
+        <time_frame>6 months, 1 year, 2 years</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+    </outcome_list>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Nancy Difronzo, PhD</name_or_title>
+      <organization>NHLBI</organization>
+      <phone>301-435-0065</phone>
+      <email>difronzon@nhlbi.nih.gov</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>

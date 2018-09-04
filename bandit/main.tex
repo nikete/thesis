@@ -1,0 +1,47 @@
+\documentclass{article}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{nips_2016}
+
+\input{defs}
+
+\title{
+Compliance-Aware Bandits: Improved No-Regret Learning with Applications to Clinical Trials
+}
+
+\author{Nicolas Della Penna, Mark D. Reid, David Balduzzi}
+\begin{document} 
+
+\maketitle
+
+\begin{abstract} 
+	Motivated by clinical trials, we study bandits with observable non-compliance. 
+	At each step, the learner chooses an arm, after, instead of observing only the reward, it also observes the action that took place.
+	We show that such noncompliance can be helpful or hurtful to the learner in general.
+	Unfortunately, naively incorporating compliance information into bandit algorithms loses guarantees on sublinear regret.
+	We present hybrid algorithms that maintain regret bounds up to a multiplicative factor and can incorporate compliance information.
+	Simulations based on real data from the International Stoke Trial show the practical potential of these algorithms.
+\end{abstract} 
+
+\input{intro.tex}
+\input{model.tex}
+\input{algo.tex}
+%\input{data.tex}
+\input{results.tex}
+\input{further.tex}
+
+
+{
+\footnotesize
+\bibliography{compliance.bib}
+\bibliographystyle{abbrv}
+}
+
+%\clearpage
+\input{bound.tex}
+\input{fullsims.tex}
+\end{document} 
+
+
+
+

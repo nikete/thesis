@@ -1,0 +1,219 @@
+%!TEX root = main.tex
+%\vspace{5mm}
+%\noindent
+%{\large{\textbf{Appendix}}}
+
+\setcounter{section}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theequation}{A\arabic{equation}}
+\renewcommand{\thesection}{\Alph{section}}
+%\renewcommand{\thesubsection}{\Alph{section}.}
+
+\renewcommand{\thethm}{A\arabic{thm}}
+\renewcommand{\thedefn}{A\arabic{defn}}
+\renewcommand{\theeg}{A\arabic{eg}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Appendix}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Unobserved confounders.}
+\label{sec:confounded}
+
+%\cite{bareinboim:15}: ``The study of unobserved confounders is one of the central themes in the modern literature of causal inference. To appreciate the challenges posed by these confounders, consider the comparison between a randomized clinical trial conducted by the Food and Drug Administration (FDA) versus physicians prescribing drugs in their offices. A key tenet in any FDA trial is the use of randomization for the treatment assignment, which precisely protects against biases that might be introduced by physicians. Specifically, physicians may prescribe Drug A for their wealthier patients who have better nutrition than their less wealthy ones, when unknown to the doctors, the wealthy patients would recover without treatment. On the other hand, physicians may avoid prescribing the expensive Drug A to their less privileged patients, who (again unknown to the doctors) tend to suffer less stable immune systems causing negative reactions to the drug. If a naive estimate of the drug’s causal effect is computed based on physicians' data (obtained through random sampling, but not random assignment), the drug would appear more effective than it is in practice -- a bias that would otherwise be avoided by random assignment. Confounding biases (of variant magnitude) appear in almost any application in which the goal is to learn policies (instead of statistical associations), and the use of randomization of the treatment assignment is one established tool to combat them.''
+
+An important point of comparison is the bandits with unobserved confounders model introduced in \cite{bareinboim:15}. That paper was motivated using an extended example involving two subpopulations (drunk and sober) gambling in a casino. Since we are primarily interested in clinical applications, we map their example onto two subpopulations of patients, rich and poor. Suppose that rich patients always take the treatment (since they can afford it) and that they are also healthier in general. Poor patients only take the treatment when prescribed by a doctor.
+
+Barenboim et al observe that the question ``what is the patient's expected reward when taking the treatment (formally: $\expec[R|{A=1}]$)?'' is confounded by the latent variable \texttt{wealth}. Estimating the effect of the treatment -- which may differ between poor and rich patients -- requires more refined questions. In our notation: 
+``what is the patient's expected reward when taking the treatment, given she is wealthy (formally: $\expec[R|{A=1}, \text{always-taker}]$)?'' and  ``what is the patient's expected reward when taking the treatment, given she is poor (formally: $\expec[R|{A=1}, \text{complier}]$)'', see example~\ref{eg:rich}.
+
+The solution proposed in \cite{bareinboim:15} is based on the regret decision criterion (RDC), which estimates the optimal action according to $\argmax_{a}\expec[R|A=a,\text{patient's inclination}]$, where the action chosen, $A=a$, may \emph{differ} from the patient's latent inclination. Essentially, computing the RDC requires imposing interventions via the $do(\cdot)$ operator. However, overruling a patient or doctor's decision is often impossible and/or unethical in clinical settings. The counterfactual information required to compute the RDC may therefore not be available in practice.
+
+Compliance information does not act as a direct substitute for the $do(\cdot)$ operator. However, compliance information is often readily available and, as we show below, can be used to ameliorate the effect of confounders by giving a partial view into the latent structure of the population that the bandit is interacting with.
+
+
+%We show that intervening via the $do(\cdot)$ operator may not be necessary if compliance information is available. Observing whether or not a patient complies with a treatment-recommendation does not provide direct counterfactual information. However, it does provide partial access to the latent structure of the population that can be exploited, as demonstrated below.
+
+
+
+
+
+
+
+%\cite{bareinboim:15}: ``The study of unobserved confounders is one of the central themes in the modern literature of causal inference. To appreciate the challenges posed by these confounders, consider the comparison between a randomized clinical trial conducted by the Food and Drug Administration (FDA) versus physicians prescribing drugs in their offices. A key tenet in any FDA trial is the use of randomization for the treatment assignment, which precisely protects against biases that might be introduced by physicians. Specifically, physicians may prescribe Drug A for their wealthier patients who have better nutrition than their less wealthy ones, when unknown to the doctors, the wealthy patients would recover without treatment. On the other hand, physicians may avoid prescribing the expensive Drug A to their less privileged patients, who (again unknown to the doctors) tend to suffer less stable immune systems causing negative reactions to the drug. If a naive estimate of the drug’s causal effect is computed based on physicians' data (obtained through random sampling, but not random assignment), the drug would appear more effective than it is in practice -- a bias that would otherwise be avoided by random assignment. Confounding biases (of variant magnitude) appear in almost any application in which the goal is to learn policies (instead of statistical associations), and the use of randomization of the treatment assignment is one established tool to combat them.''
+
+%Confounders and counterfactuals were introduced into the bandit setting in \cite{ortega:10,bareinboim:15}. The latter consider an extended example concerning two subpopulations (drunk and sober patrons) in a casino. Since we are primarily interested in clinical applications, we map their example onto two subpopulations of patients, rich and poor. Suppose that rich patients always take the treatment (since they can afford it) and that they are also healthier in general. Poor patients only take the treatment when prescribed by a doctor.
+
+%Barenboim et al observe that the question ``what is the patient's expected reward when taking the treatment (formally: $\expec[R|{A=1}]$)?'' is confounded by the latent variable \texttt{wealth}. Estimating the treatment-effect -- which may differ between poor and rich patients -- requires more refined questions. In our notation:  ``what is the patient's expected reward when taking the treatment, given she is wealthy (formally: $\expec[R|{A=1}, \text{always-taker}]$)?'' and  ``what is the patient's expected reward when taking the treatment, given she is poor (formally: $\expec[R|{A=1}, \text{complier}]$)''. 
+
+%The solution proposed in \cite{bareinboim:15} is based on the regret decision criterion (RDC), which estimates the optimal action $\argmax_{a}\expec[R|A=a,\text{patient's inclination}]$ where the action chosen may \emph{differ} from the patient's latent inclination. Essentially, an intervention is imposed via a $do(\cdot)$ operator. However, overruling a patient or doctor's decision is often impossible and/or unethical in clinical settings. The counterfactual information required to compute the RDC may therefore not be accessible.
+
+%We show that intervening via the $do(\cdot)$ operator may not be necessary if compliance information is available. Observing whether or not a patient complies with a treatment-recommendation does not provide direct counterfactual information. However, it does provide partial access to the latent structure of the population that can be exploited, as demonstrated below.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Rewards assigned to arms by the three protocols}
+\label{sec:protocol_table}
+
+The rewards assigned to each arm by the three protocols are summarized in the table below. None of the protocols successfully isolates the compliers. It follows, as seen above, that which protocol is optimal depends on the structure of the population, which is unknown to the learner. The table can be extended with additional reward protocols. Here we restrict attention to the three most intuitive protocols.
+
+
+\begin{center}
+\begin{tabular}{| l | c | c | c |}
+\hline
+Arm updated & \chosen & \actual & \comply \\
+\hline
+      & $r_{\fN,0}$ & $r_{\fN,0}$ & $r_{\fN,0}$ \\
+$i=0$ & $r_{\fC,0}$ & $r_{\fC,0}$ & $r_{\fC,0}$ \\
+      & $r_{\fA,1}$ &             &             \\
+      & $r_{\fD,1}$ & $r_{\fD,0}$ &             \\
+\hline
+      & $r_{\fN,0}$ &             &             \\
+$i=1$ & $r_{\fC,1}$ & $r_{\fC,1}$ & $r_{\fC,1}$ \\
+      & $r_{\fA,1}$ & $r_{\fA,1}$ & $r_{\fA,1}$ \\
+      & $r_{\fD,0}$ & $r_{\fD,1}$ &             \\
+\hline
+\end{tabular}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{No-regret for \texttt{HB}}
+\label{sec:bound}
+
+This section shows that constructing a hierarchical bandit with \texttt{EXP3} yields a no-regret algorithm. The result is straightforward; we include it for completeness. A similar result was shown in \cite{chang:05}. 
+
+First, we construct a hierarchical version of \texttt{Hedge}, Algorithm~\ref{alg:meta-hedge}, which is applicable in the full-information setting. On the bottom-level are $M$ instantiations of \texttt{Hedge}. Instantiation $i$, for $i\in[M]$, plays an $N$-dimensional weight vector and receives $N$-dimensional loss vector $\loss^{(t)}_{i}$ on round $t$. We impose the assumption that all instantiations play $N$-vectors for notational convenience. The top-level is another instantiation of \texttt{Hedge}, which plays a weighted combination of the bottom-level instantiations.
+
+\begin{algorithm}[tb]
+   \caption{\texttt{Hierarchical Hedge (HHedge)}}
+   \label{alg:meta-hedge}
+   \begin{algorithmic}   
+   	\STATE {\bfseries Input:} $\eta,\rho>0$\\
+   	 $v^{(1)}_{i}=1$ for $i\in[M]$;\\ 
+   	 $w^{(1)}_{i,j}=1$ for $(i,j)\in[M]\times[N]$
+	\FOR{$t=1$ {\bfseries to} $T$}
+	\STATE Set $\x^{(t)} \leftarrow \vt^{(t)}/X^{(t)}$ where $X^{(t)} = \sum_{i=1}^M v^{(t)}_{i}$.
+	\STATE Set $\y^{(t)}_{i} \leftarrow \wt^{(t)}_{i}/Y^{(t)}_{i}$ where $Y^{(t)}_{i} = \sum_{j=1}^N w^{(t)}_{i,j}$.
+	\STATE Receive feedback $\loss^{(t)}\in [0,1]^{M\times N}$ 
+	\STATE Incur loss $\sum_{i,j=1}^{M,N} x^{(t)}_{i}\cdot\ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j}$
+	\STATE Updates:
+	\begin{align}
+		v^{(t+1)}_i & \leftarrow v^{(t)}_{i}\cdot \exp\big(-\eta \sum_{j=1}^N\ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j}\big)
+		\\
+		w^{(t+1)}_{i,j} & \leftarrow w^{(t)}_{i,j}\cdot \exp\big(-\rho\cdot \ell^{(t)}_{i,j}\big)
+	\end{align}
+   	\ENDFOR
+   	\end{algorithmic}
+\end{algorithm}
+
+We have the following lemma:
+
+\begin{lem}\label{lem:meta-hedge}
+	Introduce compound loss vector $\tilde{\loss}$ with $\tilde{\ell}^{(t)}_i := \sum_j \ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j}$. Then $\rho$ can be chosen in \texttt{HHedge} such that
+	\begin{equation}
+		\sum_{t=1}^T \langle \x^{(t)},\tilde{\loss}^{(t)}\rangle 
+		\leq  \sum_{t=1}^T \tilde{\loss}^{(t)}_i +
+		\leq O(\sqrt{T \log M})\quad\forall i.
+	\end{equation}
+	Moreover, $\rho$ and $\eta$ can be chosen such that, for all $i$,
+	\begin{equation}
+		\sum_{t,i,j=1}^{T,M,N} x^{(t)}_{i}\ell^{(t)}_{i,j} y^{(t)}_{i,j}
+		\leq \sum_{t=1}^T\ell^{(t)}_{i,j}
+		+ O(\sqrt{T \log M} + \sqrt{T \log N}).
+	\end{equation}
+\end{lem}
+
+\begin{proof}
+	Apply regret bounds for \texttt{Hedge} twice.
+\end{proof}
+
+Lemma~\ref{lem:meta-hedge} says, firstly, that \texttt{HHedge} has bounded regret relative to the bottom-level instantiations and, secondly, that it has bounded regret relative to any of the $M\times N$ experts on the bottom-level.
+
+
+Algorithm~\ref{alg:meta-exp2} modifies \texttt{HHedge} so that it is suitable for bandit feedback, yielding \texttt{HEXP3}. A corresponding no-regret bound follows immediately:
+
+\begin{lem}\label{lem:meta-exp}
+	Define $\tilde{\loss}$ as in Lemma~\ref{lem:meta-hedge}. Then $\rho$ can be chosen in \texttt{HEXP3} such that
+	\begin{equation}
+		\expec\left[\sum_{t=1}^T\ell_{x^{(t)},y^{(t)}}\right]
+		\leq \sum_{t=1}^T \tilde{\ell}^{(t)}_{i}
+		+ O(\sqrt{MT\log M})
+	\end{equation}
+	Moreover, $\rho$ and $\eta$ can be chosen such that
+	\begin{equation}
+		\expec\left[\sum_{t=1}^{T} \ell^{(t)}_{x^{(t)},y^{(t)}}\right]
+		\leq \sum_{t=1}^T\ell^{(t)}_{i,j}
+		+ O(\sqrt{TM \log M} + \sqrt{T N\log N})
+	\end{equation}
+\end{lem}
+\begin{proof}
+	Follows from Lemma~\ref{lem:meta-hedge} and bounds for \texttt{EXP3}.
+\end{proof}
+
+\begin{algorithm}[tb]
+   \caption{\texttt{Hierarchical EXP3 (HEXP3)}}
+   \label{alg:meta-exp2}
+   \begin{algorithmic}   
+   \STATE {\bfseries Input:} $\eta,\rho>0$\\
+   	 $v^{(1)}_{i}=1$ for $i\in[M]$;\\ 
+   	 $w^{(1)}_{i,j}=1$ for $(i,j)\in[M]\times[N]$
+	\FOR{$t=1$ {\bfseries to} $T$}
+	\STATE Set $\x^{(t)} \leftarrow \vt^{(t)}/X^{(t)}$ where $X^{(t)} = \sum_{i=1}^M v^{(t)}_{i}$.
+	\STATE Set $\y^{(t)}_{i} \leftarrow \wt^{(t)}_{i}/Y^{(t)}_{i}$ where $Y^{(t)}_{i} = \sum_{j=1}^N w^{(t)}_{i,j}$.
+	\STATE Draw $x^{(t)}\sim \x^{(t)}$ and $y^{(t)}\sim \y^{(t)}_{x^{(t)}}$.
+	\STATE Incur loss $\ell^{(t)}_{x^{(t)},y^{(t)}}\in [0,1]$ 
+	\STATE Updates:
+	\begin{align}
+		v^{(t+1)}_i & \leftarrow \begin{cases}
+			v^{(t)}_{i}\cdot 
+			\exp\big(-\eta\frac{\ell^{(t)}_{i,j}}{x_i}\big) & i=x^{(t)} \\
+			v^{(t)}_{i} & \text{else}
+		\end{cases}		 
+		\\
+		w^{(t+1)}_{i,j} & \leftarrow \begin{cases}
+			w^{(t)}_{i,j}\cdot \exp\big(-\rho\frac{\ell^{(t)}_{i,j}}{x_iy_{i,j}}\big) 
+			& \text{if }(i,j)=(x^{(t)}, y^{(t)}) \\
+			w^{(t)}_{i,j} &\text{else}
+		\end{cases}
+	\end{align}
+   	\ENDFOR
+   	\end{algorithmic}
+\end{algorithm}
+
+\paragraph{Hierarchical Bandit with Thompson sampler base.}
+Algorithm~\ref{alg:bts} (\texttt{BTS}) shows how to modify the Thompson sampler for use as a bottom-level algorithm in \texttt{HB}. The modification applies the importance weighting trick: replace $1$ in Thompson sampling with $\tilde{1}=1/p$, where $p$ is the probability that the top-level bandit calls \texttt{BTS} on the given round. 
+
+
+\begin{algorithm}[tb]
+   \caption{\texttt{Base Thompson Sampler (BTS)}}
+   \label{alg:bts}
+   \begin{algorithmic}
+   	\STATE {\bfseries Input:} Probability $p$ that \texttt{BTS} is called by top-bandit\\
+   	\STATE Set $\tilde{1}\leftarrow 1/p$
+   	 \STATE For each arm $i$ sample $\theta_i\sim\beta(S_i +\tilde{1},F_i +\tilde{1})$
+	\STATE Play arm $i^{(t)} := \argmax_i \theta_i$ and observe reward $r^{(t)}$
+	\STATE Sample $b$ from Bernoulli with success probability $r^{(t)}$
+	\STATE If $b=1$ then $S_i \leftarrow S_i + \tilde{1}$ else $F_i\leftarrow F_i+\tilde{1}$
+   	\end{algorithmic}
+\end{algorithm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Clinical trial data}
+\label{sec:data}
+
+The simulation data is taken from The International Stroke Trial (IST) database. A randomised trial where patients believed to have acute ischaemic stroke are treated with: aspirin, subcutaneous heparin, both, or neither \cite{ist:97}.
+Complete compliance and mortality data at 14 days for each of 19,422 patients
+To the best of our knowledge, this is the largest publicly available clinical trial with compliance data.\footnote{An extensive search failed to find other open randomized clinical trials datasets that included compliance. A systematic review by  \cite{ebrahim:14} identified 37 reanalyses of patient-level data from previously published randomized control trials; five were performed by entirely independent authors.} Data from drug abuse clinical trials is used in \cite{kuleshov:14}. However, noncompliance is coded as failure so this source, and drug dependence treatments more generally, cannot be used in our setting. Given there is substantial loss of follow up at the 6 month measure we focus on the 14 day outcome. 
+
+\paragraph{Compliance variables.}
+The main sources of noncompliance in the dataset are: the initial event not a stroke, clinical decision, administration problem, missed out more than 3 doses. A detailed table and counts of these are included in the datasets open access article \cite{ist:11}. 
+While these might initially seem like reasons to discard the patients from the dataset, noncompliance is not necessarily random. Discarding these patients could cause algorithms to have unbounded regret (since the loss we care about is over all patients). In particular, misdiagnoses, administrative problems, not taking doses and other sources of noncompliance can be confounded with a patient's socioeconomic status, age, and overall health. 
+
+To construct our ``actual arm'' variable, we assume that noncompliance entails taking the opposite treatment.
+This is well-defined in the Aspirin case, which only has two arms, and thus noncompliance with placebo is likely to be taking the treatment.
+Assigning an actual arm pulled in the heparin part of the trial is less clear cut, as it has three arms: none, low and medium. We construct the actual arm variable by combining assignment and noncompliance. Noncompliance with respect to low and medium assigned treatments is coded as  not-takers, while noncompliance by a patient prescribed ``none'' is coded as low.
+
+
