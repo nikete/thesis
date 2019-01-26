@@ -1,31 +1,28 @@
 \chapter{Background and Related Work}
 \label{cha:background}
 
-%\epigraph{Desvar\'io laborioso y empobrecedor el de componer vastos libros; el de explayar en quinientas p\'aginas una idea cuya perfecta exposici\'on oral cabe en pocos minutos.{Jorge Luis Borges,Pr\'ologo de Ficciones.}
+\epigraph{Desvar\'io laborioso y empobrecedor el de componer vastos libros; el de explayar en quinientas p\'aginas una idea cuya perfecta exposici\'on oral cabe en pocos minutos.}{Jorge Luis Borges,Pr\'ologo de Ficciones.}
 
 
 % % from PLnG PredBook: Perdition, burning, and flames (a hell of a book)	
 % ...beware of mathematicians, and all those who make empty prophecies. The danger already exists that the mathematicians have made a covenant with the devil to darken the spirit and to confine man in the bonds of Hell.    St. Augustine, De Genesi ad Litteram libri duodecim. Liber Secundus, 17, 37.
 
 
-%Los deterministas niegan que haya en el mundo un solo hecho posible, id est un hecho que pudo acontecer; una moneda simboliza nuestro libre albedrÃÂ­o. (â¬ÅEl Zahirâ¬Â)
 
-Learning what action to take to maximize a reward is a fundamental problem in decision theory. In its modern form, using game theory to analyze and guide the development of good strategies, is initiated with the same
+Learning what action to take to maximize a reward is a fundamental problem in decision theory.
 
 
 We first provide a overview of the game theoretical background that underpins all aspects of this work.
 % The literatures on bandits and decision markets have remained largely separate, 
 We then present the building blocks from the two branches, bounded regret bandit algorithms and mechanism design, that are used in our contributions.
-We finalize the chapter by giving an overview of related work that we do not build upon, but which nonetheless informs or motivates our analysis, most notably the analysis of results from randomized controlled trials in the medical literautre. 
-
-
+We finalize the chapter by giving an overview of related work that we do not build upon, but which nonetheless informs or motivates our analysis, most notably the analysis of results from randomized controlled trials in the medical literature. 
 
 \section{Notation and Conventions}
 
 
-The notation used for this work is a compromise to accomodate to as great an extent as possible the conventions of both the bandit algorithms and mechanism design literatures, while adding the distinction between the action the algorithm or mechanism chooses and the one that the subject actually carries out in the world. We refer to the former throughout as the \emph{chosen} action and notate it as $c$, and we refer to the action that the subject takes in the world as the \emph{actual} action, which we notate as $a$.
+The notation used for this work is a compromise to accommodate to as great an extent as possible the conventions of both the bandit algorithms and mechanism design literature, while adding the distinction between the action the algorithm or mechanism chooses and the one that the subject actually carries out in the world. We refer to the former throughout as the \emph{chosen} action and notate it as $c$, and we refer to the action that the subject takes in the world as the \emph{actual} action, which we notate as $a$.
 
-We follow the bandit literature and refer to rewards (notated as $r$ throughout) as directly observable after the actual action is taken. This is skipping the mapping of actions to outcomes, and the utility functions which map those outcomes to rewards, which is standard in the mechanism design literature. The reader wishing to move the analysis more explicitly towards the mechansim design tradition can replace the observed rewards with the von Neumann Morgensten utility function of the agent over the realized outcome.
+We follow the bandit literature and refer to rewards (notated as $r$ throughout) as directly observable after the actual action is taken. This is skipping the mapping of actions to outcomes, and the utility functions which map those outcomes to rewards, which is standard in the mechanism design literature. The reader wishing to move the analysis more explicitly towards the mechanism design tradition can replace the observed rewards with the von Neumann Morgensten utility function of the agent over the realized outcome.
 %TODO: spell it out in greek
 We treat experts' signals in the manner of features in a contextual bandit problem. To translate this to the formalism of the mechanism design literature, we can consider the cross-product of the agents' signals as defining a set of partitions, with one partition for each value. 
 When we speak of two agents' signals being identical, 
@@ -34,29 +31,28 @@ When we speak of two agents' signals being identical,
 %When taking expectations when it is not relevant we omit noting the prior $P$ explcitly. 
 
 All models in the thesis use finite action spaces. 
-In the strategic setting this gurantees the existence of Nash Eqilibria. 
-Since actions involve reports of signals $s$, this contraints all signals to also be discrete; note that this does not constrain the underlying latent state of the world $u$ to be discrete.
+In the strategic setting this guarantees the existence of a Nash Equilibrium. 
+Since actions involve reports of signals $s$, this constrains all signals to also be discrete; note that this does not constrain the underlying latent state of the world $u$ to be discrete.
 
 
-\section{Background}
-\subsection{Game Theory}
+\section{Game Theory}
 
-Statistical learning algorithms can be understood game theoretically as a game between a forecaster and nature. This is particularly natural in the sequential (online) setting, and a framework termed Learning with Expert Advice and \cite{cesa2006prediction} provide a unified treatment from a worst case game theoretic perspective of many such learning settings and algorithms.
-This literature largely considers the underlying structures to be zero-sum and thus uses a adversarial model of nature to construct strategies that have good worst case properties. In other words this is game theory in the style of Von Neumann and Morgensten 1948. The framework was applied to the setting of sequential experiments initially by Wald, and the bandit formalism introduced by \cite{robbins1952some}.
+Statistical learning algorithms can be understood game theoretically as a game between a forecaster and nature. This is particularly natural in the sequential (online) setting, and a framework termed Learning with Expert Advice and (\cite{cesa2006prediction}) provides a unified treatment from a worst case game theoretic perspective of many such learning settings and algorithms.
+This literature largely considers the underlying structures to be zero-sum and thus uses a adversarial model of nature to construct strategies that have good worst case properties. In other words this is game theory in the style of Von Neumann and Morgensten 1948. The framework was applied to the setting of sequential experiments initially by Wald, and the bandit formalism introduced by (\cite{robbins1952some}).
 
-When there are multiple agents beyond nature interacting, as in elicitation from multiple experts for decision making, there are severe limits to what worst case analysis alone can yield. 
-In particular, the notions of the Nash Equilibrium \cite{nash1950equilibrium} and common knowledge \cite{aumann1976agreeing} provide a useful starting point to thinking about such settings, through they leave us with an embarrassment of riches in terms of the potetial equilibrium set.
-
+When there are multiple agents beyond nature interacting, as in the case of elicitation from multiple experts for decision making, there are severe limits to what worst case analysis alone can yield. 
+In particular, the notions of the Nash Equilibrium( \cite{nash1950equilibrium}) and common knowledge (\cite{aumann1976agreeing} )provide a useful starting point to thinking about such settings, through they leave us with an embarrassment of riches in terms of the potential equilibrium set.
 
 
-\subsubsection{Online Learning}
+
+\section{Online Learning}
 
 
-The central object of analysis in the online learning framework, also known as the learning with expert advice framework, is the \emph{regret} of an algorithm (the forecaster). This is defined as the diference in the cumulative reward between the algorithm and the reward that would have been obtained by some benchmark. 
+The central object of analysis in the online learning framework, also known as the learning with expert advice framework, is the \emph{regret} of an algorithm (the forecaster). This is defined as the difference in the cumulative reward between the algorithm and the reward that would have been obtained by some benchmark. 
 The most common benchmark is that of best fixed action in hindsight, and this is termed \emph{static regret}. 
-When in this thesis we use the term regret without further modifiers, we are refering to this notion.
+When we use the term regret without further modifiers in this thesis, we are referring to this notion.
 
-Two main settings appear in the literature for the play of the enviorment is carried out: in the stochastic setting an adversary picks a distribution over actions at the start of the game from which IID draws are later made; in the nonstochastic (oblivious) adversary setting it selects a specific sequence of play before the game begins. Both choices are made with knowledge of the strategy of the learner, which is thus necesarily randomized in the nonstochastic adversarial case.
+Two main settings appear in the literature for the play of the environment is carried out: in the stochastic setting an adversary picks a distribution over actions at the start of the game from which IID draws are later made; in the non-stochastic (oblivious) adversary setting they select a specific sequence of play before the game begins. Both choices are made with knowledge of the strategy of the learner, which is thus necessarily randomized in the non-stochastic adversarial case.
 
 The basic structure of an online learning game is as follows.
 
@@ -64,259 +60,140 @@ For each round:
 \begin{enumerate}
 \item The environment chooses an action without revealing it
 \item The algorithm chooses a probability distribution over the set of N actions and draws
-\item The algorithm observes the reward which depends on its realized action and the realized action of the enviorment
+\item The algorithm observes the reward which depends on its realized action and the realized action of the environment
 \end{enumerate}
 
-A crucial aspect of online learning is the feedback model. Two fundamental extremes are full feedback, where after realizing a reward the reward that would have been obtained for any other choice of action by the algorithm is also revealed, and the bandit setting, where only the reward of the chosen action is revealed. 
+A crucial aspect of online learning is the feedback model. Two fundamental extremes are full feedback, where, after realizing a reward, the reward that would have been obtained for any other choice of action by the algorithm is also revealed, and the bandit setting, where only the reward of the chosen action is revealed. 
 More generally, prediction with partial monitoring \cite{cesa2006regret} generalizes this as follows:
 
 \begin{enumerate}
 \item The environment chooses an action without revealing it
 \item The algorithm chooses a probability distribution over the set of N actions and draws
-\item The algorithm receives the reward which depends on its realized action and the realized action of the enviorment
+\item The algorithm receives the reward which depends on its realized action and the realized action of the environment
 \item The feedback is revealed to the forecaster
 \end{enumerate}
 
-Where the feedback and loss matricies are known. In the full information setting, the feedback exactly pins down the value of the reward of the algorithm for any possible choice of the algorithm's action on that period; in the bandit setting the feedback pins down the reward only for the taken action.
+Where the feedback and loss matrices are known. In the full information setting, the feedback exactly pins down the value of the reward of the algorithm for any possible choice of the algorithm's action on that period; in the bandit setting the feedback pins down the reward only for the taken action.
 
 
-\subsubsection{Mechanism Design}
+\subsection{Bandit Algorithms}
+
+Our conceptual contributions are largely agnostic about the underlying algorithm that is used.
+Three main families of algorithms with theoretical guarantees exist in the literature, and are based on Bayesian, upper confidence bounds and exponential weights. We also explore a  heuristic algorithm, epsilon greedy, which has been observed to often have good empirical performance \cite{kuleshov:14}.
+
+Thompson Sampling is a very natural bayesian algorithm with good practical performance, first proposed in the literature by \cite{thompson:33}: it plays each action with probability equal to its posterior probability of being the best action, given the rewards observed up to that point.
+
+A second family of algorithms encountered in the literature are based on Upper Confidence Bounds (UCB) and originate in (\cite{lai:85,katehakis1995sequential,agrawal1995sample}). They play the action with the highest upper bound on its expected value. This embodies the principle of optimism in the face of uncertainty. A finite time analysis of the regret was presented in (\cite{auer:02a}).
+
+A third family, based on exponential weights, offers maximally robust guarantees, in the sense that it has close optimal (minimax) performance with regards to arbitrary non-stochastic underlying sequences of rewards. This becomes useful when we wish to create hierarchical bandits when the original sequence may not be independent and identically distributed (IID); the sequence that results from a bandit algorithm's choices will not be by construction.
+
+A thorough analysis of bandit algorithms with adversarial regret guarantees can be found in( \cite{bubeck:12, banditalgo2016}). 
+
+\section{Mechanism Design}
 
 The central question of mechanism design is how to structure a game so as to incentivize self-interested agents to achieve some objective.
-The two central objectives are \emph{efficiency} - that the sum of utilities be as great as possible - and revenue optimality - that the principal which runs the mechanism receives maximal net payment.
-In our setting, we are interested in \emph{efficiency}, that is allocating the right choice of action. The rest of this section and the later section thus focus on mechanisms in relation to that objective.
+The two central objectives are \emph{efficiency} - that the sum of utilities be as great as possible - and revenue optimal - that the principal which runs the mechanism receives maximal net payment.
+In our setting, we are interested in \emph{efficiency}, that is, allocating the right choice of action. The rest of this section and the later section thus focus on mechanisms in relation to that objective.
 
 Each agent's information is characterized by their \emph{signal}, which allows the agent to narrow down which realization of possible states of the world they are in. In the literature this is often also called an agent's \emph{type}, particularly when it describes a private valuation by that agent of a good.
 We say a mechanism is \emph{incentive compatible} when agents report their true signals to the mechanism. 
-Without any further assumptions (i.e. without a probability distribution over said states of the world) signals are of limited use beyond situations with a dominant strategy equilibrium.
+Without any further assumptions (i.e. without a probability distribution over said states of the world), signals are of limited use beyond situations with a dominant strategy equilibrium.
 % TODO this needs a lot of refinement.
 
 Ideally one would like to search for mechanisms that are \emph{strictly dominant strategy} incentive compatible.
-For many objectives of interest, such mechanisms do not exist, and optimal decision elicitation will turn out to be one of them. 
+For many objectives of interest, such mechanisms do not exist, and optimal decision elicitation will turn out to be one of them.
 It is worth noting that a \emph{weak} dominant strategy mechanism for optimal decision elicitation is trivial: if the payment to the experts is 0 for all possible states of the world, then any action is weakly dominant, including truthfulness. 
-For this reason in the substantative chapters we will simply use the term \emph{dominant strategy} and focus on strictly dominat mechanisms. 
+For this reason in the substantive chapters we will simply use the term \emph{dominant strategy} and focus on strictly dominant mechanisms. 
 
 A canonical problem in mechanism design is where each agent $i$ has a quasi-linear utility function that depends on the chosen social alternative, on their private signal, and on monetary transfers, but not on the information available to other agents.
 This is known as \emph{private values}.
-A class of mechanisms known as Vickrey-Clarke-Groves (VCG)  (Vickrey 1961, Clark 1971 , Groves 1973)
-These mechanisms guarantee that truthful revelation of private information is the dominant strategy for each agent, that is, the mechanisms are dominant \emph{incentive compatible}, and the \emph{efficient} decision is taken. 
+A class of mechanisms known as Vickrey-Clarke-Groves (VCG)  (\cite{vickrey1961,clarke1971,groves1973}) guarantee that truthful revelation of private information is the dominant strategy for each agent; that is, the mechanisms are dominant \emph{incentive compatible}, and the \emph{efficient} decision is taken. 
 This holds for arbitrary dimensions and distributions of signals.
-Under indepedence of signal draws between agents, \cite{jehiel2001efficient} provide an efficient mechanism for the case where the quasi-linear utility function of agent $i$ can depend on all agents' private signals. 
+Under independence of signal draws between agents, (\cite{jehiel2001efficient}) provide an efficient mechanism for the case where the quasi-linear utility function of agent $i$ can depend on all agents' private signals. 
+To maximize the future social welfare in a dynamic setting, variations of the efficient (VCG) mechanism exist for relatively general dynamic settings (\cite{bergemann2010dynamic,parkes2003van,athey2007designing}).
+
 
 Many settings of interest, including ours, do not in general have dominant strategy mechanisms. 
-The literature in microeconomics where mechanism design emerged has largely dealt with this by using a probability distribution over signals, and the treats the problem as one of \emph{bayesian} mechanism design.
+The literature in microeconomics where mechanism design emerged has largely dealt with this by using a probability distribution over signals, and then treats the problem as one of \emph{bayesian} mechanism design.
 The designer then seeks to optimize the objective in expectation over this distribution, while the agents' incentives are relaxed relative to dominant strategies, to require that their actions be a best response in expectation to distribution of actions of other agents.
 
 In a bayesian game there are three stages of knowledge possessed by the agents:
 \begin{itemize}
- \item ex ante: before values are drawn from the distribution, the agents know this distribution but not their own types (or those of others). 
- \item interim: after the agents learn their types, but before playing in the game. The agents know their distribution and know that the other agents' types are drawn from the prior distribution conditioned on their own type.
- \item ex post: the game has been played and the actions of all agents are known.
+ \item Ex ante: before values are drawn from the distribution, the agents know this distribution but not their own types (or those of others). 
+ \item Interim: after the agents learn their types, but before playing in the game. The agents know their distribution and know that the other agents' types are drawn from the prior distribution conditioned on their own type.
+ \item Ex post: the game has been played and the actions of all agents are known.
 \end{itemize}
 
 A simple but fundamental result in mechanism design is the Revelation Principle.
-For any mechanism and equilibrium of the mechanism, there exists a incentive compatible mechanism with the same equilibrium.
-The reason is that one can wrap the original non-incentive compatible mechanism with a mechanism that takes a report, assuemd truthful, and simulates its optimal play in the original mechanism to pick its payments and allocations, thus achieving the same equilibrium but from the truthful reports. 
+For any mechanism and equilibrium of the mechanism, there exists an incentive compatible mechanism with the same equilibrium.
+The reason is that one can wrap the original non-incentive compatible mechanism with a mechanism that takes a report, assumed truthful, and simulates its optimal play in the original mechanism to pick its payments and allocations, thus achieving the same equilibrium but from the truthful reports. 
 This holds in a vast range of situations in both the Bayes-Nash and the Dominant Strategy sense of equilibrium. 
-This however fails to hold for natural settings in optimal decision elicitaion: when agents only learn their types over time, or when the mechanism designer does not know the prior (and thus can't simulate).
-The learning of types of over time is inevitable in the learning setting where there is a sequence of subjects, while in one-off markets a common prior over the signal distribution seems almost imposible.
-
-
-%With regards to maximizing the future social welfare in a dynamic setting, there are elegant extensions of the efficient (VCG) mechanism that are applicable to quite general dynamic settings by [Bergemann and VÂšalimÂšaki 2010; Parkes and Singh 2003; Athey and Segal 2007].
-
-\subsection{Bandits}
-
-Decisions over mutually exclusive actions that affect reward naturally lead to partial supervision.
-The 
-
-Bandit problems are concerned with optimal repeated decision-making in the presence of uncertainty and partial supervision, while being simpler than full reinforcement learning in that they limit the underlying state of the system to evolve in a manner indepedent of the set of actions which is carried out. 
-
-% make a note of the bandit process this being not strictly true as when you play an arm you allow the state in that arm to transition...
-
-The main challenge is to make a trade-off between exploration and exploitation, so as to collect enough samples to estimate the rewards from different potentially optimal actions whilst also strongly biasing samples towards those actions most likely to yield high rewards.
-
- A prediction game that is central to the later part of this thesis is the contextual bandit setting: In each round, nature reveals some context, the adversary privately assigns a loss value to each action in a fixed set.
- Then the player chooses an action (possibly using randomization), incurs the corresponding loss, the player only observes the loss of the chosen action, but not that of other actions.
- The goal of the player is to control static regret, which is defined as the excess loss incurred by the player as compared to the best fixed action given the context over a sequence of rounds.
-
-%Formally this can be defined as 
-%TODO copy pasta terms from chapter
-
-
- A very natural algorithm with good practial performance is first proposed in the literature by \cite{thompson:33}; it plays each action with probability equal to its posterior probability of being the best action, given the rewards observed up to that point.
- This algorithm has been indepdently proposed countless times, and the experimental phenomenon of probability matching in laboratory settings is indicative of it being very natural for humans.
+This however fails to hold for natural settings in optimal decision elicitation, when agents only learn their types over time, or when the mechanism designer does not know the prior (and thus can't simulate).
+The learning of types of over time is inevitable in the learning setting where there is a sequence of subjects, while in one-off markets a common prior over the signal distribution seems almost impossible.
 
 
 
-% %  The
-% % general structure of TS involves the following elements
-% % (this description of TS follows closely that of
-% % Chapelle and Li [2011]):
-% % 1. a set Ï of parameters ËÂµ;
-% % 2. an assumed prior distribution P(ËÂµ) on these parameters;
-% % 3. past observations D consisting of (reward r) for
-% % the arms played in the past time steps;
-% % 4. an assumed likelihood function P(r|ÂµË), which
-% % gives the probability of reward given a context
-% % b and a parameter ËÂµ;
-% % 5. a posterior distribution P(ËÂµ|D) â P(D|ÂµË)P(ËÂµ),
-% % where P(D|ÂµË) is the likelihood function.
+\subsection{Bandit Algorithms as Mechanisms}
 
-% % The notation P(Â·) in above denotes probability density.
-% % TS maintains a posterior distribution for the underlying
-% % parameter Âµi
-% % , i.e. the expected reward, of every
-% % arm i. In each round, TS plays an arm according to
-% % its posterior probability of being the best arm, that is,
-% % the posterior probability of having the highest value of
-% % Âµi
-% % . A simple way to achieve that is to produce a sample
-% % from the posterior distribution of every arm, and
-% % play the arm that produces the largest sample. Below
-% % we describe two versions of TS, using Beta priors
-% % and Bernoulli likelihood function,
+A closely related literature to the work of this thesis is focused on the incentive properties of bandit algorithms for their subjects.
+At each step of the bandit problem, a new agent (subject), must select which arm to pull. 
+The study of this problem initiated in (\cite{kremer2014implementing}).
+The  incentive offered by the social planner is the recommended action, the planner does not offer payments for following the recommendation. This setting is studied in (\cite{mansour2015bayesian}) who provide a generic black box reduction from bandit algorithms with arbitrary context and (extra) feedback to incentive compatible mechanisms.
+The setting where payments are offered to the agents at each step in considered in (\cite{frazier2014incentivizing}).
+These works assume the central algorithm embodies a benevolent social planer that attempts to maximize social welfare, and focus on the incentives of the subjects.
+In contrast to these works, we assume away subjects incentive considerations, and instead focus on how to incentivize those providing the advice of which decision to take.
 
-% and using Gaussian
-% % priors and Gaussian likelihood respectively.
-% % We emphasize that the Beta priors and Bernoulli likelihood
-% % model, or Gaussian priors and the Gaussian likelihood
-% % model for rewards are only used below to design
-% % the Thompson Sampling algorithm. Our analysis of
-% % these algorithms allows these models to be completely
-% % unrelated to the actual reward distribution. The assumptions
-% % on the actual reward distribution are only
-% % those mentioned in Section 1.1, i.e., the rewards are in
-% % the range [0, 1]. I
+Another literature that studies bandit problems in a mechanism design framework is called \emph{Strategic bandit models} and focuses on several players facing (identical) copies of the same set of arms. Players can observe not only their own outcome but also that of their neighbors. A good review of this literature, and the broader literature on the interaction between learning and strategic considerations, is in (\cite{horner2016learning}).
 
-
-
-\subsubsection{Exponential-weights for Exploration and Exploitation}
-
-Exp3
-
- Maximally robust guarantees, in particular with regards to the non-stochastic nature of underlying sequences. Useful when we wish to create hierarchical bandits when the original sequence may not be IID; the sequence that results from a bandit algorithm's choices will not be by construnction.
-
-%Beyond IID and Static Regret: E
-
-
-
-
-\subsection{Information Aggregation and Incentives}
+\section{Information Aggregation and Incentives}
 
 A literature in economics and particularly mechanism design is centered on when and how information can be aggregated from multiple agents that receive signals about the state of the world, and have various degrees of strategic sophistication in their actions.
+A definitive article on the topic with respect to the common prediction market and Arrow Debreu general equilibrium models is (\cite{ostrovsky2012information}), which also provides an excellent overview of the historical literature within economics.
+Ostrovsky studies information aggregation in dynamic markets with a finite number of partially informed strategic traders. 
+Trading takes place in a bounded time interval, and in every equilibrium; as time approaches the end of the interval, the market price of a \emph{separable} security converges in probability to its expected value conditional on the traders' pooled information. If the security is non-separable, then there exists a common prior over the states of the world and an equilibrium such that information does not get aggregated. 
+We will see how this non-separability carries over to decision markets in Chapter 5.
 
-explain myopic incentive compatible
-
-\subsubsection{Information Revelation and Aggregation in Markets}
-% TODO: rewrite 
-
-
-% %\quote{The question of information revelation and aggregation in markets has attracted the attention of many economists, beginning with
-
-Going back to at least Hayek (1945) economists have been concerned with how market mechanisms can aggregate information dispersed accross different agents.
-The original argument by Hayek phrased in contemporary machine learning terms is that the information required to make economic decisions efficiently is largely local, and that central aggregation and optimization is unfeasible, while market prices transmit enough non-local information to make the resulting decisions.
-
+In these models the fact that securities are settled unambiguously implies that the state of the world is eventually observed.
+A largely separate literature, motivated by crowdsourcing, considers how to create incentives to elicit information when the underlying state of the world is not observable to the mechanism. 
+In the initial mechanism (\cite{prelec2004bayesian,miller2005eliciting}), truth-telling is a strict Bayesian Nash Equilibrium. These mechanisms typically have many other non-truthful equilibria as well, and some of them may pay better than the truth telling equilibrium, motivating agents to coordinate on non-informative equilibria.
+A knowledge-free peer prediction mechanism that does not require knowledge of the information structure and can truthfully elicit private information for a set of information structures slightly smaller than the maximal set is proposed in (\cite{zhang2014elicitability}).
+(\cite{kong2016framework}) present a framework for information elicitation mechanisms where truth-telling is the highest paid equilibrium, even when the mechanism does not know the common prior.
 
 
-%Grossman (1976) formally showed that in a market equilibrium, the resulting price aggregates information dispersed among n-types of informed traders, each of whom gets a piece of information. In his model, individual traders are small relative to the market, strategic foundations for playersâ¬ behavior are lacking, and the results rely on particular functional forms (e.g., i.i.d. normal errors in signals received by the players; normal prior; etc.).
-
-% Radner (1979) introduced the concept of Rational Expectations Equilibrium (REE) and showed that generically, a fully revealing REE exists, with prices aggre- gating all information dispersed among traders. Radnerâ¬â¢s paper, however, also lacks strategic foundations. A series of papers explored the question of con- vergence to REE in various dynamic processes (see, e.g., Hellwig (1982), and Dubey, Geanakoplos, and Shubik (1987), for models of centralized trading; Wolinsky (1990), and Golosov, Lorenzoni, and Tsyvinski (2011), for models of decentralized trading; and McKelvey and Page (1986), and Nielsen, Bran- denburger, Geanakoplos, McKelvey, and Page (1990), for models that extend the basic communication process of Geanakoplos and Polemarchakis (1982) to more complex settings in which agentsâ¬â¢ beliefs are iteratively updated in re- sponse to repeated public observations of summary statistics of their actions). In all of these papers, however, it is assumed that each trader ignores the ef- fect of his behavior on the evolution of the trading process, as a result behaving non-strategically along at least one dimension. P
-
-% % roper strategic foundations for the concept of perfect competition with differentially informed agents are offered by the stream of literature studying bidding behavior in single and double auctions (Wilson (1977), Milgrom (1981), Pesendorfer and Swinkels (1997), Kremer (2002), Reny and Perry (2006)). Information aggregation results in these papers, however, rely on the assumption that the market is large, that is, the number of bidders goes to infinity and individual traders become small relative to the market. They also rely on various symmetry assumptions. No such assumptions are made in the current paper, and the number of traders is finite and fixed.
-
-% % Kyle (1985) offered a model of dynamic insider trading, in which the single informed trader takes into account the nonnegligible impact of his actions on market prices. In the continuous version of the model, as time approaches the end of the trading interval, the price of the traded security converges to its true value known by the insider. Foster and Viswanathan (1996) and Back, Cao, and Willard (2000) extended the model to the case of multiple, differentially informed strategic traders. In the continuous case, the price of the traded secu- rity converges to its 
-% %expected value conditional on the tradersâ¬â¢ pooled informa- tion. In the discrete case with a finite number of trading periods, convergence is approximate. These models rely on very special functional form assumptions (symmetry, normality, etc.), which allow the authors to construct explicit for- mulas for particular (â¬Ålinearâ¬Â) equilibria. Laffont and Maskin (1990) criticized this reliance of the results of Kyle (1985) on linear trading strategies; argued that such models inherently have multiple equilibria; presented a model of a trading game with a single informed trader and multiple equilibria, in some of which the informed traderâ¬â¢s information is not revealed; and concluded that â¬Åin a model in which private information is possessed by a trader who is big enough to affect prices, the information efficiency of prices breaks downâ¬Â and â¬Åthe efficient market hypothesis may well fail if there is imperfect competi- tion.â¬Â The results of the current paper show that the conclusions of Kyle (1985), Foster and Viswanathan (1996), and Back, Cao, and Willard (2000) regarding the convergence of the price of a security to its expected value conditional on the tradersâ¬â¢ pooled information do not, in fact, depend on the specific func- tional form assumptions or on the choice of equilibrium: if the traded security is separable, its price converges to its expected value conditional on the pooled information in every equilibrium. In the case of a single informed trader, as in Laffont and Maskin (1990), every security is separable, and so information always gets aggregated. The contrasting conclusions of Laffont and Maskin are thus driven by the specifics of their model, not by the fact that they explicitly consider multiple equilibria. In the case of multiple partially informed traders, the securities considered in Foster and Viswanathan (1996) and Back, Cao, and Willard (2000) have payoffs that are linear in tradersâ¬â¢ signals, and so, as the results of this paper show, information about such securities always gets aggregated as well.
-
-% % This model is based on the market scoring rule (MSR) of Hanson (2003, 2007). In MSR games, there are no noise or liquidity traders and no strategic market makers; the only players are the strategic par- tially informed traders. There is also an automated market maker. This mar- ket maker, in expectation, loses money (though at most a finite, ex ante known amount), %facilitating trade and price discovery. (Without a â¬Åsourceâ¬Â of prof- its, there would be no trading; see Milgrom and Stokey (1982) and Sebenius and Geanakoplos (1983).) Trading 
-% % proceeds as follows. The uninformed mar- ket maker makes an initial, publicly observed prediction about the value of a security. The first informed strategic player can revise that number and make his own prediction, which is also observed by everyone. Then the second player can further modify the prediction, and so on until the last player, after which the first player can again modify the prediction, and the cycle repeats an infinite number of times. The fact that there is an infinite number of trading periods does not mean that the game never ends. %Rather, it is a convenient discrete analogue of continuous trading, with trades taking place at times t0 < t1 < Â· Â· Â· in a bounded time interval. Sometime after the trading is over, the true value of the security is revealed, and each prediction is evaluated according to a strictly proper scoring rule s (e.g., under the quadratic scoring rule, each prediction is penalized by the square of its error; see Section 2.2 for further details). The payoff of a player from each revision is the difference between the score of his prediction and the score of the previous predictionâ¬âin essence, the player â¬Åbuys outâ¬Â the previous prediction and replaces it with his own. The total pay- off of a player in the game is the sum of payoffs from all his revisions. Players are risk-neutral. The discounted MSR (Dimitrov and Sami (2008)) is similar, except that the total payoff of a player is equal to the discounted sum of pay- offs from all his revisions, where the payoff from a revision made at time $t_k$ is multiplied by $I^2k$ for some $ i< 1$.
-% % While my primary reason for studying this model is to illustrate the intu- ition behind information aggregation in the main model and thus make that result more transparent, information aggregation in MSR-based models is also of independent interest, for several reasons. First, such models can be viewed as generalizations of the communication processes of Geanakoplos and Pole- marchakis (1982) and other papers in this tradition, in which several differen- tially informed agents sequentially announce their beliefs about the value of a random variable (or the probability of an event), and those beliefs eventually
-% % converge to a common posterior. In those papers, it is assumed that the agents make truthful announcements, and strategic issues are ignored. Discounted MSR includes this truthful process as a special case, I= 0 (strictly speaking, the case I = 0 is ruled out in this paper, but it is easy to show that as I becomes small, in any equilibrium, players will behave almost %myopically, i.e., will reveal their expectations almost truthfully), and at the same time makes it possible to examine the role of strategic behavior (for ÃÂ² > 0). The results of this paper show that, for separable securities, information aggregation does not depend on whether agents behave strategically or myopically.
-% % Second, the MSR model includes as a special case a basic model of trading
-% % with an automated inventory-based market maker who offers to buy or sell
-% % shares in the security at price p that is a function of the (possibly negative) net
-% % inventory the market maker holds at that moment. Specifically, suppose the
-% % market maker starts with zero net inventory, sets the price for the security as
-% % a continuous decreasing function p(z), where z is the total amount of shares
-% % he holds in his inventory (i.e., the more he holds, the less he is willing to pay
-% % for additional shares), and commits to buying or selling shares according to
-% % that price schedule. Thus, if his current inventory is z0, and a trader decides
-% % %to sell (z Ëâ z ) units of the security to the market maker, the market maker 1 0 ÃŽÂÂ°â¹z1
-% % %will pay that trader z0 p(z ÃÆ)dz ÃÆ for the (z1 Ëâz0) units. The current price of the security will move from p(z0) to p(z1). If the true value of the security then
-% %turns out to be equal to x, then the traderâ¬â¢s payoff from this transaction will be equal to ÃŽÂÂ°â¹ z1 p(z ÃÆ) dz ÃÆ Ëâ x(z1 Ëâ z0) = ÃŽÂÂ°â¹ z1 (p(z ÃÆ) Ëâ x) dz ÃÆÃŽÂÂ°Â· Thus, it is strictly optimal
-% %z0 z0
-% %(myopically) for the trader to pick z1 in such a way that p(z1) is equal to his
-% %belief about the value of the security (assuming the image of function p(Â·)
-% %includes that value). His payoff from this transaction is equal to his payoff from
-% s%coring rule s(yÃŽÂÂ°Âžx)= 0 (p(z ÃÆ)Ëâx)dz ÃÆ, where zy =pËâ1(y), that is, p(zy)=y.2 Finally, note that while the market maker in this setting expects to lose money, the worst possible loss is bounded and can be controlled by adjusting the parameters of the rule. Another attractive feature of MSR in practice (rel- ative to, say, continuous double auctions) is that a player can instantaneously make his prediction/trade at any time, without having to wait for another player who is willing to take the other side of the trade or to submit a limit order and wait for it to be filled. These features make MSR attractive for use in internal corporate prediction markets, and it is in fact used for that purpose: compa- nies like Consensus Point and Inkling Markets operate MSR-based prediction
-% % markets for Ford, Chevron, Best Buy, General Electric, and many other large corporations.3 Thus, the question of whether information in MSR-based pre- diction markets gets aggregated has direct practical implications.
-% % Two recent papers have studied the equilibrium behavior of traders in MSR games.4 Chen, Reeves, Pennock, Hanson, Fortnow, and Gonen (2007) consid- ered undiscounted %games based on a particular scoring ruleâ¬âlogarithmic (see Section 2.2). In their model, the security can take one of two different values, and the number of revisions is finite. They found that if tradersâ¬â¢ signals are in- dependent conditional on the value of the security, then it is an equilibrium for each trader in each period to behave myopically, that is, to make the predic- tion equal to his posterior belief. They also provided an example of a market in which signals are not conditionally independent and one of the traders has an incentive to behave non-myopically. Dimitrov and Sami (2008) also considered games based on the logarithmic scoring rule. In their models, in contrast to Chen et al., traders observe independent signals. Each realization of the vector of signals corresponds to a particular value of the security. The number of trad- ing periods is infinite. Dimitrov and Sami found that, in that case, in the MSR game with no discounting, myopic behavior is generically not an equilibrium and, moreover, there is no equilibrium in which all uncertainty is guaranteed to get resolved after a finite number of periods. They then introduced a two- player, two-signal MSR game with discounting, and proved that in that game, information gets aggregated in the limit, under the additional assumption that the â¬Åcomplementarity boundâ¬Â of the security is positive. They reported that, based on their sample configurations, the bound is not always zero, but did not provide any sufficient conditions for it to be positive. In contrast to Chen et al. (2007) and Dimitrov and Sami (2008), the current paperâ¬â¢s information aggregation results (1) do not rely on the independence or conditional inde- pendence of signals, allowing instead for general information structures with any number of players; (2) do not depend on discounting; and (3) provide a sharp characterization of securities for which information always gets aggre- gated and those for which, under some priors, price may not converge to the expected value conditional on the tradersâ¬â¢ pooled information.}
-
-% %Ostrovsky studies information aggregation in dynamic markets with a finite number of partially informed strategic traders. It shows that, for a broad class of securities, information in such markets always gets aggregated. Trading takes place in a bounded time interval, and in every equilibrium, as time approaches the end of the interval, the market price of a â¬Åseparableâ¬Â security converges in probability to its expected value conditional on the tradersâ¬â¢ pooled information. If the security is â¬Ånon-separable,â¬Â then there exists a common prior over the states of the world and an equilibrium such that information does not get aggregated. The class of separable securities includes, among others, Arrowâ¬âDebreu securities, whose value is 1 in one state of the world and 0 in all others, and â¬Åadditiveâ¬Â securities, whose value can be interpreted as the sum of tradersâ¬â¢ signals.
-
-% %Consider the following example from Geanakoplos and Polemarchakis (1982).
-% %EXAMPLE1: Therearetwoagents,1and2,andfourstatesoftheworld,ÃÂ©=
-% %{AÃŽÂÂ°ÂžBÃŽÂÂ°ÂžCÃŽÂÂ°ÂžD}. The prior is P(Ãâ°) = 1 for every Ãâ° ËË ÃÂ©. The security is X(A) = 4
-% %X(D) = 1 and X(B) = X(C) = Ëâ1. Partitions are ÃÂ 1 = {{AÃŽÂÂ°ÂžB}ÃŽÂÂ°Âž{CÃŽÂÂ°ÂžD}} and ÃÂ 2 ={{AÃŽÂÂ°ÂžC}ÃŽÂÂ°Âž{BÃŽÂÂ°ÂžD}}.
-
-% %In the example, by construction, it is common knowledge that each playerâ¬â¢s expectation of the value of the security is zero, even though it is also common knowledge that the actual value of the security is not zero, and that the tradersâ¬â¢ pooled information would be sufficient to determine the securityâ¬â¢s value. Thus, even if the traders repeatedly and truthfully announce their posteriors, as in Geanakoplos and Polemarchakis (1982), they will never learn the true value of the security. 
-
-
-\subsection{Incentivizing Infomration Aggregation without Ground Truth: Peer Prediction}
-
-
-% Peer-prediction [18] is a (meta-)mechanism which, given any proper scoring rule, produces a
-% mechanism to elicit privately-held, non-verifiable information from self-interested agents. Formally,
-% truth-telling is a strict Nash equilibrium of the mechanism. Unfortunately, there may be
-% other equilibria as well (including uninformative equilibria where all players simply report the
-% same fixed signal, regardless of their true signal) and, typically, the truth-telling equilibrium
-% does not have the highest expected payoff. The main result of this paper is to show that, in the
-% symmetric binary setting, by tweaking peer-prediction, in part by carefully selecting the proper
-% scoring rule it is based on, we can make the truth-telling equilibrium focalâthat is, truth-telling
-% has higher expected payoff than any other equilibrium.
-% Along the way, we prove the following: in the setting where agents receive binary signals we
-% 1) classify all equilibria of the peer-prediction mechanism; 2) introduce a new technical tool for
-% understanding scoring rules, which allows us to make truth-telling pay better than any other
-% informative equilibrium; 3) leverage this tool to provide an optimal version of the previous result;
-% that is, we optimize the gap between the expected payoff of truth-telling and other informative
-% equilibria; and 4) show that with a slight modification to the peer-prediction framework, we
-% can, in general, make the truth-telling equilibrium focalâthat is, truth-telling pays more than
-% any other equilibrium (including the uninformative equilibria).
-
-Note that information 
-
-% http://arxiv.org/abs/1605.01021
-% Information elicitation mechanisms, such as Peer Prediction [Miller 2005] and Bayesian Truth Serum [Prelec 2004], are designed to reward agents for honestly reporting their private information, even when this information cannot be directly verified. Information elicitation mechanisms, such as these, are cleverly designed so that truth-telling is a strict Bayesian Nash Equilibrium. However, a key challenge that has arisen is that there are typically many other non-truthful equilibrium as well, and it is important that truth-telling not only be an equilibrium, but be paid more than other equilibrium so that agents do not coordinate on a non-informative equilibria. Several past works have overcome this challenge in various setting using clever techniques, but a new technique was required for each new setting. 
-% Our main contribution in this paper is providing a framework for designing information elicitation mechanisms where truth-telling is the highest paid equilibrium, even when the mechanism does not know the common prior. We define information monotone functions which can measure the amount of "information" contained in agents' reports such that the function is greater in the truthful equilibrium than in non-truthful equilibria. We provide several interesting information monotone functions ( f -disagreement, f-mutual information, f -information gain) in different settings. Aided by these theoretical tools, we (1) extend Dasgupta and Ghosh[2013]'s mechanism to the non-binary setting with an additional assumption that agents are asked to answer a large number of a priori similar questions; (2) reprove the main results of Prelec[2004], Dasgupta and Ghosh[2013] and a weaker version of Kong and Schoenebeck[2016] in our framework. Our framework thus provides both new mechanisms and a deeper understanding of prior results.
 
 % http://arxiv.org/pdf/1603.07751v1.pdf
 % Peer-prediction is a mechanism which elicits privately-held, non-variable information from
-% self-interested agentsâformally, truth-telling is a strict Bayes Nash equilibrium of the mechanism.
+% self-interested agentsÃ¢ÂÂformally, truth-telling is a strict Bayes Nash equilibrium of the mechanism.
 % The original Peer-prediction mechanism suffers from two main limitations: (1) the
-% mechanism must know the âcommon priorâ of agentsâ signals; (2) additional undesirable and
+% mechanism must know the Ã¢ÂÂcommon priorÃ¢ÂÂ of agentsÃ¢ÂÂ signals; (2) additional undesirable and
 % non-truthful equilibria exist which often have a greater expected payoff than the truth-telling
 % equilibrium. A series of results has successfully weakened the known common prior assumption.
 % However, the equilibrium multiplicity issue remains a challenge.
 % In this paper, we address the above two problems. In the setting where a common prior
 % exists but is not known to the mechanism we show (1) a general negative result applying to a
 % large class of mechanisms showing truth-telling can never pay strictly more in expectation than
-% a particular set of equilibria where agents collude to ârelabelâ the signals and tell the truth
+% a particular set of equilibria where agents collude to Ã¢ÂÂrelabelÃ¢ÂÂ the signals and tell the truth
 % after relabeling signals; (2) provide a mechanism that has no information about the common
 % prior but where truth-telling pays as much in expectation as any relabeling equilibrium and
 % pays strictly more than any other symmetric equilibrium; (3) moreover in our mechanism, if
 % the number of agents is sufficiently large, truth-telling pays similarly to any equilibrium close
-% to a ârelabelingâ equilibrium and pays strictly more than any equilibrium that is not close to a
+% to a Ã¢ÂÂrelabelingÃ¢ÂÂ equilibrium and pays strictly more than any equilibrium that is not close to a
 % relabeling equilibrium.
 
 
 
-\subsection{Prediction Markets} 
 
-The closest contact point between the online learning and information elicitation literatures is in the fully supervised case.
-That is, the information the market is attempting to aggregate is a forecast of the future state of the world that is not contigent on the actions that the market can influence. Thus, at the time of the realization of the event, we can judge not only the forecast obtained but also any other potential forecast that could have been received. 
-This contrasts this with the bandit setting, where instead of a forecast of the state of the world we seek an action that results in a state of the world that is maximally beneficial.
+% complexity theory of algorithmic persuasion
+%http://arxiv.org/pdf/1503.05988.pdf
 
 
-The equivalence between trading shares and eliciting beliefs from a single agent by the means of scoring rules goes back at least to \cite{savage1971elicitation}. 
+
+\section{Prediction Markets} 
+
+The closest contact point between the online learning and information elicitation literature is in the fully supervised case.
+That is, the information the market is attempting to aggregate is a forecast of the future state of the world that is not contingent on the actions that the market can influence. Thus, at the time of the realization of the event, we can judge not only the forecast obtained but also any other potential forecast that could have been received. 
+This contrasts with the bandit setting, where instead of a forecast of the state of the world we seek an action that results in a state of the world that is maximally beneficial.
+The equivalence between trading shares and eliciting beliefs from a single agent by the means of scoring rules goes back at least to (\cite{savage1971elicitation}). 
 %Hanson (2003), Pennock (2006), and Chen and Pennock (2007) discussed this cor- respondence for the case of MSR. The study of automated market makers goes back to Black (1971a, 1971b), while formal analysis of inventory-based market makers goes back to Amihud and Mendelson (1980).
 
 
@@ -326,935 +203,25 @@ The equivalence between trading shares and eliciting beliefs from a single agent
 
 % %Under the basic MSR (introduced by Hanson (2003, 2007), though the idea of repeatedly using a proper scoring rule to help forecasters aggregate infor- mation goes back to McKelvey and Page (1990))
 % \cite{mckelvey1990public}
-% %Note also that if each player behaves myopically in each period, the prediction that he will make is his posterior belief about the expected value of the security, given his initial information and the history of revisions up to that point, and thus the â¬Ågameâ¬Â turns into the communication process of Geanakoplos and Polemarchakis (1982).
+% %Note also that if each player behaves myopically in each period, the prediction that he will make is his posterior belief about the expected value of the security, given his initial information and the history of revisions up to that point, and thus the Ã¢ÂÂ¬ÃÂgameÃ¢ÂÂ¬ÃÂ turns into the communication process of Geanakoplos and Polemarchakis (1982).
 
-Initiating with the equivalence between market scoring rules and regularized follow-the-leader algorithms in \cite{chen2010new} and a series of follow up works \cite{abernethy2013efficient, frongillo2012interpreting, hu2014multi, frongillo2015convergence,} that map prediction markets to learning algorithms. 
+Initiating with the equivalence between market scoring rules and regularized follow-the-leader algorithms in (\cite{chen2010new}) and a series of follow up works (\cite{abernethy2013efficient, frongillo2012interpreting, hu2014multi, frongillo2015convergence}) map prediction markets to learning algorithms. 
+How the wealth (and thus accuracy of prices) is concentrated between informed trades in a sequence of markets, using a natural if specific trader model (Kelly bettors) is studied in (\cite{beygelzimer2012learning)}.
 
-The subject's freedom makes no difference in the analysis of the fully supervised setting; since there is no action to take, there is no sense in which a subject may not follow along. To the degree the information they surface is not being used strategically by the agents, we can perfectly evaluate how accurate they are regardless of the other agents' reports.
-% note this is not the case in our ex-comp one shot example, where to evaluate one experts acuracy we need the truthful signal from the other 
+The subject's freedom makes no difference in the analysis of the fully supervised setting; since there is no action to take, there is no sense in which a subject may not follow along. To the degree the information these prediction markets surface is not being used by participants in the world in a way that affects it (as the models assume), we can perfectly evaluate how accurate they are regardless of the other agents' reports.
 
 
+\section{Decision Markets}
 
+Can markets be used not just to understand the underlying distribution over future states of the world, but to select which action to take so as to induce the best distribution? In the vivid image of (\cite{mackenzie2008engine}), a market as \emph{an engine, not a camera}.
+The idea of using prediction markets for decision support originates in (\cite{berg2003prediction,hanson2002decision}). 
+These mechanisms rely on running a prediction market for the outcome variable of interest for each possible action that the decision maker can take, and voiding those markets for the action not taken.
 
-%This assumption seems to largely have held for sports and politics, and betting markets over both 
+In (\cite{othman2010decision}) argue that corporate prediction markets do not capture the right problem for their clients. In particular, by focusing on eliciting probabilities after decisions have been made about what their effects will be, they cannot be used to inform those decisions. It then considers the manipulability of a decision market where (in our terminology) the subject seeks to maximize their utility by always selecting the action that the market prices indicate is best, the \emph{max decision rule}. It is then shown that there are no incentive compatible market scoring rules (and thus by equivalence cost function) markets under this decision rule with multiple experts.
+The intuition is elementary: the last expert to trade with the market can force which of the conditional markets will be settled, so they maximize their profits by changing the price that is most incorrect, and lowering the price of all other actions bellow that.
+These results are formally generalized in (\cite{chen2014eliciting}), to show that the subject must use a decision rule with full support to create the right incentives in conditional prediction markets that are used for decision support.
 
-Another notable difference between the decision and 
+The above works all assume that the participants in the markets are only motivated by the payments they receive on the market (as does this thesis). A related line of work in (\cite{boutilier2012eliciting}) considers the case when the expert has an inherent interest in the decision. 
 
-Learning performance of prediction markets with Kelly bettors\cite{beygelzimer2012learning}
 
-\subsection{Incentive Compatible Bandits and Information Design}
 
-% Information Design, Bayesian Persuasion, and Bayes Correlated Equilibrium,  American Economic Review Papers and Proceedings, 2016, 106, 586-591, with Stephen Morris
-
-
- \cite{mansour2015bayesian}
-
-
-% complexity theory of algorithmic persuasion
-%http://arxiv.org/pdf/1503.05988.pdf
-
-
-
-\subsection{Decision Markets}
-
-Generally, contracts that pay if a publicly verifable event occurs are effectively regulated as gambling, which severely restricts their use. 
-
-A small niche of providers of automated market making software for private (particularly corporate outcomes)
-
-
-
-\cite{berg2003prediction,hanson2002decision,othman2010decision,boutilier2012eliciting,chen2014eliciting}
-
-% \subsection{Decision Markets}
-
-%Prediction markets have served as a reliable tool for estimating the winners of political elections and sports games [Berg et al., 2001]. However, due to legal restrictions severely limiting their use, the latest wave of prediction markets have focused not on the general, but on the specific. Instead of creating large-scale markets
-% % on publicly verifiable events, these services bill themselves as accu- mulators of organizational knowledge on specific internal (e.g., cor- porate) events. For instance, the prediction 
-% % %market startup Inkling Markets suggests that companies use their service â¬Åto uncover and quantify risk in your organization". The recently launched Crowd- cast lists questions like â¬ÅWhen will your product really ship?" and â¬ÅHow much will it really cost?" on their homepage.
-
-\cite{othman2010decision} argue that corporate prediction markets do not capture the right problem for their clients.
-In particular, by focusing on eliciting probabilities after decisions have been made about what their effects will be, they cannot be used to inform those decisions. 
-
-% % We contend that the current corporate prediction markets do not actually capture the problems most prominent for their clients. The chief challenge facing businesses is not whether the decisions they have made will prove successful, but rather what actions to take to assure the best chance of success.
-% % %Our work approaches this issue directly. 
-%In our model, a princi- pal has to choose an action from a set of possibilities (e.g., â¬ÅHire additional sales staff", â¬ÅDouble R&D funding") in order to maxi- mize the probability of achieving a desirable outcome (e.g., â¬ÅBe- come the top-grossing company in our market space", â¬ÅSell more than a million widgets", or â¬ÅAchieve profitability by the end of the year"). The principal elicits from an expert, for each action, the probability of achieving the desired outcome. Based on those prob- abilities, the principal then (deterministically) chooses an action ac- cording to a decision rule. Upon success or failure in achieving the desired outcome, the principal rewards the expert according to a pre-determined scoring rule. Three functions define the space: the decision rule, the payoff for success, and the payoff for failure.
-% % We first prove general properties of the way these functions re- late. We then provide an in-depth study of the most natural de- terministic decision rule, the max decision rule, which selects the action that has the highest reported success probability. For the single-agent setting, we show that no symmetric scoring rule, nor the asymmetric ones from the literature, give the agent the right in- centives. We construct an asymmetric scoring rule that does, and provide a characterization of a space of such rules.
-% % Along the same lines as the original construction of market scor- ing rules [Hanson, 2003, 2007, Pennock and Sami, 2007], we con- tinue by attempting to expand our scoring rule system into an auto- mated market maker for our multiagent setting, to create decision markets. Surprisingly, we show that every market of this kind suf- fers from a peculiar type of manipulability, where an agent benefits from exaggerating the success probability of a suboptimal action. We show that this kind of manipulability applies even under an in- finite stream 
-% % %of self-interested agents visiting the marketâ¬âeven if each agentâ¬â¢s beliefs about the probabilities are exactly accurate. We design families of asymptotically-optimal pricing rules for decision markets that minimize manipulability.
-% % Finally, we study two alternate decision market designs. We show the first one suffers from significant manipulability of a dif- ferent kind, and for the second we show a new kind of no-trade result. 	
-% % We initiated the study of decision rules and decision markets in settings where a principal needs to select an action and is advised by a self-interested but decision-agnostic expert about the success probabilities of alternative actions.
-% % %We began by investigating the properties of general deterministic decision rules in the context of eliciting from a single expert. We proved results about the relations between the principalâ¬â¢s decision rule and the rules that specify the expertâ¬â¢s payoff if the desired out- come is, and is not, achieved. For the most natural decision rule (where the principal takes the action with highest success probabil- ity), we showed that no symmetric scoring rule, nor any of Win- klerâ¬â¢s asymmetric scoring rules, are quasi-strictly proper. We char- acterized the set of differentiable quasi-strictly proper scoring rules and constructed an asymmetric scoring rule that is quasi-strictly proper.
-% % Moving to decision markets where multiple experts interact by trading, we showed a surprising impossibility for every automated market maker, where an agent is incentivized to artificially raise the price of a non-optimal action (again under the decision rule where the principal takes the action with highest success probability). To counter this impossibility, we constructed two families of asymp- totically optimal pricing rules against this form of manipulation, one additively optimal and the other multiplicatively optimal. Fi- nally, we considered two alternative market designs for decision markets. The first, in which all outcomes live in the same proba- bility universe, has even worse incentives (for the final participant). The second, in which the experts trade on the probability of the outcome occurring unconditionally, exhibits a new kind of no-trade result.
-% % There are many interesting research directions in this new area.
-% % The first would be examining the space of discontinuous scoring rules, being aware that such rules would nevertheless have to obey Theorem 2. Another area of exploration would be combinatorial decision rules, in which the principal could take more than one of the available actions.
-% % We focused on deterministic decision rules because they are nat-
-% % ural. It is known that adding randomness can significantly increase
-% % %the incentive-compatible feasible space of mechanisms in other settingsâ¬â prominent examples include voting [Gibbard, 1977] and sybill-proof (false name resistant) voting [Wagman and Conitzer, 2008]. Future research should study randomized decision rules in our setting as
-% % %well. Trivial randomized solutions â¬âlike shifting probability to
-% % %each action do not get around our impossibilities, like the nonex- istence of strictly proper scoring rules (because the manipulations
-% % in our examples and proofs yield the manipulator benefits that are
-% % not infinitesimally small).
-% % It would also be interesting to explore a larger characterization of the peculiar no-trade impossibility of Section 3.4.2. Does it apply in other economic interactions besides markets of this sort? The key seems to be that any action an agent takes has negative utility because of the effects of taking that action.
-% % %Another important direction concerns what happens when agents are interested in the action taken by the principal. For instance, an expert could advocate doubling a companyâ¬â¢s advertising bud- get because she works in the marketing department. This type of setting is related to recent work by Shi et al. [2009], who study a setting where an agent can perform an action after a market runs such that the market can incentivize the agent to act counter to the principalâ¬â¢s goal. Whether or not the agents can take actions after the decision market, it would desirable to use decision markets to balance the utilities of agents impacted by the principalâ¬â¢s decision with the principalâ¬â¢s desire to achieve his goal.}
-
-
-
-
-% We address this manipulation and construct and characterize decision markets
-% that, in expectation, always score predictions for their accuracy. Markets
-% with this property are myopically incentive compatible, since participants always
-% maximize their score for a prediction by honestly revealing their private beliefs.
-% Instead of a scoring rule, these markets use a decision scoring rule that accounts
-% for the likelihood actions are taken when scoring predictions. When the decision
-% maker risks taking an action at random, a decision scoring rule can amplify
-% the scores of unlikely actions and reduce the scores of likely ones, making risk
-% neutral participants indifferent to their affects on the decision. We show this
-% willingness to take an action at random is a requirement for these markets, and
-% reducing this risk increases the decision makerâs potential loss. While we do not
-% directly discuss information aggregation in decision markets, we demonstrate a
-% correspondence between their perfect Bayesian equilibria and those of a set of
-% prediction markets.
-
-\section{Related Work}
-
-
-\subsection{Medical Applications of }
-
-
-@article{yu1979antimicrobial},
-Antimicrobial selection by a computer. A blinded evaluation by infectious disease experts.
-
-
-\subsection{Mechanisms and the Price of Anarchy}
-
-The online learning and mechanism design branches of game theory are not entirely disjointed. 
-
-Ideally one would desire for mechanisms that have good equilibria in the sense of efficiency and truthfulness, where learning dynamics can help arrive on those equilibria. 
-In a sense, dominant strategy and BNE are the limits of purely deductive learning, since the optimal action can be deduced purely from the structure of the game before it is played.
-Dominant strategies are robust (in the minimax sense) to the motivation and information of the other agents, but this also limits the degree of efficiency they can achieve. 
-Bayes Nash Equilibria, on the other hand, suffer the opposite problem, with priors are common knowledge then there are equilibria that are fully revealing and incentive compatible (by the revelation principle), but there can be many other equilibria where nothing is learnt; being inherently nonconstructive, BNE can not help us to distinguish between these. 
-
-
-Methodologies from the literature on the price of anarchy can be used to bypass this in some situations.
-This style of analysis does not explicitly solve for equilibrium, instead it tries to characterize the minimal properties of a equilibria to quantify the worst case loss of any such equilbria relative to the optimum.
-
-% considers minimal necessary properties of equilibria to argue that any
-% equilibrium must be pretty good. Of course, this would be a problematic
-% exercise if we believed that, just as we cannot solve for equilibrium,
-% neither can the agents. Fortunately, because the analysis employs only
-% minimal assumptions, a frequent corollary of a price-of-anarchy analysis
-% is that best-response dynamics and no-regret learning algorithms
-% have good performance even if they never reach an equilibrium.
-% To illustrate the power of the price-of-anarchy approach, we will
-% describe a few recent results. Consider the welfare objective in multiagent
-% multi-item environment (which we consider in Section 5 and
-% Section 6 for the revenue objective). Suppose instead of running a
-% simultaneous auction that coordinates the sale of the items, we run
-% independent first- or second-price auctions either simultaneously or
-% sequentially. These auctions are strategically complex, e.g., because
-% there is an exposure problem where an agent may win multiple items
-% even if she only wants one. A series of papers, Bikhchandani [13],
-% Christodoulou et al. [34], Bhawalkar and Roughgarden [12], Hassidim
-% et al. [63], Paes Leme and Tardos [78], Paes Leme et al. [79], Roughgarden
-% [83], and Syrgkanis and Tardos [88, 89] showed that in various
-% configurations the price of anarchy of independent auctions for multiple
-% items is often a constant like two. Paes Leme et al. [77] give a short
-% survey of these results.
-% Price of anarchy approaches have also been applied to an auction
-% known as the generalized second-price auction which is used by Internet
-% search engines to sell advertisements that are displayed alongside search
-% results (see, e.g., Fain and Pedersen [46]). In this auction, bidders are
-% ranked by bid and each bidder is charged the bid of her successor. This
-% auction does not have simple equilibria as does the second-price auction.
-% Gomes and Sweeney [51] show that even in symmetric Bayesian
-% settings the generalized-second-price auction may not have any effi-
-% cient equilibria; subsequent work of Caragiannis et al. [25] bounded the
-% potential inefficiency of its equilibria by a factor of slightly under three.
-% \section{Composable Mechanisms and Learning Reductions}
-
-% A final class of results looks at non-revelation mechanisms based
-% on approximation algorithms (because, as mentioned above, there are
-% no general approaches for converting approximation algorithms into
-% mechanisms without Bayesian assumptions). Lucier and Borodin [71]
-% consider multi-dimensional combinatorial auctions based on greedy
-% approximation algorithms. They show that in equilibrium, a mechanism
-% based on a greedy Î² approximation algorithm is at worst a (Î² + 1)
-% approximation in equilibrium.
-% The results described above are primarily for the welfare objective,
-% and methodologies from the price of anarchy have seen relatively less
-% success for the revenue objective. One exception is by Lucier et al. [72]
-% who give revenue bounds for the previously discussed generalizedsecond-price
-% auction.
-
-
-% The conventional approach to the analysis of Bayes-Nash equilibrium,
-% as a first step, explicitly solves for the Bayes-Nash equilibrium. For
-% asymmetric environments such an analysis would require the solution to
-% analytically intractable differential equations. The approximation-based
-% approach presented herein circumvents solving for BNE by decomposing
-% the analysis into the following two parts. The first part isolates the
-% best-response property of Bayes-Nash equilibrium and formalizes the
-% intuition that either an agent gets good utility or must be facing fierce
-% competition. The second part identifies a revenue covering property, that
-% revenue exceeds an aggregate measure of the competition faced by each
-% agent, as a criteria to be approximated. With bounds on utility and revenue,
-% we get approximation bounds on the social surplus (the sum of
-% utility and revenue).
-% The bounds we derive on the social surplus and revenue of auctions
-% in Bayes-Nash equilibrium are parameterized by the extent to which
-% revenue covering approximately holds. This observation then gives clear
-% direction for optimization in mechanism design. A Bayes-Nash mechanismsâs
-% performance is proportional to it approximation with respect to
-% revenue covering. Bayes-Nash mechanisms should be designed to minimize
-% this approximation
-
-
-
-% Composable and Efficient Mechanisms, Vasilis Syrgkanis, Eva Tardos
-
-% meets
-
-% Learning Reductions that Really Work, Mineiro
-
-% \section{Applications of Adaptive Designs and Predicton Markets}
-
-
-% %A. Kolotilin. Experimental design to persuade. UNSW Australian School of Business Research Paper,
-
-
-% There is to be best of our knowledge no work that previously considers incentives for experts who provide the contextual variables in a contextual bandit problem. Beyond the already mentioned examples of considering the incentives for subjects in bandits, there is little work that brings incentives into the learning with expert advice setting. 
-
-
-% The finl chapters concern with a sequence of decisions, related to this are the properties of repeating one shot seccond price auctions, which has been previously analized in terms of the composability of auctions. 
-
-% Smooth Games, Price of Anarchy and
-% Composability of Auctions - a Quick Tutorial
-% Abhishek Sinha
-% Laboratory for Information and Decision Systems, Massachusetts Institute of Technology, Cambridge, MA 02139
-% Email: sinhaa@mit.edu
-% Abstract
-% In this tutorial we review the concept of smooth games as introduced by Roughgarden in [1]. We show how to upper bound
-% the Price of Anrchy of different games using this general tool. Then along the lines of [2], we extend the idea of smooth games
-% to smooth mechanisms and weakly smooth mechanisms and prove that many of the common auctions fall under this category. We
-% then show how efficiency results of these mechanisms in a Bayes-Nash equilibria may be derived from smoothness arguments.
-% Then we prove that simultaneous composition of smooth mechanism preserves the smoothness property. Hence all the previous
-% results about efficiency of smooth mechanisms carry over to simultaneous compositions.
-
-
-
-
-% \subsubsection{Efficiency}
-% Taken from 
-% % \quote{
-% % EFFICIENT DESIGN WITH INTERDEPENDENT VALUATIONS
-% % BY PHILIPPE JEHIEL AND BENNY MOLDOVANU1
-% % We study efficient, Bayes-Nash incentive compatible mechanisms in a social choice
-% % setting that allows for informational and allocative externalities. We show that such
-% % mechanisms exist only if a congruence condition relating private and social rates of
-% % information substitution is satisfied. If signals are multi-dimensional, the congruence
-% % condition is determined by an integrability constraint, and it can hold only in nongeneric
-% % cases where values are private or a certain symmetry assumption holds. If signals are
-% % one-dimensional, the congruence condition reduces to a monotonicity constraint and it
-% % can be generically satisfied. We apply the results to the study of multi-object auctions, and
-% % we discuss why such auctions cannot be reduced to one-dimensional models without loss
-% % of generality.
-
-
-% % THERE EXISTS AN EXTENSIVE LITERATURE on efficient auctions and mechanism
-% % design. A lot of attention has been devoted to the case where each agent i has a
-% % quasi-linear utility function that depends on the chosen social alternative, on
-% % information or signal privately known to  . i, and on a monetary transfer, but
-% % does not depend on information available to other agents. In this framework, a
-% % prominent role is played by the Clarke-Groves-Vickrey CGV mechanisms see 
-% % Clark 1971 , Groves 1973 , Vickrey 1961 . These are mechanisms that ensure 
-% % both that an efficient decision is taken and that truthful revelation of privately
-% % held information is a dominant strategy for each agent.
-% %  The result holds for
-% % %arbitrary dimensions of signal spaces and for arbitrary signalsâ¬â¢ distributions.
-% % In this paper we study the case where each agent has a quasi-linear utility
-% % function having as arguments signals received by all agents and the chosen
-% % social alternative. Hence, besides allocative externalities, we allow for informational
-% % %externalities, and we speak of â¬Ëinterdependent valuations. Signals may
-% % be multi-dimensional, but we assume that they are independently drawn across
-% % agents. Signal independence is the most seriously restrictive assumption;}
-
-
-% The proof of Theorem 4.3 is based on the following technical observation: an
-% incentive compatible mechanism generates for each agent a vector field. This
-% field associates to each type a vector of expected probabilities with which the
-% various alternatives are chosen. A generalization of the standard one-dimensional
-% envelope argument shows that this vector field is the gradient of the
-% equilibrium expected utility function. Since it is a gradient, the vector field must
-% satisfy an integrability condition involving its cross-derivatives.11 The impossibility
-% results follow by showing that the vector fields generated by efficient
-% mechanisms satisfy the required conditions only under very restrictive conditions.
-% Since the integrability constraint bites in any multi-dimensional model, results
-% similar to Theorem 4.3 hold as soon as there is at least one agent whose signal is
-% of dimension d2.
-% In Section 5 we study the remaining case where signal spaces are one-dimensional.
-% We construct a mechanism that is efficient and incentive compatible if
-% several inequalities relating private and social marginal valuations are satisfied.
-% The main idea of the construction is to make iâs transfer equal to the cumulative
-% Åœ . 12 effect of iâs action here a signal report on all other agents. Since iâs effect on
-% others depends here on iâs signal, incentive compatible transfers must neutralize
-% this influence.
-
-
-
-% \subsection{Decisions}
-
-% \quote{If we relax the need to elicit probabilities, the problem can be solved straightforwardly. For instance, it is trivial to incentivize an agent to truthfully report which action has the highest probability of achieving a desired outcome. This can be done by simply giving the agent a lump sum payment if the outcome is reached, which aligns the incentives of the agent and the principal.} \cite{othman2010decision}
-
-
-
-
-
-% \cite{dreber2015using}
-% use a prediction market to estimate the reproducibility of scientific research
-
-
-% a incromprehensible paper, but it is a trivial corolary of the folk theorem (TODO: cites beyond Della Penna and Reid 2012, Chen and ) is that any mechanism that settles before the event occurs has the multiple equilibria. Further if one agent has larger cpaital than the others he can force the settlement to favor him (you might be right, but he is more liquid) %http://bjll.org/index.php/jpm/article/view/1148
-
-
-% \section{}
-% % %http://arxiv.org/pdf/1507.00407v5.pdf
-% % It is natural in this setting for the players to each make use of a no-regret learning algorithm for making
-% % their decisions, an approach known as decentralized no-regret dynamics. No-regret algorithms
-% % are a strong match for playing games because their regret bounds hold even in adversarial environments.
-% % As a benefit, these bounds ensure that each playerâs utility approaches optimality. When
-% % played against one another, it can also be shown that the sum of utilities approaches an approximate
-% % optimum [2, 19], and the player strategies converge to an equilibrium under appropriate conditions
-% % [7, 1, 9], at rates governed by the regret bounds. Well-known families of no-regret algorithms
-% % include multiplicative-weights [14, 8], Mirror Descent [15], and Follow the Regularized/Perturbed
-% % Leader [13]. (See [3, 21] for excellent overviews.) For all of these, the average regret vanishes at
-% % the worst-case rate of O(1/
-% % â
-% % T), which is unimprovable in fully adversarial scenarios.
-% % However, the players in our setting are facing other similar, predictable no-regret learning algorithms,
-% % a chink that hints at the possibility of improved convergence rates for such dynamics. This
-% % was first observed and exploited by Daskalakis et al. [4]. For two-player zero-sum games, they developed
-% % a decentralized variant of Nesterovâs accelerated saddle point algorithm [16] and showed
-% % that each playerâs average regret converges at the remarkable rate of O(1/T). Although the resulting
-
-% % We consider the setting where the game G is played repeatedly for T time steps. At each time
-% % step t each player i picks a mixed strategy wt
-% % i â â(Si). At the end of the iteration each player i
-% % observes the expected utility he would have received had he played any possible strategy x â Si
-% % .
-% % More formally, let u
-% % t
-% % i,x = EsâiâŒwt
-% % âi
-% % [ui(x, sâi)], where sâi
-% % is the set of strategies of all but the i
-% % th
-% % player, and let u
-% % t
-% % i = (u
-% % t
-% % i,x)xâSi
-% % . At the end of each iteration each player i observes u
-% % t
-% % i
-% % . Observe that
-% % the expected utility of a player at iteration t is simply the inner product hwt
-% % i
-% % , u
-% % t
-% % i
-% % i
-
-% is there a bandit version?
-
-
-% %http://www.economics.uci.edu/~ivan/asmb.874.pdf
-% A modern Bayesian look at the multi-armed bandit
-
-% %Efficient Algorithms for Adversarial Contextual Learning http://www.jmlr.org/proceedings/papers/v48/syrgkanis16.pdf
-
-
-
-
-% Non-trivial two-armed partial-monitoring games are bandits
-% %http://arxiv.org/abs/1108.4961
-
-% % 4 proofs of gittins http://stat.haifa.ac.il/~gweiss/publications/fourbandits.pdf
-
-
-% % The partial-monitoring games we consider are defined as follows: Two players interact with each
-% % other in a sequential manner, Learner and Nature. In each time step Learner can choose one of N
-% % actions, while Nature can choose one of M actions. We use the notation n = {1, . . . , n} for any
-% % integer and denote the actions of both players by integers, starting from 1, so the action sets are N
-% % and M. At the beginning of the game both Learner and Nature are given a pair of N ÃM matrices,
-% % G = (L, H), where L is the loss matrix and H is the feedback matrix. The elements âij of L are
-% % real numbers and in fact we shall assume that they belong to the [0, 1] interval. The elements hij
-% % of H could be chosen from any alphabet. However, for the sake of simplicity, and without loss of
-% % generality (w.l.o.g.), we may assume that the elements of H are also real numbers. Now, still at
-% % the beginning of the game, Nature decides about the sequence of actions (J1, J2, . . .) to be played.
-% % These actions are kept private, i.e., they are not revealed to Learner. Natureâs actions will also be
-% % called outcomes.
-% % The game is played in discrete time steps. At time step t (t = 1, 2, . . .), first Learner chooses
-% % an action It based on the information available to him up to time t. The choice of the action may
-% % be randomized. Upon announcing his action, Learner gets the feedback hIt,Jt and suffers the loss
-% % âIt,Jt
-% % . The cycle is then repeated for time step t + 1. It is important to note that the loss suffered
-% % is not revealed to Learner.
-
-
-
-
-% % %http://people.csail.mit.edu/costis/bayesian/eva.pdf
-% % Auctions as Games
-% % â¢ Simultaneous second price?
-% % Christodoulou, Kovacs, Schapira ICALPâ08
-% % Bhawalkar, Roughgarden SODAâ10
-% % â¢ Greedy Algorithm as an Auction Game
-% % Lucier, Borodin, SODAâ10
-% % â¢ AdAuctions (GSP)
-% % Paes-Leme, T FOCSâ10, Lucier, Paes-Leme + CKKK ECâ11
-% % â¢ First price?
-% % Hassidim, Kaplan, Mansour, Nisan ECâ11
-% % â¢ Sequential auction?
-% % Paes Leme, Syrgkanis, T SODAâ12, ECâ12
-
-
-
-% % Some aspects of the sequential design of experiments - âRobbins - Cited by 1296
-% % A problem in the sequential design of experiments - âBellman - Cited by 238
-% % Sequential design of experiments - âChernoff - Cited by 257
-
-
-% % TODO: frame as a partial monitoring games, two armed equivalence ref %http://arxiv.org/pdf/1108.4961v1.pdf 
-% % Toward a classification of finite partial-monitoring games
-% % Partial-monitoring games constitute a mathematical framework for sequential decision making problems with imperfect feedback: the learner repeatedly chooses an action, the opponent responds with an outcome, and then the learner suffers a loss and receives a feedback signal, both of which are fixed functions of the action and the outcome. The goal of the learner is to minimize his total cumulative loss. We make progress toward the classification of these games based on their minimax expected regret. Namely, we classify almost all games with two outcomes and a finite number of actions: we show that their minimax expected regret is either zero, , Î(T2/3), or Î(T), and we give a simple and efficiently computable classification of these four classes of games. Our hope is that the result can serve as a stepping stone toward classifying all finite partial-monitoring games.
-
-
-
-
-% %example with personalized drug repositioning for the semi batch invitro approach http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0135556
-
-
-
-% %http://arxiv.org/pdf/1507.07191.pdf
-% % In the on-line Explore & Exploit literature, central to Machine Learning, a central
-% % planner is faced with a set of alternatives, each yielding some unknown reward. The
-% % plannerâs goal is to learn the optimal alternative as soon as possible, via experimentation.
-% % A typical assumption in this model is that the planner has full control over
-% % the experiment design and implementation. When experiments are implemented by a
-% % society of self-motivated agents the planner can only recommend experimentation but
-% % has no power to enforce it. Kremer et. al. [9] introduce the first study of explore
-% % and exploit schemes that account for agentsâ incentives. In their model it is implicitly
-% % assumed that agents do not see nor communicate with each other. Their main result is
-% % a characterization of an optimal explore and exploit scheme. In this work we extend [9]
-% % by adding a layer of a social network according to which agents can observe each other.
-% % It turns out that when observability is factored in the scheme proposed by Kremer et.
-% % al. is no longer incentive compatible. In our main result we provide a tight bound on
-% % how many other agents can each agent observe and still have an incentive-compatible
-% % algorithm and asymptotically optimal outcome.
-
-% %\subsection{Constructive Instituional Design} 
-% %http://aiecon.tumblr.com/post/489827144/what-is-constructive-economics
-
-
-
-% % Constructive Economics is the design, construction, implementation, and analysis of new economic structures. Itâs about building things, making them real, and treating them as solid objects worthy of respect, admiration, study, and further improvement. Above all else: make it real.
-
-% % Less Talk, More Rock
-
-% % So what does making it real look like?
-
-% % %Most profoundly, it involves the 
-
-% % We do not reject equilibrium analysis, but do see it's role as limited to setting benchmarks which we might seek to achieve with strategies that have good properties out of equilibrium, in particular in the presence of less rational actors. A 
-
-% %  and game theory. Game theory is only relevant inasmuch as it gives prescriptions for the strategy that you should be playing â like the minimax result for two-player zero-sum games and dominant strategies generally. To presume precisely how other people will behave is arrogant.
-
-% % A canonical work in Constructive Economics would include the design, implementation, and analysis of a novel structure. Of course, such projects take a lot of time (and often, money) to implement, so making them real may not be directly feasible. But we should also embrace descriptions of practical systems that could be implemented, where here practical means a workable solution to an issue people are actually encountering. Research that might apply to auctions, doesnât. At the same time, just because a market already exists shouldnât exempt it from study. Markets should be regarded as natural phenomena, and their outputs should be subject to the Scientific Method. Just how do markets work, anyway?
-
-% % Now letâs talk about what isnât constructive:
-
-% % Making real stuff is not the same as discarding un-real stuff. Work that describes whatâs not possible should be treated warily. Oftentimes, such impossibilities are driven by modeling assumptions that donât hold in practice. Itâs much better to observe something actually happening in the real world and work back from that (e.g., The Rural Hospital Theorem)
-
-% % Constructive Economics rejects the developing movement which argues that people are best modeled as perfectly rational agents that canât solve NP hard problems. This is grafting two unrealistic paradigms on top of one another, producing a Frankenstein of shitty modeling.
-
-% % Where Do We Go From Here?
-
-% % Constructive Economics means embracing new fields. We need to pay more attention to details that are usually ignored, like interaction interfaces, which can have huge impacts on results. Furthermore, some of the most innovative economic structures of the last decade have emerged from outside the academic community, on Wall Street. Nobody in Computer Science writes papers on new kinds of mortgage bonds or interest rate swaps â but why not? Canât we make a better VADM?
-
-% % It also means abandoning some of the things weâve traditionally regarded as sacrosanct. Rationality flies right into the garbage the moment you start seriously looking at the behavior of real people. Common knowledge of joint probability distributions? Half the people using your market donât even know what a probability distribution is. Independent private valuations? Hell, even Iâve bid twice in an eBay auction. Worst-case bounds and hardness results? You might be surprised to find out how powerful CPLEX is.
-
-% % Thereâs lots of overlap with these ideas and other parts of Econ/CS: Behavioral game theory and average-case analysis, to name a couple. What makes Constructive Economics different? Back to the first dictum: make it real. When I think about traditional, non-constructive, economic thinking, the image I find most appropriate is that of âlecturing birds on flyingâ. Birds already fly pretty well. Letâs start building airplanes.
-
-
-
-% % %http://www.cs.cmu.edu/~sandholm/envy%20quotes%20for%20CAs.aaai10.pdf
-% % The Vickrey-Clarke-Groves mechanism (VCG) is ubiquitous
-% % in theoretical mechanism design. In the standard privatevalues
-% % setting, it is the revenue-maximizing mechanism
-% % among all incentive compatible individually rational effi-
-% % cient mechanisms [Krishna and Perry, 1997]. Unfortunately,
-% % in addition to being unwieldy to implement in practice, VCG
-% % suffers from a number of pathologies [Rothkopf et al., 1990,
-% % Sandholm, 2000, Ausubel and Milgrom, 2006, Rothkopf,
-% % 2007]. These include revenue non-monotonicity, in which
-% % adding another bidder can lower the sellerâs revenue, and
-% % receiving an arbitrarily small fraction of the revenue achievable
-% % by posting prices.
-% % To obtain higher revenues than VCG, one can explore
-% % inefficient mechanisms, which leads to combinatorial
-% % generalizations of the revenue-maximizing single-item
-% % auction [Myerson, 1981]. Revenue-maximizing mechanisms
-% % are unknown even for the (unrestricted) twoitem
-% % setting, and in general a concise description of
-% % the revenue-maximizing combinatorial auction cannot exist
-% % (unless P=NP) because that design problem is NPcomplete
-% % [Conitzer and Sandholm, 2004]. Some work has
-% % been done on automated mechanism design for finding highrevenue
-% % combinatorial auctions, but those approaches have
-% % not been used for large numbers of items [Likhodedov and
-% % Sandholm, 2004, 2005]. Even simple revenue-enhancemen
-% % approaches like setting reserve prices require good knowledge
-% % of a prior distribution over agent valuations, which may
-% % or may not be available depending on the setting.
-% % A different approach is to relax incentive compatibility.
-% % One recent stream of research in non-incentive compatible
-% % mechanisms has involved core-selecting combinatorial
-% % auctions. Mechanisms of this class were used in the recent
-% % successful spectrum license auction in the United Kingdom
-% % [Cramton, 2008a,b, Day and Cramton, 2008]. These
-% % mechanisms mitigate the poor revenue properties of the
-% % VCG mechanism without necessarily subscribing to a firstprice
-% % mechanism, which motivates significant underbidding.
-% % Selecting an outcome in the core yields a host of desirable
-% % properties that VCG lacks [Parkes, 2002], such as revenue
-% % monotonicity and resistance to bidding using multiple
-% % pseudonyms [Yokoo, 2006].
-% % The word iterative has taken on a confusing double meaning
-% % in combinatorial auction research. On the one hand,
-% % the auction process itself can be iterative, in which bids
-% % are solicited in a series of rounds until a termination condition
-% % is reached (for instance, no agent submits a new bid).
-% % This is the concept we explore in this paper. On the other
-% % hand, given a set of bids, a solution may be produced iteratively,
-% % for example, by raising the price of bundles in
-% % ascending rounds in a specific way until reaching a point
-% % in the core. Examples of this latter process include Parkes
-% % [1999], Ausubel and Milgrom [2002], Wurman et al. [2004],
-% % and Hoffman et al. [2006]. Unfortunately, these techniques
-% % tend to be too slow to be used in an explicitly multi-round
-% % auction, so these mechanisms work by inputting valuations
-% % into proxy agents that bid on behalf of the auction participants.
-% % Thus, price increases are a function of iterating on
-% % the bids of these proxy agents rather than multiple iterative
-% % rounds of buyers changing their valuations. As a consequence
-% % these auctions are essentially one-shot. Thus they
-% % do not achieve the main benefit of auctions that elicit the
-% % biddersâ offers via multiple interactions: multi-interaction
-% % mechanisms in effect give feedback to each bidder regarding
-% % what information is (not) needed from her, thus reducing the
-% % biddersâ deliberation effort in determining their own valuations.
-% % For a review of preference elicitation in combinatorial
-% % auctions see Sandholm and Boutilier [2006].
-% % One attempt to get around the inability to solve for a
-% % core solution quickly is the clock-proxy auction [Ausubel
-% % et al., 2006]. It maintains (fast-to-compute) linear prices
-% % over items through a number of bidding rounds before solv-
-
-
-
-
-% % How Pervasive is the Myerson-Satterthwaite Impossibility?
-% % Date of Original Version
-% % 2009
-% % Type
-% % Conference Proceeding
-% % Abstract or Description
-% % The Myerson-Satterthwaite theorem is a foundational impossibility result in mechanism design which states that no mechanism can be Bayes-Nash
-% % incentive compatible, individually rational, and not run a deï¬cit. It holds universally for priors that are continuous, gapless, and overlapping. Using automated mechanism design, we investigate how often the impossibility occurs over discrete valuation domains. While the impossibility appears to hold generally for settings with large numbers of possible valuations (approaching the continuous case), domains with realistic valuation structure circumvent the impossibility with surprising frequency. Even if the impossibility applies, the amount of subsidy required to achieve individual rationality and incentive compatibility is relatively small, even over large unstructured domains.
-
-
-
-
-% %http://arxiv.org/pdf/1505.00391.pdf
-% % Learning and Efficiency in Games with Dynamic
-% % Population
-% % Thodoris Lykouris*
-% % Department of Computer Science, Cornell University, Gates Hall, Ithaca, NY 14853, USA, teddlyk@cs.cornell.edu
-% % Vasilis Syrgkanis
-% % Microsoft Research, New York City, 641 Avenue of Americas, New York, NY 10011, vasy@microsoft.com
-% % Eva Tardos ÂŽ â 
-% % Department of Computer Science, Cornell University, Gates Hall, Ithaca, NY 14853, USA, eva@cs.cornell.edu
-% % We study the quality of outcomes in repeated games when the population of players is dynamically
-% % changing and participants use learning algorithms to adapt to the changing environment. Game theory
-% % classically considers Nash equilibria of one-shot games, while in practice many games are played repeatedly,
-% % and in such games players often use algorithmic tools to learn to play in the given environment. Learning in
-% % repeated games has only been studied when the population playing the game is stable over time.
-% % We analyze efficiency of repeated games in dynamically changing environments, motivated by application
-% % domains such as packet routing and Internet ad-auctions. We prove that, in many classes of games, if players
-% % choose their strategies in a way that guarantees low adaptive regret, then high social welfare is ensured,
-% % even under very frequent changes. This result extends previous work, which showed high welfare for learning
-% % outcomes in stable environments. A main technical tool for our analysis is the existence of a solution to
-% % the welfare maximization problem that is both close to optimal and relatively stable over time. Such a
-% % solution serves as a benchmark in the efficiency analysis of learning outcomes. We show that such stable
-% % and near-optimal solutions exist for many problems, even in cases when the exact optimal solution can be
-% % very unstable. We develop direct techniques to show the existence of a stable solution in some classes of
-% % games. Further, we show that a sufficient condition for the existence of stable solutions is the existence of
-% % a differentially private algorithm for the welfare maximization problem. We demonstrate our techniques by
-% % focusing on three classes of games as examples: simultaneous item auctions, bandwidth allocation mechanisms
-% % and congestion games
-
-
-% % The goal of this paper is to understand the quality of outcomes of games and simple mechanisms
-% % in a dynamic environment. The Internet allows for the repeated strategic interaction of many entities
-% % with constantly changing parameters and participants. Primary examples of such interactions
-% % include online advertising auction platforms, packet routing and allocation of cloud computing
-% % resources. Understanding whether the constant change in these strategic environments can severely
-% % damage the efficiency of the corresponding system, as compared to the hypothetical centralized
-% % optimal, is of prime importance as these systems constitute the cornerstone of the online economy.
-% % For example, advertising provides close to 90% of Googleâs revenue (Google 2015).
-% % Classical economic analysis of the interaction of strategic agents assumes that players reach a
-% % stable outcome where all players are mutually best-responding to each othersâ actions (or considers
-% % mechanisms that are dominant strategy solvable). Dynamic environments, with high volume
-% % interactions of small individual value or cost, such as packet routing or ad-auctions, are better
-% % modeled as repeated games with learning players. Nash equilibria of the one-shot game correspond
-% % to stable outcomes repeated in each iteration, where the players have no regret for their choice of
-% % strategies. Hence, analyzing the quality of outcomes in repeated games via the price of anarchy
-% % (Koutsoupias and Papadimitriou 1999) assumes that the repeated game reaches a stable, stationary
-% % outcome. Such an analysis of price of anarchy of one-shot Nash equilibria has received large
-% % attention in the past few years in both the computer science and operations research community
-% % and in a plethora of application domains such as routing games (Roughgarden and Tardos 2002,
-% % Correa et al. 2003), bandwidth allocation (Johari and Tsitsiklis 2004), strategic supply among
-% % firms (Johari and Tsitsiklis 2011) and online ad-auctions (Caragiannis et al. 2015) (see e.g. Chapters
-% % 17 to 21 of (Nisan et al. 2007) for a survey).
-% % A more attractive model of player behavior in such repeated environments is to assume players
-% % use a form of algorithmic learning. Modeling players as learners is especially appealing in online
-% % auctions, as individual auctions provide very little value, costing only a few cents to a few dollars
-% % each, so using experimentation to learn from the data is natural. Many advertisers use sophisticated
-% % optimization tools or services to optimize their bidding, such as Bluekai1 or AdRoll2
-% % .
-% % It is well known that in most games natural game play does not lead to equilibria, under any
-% % definition of ânatural playâ (see e.g. Chapter 7 of (Hart and Mas-Colell 2012)). In fact, results on
-% % polynomial time computability of Nash equilibria of general games are mostly negative: finding
-% % equilibria is computationally hard (see (Daskalakis 2009) for a survey).
-
-% % Even with computational concerns aside, the game that the participants are playing at each
-% % time-step and the participants they are playing against, can change at any time without even the
-% % players realizing it or being able to form any distributional belief. Hence, even the concept of a
-% % Nash equilibrium is debatable in such an adversarially evolving setting, as the players donât even
-% % have the information necessary to calculate their expected utility at each time-step. Instead they
-% % observe their utility from the action they took or from any alternative action they could have taken,
-% % only after the fact. In such an evolving setting, players can base their actions on past experience.
-% % A particular class of learning behaviors, no-regret learning, emerged as a nice way to capture
-% % the intuition that players learn to play appropriate strategies over time without necessitating
-% % convergence to a stationary equilibrium. A stationary distribution that is also a no-regret learning
-% % outcome corresponds to a Nash equilibrium of the one shot game, and in this sense, learning
-% % outcomes generalize Nash equilibrium. More importantly, there are several simple and natural
-% % algorithms that achieve the no-regret property (e.g. regret matching (Hart and Mas-Colell 2000),
-% % multiplicative weight updates (Arora et al. 2012)). However, no-regret does not preclude the use
-% % of possibly much more sophisticated tools, including using the above learning algorithms with
-% % more complex benchmarks. Achieving small regret is a relatively simple expectation from bid
-% % optimization tools.
-% % Blum et al. (2006, 2008) consider regret-minimization as a model of player behavior in repeated
-% % games, and study the average inefficiency of the outcome, coining the term price of total anarchy
-% % for the worst-case ratio between the optimal objective value and the average objective value when
-% % players use a no-regret algorithm. In a sequence of play all players achieve the no-regret property, if
-% % and only if the empirical distribution of strategy vectors is a coarse correlated equilibrium, hence the
-% % price of total anarchy is the ratio of the socially optimal welfare to the welfare at the worst coarse
-% % correlated equilibrium. Roughgarden (2009) observed that many of the Nash equilibrium price
-% % of anarchy bounds are shown via a proof technique he called smoothness, and such proofs easily
-% % extend also to show bounds on the quality of coarse correlated equilibria. Syrgkanis and Tardos
-% % (2013) extend smoothness to simple mechanisms, such as independent item auctions.
-% % However, this learning outcome analysis is based on the strong assumption that the underlying
-% % environment and player population is stable. The reason for this requirement is easy to understand:
-% % with the game and the players stable, there is a fixed optimal solution, and a fixed strategy, that
-% % each player i would need to play (action a
-% % â
-% % i
-% % ) as his or her part for achieving the optimum. To
-% % guarantee high social welfare via the smoothness approach, all we need is that each player i doesnât
-% % regret not playing this optimal action a
-% % â
-% % i
-% % . No-regret learning guarantees exactly this; player i will
-% % not regret any fixed strategy with hindsight, including strategy a
-% % â
-% % i
-% % . However, online environments
-% % are typically not stable.
-
-
-% % In this paper, we study learning outcomes in games with a dynamically changing player population.
-% % As stated in (Fudenberg and Levine 1998, p. 4), the fact that players extrapolate across
-% % games they view as similar is an important reason learning has relevance in a real-world situation.
-% % A repeated game with an evolving population is exactly a setup where players are asked to play
-% % repeatedly in similar games. Rather than aiming to predict the exact outcome, our goal is to predict
-% % properties of outcomes, such as their efficiency, i.e. the price of anarchy.
-% % In a changing game environment, we need a slightly stronger notion of regret minimization.
-% % No-regret learning aims to select strategies that do at least as well on the average over a sequence
-% % of steps as the best single strategy would have done in hindsight. With the game environment and
-% % population changing, a single best strategy in hindsight gives a really weak benchmark. Players,
-% % using good learning algorithms, should be able to adapt to the changing environment, and such
-% % adaptation may be very useful with the population changing over time. For example, in the context
-% % of routing games, a player with many route options, may want to adjust their route choices
-% % depending which part of the network is more congested, or in auction games, a player may want
-% % to bid for items that are less in demand.
-% % Hazan and Seshadhri (2007) formally introduced the stronger notion of adaptive regret that we
-% % will use, bounding the average regret over any sub-interval of steps [Ï1, Ï2), compared to a single
-% % best action over this interval in hindsight. The study of adaptive learning goes back much further:
-% % the work of Lehrer (2003) and Blum and Mansour (2007) studied generalizations of adaptive regret
-% % prior to (Hazan and Seshadhri 2007). Clearly short intervals will result in relatively high regret with
-% % any learning algorithm, but adaptive learning algorithms guarantee for the player that the cumulative
-% % regret grows sub-linearly with the length of the interval. Most adaptive learning algorithms
-% % are constructed by modifying classical no-regret learning algorithms to stop relying too heavily
-% % on experience from the distant past. We believe that such adaptive learning is a better model of
-% % behavior when strategic agents (such as bidders in online auctions) use sophisticated optimization
-% % tools. The current best adaptive learning algorithm is a natural adaptation of the classical Hedge
-% % algorithm, AdaNormalHedge, due to Luo and Schapire (2015). With this framework in mind, we
-% % ask the following main question:
-% % How much rate of change can a system admit to sustain approximate efficiency, when its
-% % participants are adaptive learners?
-% % Our Results. We show that in large classes of games, if players choose their strategies in a
-% % way that guarantees low adaptive regret, this ensures high social welfare, even under surprisingly
-% % high turnover. To model a changing environment we consider a dynamic player population where
-% % between every pair of iterations each player leaves independently with a (small) probability p and
-% % is replaced by an arbitrary new player, implying that in expectation a p fraction of the population
-
-
-
-% % % http://people.csail.mit.edu/smweinberg/thesis.pdf
-% % Abstract
-% % In traditional algorithm design, no incentives come into play: the input is given, and your algorithm
-% % must produce a correct output. How much harder is it to solve the same problem when the input
-% % is not given directly, but instead reported by strategic agents with interests of their own? The
-% % unique challenge stems from the fact that the agents may choose to lie about the input in order to
-% % manipulate the behavior of the algorithm for their own interests, and tools from Game Theory are
-% % therefore required in order to predict how these agents will behave.
-% % We develop a new algorithmic framework with which to study such problems. Specifically, we
-% % provide a computationally efficient black-box reduction from solving any optimization problem on
-% % âstrategic input,â often called algorithmic mechanism design to solving a perturbed version of that
-% % same optimization problem when the input is directly given, traditionally called algorithm design.
-% % We further demonstrate the power of our framework by making significant progress on several
-% % long-standing open problems. First, we extend Myersonâs celebrated characterization of single
-% % item auctions [Mye81] to multiple items, providing also a computationally efficient implementation
-% % of optimal auctions. Next, we design a computationally efficient 2-approximate mechanism
-% % for job scheduling on unrelated machines, the original problem studied in Nisan and Ronenâs paper
-% % introducing the field of Algorithmic Mechanism Design [NR99]. This matches the guarantee of
-% % the best known computationally efficient algorithm when the input is directly given. Finally, we
-% % provide the first hardness of approximation result for optimal mechanism design.
-
-
-%can we make use of http://arxiv.org/pdf/1606.06244v2.pdf
-% log barrier regularization with importance sampling that guarantees fast convergence of O(d log T/Ç«) 
-% note they make no 
-
-
-
-
-%https://arxiv.org/pdf/1201.6429v2.pdf
-% Bounding the inefficiency of outcomes in generalized second price auctions.
-% . We show that the welfare generated by the auction in any equilibrium of bidding behavior is
-% at least a 1
-% Î·
-% -fraction of the maximum achievable welfare (i.e., the welfare the auction could generate knowing
-% the player types and quality factors in advance). The value of Î· measures the robustness of an auction
-\cite{caragiannis2015bounding}
-% The Generalized Second Price (GSP) auction is the primary auction used for monetizing the use of the Internet. It is well-known that truthtelling is not a dominant strategy in this auction and that inefficient equilibria can arise. Edelman et al. (2007) [11] and Varian (2007) [36] show that an efficient equilibrium always exists in the full information setting. Their results, however, do not extend to the case with uncertainty, where efficient equilibria might not exist.
-
-% In this paper we study the space of equilibria in GSP, and quantify the efficiency loss that can arise in equilibria under a wide range of sources of uncertainty, as well as in the full information setting. The traditional Bayesian game models uncertainty in the valuations (types) of the participants. The Generalized Second Price (GSP) auction gives rise to a further form of uncertainty: the selection of quality factors resulting in uncertainty about the behavior of the underlying ad allocation algorithm. The bounds we obtain apply to both forms of uncertainty, and are robust in the sense that they apply under various perturbations of the solution concept, extending to models with information asymmetries and bounded rationality in the form of learning strategies.
-
-% We present a constant bound (2.927) on the factor of the efficiency loss (price of anarchy) of the corresponding game for the Bayesian model of partial information about other participants and about ad quality factors. For the full information setting, we prove a surprisingly low upper bound of 1.282 on the price of anarchy over pure Nash equilibria, nearly matching a lower bound of 1.259 for the case of three advertisers. Further, we do not require that the system reaches equilibrium, and give similarly low bounds also on the quality degradation for any no-regret learning outcome. Our conclusion is that the number of advertisers in the auction has almost no impact on the price of anarchy, and that the efficiency of GSP is very robust with respect to the belief and rationality assumptions imposed on the participants.
-
-% The now-standard mechanism for resolving online search advertisement requires that each advertiser
-% places a bid that represents the maximum she would be willing to pay if a user clicked her ad. These bids
-% are then resolved in an automated auction whenever ads are to be displayed. By far the most popular bidresolution
-% method currently in use is the Generalized Second Price (GSP) auction, a generalization of the
-% well-known Vickrey auction. In the GSP auction, there are multiple ad âslotsâ of varying appeal (e.g. slots
-% at the top of the page are more effective). In two seminal papers Edelman et al. [11] and Varian [36] propose
-% a simple model of the GSP auction that we will also adopt in this paper. They observe that truthtelling is
-% not a dominant strategy under GSP, and GSP auctions do not generally guarantee the most efficient outcome
-% (i.e., the outcome that maximizes social welfare). Nevertheless, the use of GSP auctions has been extremely
-% successful in practice. This begs the question: are there theoretical properties of the Generalized Second
-% Price auction that would explain its prevalence? Edelman et al. [11] and Varian [36] provide a partial
-% answer to this question by showing that, in the full information setting, a GSP auction always has a Nash
-% equilibrium that has same allocation and payments as the VCG mechanism. [11] and [36] give only informal
-% arguments to justify the selection of envy-free equilibria.
-% We argue that the Generalized Second Price auction is best modeled as a Bayesian game of partial
-% information. Modeling GSP as a full information game assumes that each auction is played repeatedly with
-% the same group of advertisers, and during such repeated play the bids stabilize. The resulting stable set of
-% bids is well modeled by a full information Nash equilibrium. The analyses of Edelman et al. [11] and Varian
-% [36] provide important insight into the structure of the GSP auction under this assumption. However, the set
-% and types of players can vary significantly between rounds of a GSP auction. Each query is unique, in the
-% sense that it is defined not only by the set of keywords invoked but also by the time the query was performed,
-% the location and history of the user, and many other factors. Search engines use complex machine learning
-% algorithms to select the ads, and more importantly to determine appropriate quality scores (or factors) for
-% each advertiser for a particular query, and then decide which advertiser to display. This results in uncertainty
-% both about the competing advertisers, and about quality factors. We model this uncertainty by viewing the
-% GSP auction as a Bayesian game, and ask: what are the theoretical properties
-
-% Our
-% framework of semi-smooth games is an extension of Roughgardenâs [31] smoothness framework, that allows
-% dealing with correlated distributions. Correlated distributions are an important feature of the GSP model,
-% especially when modeling quality factors, as the same facts affect clickability and hence the quality factors
-% for all advertisers. (For instance, an ad shown to a bot will not get a click independent of the advertiser.)
-
-
-% For mechanisms that are not dominant strategy truthful, like GSP auctions, price of anarchy analysis is a
-% powerful tool for quantifying the potential loss of efficiency at equilibrium. We conduct this analysis both in
-% a full information setting without uncertainty (in which the price of anarchy is surprisingly small, indicating
-% a loss of at most 22% of the welfare), but also in a setting with uncertainty and a very general information
-% structure, in which we prove that the price of anarchy is still bounded by a small constant. This shows
-% that while the GSP auction is not guaranteed to be efficient, it is a reasonably good design, as remarkably,
-% the welfare loss of these auctions is bounded by a value that does not depend on the number of players,
-% the number of advertisements for sale, or the prior distributions on player types. In contrast, the variant
-% of the Generalized Second Price auction that orders advertisers by their bid ignoring quality factors, which
-% has been historically used by Yahoo!, results in a quality loss proportional to the range of quality factors,
-% while randomly assigning advertisers to slots can result in a loss of efficiency proportional to the number of
-% advertisers.
-% One feature of our results is that they hold for a variety of models regarding the rationality and the beliefs
-% of the players. This robustness is particularly important in large-scale auctions conducted over the Internet,
-% where assumptions of full information and/or perfect rationality of the participants are unreasonably strong.
-
-
-
-%for furhter bandit with self interested advisors
-
-% Efficient Partial Monitoring with Prior Information
-% Hastagiri P Vanchinathan
-% Dept. of Computer Science
-% ETH Zurich, Switzerland Âš
-% hastagiri@inf.ethz.ch
-% Gabor Bart ÂŽ okÂŽ
-% Dept. of Computer Science
-% ETH Zurich, Switzerland Âš
-% bartok@inf.ethz.ch
-% Andreas Krause
-% Dept. of Computer Science
-% ETH Zurich, Switzerland Âš
-% krausea@ethz.ch
-% Abstract
-% Partial monitoring is a general model for online learning with limited feedback: a
-% learner chooses actions in a sequential manner while an opponent chooses outcomes.
-% In every round, the learner suffers some loss and receives some feedback based on
-% the action and the outcome. The goal of the learner is to minimize her cumulative
-% loss. Applications range from dynamic pricing to label-efficient prediction to dueling
-% bandits. In this paper, we assume that we are given some prior information about the
-% distribution based on which the opponent generates the outcomes. We propose BPM, a
-% family of new efficient algorithms whose core is to track the outcome distribution with
-% an ellipsoid centered around the estimated distribution. We show that our algorithm
-% provably enjoys near-optimal regret rate for locally observable partial-monitoring
-% problems against stochastic opponents. As demonstrated with experiments on synthetic
-% as well as real-world data, the algorithm outperforms previous approaches, even for very
-% uninformed priors, with an order of magnitude smaller regret and lower running time.
-
-\subsection{Reducing Mechanism Design to Learning}
-
-%https://arxiv.org/pdf/1109.2067v1.pdf
-% We consider the problem of converting an arbitrary approximation algorithm for a single-parameter optimization problem into a computationally efficient truthful mechanism. We ask for reductions that are black-box, meaning that they require only oracle access to the given algorithm and in particular do not require explicit knowledge of the problem constraints. Such a reduction is known to be possible, for example, for the social welfare objective when the goal is to achieve Bayesian truthfulness and preserve social welfare in expectation. We show that a black-box reduction for the social welfare objective is not possible if the resulting mechanism is required to be truthful in expectation and to preserve the worst-case approximation ratio of the algorithm to within a subpolynomial factor. Further, we prove that for other objectives such as makespan, no black-box reduction is possible even if we only require Bayesian truthfulness and an average-case performance guarantee.
-
-
-
-%http://www.cs.cmu.edu/~ninamf/papers/md_ml_jcss.pdf
-% We use techniques from sample-complexity in machine learning to reduce problems
-% of incentive-compatible mechanism design to standard algorithmic questions, for a
-% broad class of revenue-maximizing pricing problems. Our reductions imply that for
-% these problems, given an optimal (or Î²-approximation) algorithm for an algorithmic
-% pricing problem, we can convert it into a (1 + )-approximation (or Î²(1 + )-
-% approximation) for the incentive-compatible mechanism design problem, so long as
-% the number of bidders is sufficiently large as a function of an appropriate measure
-% of complexity of the class of allowable pricings. We apply these results to the problem
-% of auctioning a digital good, to the attribute auction problem which includes a
-% wide variety of discriminatory pricing problems, and to the problem of item-pricing
-% in unlimited-supply combinatorial auctions. From a machine learning perspective,
-% these settings present several challenges: in particular, the âloss functionâ is discontinuous,
-% is asymmetric, and has a large range. We address these issues in part by
-% introducing a new form of covering-number bound that is especially well-suited to
-% these problems and may be of independent interest.
-
-
-
-%\cite{epstein1999revelation}
-% In modelling competition among mechanism designers, it is necessary to specify the set of feasible mechanisms. These specifications are often borrowed from the optimal mechanism design literature and exclude mechanisms that are natural in a competitive environment, for example, mechanisms that depend on the mechanisms chosen by competitors. This paper constructs a set of mechanisms that is universal in that any specific model of the feasible set can be embedded in it. An equilibrium for a specific model is robust if and only if it is an equilibrium also for the universal set of mechanisms. A key to the construction is a language for describing mechanisms that is not tied to any preconceived notions of the nature of competition. 
-
-
-simon1961aggregation,
-Aggregation of variables in dynamic systems
-
-
-
-\cite{kremer2014implementing}
-%We study a novel mechanism design model in which agents each arrive sequentially and choose one action from a set of actions with unknown rewards. The information revealed by the principal affects the incentives of the agents to explore and generate new information. We characterize the optimal disclosure policy of a planner whose goal is to maximize social welfare. One interpretation of our result is the implementation of what is known as the âwisdom of the crowd.â This topic has become increasingly relevant with the rapid spread of the Internet over the past decade.
-
-
-
-\cite{kremer2002information}
-Information aggregation in common value auctions (in the limit as the number of bidders becomes large)
-depends on information of pivotal bidder
-
-
- Ronald Harstad, Aleksandar Pekec, Ilia Tsetlin (2008), âInformation Aggregation in
-Auctions with an Unknown Number of Bidders,â Games and Economic Behavior 62
-
-% from http://www.ssc.wisc.edu/~dquint/econ805%202008/econ%20805%20lecture%2010.pdf
-
-% Ilan Kremer puts it this way: âA key question in information economics and finance
-% is whether prices aggregate information in a competitive environment. That is, when
-% agents are endowed with private information, does competition lead in the limit to
-% prices that would occur if all information were public?â
-
-
-
-% Pesendorfer and Swinkels, (âThe Loserâs Curse and Information Aggregation in Common
-% Value Auctions,â Econometrica 1997, recently added to the syllabus) explain
-% Milgromâs result this way: when k is fixed but n grows unboundedly large, the winnerâs
-% curse becomes overwhelming, since I am now conditioning on basically an infinite
-% number of competitors all (or nearly all) having signals lower than mine. Thus, unless
-% individual high signals are extremely powerful, âhighâ bids are never optimal; but
-% since the true value will sometimes be high, information aggregation is likely to fail
-
-% P and S define double largeness along the series of auctions {Ar} as both the
-% number of winners and the number of losers in the auction going to infinity, that is,
-% the sequence satisfies double largeness if both kr and nr â kr go to infinity as r â â.
-% â¢ Double largeness turns out to be both necessary and sufficient for information aggregation:
-% Theorem 2. The sequence of auctions {Ar} satisfies full information aggregation
-% (that is, pr âv converges to 0 in probability) if and only if it satisfies double-largeness.
-
-
-% Ilan Kremer (âInformation Aggregation in Common Value Auctions,â Econometrica
-% 2002) greatly simplifies the proofs of many of the existing results, and recasts things
-% in terms of some new definitions.
-% â¢ Kremer also gives an example where signals get less informative as the number of
-% bidders grows and information fails to aggregate. He does it in a bit of an âedge
-% case,â but itâs still an interesting example.
-% â¢ Suppose that in auction r, there are r sellers and 2r buyers, that is, kr = r and
-% nr = 2r. Suppose that signals are uniformly U[0, 1], and that
-% V =
-% (
-% 1 if 1
-% n
-% Psn >
-% 1
-% 2
-% 0 otherwise
-% The pivotal bidder will have signal very close to 1
-% 2
-% , and will bid as if half the signals
-% are below his and half above; but because of the discontinuity, this could be either 0
-% or 1 with positive probability, so information aggregation fails.
-
-
-
-
-% https://web.stanford.edu/~skrz/survey_learning_Horner_Skrzypacz.pdf
-% 2.1 Strategic Bandits
-% Strategic bandit models are game-theoretic versions of standard bandit models. While the standard
-% âmulti-armed banditâ describes a hypothetical experiment in which a player faces several slot
-% machines (âone-armed banditsâ) with potentially different expected payouts, a strategic bandit involves
-% several players facing (usually, identical) copies of the same slot machine. Players want to
-% stick with the slot machine if and only if the best payout rate makes it worth their time, and learn
-% not only from their own outcomes but also from their neighbors.
-% Equilibrium strategies are not characterized by simple cut-offs in terms of the common belief. As
-% a result, solutions to strategic bandits are only known for a limited class of distributions, involving
-% two states of the world only. In Bolton and Harris (1999, BH), the observation process (of payoffs)
-% follows a Brownian motion, whose drift depends on the state. In Keller, Rady and Cripps (2005,
-% KRC), it follows a simple Poisson process, with positive lump-sums (âbreakthroughsâ) occurring
-% at random (exponentially distributed) times if and only if the arm is good. Keller and Rady (2015,
-% KR15) solve the pola

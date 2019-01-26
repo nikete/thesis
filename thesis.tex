@@ -1,4 +1,4 @@
-	\documentclass[11pt, a4paper]{book}
+\documentclass[11pt, a4paper]{book}
 
 \input{macros}            
 
@@ -51,25 +51,26 @@
 
 \part{Compliance Aware Bandits}
 
-\chapter{Model and Algorithms}
+\chapter{Model and Algorithms} \label{cha:bandit}
 \input{bandit/intro.tex}
 \input{bandit/model.tex}
 \input{bandit/nonstationaryalgo.tex}
 \input{bandit/thompalgo.tex}
 
-\chapter{Empirical Evaluation}
+\chapter{Empirical Evaluation} \label{cha:empirical}
 \input{bandit/results.tex}
 
 
 \part{Mechanism for Optimal Decision Elicitation from Many Experts}
 
-\chapter{A Single Decision}
-\label{cha:market}
-%\epigraph{Give the people what they want\\ when they want it \\
-%And they wants it all the time}{Parliament \\ Supergroovalisticprosifunkstication}
+
+\epigraph{Give the people what they want\\ when they want it \\
+And they wants it all the time}{Parliament \\ Supergroovalisticprosifunkstication}
+
+\chapter{A Single Decision} \label{cha:market}
 \input{advice/market}
 
-\chapter{A Sequence of Subjects}
+\chapter{A Sequence of Subjects} \label{cha:twosided}
 %We consider a natural setting that generalizes both previous models.
 \input{advice/twosides}
 
@@ -80,47 +81,44 @@
 
 %%
 %\lstinputlisting[language=Python, firstline=37, lastline=45]{source_filename.py}
-\appendix 
+%\appendix 
 % \chapter{Source Code to Simulations}
 % \lstinputlisting[language=Python]{bandit/sim.py}
 
-\chapter{Results Tables for Simulations}
+%\chapter{Results Tables for Simulations}
 
-\rotatebox{90}{
-\begin{table}
-\input{bandit/tables/stroke.tex}
-\caption{International Stroke Trial Simulation Results}
-\end{table}}
+% \begin{table}
+% \input{bandit/tables/stroke.tex}
+% \caption{International Stroke Trial Simulation Results}
+% \end{table}
 
-\rotatebox{90}{
-\begin{table}
-\input{bandit/tables/ex1.tex}
-\caption{Example 1 Simulation Results}
-\end{table}}
+% \rotatebox{90}{
+% \begin{table}
+% \input{bandit/tables/ex1.tex}
+% \caption{Example 1 Simulation Results}
+% \end{table}}
 
-\rotatebox{90}{
-\begin{table}
-\input{bandit/tables/ex2.tex}
-\caption{Example 2 Simulation Results}
-\end{table}}
+% \begin{table}
+% \input{bandit/tables/ex2.tex}
+% \caption{Example 2 Simulation Results}
+% \end{table}
 
-\rotatebox{90}{
-\begin{table}
-\input{bandit/tables/ex3.tex}
-\caption{Example 3 Simulation Results}
-\end{table}}
+%\begin{table}
+%\input{bandit/tables/ex3.tex}
+%\caption{Example 3 Simulation Results}
+%\end{table}	
 
-\rotatebox{90}{
-\begin{table}
-\input{bandit/tables/ex4.tex}
-\caption{Example 4 Simulation Results}
-\end{table}}
+% \rotatebox{90}{
+% \begin{table}
+% \input{bandit/tables/ex4.tex}
+% \caption{Example 4 Simulation Results}
+% \end{table}}
 
-\rotatebox{90}{
-\begin{table}
-\input{bandit/tables/ex5.tex}
-\caption{Example 5 Simulation Results}
-\end{table}}
+% \rotatebox{90}{
+% \begin{table}
+% \input{bandit/tables/ex5.tex}
+% \caption{Example 5 Simulation Results}
+% \end{table}}
 
 
 
