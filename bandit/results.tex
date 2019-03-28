@@ -14,18 +14,18 @@ The full source code and electronic versions of the simulation results can be fo
 \section{International Stroke Trial Simulation}
 \label{sec:data}
 
-The simulation data is taken from The International Stroke Trial (IST) database. A randomised trial where patients believed to have acute ischaemic stroke are treated with: aspirin, subcutaneous heparin, both, or neither \cite{ist:97}.
+The simulation data is taken from The International Stroke Trial (IST) database. A randomized trial where patients believed to have acute ischemic stroke are treated with: aspirin, subcutaneous heparin, both, or neither (\cite{ist:97}).
 Complete compliance and mortality data at 14 days for each of 19,422 patients
 To the best of our knowledge, this is the only publicly available clinical trial with compliance data that is suitable for simulations of compliance aware algorithms.
 
-An extensive search failed to find other suitable open randomized clinical trials datasets that included compliance. A systematic review by  \cite{ebrahim:14} identified only 37 reanalyses of patient-level data from previously published randomized control trials; only five were performed by entirely independent authors.
-Data from drug abuse clinical trials is used in \cite{kuleshov:14}. However, non-compliance is coded as failure so this source, and drug dependence treatments more generally, cannot be used in our setting.  
+An extensive search failed to find other suitable open randomized clinical trials datasets that included compliance. A systematic review by  (\cite{ebrahim:14}) identified only 37 reanalyses of patient-level data from previously published randomized control trials; only five were performed by entirely independent authors.
+Data from drug abuse clinical trials is used in (\cite{kuleshov:14}). However, non-compliance is coded as failure so this source, and drug dependence treatments more generally, cannot be used in our setting.  
 
 Given there is substantial loss of follow up at the 6 month measure we focus on the 14 day outcome.
 
 
-\subsection{Construction of Actual Actions from Compliance Variables.}
-The main sources of non-compliance in the dataset are: the initial event not a stroke, clinical decision, administration problem, missed out more than 3 doses. A detailed table and counts of these are included in the datasets open access article \cite{ist:11}. 
+\subsection{Construction of Actual Actions from Compliance Variables}
+The main sources of non-compliance in the dataset are: the initial event not a stroke, clinical decision, administration problem, missed out more than 3 doses. A detailed table and counts of these are included in the datasets open access article ( \cite{ist:11}). 
 While these might initially seem like reasons to discard the patients from the dataset, non-compliance is not necessarily random. Discarding these patients could cause algorithms to have unbounded regret (since the loss we care about is over all patients). In particular, misdiagnoses, administrative problems, not taking doses and other sources of noncompliance can be confounded with a patient's socio-economic status, age, and overall health. 
 
 To construct our ``actual arm'' variable, we assume that non-compliance entails taking the opposite treatment.
@@ -33,7 +33,7 @@ This is well-defined in the Aspirin case, which only has two arms, and thus non-
 Assigning an actual arm pulled in the heparin part of the trial is less clear cut, as it has three arms: none, low and medium. We construct the actual arm variable by combining assignment and non-compliance. Non-compliance with respect to low and medium assigned treatments is coded as  not-takers, while non-compliance by a patient prescribed ``none'' is coded as low.
 
 
-\subsection{Result}
+\subsection{Results}
 
 \begin{figure}
 \begin{center}
@@ -43,30 +43,32 @@ Assigning an actual arm pulled in the heparin part of the trial is less clear cu
 \end{center}
 \end{figure} 
 
-We simulate 10,000 patients per run, which allows us to not oversample the data in any single simulation; 2000 runs are performed, all algorithms are tested against the same draw of the run to minimize unnecessary sampling variation. 
+We simulated 10,000 patients per run, which allowed us to not oversample the data in any single simulation; 2000 runs were performed, all algorithms were tested against the same draw of the run to minimize unnecessary sampling variation. 
 
-The \texttt{EXP3} gamma parameter was set ahead of time to 0.085, a choice determined by the regret-bounds for $T=10000$ and $K=2$ or $3$. Epsilon-Greedy uses a standard annealing schedule. No data dependent parameter tuning was used.
-The simulation is carried out by creating a ``counter-factual patient'' by sampling (i.i.d.) one patient from each of the treatment and control groups in the clinical trial. If the algorithm selects the treatment, it then receives the reward and observes the action taken by the subject sampled form the treatment group, and vice versa for the control.
+The \texttt{EXP3} gamma parameter was set ahead of time to 0.085, a choice determined by the regret-bounds for $T=10000$ and $K=2$ or $3$. Epsilon-Greedy used a standard annealing schedule. No data dependent parameter tuning was used.
+The simulation was carried out by creating a ``counter-factual patient'' by sampling (i.i.d.) one patient from each of the treatment and control groups in the clinical trial. If the algorithm selected the treatment, it then receives the reward and observes the action taken by the subject sampled form the treatment group, and vice versa for the control.
 
 
-Empirically, \texttt{TB} achieves a surplus of 8.9 extra survivals (that is, human lives) with 95\% confidence interval $[8.1,9.7]$, relative to the randomized baseline.
-\texttt{HB} with \texttt{Epsilon Greedy} as the base algorithm achieves a surplus of 9.2 (CI: $[8.3,10.0]$)
-In contrast, the best performing strategy that is not compliance aware is Thompson sampling, which yields 7.9 extra survivals (CI: $[7.2,8.7]$). 
+Empirically, \texttt{TB} achieved a surplus of 8.9 extra survivals (that is, human lives) with 95\% confidence interval $[8.1,9.7]$, relative to the randomized baseline.
+\texttt{HB} with \texttt{Epsilon Greedy} as the base algorithm achieved a surplus of 9.2 (CI: $[8.3,10.0]$)
+In contrast, the best performing strategy that was not compliance aware was Thompson sampling, which yielded 7.9 extra survivals (CI: $[7.2,8.7]$). 
 
-The gains are largely concentrated in the Aspirin trial, which is consistent with the lack of benefits or severe ill effects found in the original study \cite{ist:97} for heparin, and with the small but beneficial effect found for aspirin. 
+The gains were largely concentrated in the Aspirin trial, which is consistent with the lack of benefits or severe ill effects found in the original study \cite{ist:97} for heparin, and with the small but beneficial effect found for aspirin. 
 If the underlying treatment has no positive or negative effect, side-information after the fact alone cannot be helpful.
-Note that \actual, and to a lesser extent \comply, perform better than either \chosen\, or the hybrid algorithms. However, these cannot be used directly since no guarantees apply. The performance of the hybrids benefits from the information encoded in \actual\, and \comply\, whilst keeping the guarantees of \chosen. 
+Note that \actual, and to a lesser extent \comply, performed better than either \chosen\, or the hybrid algorithms. However, these are problematic be used directly since no guarantees apply, their worst case performance unbounc. The performance of the hybrids benefits from the information encoded in \actual\, and \comply\, whilst keeping the guarantees of \chosen. 
 
 
-A striking secondary finding is the strong interaction between the learning algorithm and the nature of the feedback used. In particular, \texttt{EXP3} performs extremely badly under both \actual\, and \comply, in both the aspirin and heparin simulations. As a result, it is remarkable is that \texttt{EXP3} performs well when used as a top-level algorithm in \texttt{HB} in both trials, and other algorithms on the same data with the same procotol are able to learn better than chosen, while \texttt{EXP3} does worse than random (note the \texttt{EXP3} guarantees are only for the \chosen\, protocol, so do not apply here).
+A striking secondary finding is the strong interaction between the learning algorithm and the nature of the feedback used. In particular our naive implementation of \texttt{EXP3} performed extremely badly under both \actual\, and \comply, in both the aspirin and heparin simulations. As a result, it is remarkable is that \texttt{EXP3} performs well when used as a top-level algorithm in \texttt{HB} in both trials, and other algorithms on the same data with the same protocol are able to learn better than chosen, while \texttt{EXP3} does worse than random (note the \texttt{EXP3} guarantees are only for the \chosen\, protocol, so do not apply here).
 
 
 
 \section{Synthetic Data}
 
 
-To better understand the behaviour of the algorithms in a more varied range of settings, we present results of simulations with synthetic data.
-The first simulation illustrates example~2. For comparison, $T$ is kept at 10,000, and consider the binary outcome case. We assign half the patients to rich and half to poor randomly. Rich patients always take the treatment and their outcome, which would otherwise be 1 with $p=1$, becomes 1 with  $p=0.75$. Poor patients only take the treatment when prescribed, their favourable outcome has probability $p=0.5$ without treatment; taking the treatment reduces the probability of a favourable outcome to $p=0.25$. Fig.~2 shows that the performance of \actual\, and \comply\, is much worse than \chosen\, and the hybrid algorithms.
+To better understand the behavior of the algorithms in a more varied range of settings, we present results of simulations with synthetic data.
+The first simulation illustrates example~2. For comparison, $T$ is kept at 10,000, and we simulated the binary outcome case. We assigned half the patients to rich and half to poor randomly. Rich patients always take the treatment and their outcome, which would otherwise be 1 with $p=1$, becomes 1 with  $p=0.75$. Poor patients only take the treatment when prescribed, their favorable outcome has probability $p=0.5$ without treatment; taking the treatment reduces the probability of a favourable outcome to $p=0.25$. Fig.~2 shows that the performance of \actual\, and \comply\, is much worse than \chosen\, and the hybrid algorithms.
+
+
 
 \subsection{Selection of treatment on correlated unobservables}
 
@@ -86,7 +88,7 @@ Consider a harmful treatment. Suppose there are two sub-populations with equal n
 
 
 
-\subsection{Samll T}
+\subsection{Small T}
 
 The second simulation concerns small $T$. A motivation for very small $T$ adaptive clinical trials is provided by rare diseases. The overall size of the patient population is by construction severely restricted in this setting.  The priors for the mechanisms of action are also often poorly understood, so potential alternative treatments can have radically different probabilities of success. We simulate a $T=12$ adaptive trial with binary outcomes, with two treatments and expected rewards drawn uniformly from the unit interval, and compliance uniformly at random. We sample 1,000 such simulations.
 While our bounds are vacuous in this settings, it is interesting that there is on average an  improvement from taking the noncompliance information into account.

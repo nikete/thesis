@@ -10,10 +10,9 @@
 
 
 Learning what action to take to maximize a reward is a fundamental problem in decision theory.
-
-
 We first provide a overview of the game theoretical background that underpins all aspects of this work.
 % The literatures on bandits and decision markets have remained largely separate, 
+
 We then present the building blocks from the two branches, bounded regret bandit algorithms and mechanism design, that are used in our contributions.
 We finalize the chapter by giving an overview of related work that we do not build upon, but which nonetheless informs or motivates our analysis, most notably the analysis of results from randomized controlled trials in the medical literature. 
 
@@ -42,8 +41,6 @@ This literature largely considers the underlying structures to be zero-sum and t
 
 When there are multiple agents beyond nature interacting, as in the case of elicitation from multiple experts for decision making, there are severe limits to what worst case analysis alone can yield. 
 In particular, the notions of the Nash Equilibrium( \cite{nash1950equilibrium}) and common knowledge (\cite{aumann1976agreeing} )provide a useful starting point to thinking about such settings, through they leave us with an embarrassment of riches in terms of the potential equilibrium set.
-
-
 
 \section{Online Learning}
 
@@ -113,6 +110,8 @@ Under independence of signal draws between agents, (\cite{jehiel2001efficient}) 
 To maximize the future social welfare in a dynamic setting, variations of the efficient (VCG) mechanism exist for relatively general dynamic settings (\cite{bergemann2010dynamic,parkes2003van,athey2007designing}).
 
 
+We focus on models where experts information is endowed to the agents, and has no cost of acquisition.
+
 Many settings of interest, including ours, do not in general have dominant strategy mechanisms. 
 The literature in microeconomics where mechanism design emerged has largely dealt with this by using a probability distribution over signals, and then treats the problem as one of \emph{bayesian} mechanism design.
 The designer then seeks to optimize the objective in expectation over this distribution, while the agents' incentives are relaxed relative to dominant strategies, to require that their actions be a best response in expectation to distribution of actions of other agents.
@@ -129,16 +128,32 @@ For any mechanism and equilibrium of the mechanism, there exists an incentive co
 The reason is that one can wrap the original non-incentive compatible mechanism with a mechanism that takes a report, assumed truthful, and simulates its optimal play in the original mechanism to pick its payments and allocations, thus achieving the same equilibrium but from the truthful reports. 
 This holds in a vast range of situations in both the Bayes-Nash and the Dominant Strategy sense of equilibrium. 
 This however fails to hold for natural settings in optimal decision elicitation, when agents only learn their types over time, or when the mechanism designer does not know the prior (and thus can't simulate).
-The learning of types of over time is inevitable in the learning setting where there is a sequence of subjects, while in one-off markets a common prior over the signal distribution seems almost impossible.
+The learning of types over time is inevitable in the learning setting where there is a sequence of subjects, while in one-off markets a common prior over the signal distribution seems almost impossible.
+
+
+
+\subsection{Interdependent Valuations}
+
+
+
+\subsection{ Information Acquisition and Efficient Mechanisms}
+
+% 
+cite{}
 
 
 
 \subsection{Bandit Algorithms as Mechanisms}
 
+
+A recent and notable exception to assuming that the algorithm in a bandit setting is able to implement any choice it desires is in the mechanism design literature around bandits, where (\cite{kremer2014implementing,mansour2015bayesian}).
+In this setting he principal is a social planer,  considered to be optimizing the welfare across a sequence of agents, and strategically reveals information about past outcomes to incentive agents to explore.
+
 A closely related literature to the work of this thesis is focused on the incentive properties of bandit algorithms for their subjects.
 At each step of the bandit problem, a new agent (subject), must select which arm to pull. 
 The study of this problem initiated in (\cite{kremer2014implementing}).
 The  incentive offered by the social planner is the recommended action, the planner does not offer payments for following the recommendation. This setting is studied in (\cite{mansour2015bayesian}) who provide a generic black box reduction from bandit algorithms with arbitrary context and (extra) feedback to incentive compatible mechanisms.
+
 The setting where payments are offered to the agents at each step in considered in (\cite{frazier2014incentivizing}).
 These works assume the central algorithm embodies a benevolent social planer that attempts to maximize social welfare, and focus on the incentives of the subjects.
 In contrast to these works, we assume away subjects incentive considerations, and instead focus on how to incentivize those providing the advice of which decision to take.
@@ -147,17 +162,27 @@ Another literature that studies bandit problems in a mechanism design framework 
 
 \section{Information Aggregation and Incentives}
 
+
+
 A literature in economics and particularly mechanism design is centered on when and how information can be aggregated from multiple agents that receive signals about the state of the world, and have various degrees of strategic sophistication in their actions.
 A definitive article on the topic with respect to the common prediction market and Arrow Debreu general equilibrium models is (\cite{ostrovsky2012information}), which also provides an excellent overview of the historical literature within economics.
 Ostrovsky studies information aggregation in dynamic markets with a finite number of partially informed strategic traders. 
 Trading takes place in a bounded time interval, and in every equilibrium; as time approaches the end of the interval, the market price of a \emph{separable} security converges in probability to its expected value conditional on the traders' pooled information. If the security is non-separable, then there exists a common prior over the states of the world and an equilibrium such that information does not get aggregated. 
-We will see how this non-separability carries over to decision markets in Chapter 5.
+
 
 In these models the fact that securities are settled unambiguously implies that the state of the world is eventually observed.
 A largely separate literature, motivated by crowdsourcing, considers how to create incentives to elicit information when the underlying state of the world is not observable to the mechanism. 
 In the initial mechanism (\cite{prelec2004bayesian,miller2005eliciting}), truth-telling is a strict Bayesian Nash Equilibrium. These mechanisms typically have many other non-truthful equilibria as well, and some of them may pay better than the truth telling equilibrium, motivating agents to coordinate on non-informative equilibria.
 A knowledge-free peer prediction mechanism that does not require knowledge of the information structure and can truthfully elicit private information for a set of information structures slightly smaller than the maximal set is proposed in (\cite{zhang2014elicitability}).
 (\cite{kong2016framework}) present a framework for information elicitation mechanisms where truth-telling is the highest paid equilibrium, even when the mechanism does not know the common prior.
+
+
+
+
+
+
+%Robust incentives A principal needs to make a decision, and contracts with an expert, who can obtain 
+%information relevant to the decision by exerting costly effort. \cite{carroll2019robust}
 
 
 
@@ -206,7 +231,7 @@ The equivalence between trading shares and eliciting beliefs from a single agent
 % %Note also that if each player behaves myopically in each period, the prediction that he will make is his posterior belief about the expected value of the security, given his initial information and the history of revisions up to that point, and thus the Ã¢ÂÂ¬ÃÂgameÃ¢ÂÂ¬ÃÂ turns into the communication process of Geanakoplos and Polemarchakis (1982).
 
 Initiating with the equivalence between market scoring rules and regularized follow-the-leader algorithms in (\cite{chen2010new}) and a series of follow up works (\cite{abernethy2013efficient, frongillo2012interpreting, hu2014multi, frongillo2015convergence}) map prediction markets to learning algorithms. 
-How the wealth (and thus accuracy of prices) is concentrated between informed trades in a sequence of markets, using a natural if specific trader model (Kelly bettors) is studied in (\cite{beygelzimer2012learning)}.
+How the wealth (and thus accuracy of prices) is concentrated between informed trades in a sequence of markets, using a natural if highly specific trader model (Kelly bettors, equivalently log utility maximizers) is studied in (\cite{beygelzimer2012learning}).
 
 The subject's freedom makes no difference in the analysis of the fully supervised setting; since there is no action to take, there is no sense in which a subject may not follow along. To the degree the information these prediction markets surface is not being used by participants in the world in a way that affects it (as the models assume), we can perfectly evaluate how accurate they are regardless of the other agents' reports.
 
@@ -223,5 +248,22 @@ These results are formally generalized in (\cite{chen2014eliciting}), to show th
 
 The above works all assume that the participants in the markets are only motivated by the payments they receive on the market (as does this thesis). A related line of work in (\cite{boutilier2012eliciting}) considers the case when the expert has an inherent interest in the decision. 
 
+%from chen2014: Other work related to eliciting predictions for decision making has considered external incentives in addition to the market’s intrinsic incentives. Shi et al. [2009] considered a prediction market where experts can affect the future by taking some actions
+%and defined principal-aligned scoring rules that incentivized them to only take “helpful” actions. These rules are similar in spirit to the methods we develop in Section 5,
+%but in our setting, experts cannot take actions to affect the future except by influencing the decision maker’s action through their predictions or recommendations. More
+%recently, Boutilier [2012] discussed decision making with an expert who has its own
+%preferences over the decision maker’s actions. In his model, the expert predicts the
+%distribution of a discrete random variable and the decision maker selects an optimal
+%action based on the expert’s prediction; however, the random variable being predicted
+%is independent of the decision maker’s action. Because the expert has preferences over
+%the decision maker’s actions, it has incentives to mislead the decision maker to take
+%an action that the expert prefers. Boutilier introduced compensation rules that redress
+%the expert’s loss of utility for letting its less preferred actions occur to make the expert
+%indifferent again. Different from Boutilier [2012], experts in our setting do not have
+%preferences over actions, but our model of decision making is more general and allows
+%the decision maker’s action to affect the likelihood of outcomes being predicted.
+%Some prior work considers settings where experts can incur cost to improve their
+%beliefs and studies how to induce an appropriate degree of learning as well as accurate predictions [Osband 1989]. In this article, we do not consider cost of obtaining
+%additional information and assume that experts are endowed with their beliefs.
 
 

@@ -25,8 +25,6 @@ As a second example, consider \emph{corrective compliance} where patients who be
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Formal setting}
 \label{sec:formal}
-  
-%Given this model, we define the ``noncompliance level'' $n(c, u)$ for a specific choice $C=c$ and latent variables $U=u$ to mean the probability that $A \neq c$ given those values, that is, $n(c, u) = 1 - P(A=c|C=c, U=u)$.
 
 We consider a sequential decision making problem where a process mediates between the actions chosen by the algorithm and the action carried out in the world. The general game is as follows:
 
@@ -35,6 +33,8 @@ We consider a sequential decision making problem where a process mediates betwee
 
 	The standard bandit setting is when $a_t$ is either unobserved or $c_t = a_t$ for all $t\in[T]$.
 \end{defn}
+  
+Given this model, we define the ``noncompliance level'' $n(c, u)$ for a specific choice $C=c$ and latent variables $U=u$ to mean the probability that $A \neq c$ given those values, that is, $n(c, u) = 1 - P(A=c|C=c, U=u)$.
 
 Compliance and outcomes are often confounded. For example, healthy patients may be less inclined to take a treatment than unhealthy patients. 
 The set of compliance-behaviors is the set of functions $\cC=\{\nu:\cA\rightarrow\cA\}$ from advice to treatment-taken \cite{koller:09}. 
@@ -46,7 +46,8 @@ The set of compliance-behaviors is the set of functions $\cC=\{\nu:\cA\rightarro
 		\item Outcomes $r(\nu(u), a,u)$ depend on compliance-behavior, treatment-taken and the latent $u$. That is, outcomes are a fixed function $r:\cC\times \cA\times U\rightarrow[0,1]$.		
 	\end{enumerate}
 \end{defn}
-%The confounding of compliance with outcomes is modeled with a latent variable $u$ such that compliance $\nu(u)$ depends on $u$; and outcomes $r(c,\nu(u),u)$ is a function $r:\cA\times (\cA\rightarrow \cA)\times U\rightarrow [0,1]$ that depends on treatment-advice, compliance and the latent variable $u$.
+
+The confounding of compliance with outcomes is modeled with a latent variable $u$ such that compliance $\nu(u)$ depends on $u$; and outcomes $r(c,\nu(u),u)$ is a function $r:\cA\times (\cA\rightarrow \cA)\times U\rightarrow [0,1]$ that depends on treatment-advice, compliance and the latent variable $u$.
 
 When $|\cA|=k=2$ (control and treatment), we can list the compliance-behaviors explicitly.
 \begin{defn}[compliance behaviors]\label{def:compliance_model}\eod
@@ -84,8 +85,7 @@ i.e. choose a sequence of actions $(c_t)_{t\in T}$ that maximizes $\expec_{u\sim
 \label{sec:protocols}
 
 Since compliance-information is only available after-pulling an arm, it cannot be used directly when selecting arms. However, how compliance-information can be used to modify the updates performed by the algorithm. For example, if the bandit recommends taking a treatment, and the patient does not do so, we have a choice about whether to update the arm that the bandit recommended (treatment) or the arm that the patient pulled (control).
-
- %Each protocol can be combined with any multi-armed bandit algorithm. 
+Each protocol can be combined with any multi-armed bandit algorithm. 
 
 \begin{defn}[reward protocols]\label{def:protocols}\eod
 	We consider three protocols for assigning rewards to arms:
@@ -150,7 +150,8 @@ Expected rewards depend on the treatment Eq.~\eqref{eq:exp_rew} chosen by the pa
 	\begin{equation}
 		\expec[R\,|\,c_0] 
 		= (1-p_\fA)\cdot r_0 + p_\fA\cdot r_1
-		\quad\text{and}\quad
+	\end{equation} and 
+	\begin{equation}
 		\expec[R\,|\,c_1]
 		= p_\fN\cdot r_0 + (1-p_\fN)\cdot r_1
 	\end{equation}
@@ -158,7 +159,8 @@ Expected rewards depend on the treatment Eq.~\eqref{eq:exp_rew} chosen by the pa
 	It follows that
 	\begin{equation}
 		r_{\fC,0} = \expec[R\,|\,a_0] \neq \expec[R\,|\,c_0] 
-		\quad\text{and}\quad
+	\end{equation} and 
+	\begin{equation}
 		r_{\fC,1} = \expec[R\,|\,a_1] \neq \expec[R\,|\,c_1].
 	\end{equation}
 	Thus, \actual\, assigns rewards to arms based on their effect on compliers (which are the only subpopulation interacting with the bandit), whereas the rewards assigned to arms by \chosen\, are diluted by patients who do not take the treatment. Finally, \actual\, outperforms \comply\, because it updates more frequently.
@@ -171,10 +173,12 @@ However, \actual\, can fail completely.
 \end{eg}
 Defiers are arguably a pathological case. The next scenario is more realistic in clinical trials:
 \begin{eg}[Linear regret; harmful treatment]\label{eg:rich}\eod
-	Suppose there are two sub-populations: the first consists of rich, healthy patients who always take the treatment. The second consists of poor, less healthy patients who only take the treatment if prescribed. Finally, suppose the treatment \emph{reduces} wellbeing by $0.25$ on some metric. We then have
+	Suppose there are two sub-populations: the first consists of rich, healthy patients who always take the treatment. The second consists of poor, less healthy patients who only take the treatment if prescribed. Finally, suppose the treatment \emph{reduces} well-being by $0.25$ on some metric. We then have
 	\begin{equation}
 	    \expec[R|a_0] = p_\fC \cdot r_{\fC,0} = 0p_\fC 
-	    \quad\text{and}\quad
+	\end{equation} and 
+	
+	\begin{equation}
 	    \expec[R|a_1] = p_\fC \cdot r_{\fC,1} + p_\fA\cdot r_{\fA,1}
 	    = -0.25p_\fC + 0.75p_\fA
 	\end{equation}
@@ -193,14 +197,14 @@ Finally, \chosen\, and \actual\, can be combined to form \comply, which only rew
 	It is easy to see that \comply\, outperforms \chosen\, in the setting of Proposition~\ref{prop:actual}.
 	
 	Consider a population of never-takers, always-takers and compliers. Suppose that never-takers are healthier than compliers $r_{\fN,0}> r_{\fC,0/1}$ whereas always-takers are less healthy $r_{\fA,1}<r_{\fC,0/1}$.  
-    %The expected rewards received by \chosen\, are
-	%\begin{align}
-	%	\expec[R\,|\,c_0]
-	%	& = p_{\fC}r_{\fC,0} + p_\fN r_{\fN,0} + p_\fA r_{\fA,1}
-	%	\\
-	%	\expec[R\,|\,c_1]
-	%	& = p_{\fC}r_{\fC,1} + p_\fN r_{\fN,0} + p_\fA r_{\fA,1}
-	%\end{align}
+    The expected rewards received by \chosen\, are
+	\begin{align}
+		\expec[R\,|\,c_0]
+		& = p_{\fC}r_{\fC,0} + p_\fN r_{\fN,0} + p_\fA r_{\fA,1}
+		\\
+		\expec[R\,|\,c_1]
+		& = p_{\fC}r_{\fC,1} + p_\fN r_{\fN,0} + p_\fA r_{\fA,1}
+	\end{align}
 	
 	Let $q_0$ and $q_1$ be the probability that the bandit pulls arms 0 and 1 respectively. The expected rewards received by \actual\, are
 	\begin{equation}
