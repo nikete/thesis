@@ -8,14 +8,14 @@
 %This essay will consider some ways in which markets succeed and fail by looking at
 %some common patterns we see of market failures, and how they have been fixed."
 %3. Make it safe to participate in the market as simply as possible, as opposed to
-%transacting outside of the marketplace, or engaging in strategic behavior that reduces
+%transacting outside of the marketplace, or engaging in strategic behavior that	 reduces
 %overall welfare.
 
 
 This chapter considers a subject facing a decision, who wishes to incentivize multiple experts in providing advice so as to pick a decision that maximizes the rewards the subject receives, while maintaining the freedom of the subject.
 Experts do not have intrinsic interest in the action the subject chooses or actually takes, nor do they face any costs in acquiring their signals.
 
-Preserves subjects freedom is a inherently desirable practical design criterion as it enables no-regret exploration on the part of the subjects. Subject remains at all point in control of the decision, and so trying the mechanism cannot reduce their choices or their expected welfare.\footnote{One can set a reserve price of the advice auction to the expected value of the action the agent would have picked if they did not participate in the mechanism. As long as the reserve price is set apriori or alternative reports form the non-winning bidders are the only thing used to set it, the incentives do not change from those analized here.}.
+Preserving subjects freedom is a inherently desirable practical design criterion as it enables no-regret exploration on the part of the subjects. Subject remains at all point in control of the decision, and so trying the mechanism cannot reduce their choices or their expected welfare.\footnote{One can set a reserve price of the advice auction to the expected value of the action the agent would have picked if they did not participate in the mechanism. As long as the reserve price is set apriori or alternative reports form the non-winning bidders are the only thing used to set it, the incentives do not change from those analized here.}.
 
 
 
@@ -35,10 +35,9 @@ The term auction highlights that this procedure does not produce a sequence of p
 It is this simultaneous nature that allows us to side-step the negative (form the perspective of freedom) results that constraint sequential mechanism to having full support over actions in order to provide  incentives.
 
 Sharing rewards after choosing what decision to advice is neither a pure private value (since the optimal choice conditional on information makes the value the same for everyone) nor pure common value (since the ability the select the optimal choice given access to the other signals might vary across agents).
-
-A advantage of this setting to having a mechanism that directly outputs a chosen action is that it allows for the expert making the recommendation to have different influences on subject (i.e. some experts may be more persuasive).
+A advantage of this framing as opposed to having a mechanism that directly outputs a chosen action is that it allows for the expert making the recommendation to have different influences on subject (i.e. some experts may be more persuasive).
 If the mechanism output was a choice to advice the subject directly, we would have to restrict the expected reward the subject receives not to depend on which expert submitted which report, this can be seen as  a limit on subject freedom (since it it is an external constraint).
-Further, by having the mechanism select the expert instead of the choice, the natural extension to the more practical mechanisms that do not require the mechanism to have access to the valuation functions, but instead rely on the highest bidder to be able to aggregate signals effectively.
+By having the mechanism select the expert instead of the choice,it also becomes natural to extend to the more practical setting that does not require the mechanism to have access to the valuation functions, but instead rely on the highest bidder to be able to aggregate reported signals effectively.
 
 %This closely follows work on efficiency allocation with interdependent values , and our mechanism has the same two steps: first agents submit their signals so as to be able to determine the probabilities over states of the world, and the results of that are used to pick an efficient allocation in what is private .  
 
@@ -208,8 +207,8 @@ we do not assume access by the mechanism to a the valuation functions, and consi
 \subsection{A Bid and Signal Reward Sharing Mechanism}
 
 The first modification one can do to make the payment of the highest bidder depend on the bid of the second highest, this removes the dependency of the payments function on the 
-
-The challenge this faces is that the signals reports being submitted would not matter, so any signal report is in equilibrium. To correct this and create strict incentives again, we can add a further payment received by all experts that is also a linear share of the reward. This makes the truthful signaling equilibrium potentially strict.
+valuation functions of experts.
+The challenge this faces is that the signals reports being submitted would not matter, so any signal report is in equilibrium. To correct this and restore strict incentives , we can add a further payment received by all experts that is also a linear share of the reward (denoted by $\beta$). This makes the truthful signaling equilibrium potentially strict.
 
 
 \begin{mech}\label{mech:Direct}[Allocation with Bids, Reward Share with Signals (ABRSS)]
@@ -230,7 +229,7 @@ The challenge this faces is that the signals reports being submitted would not m
 
 
 
-For this allocation rule to reach efficient allocation achieved by the direct mechanism, a stronger assumption on signal structure is needed. If we only require single crossing then the identity of the highest valuation expert can depend on interaction of their signals and those of other agents. Without access to the value function the mechanism cannot in general hope to achieve this allocation.
+For this allocation rule to reach efficient allocation achieved by the direct mechanism, a stronger assumption on signal structure is needed. If we only require single crossing then the identity of the highest valuation expert can depend on interaction of their signals and those of other experts. Without access to the value function the mechanism cannot in general hope to achieve this allocation.
 Thus beyond single crossing, we also require that the highest valuation expert must be so for any possible set of signals other than their own. In this case the allocation of this mechanism is efficient, since it coincides with the direct mechanisms allocation.
 
 %MORE FORMALY
@@ -272,12 +271,15 @@ For contrast consider the identical mechanism but without the experts submitting
  \end{mech}
  
  For some very limited information structures the bidding mechanism still aggregates information efficiently. 
- For example, if each expert knows the expected outcome conditional on one action don't know what happens under other actions, and there is at least one expert who is informed about each action. These information structures correspond to the standard private values settings in the original VCG mechanism \cite{vickrey1961}.
+ These information structures correspond to the standard private values settings in which the Vickrey auction is efficient \cite{vickrey1961}.
+ Private values occur when other experts signals are not informative of the value for an expert of being assigned the rights bundle to make the choice.
+ For example, when each expert signal is only informative about the expected outcome conditional on one action, and  there is one expert who is informed about each action.
  
- This kind of indirect mechanism is inherently limited when the value from the signals of experts are interelated (as we proved before). Their bid, cannot encode the full information contained in the signals, and thus this limits any mechanism that relies solely on single rounds of bids to aggregate information.
+ 
+ This kind of indirect mechanism is inherently limited when the value from the signals of experts are interrelated (as we proved before). Their bid, cannot encode the full information contained in the signals, and thus this limits any mechanism that relies solely on single rounds of bids to aggregate information.
  
  To illustrate this consider a setting that satisfies the single max bidder assumption. Denote by $i^*$ the experts whose valuation is higher than all other experts in every state of the world and who knows the subject trust them completely so if he wins $c=a$. Have a second expert whose value is $0$ in all state of the world\footnote{For example the expert might know the subject is biased and refuses to hear the expert due to color of their skin.} but has a binary independent signal $s_treat$ that determines which choice is best for the subject, without knowing $s_treat$ the two best choices have equal expected reward $r_uniform$, while knowing the value of the signal allows to select the appropriate choice and results in double the reward $2r_uniform$.
- Since his value is always is always 0 and so is his bid in equilibrium. 
+ Since their value for the rights bundle is always is always 0, and thus so is their bid in equilibrium. 
  There is no prior-free way for the unpersuasive expert to encode his signal into their bid (even through he is incentivize to reveal their signal to get a higher $\beta$ payment). 
  Notice that there is no limit in the size of the gap in the rewards between the two allocations in general, as in the example above we can replace $2$ by any number.
  
@@ -286,6 +288,5 @@ For contrast consider the identical mechanism but without the experts submitting
 \section{Conclusion}
 
 This chapter shows how to use the bundle of rights perspective on advisers to recast the incentivizes for decision elicitation from multiple experts into the thriving literature on VCG with interdependent valuations.
-We then use Proposition 1 of \cite{roughgarden2016optimal} to show that using the generalized VCG mechanism of \cite{maskin1992auctions} to allocate the rights results in a direct incentive compatible and efficient mechanism when signals have a single crossing property.
-We then explore two practical variations of the mechanism that relax the assumption the mechanism can access the value functions and that signals can be transmitted between experts.
-We introduce a notion that shows when mechanisms that 
+We then use a result of \cite{roughgarden2016optimal} for the generalized VCG mechanism of \cite{maskin1992auctions} to allocate the rights results in a direct incentive compatible and efficient mechanism when signals have a single crossing property.
+We then explore two practical variations of the mechanism that relax the assumption that the mechanism can access the value functions of experts, and that signals can be transmitted between experts. We give sufficient conditions on the structure of the signals so that the variations of the mechanisms preserve truthfulness and efficiency.
