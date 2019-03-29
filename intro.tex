@@ -110,14 +110,14 @@ We first turn to the purely learning theoretic implications of subject's freedom
 This addresses the positive aspect of our thesis statement, by showing that awareness of the consequences of subject's freedom can improve learning.
 If subjects have freedom, we should not assume that the actions an algorithm selects are those that are carried out in the world.
 Valuable information can be learned from observing when that is the case, and what happens when it is not.
-Formally, this is done by extending the bandit setting to account for compliance awareness on the part of the algorithm of the action that takes place relative to that chosen.
+Formally, this is done by extending the bandit setting and to incorporate compliance information while preserving regret bounds. 
 We present bandit algorithms that use compliance awareness and empirically outperform their standard variant, while preserving worst case regret guarantees up to multiplicative constants.
 We then present empirical results from simulations using implementations of these algorithms.
 
-Following that, we turn to purely strategic considerations, focusing on the incentive structure for the elicitation of advice on an optimal action from multiple experts.
-This takes a normative stance, proposing that preserving freedom for the subject as a first order design criterion for the mechanism, which implies that the mechanism can't have the subject take dominated actions.
-We present a mechanism that can elicit decision information from multiple experts without committing to taking dominated actions with positive probability, and we show sufficient conditions on the signal structure of the experts relates to the incentive compatibility of the mechanism.
-The crucial conceptual contribution which enables this is a two procedure that reduces the incentives to those of a auction with interdependent signals and values. 
+We then turn to purely strategic considerations, focusing on the incentive structure for the elicitation of advice on an optimal action from multiple experts.
+We take a normative stance, proposing that preserving freedom for the subject as a first order design criterion for the mechanism. This implies that the mechanism can't have the subject take dominated actions.
+We present mechanism that can elicit decision information from multiple experts without committing to taking dominated actions with positive probability. We show sufficient conditions on the signal structure of the experts for incentive compatibility and efficiency.
+The crucial conceptual contribution which enables this, is a reduction to a auction with interdependent signals and valuations. 
 
 
 Finally, we consider a natural setting that emerges from the combination of the above. A sequence of subjects makes decisions and each can receive advice from a fixed set of experts that the mechanism seeks to incentivize.
