@@ -3,30 +3,30 @@
 \subsection{Introduction}
 
 This chapter differs from the previous ones in it's relationship to the thesis. 
-While previous we seek to extend the understanding of previously presented settings ( bandit algorithms and decision markets), this chapter seeks to introduce a new setting that contains these two.
+While before we seek to extend the understanding of previously presented settings (bandit algorithms and decision markets), this chapter seeks to introduce a new setting that contains these two.
 
 
 
 Our motivating applications in medicine are suggestive of a sequence of similar decisions faced by a sequence of agents in order, all of whom face an individual choice on their own course of action.
 Every day new patients perceive their symptoms, and they seek diagnoses and treatments from medical providers. 
-A corporation faces new investment opportunities with regularity, and similar opportunities appear to many firms that might not be competitive (for example vertical divisions in a conglomerate might be offered similar projects to automate part of their workflows and must choose to attempt them or not, and might be able to ask its inhouse experts for advice on the right course of action.
+A corporation faces new investment opportunities with regularity, and similar opportunities appear to many firms that might not be competitive (for example vertical divisions in a conglomerate might be offered similar projects to automate part of their workflows and must choose to attempt them or not. They might be able to ask its inhouse experts for advice on the right course of action).
 Scenarios such as these that motivate optimal decision elicitation are in a sense naturally cast not as one-shot interactions, but as repeated games with many experts and a sequence of subjects who seek advice before making a decision which only affects them.
 
 This combines the central aspects of bandits with compliance awareness (a sequence of choices and learning from past experience, where the actions of subjects are not bound to follow the algorithm choice) as well as elicitation of information from experts to enable optimal decisions without the advice being binding. 
 
 
 
-The study of decision markets so far, including the previous chapter, have focused on a setting with a single decision and multiple advisers (\cite{hanson2002decision,othman2010decision,chen2014eliciting}).
+The study of decision markets so far, including the previous chapter, has focused on a setting with a single decision and multiple advisers (\cite{hanson2002decision,othman2010decision,chen2014eliciting}).
 This chapter poses a novel and natural generalization of this setting that also captures the compliance aware bandit setting and the advice auctions as special cases. 
-A sequence of $T$ subjects (patients in the medical motivation), and a fixed set of $K$ advisersors (experts) with access to signals about different patients expected rewards $r$ under different advice $c$ and actual courses of action $a$. 
+A sequence of $T$ subjects (patients in the medical motivation), and a fixed set of $K$ advisers (experts) with access to signals about different patients' expected rewards $r$ under different advice $c$ and actual courses of action $a$. 
 Bounded regret algorithms with compliance awareness can be seen as addressing the special case where the experts' signals are known apriori to be uninformative, so $K=0$ effectively, and thus only the experience can be learned from.
 Our one-subject mechanism in chapter 5 is the special case for $T={1}$, thus there is no role for exploration or learning from experience, since there are no future decisions to help inform.
-A situation where experts always report their signals truthfully and have no knowledge over how to aggregate them beyond that possessed by the mechanism is equivalent to a compliance-aware contextual bandit problem. 
+A situation where experts always report their signals truthfully and have no knowledge over how to aggregate them beyond those possessed by the mechanism is equivalent to a compliance-aware contextual bandit problem. 
 When contexts are constant across all time steps, the situation further reduces to a bandit problem with compliance awareness.
 When the subject always follows the mechanism or $a$ cannot be observed, it reduces further  to the standard multi-armed bandit problem. 
 
 
-In contrast to the previous chapter's motivation in the literature, in this chapter our focus is first an foremost on constructing a practical mechanism. 
+In contrast to the previous chapters' motivation in the literature, in this chapter our focus is first and foremost on constructing a practical mechanism. 
 The motivation for this switch is that the setting is natural, and no mechanisms (or the setting itself) have been previously proposed to the best of our knowledge.
 
 %In the two special cases of compliance aware bandits and single subject decision markets, the proposed mechanism reduces to the previously proposed mechanism.
@@ -41,7 +41,7 @@ The most conceptually interesting possibility when moving to a sequence of $T$ a
 
 We build up to the main practical design by analyzing two simplified models that illustrate the two key characteristics of our mechanism. 
 First, the need for incentives to motivate exploratory choices.
-For this, the rewards from the choice of action must be linked not just to the reward during the period the action is taken, but to the full sequence of subsequent future rewards.
+For this, the rewards from the choice of action must be linked not just to the reward during the period in which the action is taken, but to the full sequence of subsequent future rewards.
 Second, to aggregate signals when single crossing conditions and their approximations are violated, we propose using an off-line contextual bandit algorithm to evaluate the counter-factual (marginal) value of the signals each expert provides.
 We present a mechanism that combines both ideas, and explore some of its limitations.
 
@@ -52,8 +52,8 @@ We present a mechanism that combines both ideas, and explore some of its limitat
 The game occurs over $T$ steps, at each step: 
 
 \begin{enumerate}
-\item A new subject $t$ arrives and each $i$ of $K$ experts receives a signal $s_{t,i}$ for that subject. The mechanism  randomly allocates a exploration transfer of $l$ to one of th e actions available to the subject, we denote this action by $l_t$.
-\item Each expert $i$ reports to the mechanism ${b}_{t,i}$, and after all reports are received the mechanism selects a expert $i^{*}$ 
+\item A new subject $t$ arrives and each $i$ of $K$ experts receives a signal $s_{t,i}$ for that subject. The mechanism  randomly allocates an exploration transfer of $l$ to one of the actions available to the subject. We denote this action by $l_t$.
+\item Each expert $i$ reports  ${b}_{t,i}$ to the mechanism. After all reports are received the mechanism selects an expert $i^{*}$ 
 \item The subject observes $c_t$, $a_t'$ and ${b}_{t,i}$, picks an action $a_t$, and receives a reward $r_t$.
 \item The mechanism provides feedback about $s_t$, $c_t$, $a_t$, and $r_t$ to experts.
 \end{enumerate}
@@ -64,10 +64,10 @@ At the end of the final period the mechanism makes payments to the experts $p_i$
 \subsection{Subjects' Beliefs and Incentives}
 
 The previous work on incentive compatible bandits \cite{kremer2014implementing,mansour2015bayesian} has shown that there is a distribution of rewards if all agents were rational and this common knowledge, then some actions can never be explored (assuming only information revelation and no transfers can be used by the mechanism). 
-Actions that apriori have lower expected rewards than all others no matter what is revealed by previous instances of other actions cannot be explored.
+Actions that apriori have lower expected rewards than all others, no matter what is revealed by previous instances of other actions, cannot be explored.
 The logic behind this is that knowing no previous signal could persuade an agent to take the action, an agent told to take the action knows that in expectation they can do better otherwise.
 That literature has largely been focused on finding information revelation strategies that are optimal, subject to the incentive constraints. 
-Our lottery payments us to side step these impossibility results, by providing a reason for exploration for a individual subject. 
+Our lottery payments allow us to side step these impossibility results, by providing a reason for exploration for a individual subject. 
 
 %A closely related assumption (for the setting without outside experts providing advice, but with other agents also participating in a game with joint payoffs \cite{mansour2016bayesian}) are \emph{explorable actions}: the actions which some incentive-compatible policy can recommend with non-zero probability. Note that by making beliefs that there are other agents who are likely to take any actions sufficiently often enough to reveal if the rewards of that action are of the highest value, all actions can become explorable.
 
@@ -81,7 +81,7 @@ Our lottery payments us to side step these impossibility results, by providing a
 
 \section{A sequence of repeated one-shot-efficient mechanisms is inefficient}
 
-Even when signal structures satisfy the single crosing property running the direct mechanism of chapter 5 repeatedly, once for each subject, results in choosing the arm with the maximum posterior expected reward at each step $t$ and using the payment rule:
+Even when signal structures satisfy the single crossing property running the direct mechanism of chapter 5 repeatedly, once for each subject, results in choosing the arm with the maximum posterior expected reward at each step $t$ and using the payment rule:
 
 \[
     \pi_i = \sum_1^T 
@@ -117,8 +117,8 @@ Given that there is no winner's curse due to the signal structure\footnote{that 
 If the winner of the auction does not choose the safe arm, and instead explores in that period, they receive a lower payoff in expectation in that period. In future periods their bid, and by symmetry and under full disclosure the other agents' bids, are higher, since they can both now deduce the higher payoff arm and that is their new expected value. Thus given the second price mechanism their payoffs are no higher in later periods. Thus exploration is not in equilibrium. 
 
 
-On possible attempt to fix this would be to only reveal the outcome to the winning bidder, thus allowing them to internalize the informational advantage in future rounds payoffs, in other words by not having full disclosure.
-This internalizes the benefits of explorations, yet it prevents the other experts from learning in those rounds when they do not win, severely limiting the situations in which the mechanism can be efficient.
+One possible attempt to fix this would be to only reveal the outcome to the winning bidder, thus allowing them to internalize the informational advantage in future rounds' payoffs, in other words, by not having full disclosure.
+This internalizes the benefits of exploration, yet it prevents the other experts from learning in those rounds when they do not win, severely limiting the situations in which the mechanism can be efficient.
 
 
 %\NDP{Can we characterize when this inefficiency arises? it seems very general through clearly not always; basically the experts need to learn (their signals dont point apriori the optimal action but the mapping can be learnt from experience) and the signals are spread out between different experts (if there is a single one then no need to learn, but we stil getthe ineficiency from wanting to to value the singals)}
@@ -169,13 +169,13 @@ Denote by $o_{i,t}$ an indicator variable encoding with a value of $1$ if the ag
 
 The first part of the payments sums over the rewards for all periods during which an agent owns the rights.
 The second part determines the payments when a new agent $i$ becomes the owner; they pay out the second highest bid of that period. 
-When another agent takes over them as the owner, they are paid the second highest bid in that period.
-Note that the reserve price can be encoded in the owner's bid in this notation, since when it wins there is no change in owner and no further payments are made. 
+When another agent takes over from them as owner, they are paid the second highest bid in that period.
+Note that the reserve price can be encoded in the owner's bid in this notation, since when it wins there is no change in ownership and no further payments are made. 
 This linking of payments addresses the incentive problem by internalizing the positive inter-temporal information externality created by selecting actions that have not previously been selected.
 
 
 \begin{prop}
-There is a expost NE under which the BOCM  results in sublinear regret in Example~\ref{eg:2regimes}. 
+There is a ex-post NE under which the BOCM  results in sublinear regret in Example~\ref{eg:2regimes}. 
 \end{prop}
 
 
@@ -191,7 +191,7 @@ The optimal contextual policy with exploration has payoff of $2/3T(T-1) + 1/3$. 
 Inputs:
  
  At the start of the game before the first subject a vector of payments $\Gamma$ is chosen.
-In each time period $t$ a new subject arrives and agents receive their signals $s_t$ and then send their reports $\hat{s_{t,i}}$. A one-shot encoding of the reports is used as context in $A$ to select an arm $c_t$ which lead to choice $a_t$ is made and then reward observed $r_t$.
+In each time period $t$ a new subject arrives, agents receive their signals $s_t$ and then send their reports $\hat{s_{t,i}}$. A one-shot encoding of the reports is used as context in $A$ to select an arm $c_t$ which leads to choice $a_t$ being made and reward $r_t$ being observed.
 At the end of the last time period, for each expert $i$, estimate the loss that would be obtained by the contextual bandit algorithm without using that expert's report in its context: denote it $E(\hat{s_{-i}},A)$.
 
 
@@ -210,7 +210,7 @@ The payment rule for each subject $t$ is as follows:
 \end{mech}
 
 The key observation is that by making $\Gamma$ have payments that are sufficiently large in magnitude, it can encourage 
-Since the payments are completely exogenous to the signals and preferences, they are a ideal instrumental variable, which can be used to get unbiased estimates of the rewards of different underlying actions.
+Since the payments are completely exogenous to the signals and preferences, they are an ideal instrumental variable, which can be used to get unbiased estimates of the rewards of different underlying actions.
 This avoids the problem of needing to force subjects to take the proposed action of the mechanism while still providing a way of estimating the full counterfactual.
 
 %On the other hand, a policy that randomizes over the set of choices faces the incentive constraints on the side 
@@ -249,7 +249,7 @@ This avoids the problem of needing to force subjects to take the proposed action
 
 %The limitation of the one shot case, of having to pay for
 The above signal-only mechanism can be potentially inefficient when there are experts who know how to map the signals to actions, and thus can help the subjects avoid some of the regret in the learning.
-More broadly, experts can have additional information relative to the mechanisms that helps them aggregate the signals better but requires signals by other experts to be reported to them. 
+More broadly, experts can have additional information relative to the mechanisms that help them aggregate the signals better but requires signals by other experts to be reported to them. 
 
 It is worth emphasizing the crucial role played in the reward function by the unbiased nature of the estimator.
 Alternatively to the contextual bandit, when exploration is not required or compliance not assured, the same randomness can be inserted into the mechanism through a lottery, as sketched in the previous section.
@@ -285,7 +285,7 @@ The payment for expert $i$ rule is:
 \end{cases}
 \]
 
-Where $\alpha$ and $\beta$ are set ex ante. 
+Where $\alpha$ and $\beta$ are set ex-ante. 
 
 
 The payment rule for each subject $t$ is as follows:
@@ -307,10 +307,10 @@ Consider a setting where all experts signals are symmetric and perfect complemen
 For example, the value of the reward depends on their product.
 All signals are equally valuable in the counter-factual sense used to establish rewards.
 To the extent the second highest bidders value is close to the first, there is almost no net expected value from being the owner.
-On the other hand, if a bidder does not report his signal truthfully, then the other bidders valuation for being the owner are 0, and the misreporting bidder can appropriate the full value of the $alpha$ part of the rewards.
+On the other hand, if a bidder does not report his signal truthfully, then the other bidders valuations for being the owner are 0, and the misreporting bidder can appropriate the full value of the $alpha$ part of the rewards.
 Thus $\alpha$ < $\beta$ for incentive compatibility. 
 
-Note that the choice of lottery payments $\Gamma$ is restricted to those which generate full support so that the estimator of the signal rewards can be fully evaluate. 
+Note that the choice of lottery payments $\Gamma$ is restricted to those which generate full support so that the estimator of the signal rewards can be fully evaluated. 
 If the rewards are not IID the full support induced by the lottery must be maintained throughout all time periods. 
 Thus the mechanism is inefficient in so far as the owner who knows apriori the correct policy given signals cannot fully implement it, since the lottery induces extra variance.
 This is suggestive of allowing the experts to partially buy out most of the lottery, to reduce the inefficiency it induces when they already have the information required. 
