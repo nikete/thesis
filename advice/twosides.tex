@@ -19,7 +19,7 @@ This combines the central aspects of bandits with compliance awareness (a sequen
 The study of decision markets so far, including the previous chapter, have focused on a setting with a single decision and multiple advisers (\cite{hanson2002decision,othman2010decision,chen2014eliciting}).
 This chapter poses a novel and natural generalization of this setting that also captures the compliance aware bandit setting and the advice auctions as special cases. 
 A sequence of $T$ subjects (patients in the medical motivation), and a fixed set of $K$ advisersors (experts) with access to signals about different patients expected rewards $r$ under different advice $c$ and actual courses of action $a$. 
-Bounded regret algorithms with compliance awareness can be seen as addressing the special case where the experts' signals are known apriori to be uninformative, so $K=0$ effectively, and thus only the experience can be learned from.
+Bounded regret algorithms with compliance awareness can be seen as addressing the special case where the experts' signals are known a priori to be uninformative, so $K=0$ effectively, and thus only the experience can be learned from.
 Our one-subject mechanism in chapter 5 is the special case for $T={1}$, thus there is no role for exploration or learning from experience, since there are no future decisions to help inform.
 A situation where experts always report their signals truthfully and have no knowledge over how to aggregate them beyond that possessed by the mechanism is equivalent to a compliance-aware contextual bandit problem. 
 When contexts are constant across all time steps, the situation further reduces to a bandit problem with compliance awareness.
@@ -28,12 +28,10 @@ When the subject always follows the mechanism or $a$ cannot be observed, it redu
 
 In contrast to the previous chapter's motivation in the literature, in this chapter our focus is first an foremost on constructing a practical mechanism. 
 The motivation for this switch is that the setting is natural, and no mechanisms (or the setting itself) have been previously proposed to the best of our knowledge.
+The most conceptually interesting possibility when moving to a sequence of $T$ agents is it can be ex-post incentive compatible to take the exploratory actions for subjects, by linking them to suitably large transfers. By inducing randomness into which subjects and which actions have these transfers attached, and their magnitude, it becomes possible to estimate the underlying causal effect of actions on rewards. 
 
 %In the two special cases of compliance aware bandits and single subject decision markets, the proposed mechanism reduces to the previously proposed mechanism.
 %There are, however, infinite other mechanisms that share this property. 
-
-
-The most conceptually interesting possibility when moving to a sequence of $T$ agents is that by pooling the risk of having with their action across agents, it can be ex-post incentive compatible to take the exploratory actions for subjects, by linking them to suitably large transfers. The size of the payoff required to make the choosing agent change actions provide a estimate of its ex-post value on the actions. 
 
 %This source of endogenous heterogeneity in ex-ante identical agents rewards and incentives to take different actions can also be leveraged to evaluate 
 
@@ -63,9 +61,9 @@ At the end of the final period the mechanism makes payments to the experts $p_i$
 
 \subsection{Subjects' Beliefs and Incentives}
 
-The previous work on incentive compatible bandits \cite{kremer2014implementing,mansour2015bayesian} has shown that there is a distribution of rewards if all agents were rational and this common knowledge, then some actions can never be explored (assuming only information revelation and no transfers can be used by the mechanism). 
-Actions that apriori have lower expected rewards than all others no matter what is revealed by previous instances of other actions cannot be explored.
-The logic behind this is that knowing no previous signal could persuade an agent to take the action, an agent told to take the action knows that in expectation they can do better otherwise.
+Previous work on incentive compatible bandits \cite{kremer2014implementing,mansour2015bayesian} has shown that there are distributions of rewards where if all agents were rational and this common knowledge, then some actions can never be explored (assuming only information revelation and no transfers can be used by the mechanism). 
+Actions that a priori have lower expected rewards than all others no matter what is revealed by previous instances of other actions cannot be explored.
+The logic behind this is that knowing no previous signal could persuade an agent to take the action, an agent told to take the action knows that in expectation they can do better.
 That literature has largely been focused on finding information revelation strategies that are optimal, subject to the incentive constraints. 
 Our lottery payments us to side step these impossibility results, by providing a reason for exploration for a individual subject. 
 
@@ -81,7 +79,7 @@ Our lottery payments us to side step these impossibility results, by providing a
 
 \section{A sequence of repeated one-shot-efficient mechanisms is inefficient}
 
-Even when signal structures satisfy the single crosing property running the direct mechanism of chapter 5 repeatedly, once for each subject, results in choosing the arm with the maximum posterior expected reward at each step $t$ and using the payment rule:
+Running the direct mechanism of chapter 5 repeatedly, once for each subject, with the allocation rule of choosing the arm with the maximum posterior expected reward at each step $t$ and using the payment rule:
 
 \[
     \pi_i = \sum_1^T 
@@ -91,12 +89,13 @@ Even when signal structures satisfy the single crosing property running the dire
 \end{cases}
 \]
 
+Even when signal structures satisfy the single crossing property, this will not lead to efficient outcomes.
 The repeated use of single-subject-efficient mechanisms thus creates incentives for a greedy policy in the presence of multiple experts.
 This is immediate from the definition of the single subject direct mechanism: it selects the arm that maximizes the rewards for that period given the reports. If the reports are truthful this is the highest expected reward arm on that period.
 
 
 \begin{eg}[Two Signals With Two Regimes]\label{eg:2regimes}
-We consider 2 experts and 3 arms with $T$ sequential subjects. The first arm is a safe arm with no variance and a known reward of $1/2$. The other arms have a-priori a lower expected value, of $1/3$, but conditional on both agents' signals, one arm has an expected value of $2/3$ and the other of $0$. 
+We consider 2 experts and 3 arms with $T$ sequential subjects. The first arm is a safe arm with no variance and a known reward of $1/2$. The other arms have a priori a lower expected value, of $1/3$, but conditional on both agents' signals, one arm has an expected value of $2/3$ and the other of $0$. 
 Each agent receives a binary signal. The optimal arm is the parity (XOR) of both agents signals. 
 \end{eg}
 
@@ -110,9 +109,7 @@ Note that the example weakly satisfies a single crossing signal structure on a s
  \end{defn}
 
 
-Under full disclosure, a repeated direct reward sharing  mechanism (DRSM) in Example~\ref{eg:2regimes}, there is a NE of the repeated single subject mechanism which results in the greedy policy.
-%The same inefficiency occurs in the repeated second price auction-style mechanism.
-
+Under full disclosure, a repeated version of Chapter 5 Direct Reward Sharing  Mechanism (DRSM) in Example~\ref{eg:2regimes} has a NE results in the greedy policy.
 Given that there is no winner's curse due to the signal structure\footnote{that is, the winner of the auction who  bids their value without conditioning that value on having won the auction (which implies having the highest signal) gets the same payoff as if they do condition.}, both agents bid their valuations.
 If the winner of the auction does not choose the safe arm, and instead explores in that period, they receive a lower payoff in expectation in that period. In future periods their bid, and by symmetry and under full disclosure the other agents' bids, are higher, since they can both now deduce the higher payoff arm and that is their new expected value. Thus given the second price mechanism their payoffs are no higher in later periods. Thus exploration is not in equilibrium. 
 
@@ -121,7 +118,7 @@ On possible attempt to fix this would be to only reveal the outcome to the winni
 This internalizes the benefits of explorations, yet it prevents the other experts from learning in those rounds when they do not win, severely limiting the situations in which the mechanism can be efficient.
 
 
-%\NDP{Can we characterize when this inefficiency arises? it seems very general through clearly not always; basically the experts need to learn (their signals dont point apriori the optimal action but the mapping can be learnt from experience) and the signals are spread out between different experts (if there is a single one then no need to learn, but we stil getthe ineficiency from wanting to to value the singals)}
+%\NDP{Can we characterize when this inefficiency arises? it seems very general through clearly not always; basically the experts need to learn (their signals dont point a priori the optimal action but the mapping can be learnt from experience) and the signals are spread out between different experts (if there is a single one then no need to learn, but we stil getthe ineficiency from wanting to to value the singals)}
 
 % For many problems the sequential use of mechanisms while suboptimal is not too bad in the sense that the loss of efficiency of the mechanism can be bounded relative to the optimum (see background chapter for a brief overview of such results).
 % This is not the case for sequential optimal action elicitation. Repeating any efficient one shot mechanism can lead to linearly worse performance than the optimal sequential mechanism on the same problem. In Example~\ref{eg:2regimes} the regret of the  second price bidding mechanism is $0.25(T-1)$ since the first agent wins and selects the optimal arm given his information set.
@@ -179,7 +176,8 @@ There is a expost NE under which the BOCM  results in sublinear regret in Exampl
 \end{prop}
 
 
-The optimal contextual policy with exploration has payoff of $2/3T(T-1) + 1/3$. The value of the choice for an agent who controls the full sequence and observes the full set of signals is thus $\alpha (2/3T(T-1) + 1/3)$, and given the second price mechanism this can be their initial bid in a NE. The agent explores in the first choice, and exploits in all subsequent choices. If the agent does not explore in the first choice they obtain a lower payoff. If the agent makes a lower bid they do not improve their payoff since they never win.
+The optimal contextual policy with exploration has payoff of $2/3T(T-1) + 1/3$. The value of the choice for an agent who controls the full sequence and observes the full set of signals is thus $\alpha (2/3T(T-1) + 1/3)$, and given the second price mechanism this can be their initial bid in a NE.
+The agent explores in the first choice, and exploits in all subsequent choices. If the agent does not explore in the first choice they obtain a lower payoff. If the agent makes a lower bid they do not improve their payoff since they never win.
 
 
 %the ideal seems to be something where we just have to learn from past not aggregate. for example if all experts get the same signals and better than the subjects prior.
@@ -312,7 +310,7 @@ Thus $\alpha$ < $\beta$ for incentive compatibility.
 
 Note that the choice of lottery payments $\Gamma$ is restricted to those which generate full support so that the estimator of the signal rewards can be fully evaluate. 
 If the rewards are not IID the full support induced by the lottery must be maintained throughout all time periods. 
-Thus the mechanism is inefficient in so far as the owner who knows apriori the correct policy given signals cannot fully implement it, since the lottery induces extra variance.
+Thus the mechanism is inefficient in so far as the owner who knows a priori the correct policy given signals cannot fully implement it, since the lottery induces extra variance.
 This is suggestive of allowing the experts to partially buy out most of the lottery, to reduce the inefficiency it induces when they already have the information required. 
 It is not clear how to prove when there is a efficient full revelation mechanism for the above mechanism, since the interaction between the owners information about how to aggregate and learn over the signals complicates the already tricky dynamic VCG analysis. 
 
