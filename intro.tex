@@ -99,7 +99,7 @@ Algorithms for bandit problems have long been analysed within game theory.
 This has largely focused on the use of worst case guarantees that result from minimax analysis of zero sum games against an adversary.
 Game theory plays a even more fundamental role in mechanisms for optimal decision elicitation such as decision markets.
 Since equilibrium considerations and not just worst case concerns are inherent to the setting.
-Our focus in the equilibrium based analysis is on the strategic aspects of the experts offering the advice, and we structure our assumptions so as to largely remove game theoretic considerations on the subjects.
+Our focus in the equilibrium based analysis is on the strategic aspects of the experts offering the advice, and we consider mechanisms .
 
 
 "%It is well known that the ability of the mechanism to implement efficient outcomes for private value choice problems does not extend to interdependent value problems. When an agent’s type affects other agents’ utilities, it may not be incentive compatible for him to truthfully reveal his type when faced with VCG payment"s from "Implementation with interdependent valuations"
@@ -117,12 +117,12 @@ We then present empirical results from simulations using implementations of thes
 We then turn to purely strategic considerations, focusing on the incentive structure for the elicitation of advice on an optimal action from multiple experts.
 This takes a normative stance, proposing that preserving freedom for the subject as a first order design criterion for the mechanism, which implies that the mechanism can't have the subject take dominated actions.
 We present mechanism that can elicit decision information from multiple experts without committing to taking dominated actions with positive probability, and we show sufficient conditions on the signal structure of the experts relates to the incentive compatibility of the mechanism.
-The crucial conceptual contribution which enables this is a two step procedure that reduces the incentives to those of a auction with possibly inter-dependent signals and common value. 
+The crucial conceptual contribution which enables this is a two procedure that reduces the incentives to those of a auction with interdependent signals and values. 
 
 
 Finally, we consider a natural setting that emerges from the combination of the above. A sequence of subjects makes decisions and each can receive advice from a fixed set of experts that the mechanism seeks to incentivize.
-The model for this setting is extremely general, having as special cases: standard, compliance aware, and contextual bandits, as well as decision markets.
-We prove that in natural information structures the repeated sequential use of the single-agent multi-expert mechanism fails to explore or aggregate information efficiently.
+The model for this setting is extremely general, having as special cases: standard, compliance aware, and contextual bandits, as well as decision markets
+We show that in natural information structures the repeated sequential use of the single-agent multi-expert mechanism fails to explore or aggregate information efficiently.
 We present a simple and practical market structure that incentivizes exploration, information revelation, and aggregation with selfish experts, while maintaining subject freedom. We then briefly consider some of the limitation of this simple mechanism.
 
 

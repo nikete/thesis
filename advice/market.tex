@@ -14,6 +14,11 @@
 
 This chapter considers a subject facing a decision, who wishes to incentivize multiple experts in providing advice so as to pick a decision that maximizes the rewards the subject receives, while maintaining the freedom of the subject.
 Experts do not have intrinsic interest in the action the subject chooses or actually takes, nor do they face any costs in acquiring their signals.
+
+Preserves subjects freedom is a inherently desirable practical design criterion as it enables no-regret exploration on the part of the subjects. Subject remains at all point in control of the decision, and so trying the mechanism cannot reduce their choices or their expected welfare.\footnote{One can set a reserve price of the advice auction to the expected value of the action the agent would have picked if they did not participate in the mechanism. As long as the reserve price is set apriori or alternative reports form the non-winning bidders are the only thing used to set it, the incentives do not change from those analized here.}.
+
+
+
 The main contribution of this chapter is casting this setting as one of a single unit efficient allocation with interdependent valuations (\cite{milgrom1982theory,maskin1992auctions,ausubel1999generalized,mclean2004informational,roughgarden2016optimal,eden2018interdependent}).
 This allows us to leverage existing results in that setting, which provide both necessary conditions for efficient allocations (single crossing conditions on the signal structure) and impossibility results when those are not met.
 
@@ -50,7 +55,6 @@ The utility maximizing subject would then carry out the suboptimal action, the e
 %A mechanism is called Bayes Nash Incentive Compatible (BNIC) if there is a equilibrium were every agent reports their signal truthfully and this maximizes their reward in expectation (over the state of the world).
 The mechanism proposed in \cite{hanson2002decision} is not BNIC for the experts who provide advice, as witnessed by the example above (and shown in \cite{othman2010decision,chen2014eliciting}).
 More generally, any sequential proper scoring rule based mechanism that is incentive compatible for the experts is incompatible with maintaining the subject's freedom to select the action that appears optimal ex-post (\cite{ chen2014eliciting}). 
-A mechanism in which the ex-post optimal action (allocation) is the one a utility optimizing subject would pick is said to be ex-post incentive compatible for the subject. 
 
 %Interdependent Values without Single-Crossing
 %Alon Eden, Michal Feldman, Amos Fiat, Kira Goldner
@@ -108,7 +112,7 @@ The valuation functions for all bidders $i$ are monotone non-decreasing in every
 
 Mechanisms are a pair $(x,p)$, where $x$ is a set of allocation functions $x=\{x_1(\vec{b}),\ldots,x_n(\vec{b})\}$ satisfying $\sum_i x_i(\vec{s}) \leq 1$ for all possible $\vec{b}$, and $p$ a set of payment functions  $p=\{p_1(\vec{b}),\ldots,p_n(\vec{b})\}$.
 An allocation function $x_i:\times_j S_j\rightarrow [0,1]$ maps every bid profile $\vec{b}$ to the probability that expert $i$ gets allocated.
-A payment rule $p_i: \times _j S_j \rightarrow \R$ maps the reported signals $\vec{b}$ to the expected payment from bidder $i$. Experts are risk neutral, so their expected utility is quasilinear, given in the reduced form by $x_i (\vec{b}) \cdot v_i(\vec{s}) - p_i(\vec{b})$ where $\vec{s}$ is the true signal profile of the experts.
+A payment rule $p_i: \times _j S_j \rightarrow \cR$ maps the reported signals $\vec{b}$ to the expected payment from bidder $i$. Experts are risk neutral, so their expected utility is quasilinear, given in the reduced form by $x_i (\vec{b}) \cdot v_i(\vec{s}) - p_i(\vec{b})$ where $\vec{s}$ is the true signal profile of the experts.
 
 
 %One cannot hope for truth-telling to be a dominant strategy for the experts. One expert's misreport can cause other experts to also misreport to compensate. Thus the strongest incentive-compatibility (IC) notion that we can hope for is in this setting is truthfulness is an ex-post Nash Equilibrium. That is it is in every agent $i$'s best interest to report his true signal $s_i$ given that all other agents reported the true signal profile $\vec{s}_{-i}$:
@@ -125,19 +129,19 @@ $$x_i(\vec{s}) \cdot v_i(\vec{s}) - p_i(\vec{s}) \geq x_i(b_i, \vec{s}_{-i}) \cd
 \section{A Direct Reward Sharing Mechanism}
 
 The simplest class of mechanisms to incentivize advice is based on sharing a fraction of the rewards with the experts. For the single expert case this is mentioned by \cite{othman2010decision}. Here the idea is extended to the multiple experts case. We do this by instantiating our notion of advice auctions with a simple mechanism,
-the generalized VCG mechanism proposed by \cite{maskin1992auctions}. This mechanism is \emph{direct} in the sense that it 
+the generalized VCG mechanism proposed by \cite{maskin1992auctions}. This mechanism is \emph{direct} in the standard sense that agents report their signals. 
 
 The core of the mechanism is simple. Since there is knowledge by the mechanism over the value function for a given vector of signals, it can use the reported signals to select the highest value expert. The net payment to that expert is then just his share of the reward minus his value at the lowest signal he could have misreported and still obtained the allocation give the other reports. More formally:
 
 \begin{mech}\label{mech:Direct}[Direct Reward Share VCG]
-Then mechanism gives the rights bundle to the expert $i*$ with the highest valuation under the reported signals. That is, the allocation rule is:
+Then mechanism gives the rights bundle to the expert $i^*$ with the highest valuation under the reported signals. That is, the allocation rule is:
 
 $$x(\vec{s}) = i \quad \quad\quad \text{when} \quad\quad\quad x_j(\vec{s}) = \begin{cases} 1 & \text{if } j=i \\ 0 & \text{otherwise.} \end{cases}$$
 
-This lets the expert $i*$ observe  $\vec{b}$ and then select $c$.
+This lets the expert $i^*$ observe  $\vec{b}$ and then select $c$.
 Then subject observes $c$ and $\vec{b}$, takes their action $a$ and receives reward $r$, which the mechanism observes. 
 
-The non selected experts receive no payment, while the selected expert $i*$ receives their share $\alpha$ of the reward $r$ minus the value of the share of the reward at the lowest $b_i'$ (the critical signal) that would have still resulted in expert $i$ being selected. 
+The non selected experts receive no payment, while the selected expert $i^*$ receives their share $\alpha$ of the reward $r$ minus the value of the share of the reward at the lowest $b_i'$ (the critical signal) that would have still resulted in expert $i$ being selected. 
 More formally, given signals for agents $\neq i$, $\vec{s}_{-i}$, the {\sl critical signal} for $i$ is: if there exists some $b_i$ such that $x_i(s_{-i},b_i)=1$ then set $b_i^*=\min_{b_i} x_i(s_{-i},b_i)=1$, otherwise there is no critical signal for $i$.
 Thus, the payment rule is:
 
@@ -150,123 +154,138 @@ The generalized direct VCG mechanism is deterministic and prior-free.
 
 \subsection{Truthfulness with Single Crossing Signals}
 
-\begin{definition}[Monotonicity]
+\begin{defn}[Monotonicity]
 	An allocation function $x_i$ is said to be monotone if for every $\vec{b}_{-i}$, $x_i(\vec{b}_{-i},b_i)$ is monotone non-decreasing in the signal $b_i$.
-\end{definition}
+\end{defn}
 
 Truthful mechanisms can be characterized as follows \cite{roughgarden2016optimal}.
 
-\begin{proposition}
-	\label{prop:char-ic}
+\begin{prop}\label{prop:char-ic}
 	Monotonicity is a necessary and sufficient condition for allocation functions $x$ to be \emph{implementable}, {\sl i.e.}, there exist payment functions $p$ such that the mechanism $(x,p)$ is truthful.  Moreover, an analogue of Myerson's payment identity holds, so the payment is uniquely determined by the allocation function.
-\end{proposition}
+\end{prop}
 
 It follows that constructing a truthful mechanism is equivalent to constructing a monotone allocation function.
 For deterministic truthful mechanisms, the payment identity of \citet{roughgarden2016optimal} implies the following about the cost charged to chosen expert (from \cite{eden2018interdependent}).
 
-\begin{proposition}\label{prop:deterministic_payment}
+\begin{prop}\label{prop:deterministic_payment}
 	Let agent $i$ be the allocated winner at report profile $\vec{s}$ in a deterministic truthful mechanism. Then their cost is their value at the critical report.
-\end{proposition}
+\end{prop}
 
 
 A single-crossing condition captures the idea that bidder $i$'s signal has a greater effect on experts $i$'s value than on any other experts's value. We follow the definition in \cite{eden2018interdependent}:
 
 For $s_i = 1, \ldots, k_i$, define $\frac{\partial v_j(s_i, \vec{s}_{-i})}{\partial s_i} = v_j(s_i, \vec{s}_{-i}) - v_j(s_i - 1, \vec{s}_{-i})$.
 
-\begin{definition}[Single-Crossing]
+\begin{defn}[Single-Crossing]
 	A valuation profile is said to satisfy the single-crossing condition if for every expert $i$, for any set of other experts  signals $\vec{s}_{-i}$, and for every expert $j$, $$\frac{\partial v_i(s_i, \vec{s}_{-i})}{\partial s_i} \geq \frac{\partial v_j(s_i, \vec{s}_{-i})}{\partial s_i}.$$
-\end{definition}
+\end{defn}
 
 
 %We note that there also exists a weaker notion of single-crossing that only requires the inequality to hold at $\vec{s}$ for the bidder $i$ with the highest value, where $i \in \argmax_{k} v_k(\vec{s})$.
 
-Whenever single-crossing holds, full efficiency can be achieved: once an agent has the highest value, by the single-crossing condition, his value continues to be the highest of all bidders as his signal increases. Therefore, allocating to the bidder with the highest value defines a monotone allocation rule, and therefore, according to Proposition~\ref{prop:char-ic}, it is implementable. 
-
-
-\begin{theorem}
-	The DRSA mechanism when signals have single crossing is truthful.
-\end{theorem}
+\begin{thm}
+	There is a truthful and efficient ex-post Nash equilibrium of the DRSA mechanism when signals satisfy the single crossing property.
+\end{thm}
 
 \begin{proof}
-Allocating to the bidder with the highest value is a monotone allocation rule, and therefore, according to Proposition 1 it is implementable. The cost for the rights bundle of the chosen expert is then just his value at his critical signal, which is the corresponding payment.
+Allocating to the bidder with the highest value is a monotone allocation rule, and therefore, according to Proposition~\ref{prop:char-ic} it is implementable. The cost for the rights bundle of the chosen expert is then just their value at their critical signal, which is the corresponding payment.
 \end{proof}
 
 Further, one cannot do better than this as per Proposition~\ref{prop:char-ic}, monotonicity of the allocation rule is necessary for a efficient and truthful mechanism with interdepedent values. Hence, without single-crossing, it is impossible to have a truthful advice auctions in general.
-The procedure for an advice auction could be instantiated with the mechanism of \cite{eden2018interdependent} instead of \cite{maskin1992auctions} to obtain an approximation when SC holds approximately in a specific sense made clear there.
+
+This procedure for a direct advice elicitation mechanism based on the advice auction procedure was here instantiated using \cite{maskin1992auctions}  as the underlying auction mechanism. But the procedure is generic. It could be, for example, instantiated instead with the randomized mechanism of \cite{eden2018interdependent}, and would obtain the approximation properties that algorithm provides in auctions in our advice setting.
 
 
 \section{Practical mechanisms: Advice Auctions}
 
 The assumptions used in \cite{roughgarden2016optimal} that are used for the above result are extremely minimal relative to the existing literature in most of decision markets and auctions with interdependent values.
+
 However, the mechanism having access to the value functions seems highly impractical in most potential applications.
 Given the practical settings that motivate this work, 
 we do not assume access by the mechanism to a the valuation functions, and consider two practical alternatives.
 
-\subsection{A Bid and Signal Mechanism}
+
+\subsection{A Bid and Signal Reward Sharing Mechanism}
 
 The first modification one can do to make the payment of the highest bidder depend on the bid of the second highest, this removes the dependency of the payments function on the 
 
 The challenge this faces is that the signals reports being submitted would not matter, so any signal report is in equilibrium. To correct this and create strict incentives again, we can add a further payment received by all experts that is also a linear share of the reward. This makes the truthful signaling equilibrium potentially strict.
 
 
-\begin{mech}\label{mech:Direct}[Allocation with Bids, Reward Share with Signals]
+\begin{mech}\label{mech:Direct}[Allocation with Bids, Reward Share with Signals (ABRSS)]
 	Experts report both a bid and a signal, we slightly abuse notation and use $vec(s)$ to denote the reported signals, note their only use is to be displayed to the expert allocated to make the choice..
-	Then mechanism gives the rights bundle to the expert $i*$ with the highest bid:
+	Then mechanism gives the rights bundle to the expert $i^*$ with the highest bid:
 	
 	$$x(\vec{b}) = i \quad \quad\quad \text{when} \quad\quad\quad x_j(\vec{b}) = \begin{cases} 1 & \text{if } j=i \\ 0 & \text{otherwise.} \end{cases}$$
 	
-	This lets the expert $i*$ observe reported signals $\vec{s}$ and then select $c$.
+	This lets the expert $i^*$ observe reported signals $\vec{s}$ and then select $c$.
 	Then subject observes $c$ and $\vec{b}$ and $\vec{s}$, takes their action $a$ and receives reward $r$, which the mechanism observes. 
 	
-	The non selected experts receive  payment $\beta r$, while the selected expert $i*$ receives their shares $(\alpha + \beta) r$ of the reward minus the second highest bid, $b_{i^*-1}$.
+	The non selected experts receive  payment $\beta r$, while the selected expert $i^*$ receives their shares $(\alpha + \beta) r$ of the reward minus the second highest bid, $b_{i^*-1}$.
 
 	Thus, the payment rule is:
 	
-	$p_i^*= (\alpha + \beta)r - ,b_{i^*-1})$ and $p_{j\neq i*} = \beta r$
-	
+	$p_i^*= (\alpha + \beta)r - ,b_{i^*-1})$ and $p_{j\neq i^*} = \beta r$
 \end{mech}
 
-Note that for the mechanism to be 
+
 
 For this allocation rule to reach efficient allocation achieved by the direct mechanism, a stronger assumption on signal structure is needed. If we only require single crossing then the identity of the highest valuation expert can depend on interaction of their signals and those of other agents. Without access to the value function the mechanism cannot in general hope to achieve this allocation.
 Thus beyond single crossing, we also require that the highest valuation expert must be so for any possible set of signals other than their own. In this case the allocation of this mechanism is efficient, since it coincides with the direct mechanisms allocation.
 
 %MORE FORMALY
 
-\begin{definition}[Single-Crossing]
-	A valuation profile is said to satisfy the single-crossing condition if for every expert $i$, for any set of other experts  signals $\vec{s}_{-i}$, and for every expert $j$, $$\frac{\partial v_i(s_i, \vec{s}_{-i})}{\partial s_i} \geq \frac{\partial v_j(s_i, \vec{s}_{-i})}{\partial s_i}.$$
-\end{definition}
+\begin{defn}[Single Signal Max Value]
+	A valuation profile is said to satisfy the single-signal max value condition if highest value expert $i^*$ knows he is the highest value when given their signal, and for any set of other experts  signals $\vec{s}_{-i}$, and for every expert $j$, $$v_i(s_i, \vec{s}_{-i}) \geq  v_j(s_i, \vec{s}_{-i})}$$
+\end{defn}
 
-\subsection{A simple advice auction without signal passing}
+
+Note this property is not as strong as it may at first seem. If there is a expert who has the trust of the subject, understands what they find persuasive, and is sufficiently competent at evaluating the reported signals of others, it may be best able to select $c$ to maximize $r$ no matter what the state of the world. Being able to see other experts signals may however substantially raise the reward and hence the value of the highest valued expert.  
+
+
+\begin{thm}
+	There is a truthful and efficient ex-post Nash equilibrium of the ABRSS mechanism when signals satisfy the single signal max value property.
+\end{thm}
+
+\begin{proof}
+	The highest value bidder bids his worst possible value given the other bids or anything higher (knowing he will win and be charged according to the second highest price makes him indifferent between these when others are truthful.
+	Allocating to the bidder with the highest value is a monotone allocation rule, and therefore, according to Proposition~\ref{prop:char-ic} it is implementable. The cost for the rights bundle of the chosen expert is then the second highest bid, which is the corresponding payment.
+\end{proof}
+
+
+
+For contrast consider the identical mechanism but without the experts submitting their signals and receiving share $\beta$. 
  
- 
-In many practical applications of interest, reporting the  signal might be impractical. For example, because while the expert knows something when they see it, they do not have a bidding vocabulary rich enough to unambiguously express it.
-If we replace the reports in the direct mechanism by bids, and we allow the winner of the auction to pick the action, 
- 
- 
-\begin{mech}\label{mech:BidOnly}[]
- 	Each expert observes their signal and report a bid $b_i$.
- 	The expert with the highest bid is allocated the rights bundle, the \emph{owner} of the choice, observes the full set of bids and then chooses an action $c$; the subject then selects the action $a$ and receives the.
+\begin{mech}\label{mech:BidOnly}[Bid Only Advice Auction]
+ 	Each expert observes their signal and then report only a bid $b_i$. The mechanism gives the rights bundle to the expert $i^*$ with the highest bid:
+ 	
+ 	$$x(\vec{b}) = i \quad \quad\quad \text{when} \quad\quad\quad x_j(\vec{b}) = \begin{cases} 1 & \text{if } j=i \\ 0 & \text{otherwise.} \end{cases}$$
+ 	
+ 	This lets the expert $i^*$ observe reported bids $\vec{b}$ and then select $c$.
+ 	Then the subject observes $c$ and $\vec{b}$, takes their action $a$ and receives reward $r$, which the mechanism observes. 
+ 	
+ 	The non-selected experts receive  payment $\beta r$, while the selected expert $i^*$ receives their shares $(\alpha + \beta) r$ of the reward minus the second highest bid, $b_{i^*-1}$.
+ 	
+ 	Thus, the payment rule is:
+ 	
+ 	$p_i^*= (\alpha + \beta)r - ,b_{i^*-1})$ and $p_{j\neq i^*} = \beta r$
  \end{mech}
  
+ For some very limited information structures the bidding mechanism still aggregates information efficiently. 
+ For example, if each expert knows the expected outcome conditional on one action don't know what happens under other actions, and there is at least one expert who is informed about each action. These information structures correspond to the standard private values settings in the original VCG mechanism \cite{vickrey1961}.
  
- This kind of indirect mechanism is inherently limited when the signals of the agent are multi-dimensional. Their bid, being scalar valued, cannot encode the full information contained in the signals, and thus this limits any mechanism that relies solely on single rounds of bids to aggregate information.
+ This kind of indirect mechanism is inherently limited when the value from the signals of experts are interelated (as we proved before). Their bid, cannot encode the full information contained in the signals, and thus this limits any mechanism that relies solely on single rounds of bids to aggregate information.
  
- For some plausible information structures the bidding mechanism still aggregates information efficiently, for example:
- 
- \begin{defn}[Full set of specialist experts]\label{defn:specialists}
- 	If each expert knows the expected outcome conditional on one action don't know what happens under other actions, and there is at least one expert who is informed about each action.
- \end{defn}
- 
-  The bidding mechanism is able to meaningfully aggregate information in at least some information as one can note no single expert knows the optimal action.
+ To illustrate this consider a setting that satisfies the single max bidder assumption. Denote by $i^*$ the experts whose valuation is higher than all other experts in every state of the world and who knows the subject trust them completely so if he wins $c=a$. Have a second expert whose value is $0$ in all state of the world\footnote{For example the expert might know the subject is biased and refuses to hear the expert due to color of their skin.} but has a binary independent signal $s_treat$ that determines which choice is best for the subject, without knowing $s_treat$ the two best choices have equal expected reward $r_uniform$, while knowing the value of the signal allows to select the appropriate choice and results in double the reward $2r_uniform$.
+ Since his value is always is always 0 and so is his bid in equilibrium. 
+ There is no prior-free way for the unpersuasive expert to encode his signal into their bid (even through he is incentivize to reveal their signal to get a higher $\beta$ payment). 
+ Notice that there is no limit in the size of the gap in the rewards between the two allocations in general, as in the example above we can replace $2$ by any number.
  
  
-
-
 
 \section{Conclusion}
 
 This chapter shows how to use the bundle of rights perspective on advisers to recast the incentivizes for decision elicitation from multiple experts into the thriving literature on VCG with interdependent valuations.
-We then use Proposition 1 of \cite{roughgarden2016optimal} to show that using the generalized VCG mechanism of \cite{maskin1992auctions} to allocate the rights results in a direct incentive compatible and efficient mechanism when signals have a single crossing property. Further using an example from \cite{eden2018interdependent} shows that the problem is in general intractable without such assumptions.
-
+We then use Proposition 1 of \cite{roughgarden2016optimal} to show that using the generalized VCG mechanism of \cite{maskin1992auctions} to allocate the rights results in a direct incentive compatible and efficient mechanism when signals have a single crossing property.
 We then explore two practical variations of the mechanism that relax the assumption the mechanism can access the value functions and that signals can be transmitted between experts.
+We introduce a notion that shows when mechanisms that 

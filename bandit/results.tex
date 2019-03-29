@@ -37,7 +37,9 @@ Assigning an actual arm pulled in the heparin part of the trial is less clear cu
 
 \begin{figure}
 \begin{center}
-\centerline{\includegraphics[width=1\textwidth, angle=90]{bandit/figs/fig1.png}}
+	%\textwidth, angle=90
+\includegraphics[width=1\columnwidth]{bandit/figs/fig1a.jpeg}
+\includegraphics[width=1\columnwidth]{bandit/figs/fig1b.jpeg}
 \caption{\textbf{14 Day survivals:} average lives saved over uniform random policy per 10,000 patients in simulated trials of Aspirin and Heparin.}
 \label{fig1}
 \end{center}
@@ -81,9 +83,9 @@ Consider a harmful treatment. Suppose there are two sub-populations with equal n
 
 \begin{figure}
 	\centering	
-	\includegraphics[width=1\textwidth, angle=90]{bandit/figs/ex2.png}\hspace{1cm}
+	\includegraphics[width=1\columnwidth]{bandit/figs/ex2.jpeg}\hspace{1cm}
 	\label{fig:ex2}
-	\caption{Worse than random regret across estimators for naive uses of compliance awareness}
+	\caption{Worse than random regret across estimators with naive uses of compliance awareness with simulated data from 100 patients sampled from a model of a harmful treatment that is profound by selection into treatment.}
 \end{figure}
 
 
@@ -96,7 +98,7 @@ While our bounds are vacuous in this settings, it is interesting that there is o
 
 \begin{figure}[t]
 	\centering	
-	\includegraphics[width=1\textwidth, angle=90]{bandit/figs/ex3.png}\hspace{1cm}
+	\includegraphics[width=1.5\columnwidth, angle=90]{bandit/figs/ex3.png}\hspace{1cm}
 	\label{fig:ex3}
 	\caption{12 patients, a not uncommon size of clinical trials in rare diseases or neonatal populations.}
 \end{figure}
@@ -117,7 +119,7 @@ They allow later subjects to benefit from the information that previous subjects
 
 \begin{figure}[t]
 	\centering	
-	\includegraphics[width=1\textwidth, angle=90]{bandit/figs/ex4.png}\hspace{1cm}
+	\includegraphics[width=1.5\textwidth, angle=90]{bandit/figs/ex4.png}\hspace{1cm}
 	\label{fig:ex4}
 	\caption{Noncompliance for best arm}
 \end{figure}
