@@ -98,7 +98,7 @@ Potential signals for bidder $1 \leq i\leq n$ form a discrete signal space $S_i$
 Let $\vec{s}=(s_1,s_2,\ldots,s_n)$ be a signal profile.
 The reward $r$ that the subject receives depends on their chosen action $a$ and the underlying state of the world as determined by the signal profile $\vec{s}$.
 Let $\vec{s}_{-i}$ denote all signals but $s_i$, and let $(s_i',\vec{s}_{-i})$ denote the profile $\vec{s}$ where $s_i$ has been replaced with $s'_i$. 
-Since $r$ does not depend on the choice of $c$ by the expert, and that at the point the mechanism is run $a$ has not been selected, we use the following reduced form  value function for the value of the rights bundle to expert $i$: $v_i: \times_i S_i \rightarrow \mathbb{R}_{\geq 0}$, which maps every signal profile to the expected value of linear share of the reward  $\alpha r$.
+Since $r$ does not depend on the choice of $c$ by the expert, and that at the point the mechanism is run $a$ has not been selected, we use the following reduced form  value function for the value of the rights bundle to expert $i$: $v_i: \times_i \ S_i \rightarrow \mathbb{R}_{\geq 0}$, which maps every signal profile to the expected value of linear share of the reward  $\alpha r$.
 
 
 Each expert reports a signal $b_i$, and the vector of reported signals is $\vec{b}=( b_1, b_2, \ldots, b_n)$.
@@ -110,12 +110,12 @@ Each possible signal profile $\vec{s}$ corresponds to an underlying state of the
 The valuation functions for all bidders $i$ are monotone non-decreasing in every signal $s_j$ for all $j$.%\footnote{Both of these assumptions are without loss of generality; the space of potential signals can alwyas be , while the ordering of the signals is arbitrary, so they can always be sorted into monotone non-decreasing.}
 
 Mechanisms are a pair $(x,p)$, where $x$ is a set of allocation functions $x=\{x_1(\vec{b}),\ldots,x_n(\vec{b})\}$ satisfying $\sum_i x_i(\vec{s}) \leq 1$ for all possible $\vec{b}$, and $p$ a set of payment functions  $p=\{p_1(\vec{b}),\ldots,p_n(\vec{b})\}$.
-An allocation function $x_i:\times_j S_j\rightarrow [0,1]$ maps every bid profile $\vec{b}$ to the probability that expert $i$ gets allocated.
+An allocation function $x_i:\times_j \ S_j\rightarrow [0,1]$ maps every bid profile $\vec{b}$ to the probability that expert $i$ gets allocated.
 A payment rule $p_i: \times _j S_j \rightarrow \cR$ maps the reported signals $\vec{b}$ to the expected payment from bidder $i$. Experts are risk neutral, so their expected utility is quasilinear, given in the reduced form by $x_i (\vec{b}) \cdot v_i(\vec{s}) - p_i(\vec{b})$ where $\vec{s}$ is the true signal profile of the experts.
 
 
 %One cannot hope for truth-telling to be a dominant strategy for the experts. One expert's misreport can cause other experts to also misreport to compensate. Thus the strongest incentive-compatibility (IC) notion that we can hope for is in this setting is truthfulness is an ex-post Nash Equilibrium. That is it is in every agent $i$'s best interest to report his true signal $s_i$ given that all other agents reported the true signal profile $\vec{s}_{-i}$:
-$$x_i(\vec{s}) \cdot v_i(\vec{s}) - p_i(\vec{s}) \geq x_i(b_i, \vec{s}_{-i}) \cdot v_i(\vec{s}) - p_i(b_i, \vec{s}_{-i})  \quad \quad \quad  \forall \vec{s} \in \times _{j} S_j, b_i \in S_i. \quad\quad\quad [\text{IC}]$$
+$$x_i(\vec{s}) \cdot v_i(\vec{s}) - p_i(\vec{s}) \geq x_i(b_i, \vec{s}_{-i}) \cdot v_i(\vec{s}) - p_i(b_i, \vec{s}_{-i})  \quad \quad \quad  \forall \vec{s} \in \times _{j} \  S_j, b_i \in S_i. \quad\quad\quad [\text{IC}]$$
 
 
 
@@ -208,7 +208,7 @@ we do not assume access by the mechanism to a the valuation functions, and consi
 
 The first modification one can do to make the payment of the highest bidder depend on the bid of the second highest, this removes the dependency of the payments function on the 
 valuation functions of experts.
-The challenge this faces is that the signals reports being submitted would not matter, so any signal report is in equilibrium. To correct this and restore strict incentives , we can add a further payment received by all experts that is also a linear share of the reward (denoted by $\beta$). This makes the truthful signaling equilibrium potentially strict.
+The challenge this faces is that the signals reports being submitted would not matter, so any signal report is in equilibrium. To correct this and restore strict incentives, we can add a further payment received by all experts that is also a linear share of the reward (denoted by $\beta$). This makes the truthful signaling equilibrium potentially strict.
 
 
 \begin{mech}\label{mech:Direct}[Allocation with Bids, Reward Share with Signals (ABRSS)]
@@ -224,7 +224,7 @@ The challenge this faces is that the signals reports being submitted would not m
 
 	Thus, the payment rule is:
 	
-	$p_i^*= (\alpha + \beta)r - ,b_{i^*-1})$ and $p_{j\neq i^*} = \beta r$
+	$p_i^*= ((\alpha + \beta)r - b_{i^*-1})$ and $p_{j\neq i^*} = \beta r$
 \end{mech}
 
 
@@ -267,7 +267,7 @@ For contrast consider the identical mechanism but without the experts submitting
  	
  	Thus, the payment rule is:
  	
- 	$p_i^*= (\alpha + \beta)r - ,b_{i^*-1})$ and $p_{j\neq i^*} = \beta r$
+ 	$p_i^*= ((\alpha + \beta)r - b_{i^*-1})$ and $p_{j\neq i^*} = \beta r$
  \end{mech}
  
  For some very limited information structures the bidding mechanism still aggregates information efficiently. 
@@ -278,8 +278,8 @@ For contrast consider the identical mechanism but without the experts submitting
  
  This kind of indirect mechanism is inherently limited when the value from the signals of experts are interrelated (as we proved before). Their bid, cannot encode the full information contained in the signals, and thus this limits any mechanism that relies solely on single rounds of bids to aggregate information.
  
- To illustrate this consider a setting that satisfies the single max bidder assumption. Denote by $i^*$ the experts whose valuation is higher than all other experts in every state of the world and who knows the subject trust them completely so if he wins $c=a$. Have a second expert whose value is $0$ in all state of the world\footnote{For example the expert might know the subject is biased and refuses to hear the expert due to color of their skin.} but has a binary independent signal $s_treat$ that determines which choice is best for the subject, without knowing $s_treat$ the two best choices have equal expected reward $r_uniform$, while knowing the value of the signal allows to select the appropriate choice and results in double the reward $2r_uniform$.
- Since their value for the rights bundle is always is always 0, and thus so is their bid in equilibrium. 
+ To illustrate this consider a setting that satisfies the single max bidder assumption. Denote by $i^*$ the experts whose valuation is higher than all other experts in every state of the world and who knows the subject trust them completely so if he wins $c=a$. Have a second expert whose value is $0$ in all state of the world\footnote{For example the expert might know the subject is biased and refuses to hear the expert due to color of their skin.} but has a binary independent signal $s_{treat}$ that determines which choice is best for the subject, without knowing $s_{treat}$ the two best choices have equal expected reward $r_{uniform}$, while knowing the value of the signal allows to select the appropriate choice and results in double the reward $2r_{uniform}$.
+ Since their value for the rights bundle is always 0, thus their bid is in equilibrium. 
  There is no prior-free way for the unpersuasive expert to encode his signal into their bid (even through he is incentivize to reveal their signal to get a higher $\beta$ payment). 
  Notice that there is no limit in the size of the gap in the rewards between the two allocations in general, as in the example above we can replace $2$ by any number.
  
