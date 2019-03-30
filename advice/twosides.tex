@@ -50,7 +50,7 @@ We present a mechanism that combines both ideas, and explore some of its limitat
 The game occurs over $T$ steps, at each step: 
 
 \begin{enumerate}
-\item A new subject $t$ arrives and each $i$ of $K$ experts receives a signal $s_{t,i}$ for that subject. The mechanism  randomly allocates a exploration transfer of $l$ to one of th e actions available to the subject, we denote this action by $l_t$.
+\item A new subject $t$ arrives and each $i$ of $K$ experts receives a signal $s_{t,i}$ for that subject. The mechanism  randomly allocates a contingent transfer payment of $\vec{\gamma_t}$ for each of actions facing the subject.
 \item Each expert $i$ reports to the mechanism ${b}_{t,i}$, and after all reports are received the mechanism selects a expert $i^{*}$ 
 \item The subject observes $c_t$, $a_t'$ and ${b}_{t,i}$, picks an action $a_t$, and receives a reward $r_t$.
 \item The mechanism provides feedback about $s_t$, $c_t$, $a_t$, and $r_t$ to experts.
@@ -88,6 +88,8 @@ Running the direct mechanism of chapter 5 repeatedly, once for each subject, wit
     0,              & \text{otherwise}
 \end{cases}
 \]
+
+Where as before $\alpha$ parametrizes how much of the reward is shared. 
 
 Even when signal structures satisfy the single crossing property, this will not lead to efficient outcomes.
 The repeated use of single-subject-efficient mechanisms thus creates incentives for a greedy policy in the presence of multiple experts.
@@ -187,12 +189,9 @@ The agent explores in the first choice, and exploits in all subsequent choices. 
 
 \begin{mech}[Lottery for Exploratory Choice (LEC) Mechanism]
 Inputs:
- 
- At the start of the game before the first subject a vector of payments $\Gamma$ is chosen.
-In each time period $t$ a new subject arrives and agents receive their signals $s_t$ and then send their reports $\hat{s_{t,i}}$. A one-shot encoding of the reports is used as context in $A$ to select an arm $c_t$ which lead to choice $a_t$ is made and then reward observed $r_t$.
+
+In each time period $t$ a new subject arrives and agents receive their signals $s_t$ and then send their reports $\hat{s_{t,i}}$. The contigent lottery payments of the subject $\gamma_t$ are announced. A one-shot encoding of the reports is used as context in $A$ to select an arm $c_t$ which lead to choice $a_t$ is made and then reward observed $r_t$.
 At the end of the last time period, for each expert $i$, estimate the loss that would be obtained by the contextual bandit algorithm without using that expert's report in its context: denote it $E(\hat{s_{-i}},A)$.
-
-
 
 The payment rule for each expert $i$ is as follows:
 
