@@ -150,11 +150,11 @@ The relation between the different settings considered in this thesis and in the
 		Forecasting & T  & past rewards for all actions & Minimax  \\
 		Bandit & T  & past rewards &  Minimax  \\
 		Peer Prediction & 1 & N strategic reports & BNE \\
-		Prediction Market & 1 & N strategic reports, reward for all actions &  BNE\\
-		Decision Market & 1 & N strategic reports, reward for taken action & BNE  \\
-		Advice Auction  & 1 & N strategic reports, reward for taken action & BNE  \\
-		Compliance Aware Bandit & T  & past rewards and compliance & minimax \\
-		N sided Advice Markets  & T  &  N strategic reports and rewards for chosen actions & BNE  \\
+		Prediction Market & 1 & N reports, full reward vector &  NE\\
+		Decision Market & 1 & N reports, reward for action & NE  \\
+		Advice Auction  & 1 & N reports, reward for action, taken action & NE  \\
+		Compliance Aware Bandit & T  & reward for actoin and compliance & minimax \\
+		N sided Advice Markets  & T  &  N  reports and rewards for actions & NE  \\
 		\bottomrule
 	\end{tabular}
 	\caption{Relation between learning settings in the thesis and literature.}
