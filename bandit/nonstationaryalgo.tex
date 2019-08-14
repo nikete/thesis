@@ -3,35 +3,56 @@
 %\section{Algorithms}
 %\label{sec:algol}
 
-\section{Worst Case Linear in T Regret in Non-Stationary setting to Compliance Unawareness}
+\section{Worst Case Linear Regret in Non-Stationary setting to Compliance Unawareness}
+%TODO what?
 
-
-In the non-compliance setting there is additional information available to the algorithm. Ignoring the compliance-information (\chosen) reduces to the standard bandit setting. However, it should be possible to improve performance by taking advantage of observations about when treatments are \emph{actually} applied. Using compliance-information is not trivial, since bandit algorithms that rely purely on treatments (\actual) or purely on compliance (\comply) can have linear regret.
+In the non-compliance setting there is additional information available to the algorithm. Ignoring the compliance-information (\chosen) reduces to the standard bandit setting. However, it should be possible to improve performance by taking advantage of observations about when treatments are \emph{actually} applied. Using compliance information is not trivial, since bandit algorithms that rely purely on treatments (\actual) or purely on compliance (\comply) can have linear regret.
 
 This section proposes two hybrid algorithms that take advantage of compliance information, have bounded regret, and empirically outperform algorithms running the \chosen\, protocol.
 
 
-Consider the regret not relative to a fixed best fixed action as usual, but relative to an algorithm that has access to compliance information. We show that this regret scales O(N) in the non-stationary setting 
-
-if the regime from which rewards are drawn changes frequently enough, and within each regime the compliance awareness helps converge faster (for example due to very high rates of noncompliance of subjects that don't have different underlying characteristics, making \actual perform well, or due to subjects have information that helps them switch tot he best arm) 
+Consider the regret not relative to a fixed best fixed action as usual, but relative to an algorithm that has access to compliance information.%TODO fixed fixed? define regret.
+We show that this regret scales $O(T)$ in the non-stationary setting if the regime from which rewards are drawn changes frequently enough. We also show that within each regime the compliance awareness helps converge faster, for example due to very high rates of noncompliance of subjects that don't have different underlying characteristics, making \actual\, perform well, or due to subjects having information that helps them switch to the best arm.
 
 %\NDP{Formalize into a theorem, example/witness}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A Hierarchical Algorithm}
 
-A natural idea is to use the three protocols to train three experts and, simultaneously, learn which expert to apply. The resulting hierarchical bandit (specified in  \ref{alg:hier-exp}) integrates compliance-information in a way that ensures the algorithm (i) has no-regret, because one of the base-algorithms uses \chosen, and therefore has no regret; and (ii) benefits from the compliance-information if it turns out to be useful.
+A natural idea is to use the three protocols to train three experts and, simultaneously, learn which expert to apply. The resulting hierarchical bandit (specified in  \ref{alg:hier-exp}) integrates compliance-information in a way that ensures the algorithm (i) has no-regret, because one of the base algorithms uses \chosen, and therefore has no regret; and (ii) benefits from the compliance-information if it turns out to be useful.
 
 The general construction is as follows. At the bottom-level are three bandit algorithms implementing the protocols \chosen, \actual\, and \comply. On the top-level is a fourth bandit algorithm whose arms are the three bottom-level algorithms. The top-level bandit learns which protocol is optimal. 
 Note the top-level bandit is \emph{not} in an i.i.d. environment even when the external environment is i.i.d, since the low-level bandits are learning.
-
- We therefore use \texttt{EXP3} as the top-level bandit \cite{auer:02b}. For completes it is
- 
- 
- 
  
 \begin{algorithm}
-   \caption{\texttt{Exp3}}
+   \caption{\texttt{HierarchicalBandit (HB)}}
+   \label{alg:hier-exp}
+   \begin{algorithmic}   
+   \STATE {\bfseries Input:}
+   	 Bandits $\cB_i$ running \texttt{NoRegretAlgorithm} on \comply\, \chosen, and \actual\, for $i =\{1,2,3\}$ respectively, with arms corresponding to treatments
+   	 \STATE {\bfseries Input:}
+   	 Bandit $\cH$ running \texttt{NoRegretAlgorithm} compatible with adaptive environments, with arms corresponding to $\cB_i$ above
+    \FOR{$t=1$ {\bfseries to} $T$}
+	\STATE Draw bandit $i\in\{1,2,3\}$ from $\cH$ and arm $j$ from $\cB_i$
+	\STATE Pull arm $j$ of $\cB_i$; observe reward $r^{(t)}$; observe compliance
+	\STATE Update $\cH$ with reward $r^{(t)}$ applied to bandit-arm $i$
+	\IF{$i=1$}
+	\STATE Update $\cB_1$ with reward $r^{(t)}$ applied to treatment-arm $j$
+	\ENDIF
+	\STATE Update $\cB_{2/3}$ with reward $r^{(t)}$ according to protocols \chosen\, and \actual\, respectively
+   	\ENDFOR
+
+       	\end{algorithmic}
+\end{algorithm}          
+
+\subsection{Regret analysis}
+
+This section shows that constructing a hierarchical bandit with \texttt{EXP3} (\cite{auer:02b}) as the top-level bandit algorithm yields a no-regret algorithm. The result is straightforward; we include it for completeness. A similar result was shown in \cite{chang:05}. 
+
+%TODO a few words about exp3 plx
+
+\begin{algorithm}
+   \caption{\texttt{EXP3}}
    \label{alg:exp3}
    \begin{algorithmic}   
    \STATE {\bfseries Input:}
@@ -42,34 +63,11 @@ Note the top-level bandit is \emph{not} in an i.i.d. environment even when the e
 	\STATE Update $P_{t+1,i} = \frac{  P_{ti}  exp(\gamma \hat{X_{ti}}) }{  \sum_j P_{tj}  exp(\gamma \hat{X_{tj}}) }  $  where $\hat{X}$ is the 
     \ENDFOR
        	\end{algorithmic}
-\end{algorithm}          
+\end{algorithm}         
+%TODO write it out, baby...bob wants you to.
  
- 
-\begin{algorithm}
-   \caption{\texttt{HierarchicalBandit (HB)}}
-   \label{alg:hier-exp}
-   \begin{algorithmic}   
-   \STATE {\bfseries Input:}
-   	 Bandits $\cB_i$ running \texttt{NoRegretAlgorithm} on \chosen, \actual\, and \comply\, for $i =\{1,2,3\}$ respectively, with arms corresponding to treatments
-   	 \STATE {\bfseries Input:}
-   	 Bandit $\cH$ running \texttt{NoRegretAlgorithm}, with arms corresponding to $\cB_i$ above
-    \FOR{$t=1$ {\bfseries to} $T$}
-	\STATE Draw bandit $i\in\{1,2,3\}$ from $\cH$ and arm $j$ from $\cB_i$
-	\STATE Pull arm $j$; incur loss $\ell^{(t)}$; observe compliance
-	\STATE Update $\cH$ with loss applied to bandit-arm $i$
-	\IF{$i=1$}
-	\STATE Update $\cB_1$ with loss applied to treatment-arm $j$
-	\ENDIF
-	\STATE Update $\cB_{2/3}$ with loss according to relevant protocol
-   	\ENDFOR
-
-       	\end{algorithmic}
-\end{algorithm}          
-
-\subsection{Regret analysis}
-
-This section shows that constructing a hierarchical bandit with \texttt{EXP3} yields a no-regret algorithm. The result is straightforward; we include it for completeness. A similar result was shown in \cite{chang:05}. 
-First, we construct a hierarchical version of \texttt{Hedge}, Algorithm~\ref{alg:meta-hedge}, which is applicable in the full-information setting. On the bottom-level are $M$ instantiations of \texttt{Hedge}. Instantiation $i$, for $i\in[M]$, plays an $N$-dimensional weight vector and receives $N$-dimensional loss vector $\loss^{(t)}_{i}$ on round $t$. We impose the assumption that all instantiations play $N$-vectors for notational convenience. The top-level is another instantiation of \texttt{Hedge}, which plays a weighted combination of the bottom-level instantiations.
+%TODO what does hedge do?
+First, we construct a hierarchical version of \texttt{Hedge} (\cite{chang:05}), Algorithm~\ref{alg:meta-hedge}, which is applicable in the full-information setting. On the bottom-level are $M$ instantiations of \texttt{Hedge}. Instantiation $i$, for $i\in[M]$, plays an $N$-dimensional weight vector and receives $N$-dimensional loss vector $\loss^{(t)}_{i}$ on round $t$. We impose the assumption that all instantiations play $N$-vectors for notational convenience. The top-level is another instantiation of \texttt{Hedge}, which plays a weighted combination of the bottom-level instantiations.
 
 \begin{algorithm}
    \caption{\texttt{Hierarchical Hedge (HHedge)}}
@@ -91,7 +89,7 @@ First, we construct a hierarchical version of \texttt{Hedge}, Algorithm~\ref{alg
 	\end{align}
    	\ENDFOR
    	\end{algorithmic}
-\end{algorithm}
+\end{algorithm} %TODO no understand. write down this algo correctly, so you can write down the next one correctly, so you bob is happy.
 
 We have the following lemma:
 
@@ -101,7 +99,7 @@ We have the following lemma:
 		\sum_{t=1}^T \langle \x^{(t)},\tilde{\loss}^{(t)}\rangle 
 		\leq  \sum_{t=1}^T \tilde{\loss}^{(t)}_i +
 		\leq O(\sqrt{T \log M})\quad\forall i.
-	\end{equation}
+	\end{equation} %TODO something missing in that formula...
 	Moreover, $\rho$ and $\eta$ can be chosen such that, for all $i$,
 	\begin{equation}
 		\sum_{t,i,j=1}^{T,M,N} x^{(t)}_{i}\ell^{(t)}_{i,j} y^{(t)}_{i,j}
@@ -111,7 +109,7 @@ We have the following lemma:
 \end{lem}
 
 \begin{proof}
-	Apply regret bounds for \texttt{Hedge} twice.
+	Apply regret bounds for \texttt{Hedge} twice. %TODO give reference for those bounds
 \end{proof}
 
 Lemma~\ref{lem:meta-hedge} says, firstly, that \texttt{HHedge} has bounded regret relative to the bottom-level instantiations and, secondly, that it has bounded regret relative to any of the $M\times N$ experts on the bottom-level.
@@ -134,11 +132,11 @@ Algorithm~\ref{alg:meta-exp2} modifies \texttt{HHedge} so that it is suitable fo
 	\end{equation}
 \end{lem}
 \begin{proof}
-	Follows from Lemma~\ref{lem:meta-hedge} and the bound for \texttt{Exp3} (Theorem 3.1 in \cite{auer:02b}).
+	Follows from Lemma~\ref{lem:meta-hedge} and the bound for \texttt{EXP3} (Theorem 3.1 in \cite{auer:02b}).
 \end{proof}
 
 \begin{algorithm}[tb]
-   \caption{\texttt{Hierarchical Exp3 (HExp3)}}
+   \caption{\texttt{Hierarchical EXP3 (HEXP3)}}
    \label{alg:meta-exp2}
    \begin{algorithmic}   
    \STATE {\bfseries Input:} $\eta,\rho>0$\\
@@ -165,7 +163,7 @@ Algorithm~\ref{alg:meta-exp2} modifies \texttt{HHedge} so that it is suitable fo
 	\end{align}
    	\ENDFOR
    	\end{algorithmic}
-\end{algorithm}
+\end{algorithm}%TODO bob complains here but i cannot understand why.
 
 
 \begin{thm}[No-regret with respect to \actual, \comply\, and individual treatment advice]\label{thm:cexp}\eod
@@ -185,7 +183,7 @@ Algorithm~\ref{alg:meta-exp2} modifies \texttt{HHedge} so that it is suitable fo
 \end{thm}
 
 \begin{proof}
-	Apply Lemma~\ref{lem:meta-exp} to $\texttt{HiearchicalBandit}$.
+	Apply Lemma~\ref{lem:meta-exp} to $\texttt{HierarchicalBandit}$.
 \end{proof}
 
 
