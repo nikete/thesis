@@ -1,8 +1,8 @@
 \chapter{Background and Related Work}
 \label{cha:background}
 
-\epigraph{Desvar\'io laborioso y empobrecedor el de componer vastos libros; el de explayar en quinientas p\'aginas una idea cuya perfecta exposici\'on oral cabe en pocos minutos.}{Jorge Luis Borges,Pr\'ologo de Ficciones.}
-
+\epigraph{Desvar\'io laborioso y empobrecedor el de componer vastos libros; el de explayar en quinientas p\'aginas una idea cuya perfecta exposici\'on oral cabe en pocos minutos.}{Jorge Luis Borges, Pr\'ologo de Ficciones.}
+%TODO what?
 
 % % from PLnG PredBook: Perdition, burning, and flames (a hell of a book)	
 % ...beware of mathematicians, and all those who make empty prophecies. The danger already exists that the mathematicians have made a covenant with the devil to darken the spirit and to confine man in the bonds of Hell.    St. Augustine, De Genesi ad Litteram libri duodecim. Liber Secundus, 17, 37.
@@ -10,7 +10,7 @@
 
 
 Learning what action to take to maximize a reward is a fundamental problem in decision theory.
-We first provide a overview of the game theoretical background that underpins all aspects of this work.
+We first provide an overview of the game theoretical background that underpins all aspects of this work.
 % The literatures on bandits and decision markets have remained largely separate, 
 
 We then present the building blocks from the two branches, bounded regret bandit algorithms and mechanism design, that are used in our contributions.
@@ -23,8 +23,10 @@ The notation used for this work is a compromise to accommodate to as great an ex
 
 We follow the bandit literature and refer to rewards (notated as $r$ throughout) as directly observable after the actual action is taken. This is skipping the mapping of actions to outcomes, and the utility functions which map those outcomes to rewards, which is standard in the mechanism design literature. The reader wishing to move the analysis more explicitly towards the mechanism design tradition can replace the observed rewards with the von Neumann Morgensten utility function of the agent over the realized outcome.
 %TODO: spell it out in greek
-We treat experts' signals in the manner of features in a contextual bandit problem. To translate this to the formalism of the mechanism design literature, we can consider the cross-product of the agents' signals as defining a set of partitions, with one partition for each value. 
+We treat experts' signals in the manner of features in a contextual bandit problem. To translate this to the formalism of the mechanism design literature, we can consider the cross-product of the agents' signals as defining a set of partitions, with one partition for each value.
+%TODO a lot of things i've never heard of in this sentence...
 When we speak of two agents' signals being identical, 
+%TODO finish this sentence.
 
 %The prior
 %When taking expectations when it is not relevant we omit noting the prior $P$ explcitly. 
@@ -37,19 +39,23 @@ Since actions involve reports of signals $s$, this constrains all signals to als
 \section{Game Theory}
 
 Statistical learning algorithms can be understood game theoretically as a game between a forecaster and nature. This is particularly natural in the sequential (online) setting, and a framework termed Learning with Expert Advice and (\cite{cesa2006prediction}) provides a unified treatment from a worst case game theoretic perspective of many such learning settings and algorithms.
-This literature largely considers the underlying structures to be zero-sum and thus uses a adversarial model of nature to construct strategies that have good worst case properties. In other words this is game theory in the style of Von Neumann and Morgensten 1948. The framework was applied to the setting of sequential experiments initially by Wald, and the bandit formalism introduced by (\cite{robbins1952some}).
+This literature largely considers the underlying structures to be zero-sum and thus uses a adversarial model of nature to construct strategies that have good worst case properties. In other words, this is game theory in the style of Von Neumann and Morgensten 1948.
+%TODO cite properly?
+The framework was applied to the setting of sequential experiments initially by Wald, and the bandit formalism was introduced by (\cite{robbins1952some}).
 
 When there are multiple agents beyond nature interacting, as in the case of elicitation from multiple experts for decision making, there are severe limits to what worst case analysis alone can yield. 
-In particular, the notions of the Nash Equilibrium( \cite{nash1950equilibrium}) and common knowledge (\cite{aumann1976agreeing} )provide a useful starting point to thinking about such settings, through they leave us with an embarrassment of riches in terms of the potential equilibrium set.
+In particular, the notions of the Nash Equilibrium( \cite{nash1950equilibrium}) and common knowledge (\cite{aumann1976agreeing} )provide a useful starting point to thinking about such settings, though they leave us with an embarrassment of riches in terms of the potential equilibrium set.
 
 \section{Online Learning}
 
 
-The central object of analysis in the online learning framework, also known as the learning with expert advice framework, is the \emph{regret} of an algorithm (the forecaster). This is defined as the difference in the cumulative reward between the algorithm and the reward that would have been obtained by some benchmark. 
+The central object of analysis in the online learning framework, also known as the learning with expert advice framework, is the \emph{regret} of an algorithm (the forecaster). This is defined as the difference in the cumulative reward between the reward the algorithm gets and the reward that would have been obtained by some benchmark. 
 The most common benchmark is that of best fixed action in hindsight, and this is termed \emph{static regret}. 
 When we use the term regret without further modifiers in this thesis, we are referring to this notion.
+%TODO explain best fixed action in hindsight...?
+%TODO maybe this paragraph can live below the explanation of the learning game.
 
-Two main settings appear in the literature for the play of the environment is carried out: in the stochastic setting an adversary picks a distribution over actions at the start of the game from which IID draws are later made; in the non-stochastic (oblivious) adversary setting they select a specific sequence of play before the game begins. Both choices are made with knowledge of the strategy of the learner, which is thus necessarily randomized in the non-stochastic adversarial case.
+Two main settings appear in the literature for the play of the environment that is carried out: in the stochastic setting an adversary picks a distribution over actions at the start of the game from which i.i.d. draws are later made; in the non-stochastic (oblivious) adversary setting they select a specific sequence of play before the game begins. Both choices are made with knowledge of the strategy of the learner, which is thus necessarily randomized in the non-stochastic adversarial case.
 
 The basic structure of an online learning game is as follows.
 
@@ -60,7 +66,7 @@ For each round:
 \item The algorithm observes the reward which depends on its realized action and the realized action of the environment
 \end{enumerate}
 
-A crucial aspect of online learning is the feedback model. Two fundamental extremes are full feedback, where, after realizing a reward, the reward that would have been obtained for any other choice of action by the algorithm is also revealed, and the bandit setting, where only the reward of the chosen action is revealed. 
+A crucial aspect of online learning is the feedback model. Two fundamental extremes are full feedback and the bandit setting. In the first, after realizing a reward, the reward that would have been obtained for any other choice of action by the algorithm is also revealed. In the second, only the reward of the chosen action is revealed. %TODO revealed to whom?
 More generally, prediction with partial monitoring \cite{cesa2006regret} generalizes this as follows:
 
 \begin{enumerate}
@@ -70,10 +76,13 @@ More generally, prediction with partial monitoring \cite{cesa2006regret} general
 \item The feedback is revealed to the forecaster
 \end{enumerate}
 
-Where the feedback and loss matrices are known. In the full information setting, the feedback exactly pins down the value of the reward of the algorithm for any possible choice of the algorithm's action on that period; in the bandit setting the feedback pins down the reward only for the taken action.
+The feedback and loss matrices are known. In the full information setting, the feedback exactly pins down the value of the reward of the algorithm for any possible choice of the algorithm's action on that period; in the bandit setting the feedback pins down the reward only for the taken action.
+%TODO what are those matrices?
+%TODO this repeats what is written in the paragraph above.
 
 
 \subsection{Bandit Algorithms}
+%TODO what is a bandit algorithm?!
 
 Our conceptual contributions are largely agnostic about the underlying algorithm that is used.
 Three main families of algorithms with theoretical guarantees exist in the literature, and are based on Bayesian, upper confidence bounds and exponential weights. We also explore a  heuristic algorithm, epsilon greedy, which has been observed to often have good empirical performance \cite{kuleshov:14}.
@@ -82,52 +91,54 @@ Thompson Sampling is a very natural bayesian algorithm with good practical perfo
 
 A second family of algorithms encountered in the literature are based on Upper Confidence Bounds (UCB) and originate in (\cite{lai:85,katehakis1995sequential,agrawal1995sample}). They play the action with the highest upper bound on its expected value. This embodies the principle of optimism in the face of uncertainty. A finite time analysis of the regret was presented in (\cite{auer:02a}).
 
-A third family, based on exponential weights, offers maximally robust guarantees, in the sense that it has close optimal (minimax) performance with regards to arbitrary non-stochastic underlying sequences of rewards. This becomes useful when we wish to create hierarchical bandits when the original sequence may not be independent and identically distributed (IID); the sequence that results from a bandit algorithm's choices will not be by construction.
+A third family, based on exponential weights, offers maximally robust guarantees, in the sense that it has close optimal (minimax) performance with regard to arbitrary non-stochastic underlying sequences of rewards. This becomes useful when we wish to create hierarchical bandits when the original sequence may not be independent and identically distributed (IID); the sequence that results from a bandit algorithm's choices will not be by construction.
 
 A thorough analysis of bandit algorithms with adversarial regret guarantees can be found in( \cite{bubeck:12, banditalgo2016}). 
+%TODO one examiner wants more explanations of the whole section, especially thompson sampling
 
 \section{Mechanism Design}
 
 The central question of mechanism design is how to structure a game so as to incentivize self-interested agents to achieve some objective.
-The two central objectives are \emph{efficiency} - that the sum of utilities be as great as possible - and revenue optimal - that the principal which runs the mechanism receives maximal net payment.
-In our setting, we are interested in \emph{efficiency}, that is, allocating the right choice of action. The rest of this section and the later section thus focus on mechanisms in relation to that objective.
+The two central objectives are \emph{efficiency} -- that the sum of utilities be as great as possible -- and \emph{revenue optimal} -- that the principal which runs the mechanism receives maximal net payment.
+In our setting, we are interested in efficiency, that is, allocating the right choice of action for the agents. The rest of this section and the later section thus focus on mechanisms in relation to that objective.
 
-Each agent's information is characterized by their \emph{signal}, which allows the agent to narrow down which realization of possible states of the world they are in. In the literature this is often also called an agent's \emph{type}, particularly when it describes a private valuation by that agent of a good.
-We say a mechanism is \emph{incentive compatible} when agents report their true signals to the mechanism. 
+Each agent's information is characterized by their \emph{signal}, which allows the agent to narrow down which realization of possible states of the world they are in. In the literature this is often also called an agent's \emph{type}, particularly when it describes a private valuation of a good by that agent.
+We say a mechanism is \emph{incentive compatible} when agents reach maximal utility if they report their true signals to the mechanism. 
 Without any further assumptions (i.e. without a probability distribution over said states of the world), signals are of limited use beyond situations with a dominant strategy equilibrium.
 % TODO this needs a lot of refinement.
+%TODO definition of signal is not clear
 
-Ideally one would like to search for mechanisms that are \emph{strictly dominant strategy} incentive compatible.
+Ideally one would like to search for mechanisms that are \emph{strictly dominant strategy} incentive compatible. %TODO what is this?
 For many objectives of interest, such mechanisms do not exist, and optimal decision elicitation will turn out to be one of them.
 It is worth noting that a \emph{weak} dominant strategy mechanism for optimal decision elicitation is trivial: if the payment to the experts is 0 for all possible states of the world, then any action is weakly dominant, including truthfulness. 
 For this reason in the substantive chapters we will simply use the term \emph{dominant strategy} and focus on strictly dominant mechanisms. 
+%TODO i find the definitions unclear.
 
-A canonical problem in mechanism design is where each agent $i$ has a quasi-linear utility function that depends on the chosen social alternative, on their private signal, and on monetary transfers, but not on the information available to other agents.
+A canonical problem in mechanism design is one where each agent has a quasi-linear utility function that depends on the chosen social alternative, on their private signal, and on monetary transfers, but not on the information available to other agents.
 This is known as \emph{private values}.
 A class of mechanisms known as Vickrey-Clarke-Groves (VCG)  (\cite{vickrey1961,clarke1971,groves1973}) guarantee that truthful revelation of private information is the dominant strategy for each agent; that is, the mechanisms are dominant \emph{incentive compatible}, and the \emph{efficient} decision is taken. 
 This holds for arbitrary dimensions and distributions of signals.
-Under independence of signal draws between agents, (\cite{jehiel2001efficient}) provide an efficient mechanism for the case where the quasi-linear utility function of agent $i$ can depend on all agents' private signals. 
+Under independence of signal draws between agents, (\cite{jehiel2001efficient}) provide an efficient mechanism for the case where the quasi-linear utility function of an agent can depend on all agents' private signals. 
 To maximize the future social welfare in a dynamic setting, variations of the efficient (VCG) mechanism exist for relatively general dynamic settings (\cite{bergemann2010dynamic,parkes2003van,athey2007designing}).
 
-
-We focus on models where experts information is endowed to the agents, and has no cost of acquisition.
+We focus on models where expert information is endowed to the agents and has no cost of acquisition.
 
 Many settings of interest, including ours, do not in general have dominant strategy mechanisms. 
-The literature in microeconomics where mechanism design emerged has largely dealt with this by using a probability distribution over signals, and then treats the problem as one of \emph{bayesian} mechanism design.
-The designer then seeks to optimize the objective in expectation over this distribution, while the agents' incentives are relaxed relative to dominant strategies, to require that their actions be a best response in expectation to distribution of actions of other agents.
+The literature in microeconomics has largely dealt with this by using a probability distribution over signals, and then treats the problem as one of \emph{bayesian} mechanism design.
+The designer then seeks to optimize the objective in expectation over this distribution. The agents' incentives are relaxed relative to dominant strategies, to ensure that their actions are a best response in expectation to the distribution of actions of other agents.
 
 In a bayesian game there are three stages of knowledge possessed by the agents:
 \begin{itemize}
- \item Ex ante: before values are drawn from the distribution, the agents know this distribution but not their own types (or those of others). 
- \item Interim: after the agents learn their types, but before playing in the game. The agents know their distribution and know that the other agents' types are drawn from the prior distribution conditioned on their own type.
- \item Ex post: the game has been played and the actions of all agents are known.
+   \item \emph{Ex ante}: before values are drawn from the distribution, the agents know this distribution but not their own types (or those of others).
+   \item \emph{Interim}: after the agents learn their types, but before playing in the game, the agents know their distribution and know that the other agents' types are drawn from the prior distribution conditioned on their own type.
+   \item \emph{Ex post}: the game has been played and the actions of all agents are known.
 \end{itemize}
 
-A simple but fundamental result in mechanism design is the Revelation Principle.
+A simple but fundamental result in mechanism design is the \emph{Revelation Principle}.
 For any mechanism and equilibrium of the mechanism, there exists an incentive compatible mechanism with the same equilibrium.
 The reason is that one can wrap the original non-incentive compatible mechanism with a mechanism that takes a report, assumed truthful, and simulates its optimal play in the original mechanism to pick its payments and allocations, thus achieving the same equilibrium but from the truthful reports. 
-This holds in a vast range of situations in both the Bayes-Nash and the Dominant Strategy sense of equilibrium. 
-This however fails to hold for natural settings in optimal decision elicitation, when agents only learn their types over time, or when the mechanism designer does not know the prior (and thus can't simulate).
+This holds in a vast range of situations in both the Bayes-Nash and the Dominant Strategy sense of equilibrium. %TODO vast range, or any mechanism??
+It however fails to hold in natural settings of optimal decision elicitation, when agents only learn their types over time or when the mechanism designer does not know the prior (and thus can't simulate).
 The learning of types over time is inevitable in the learning setting where there is a sequence of subjects, while in one-off markets a common prior over the signal distribution seems almost impossible.
 
 
@@ -136,17 +147,18 @@ The learning of types over time is inevitable in the learning setting where ther
 \subsection{Bandit Algorithms as Mechanisms}
 
 
-A recent and notable exception to assuming that the algorithm in a bandit setting is able to implement any choice it desires is in the mechanism design literature around bandits, where (\cite{kremer2014implementing,mansour2015bayesian}).
-In this setting he principal is a social planer,  considered to be optimizing the welfare across a sequence of agents, and strategically reveals information about past outcomes to incentive agents to explore.
+A recent and notable exception to assuming that the algorithm in a bandit setting is able to implement any choice it desires is in the mechanism design literature around bandits (\cite{kremer2014implementing,mansour2015bayesian}).
+In this setting the principal is a social planner,  considered to be optimizing the welfare across a sequence of agents, and strategically reveals information about past outcomes to incentivize agents to explore.
 
 A closely related literature to the work of this thesis is focused on the incentive properties of bandit algorithms for their subjects.
-At each step of the bandit problem, a new agent (subject), must select which arm to pull. 
-The study of this problem initiated in (\cite{kremer2014implementing}).
-The  incentive offered by the social planner is the recommended action, the planner does not offer payments for following the recommendation. This setting is studied in (\cite{mansour2015bayesian}) who provide a generic black box reduction from bandit algorithms with arbitrary context and (extra) feedback to incentive compatible mechanisms.
+The study of this problem was initiated in (\cite{kremer2014implementing}).
+At each step of the bandit problem, a new agent (subject) must select which arm to pull. 
+The  incentive offered by the social planner is the recommended action. The planner does not offer payments for following the recommendation. %how is recommending an action then incentivizing anyone?
+This setting is studied in (\cite{mansour2015bayesian}), who provide a generic black box reduction from bandit algorithms with arbitrary context and (extra) feedback to incentive compatible mechanisms.
 
-The setting where payments are offered to the agents at each step in considered in (\cite{frazier2014incentivizing}).
-These works assume the central algorithm embodies a benevolent social planer that attempts to maximize social welfare, and focus on the incentives of the subjects.
-In contrast to these works, we assume away subjects incentive considerations, and instead focus on how to incentivize those providing the advice of which decision to take.
+The setting where payments are offered to the agents at each step is considered in (\cite{frazier2014incentivizing}).
+These works assume the central algorithm embodies a benevolent social planner that attempts to maximize social welfare, and focus on the incentives of the subjects.
+In contrast to these works, we abstain from subject incentive considerations, and instead focus on how to incentivize those providing the advice of which decision to take.
 
 Another literature that studies bandit problems in a mechanism design framework is called \emph{Strategic bandit models} and focuses on several players facing (identical) copies of the same set of arms. Players can observe not only their own outcome but also that of their neighbors. A good review of this literature, and the broader literature on the interaction between learning and strategic considerations, is in (\cite{horner2016learning}).
 
@@ -157,7 +169,7 @@ Another literature that studies bandit problems in a mechanism design framework 
 A literature in economics and particularly mechanism design is centered on when and how information can be aggregated from multiple agents that receive signals about the state of the world, and have various degrees of strategic sophistication in their actions.
 A definitive article on the topic with respect to the common prediction market and Arrow Debreu general equilibrium models is (\cite{ostrovsky2012information}), which also provides an excellent overview of the historical literature within economics.
 Ostrovsky studies information aggregation in dynamic markets with a finite number of partially informed strategic traders. 
-Trading takes place in a bounded time interval, and in every equilibrium; as time approaches the end of the interval, the market price of a \emph{separable} security converges in probability to its expected value conditional on the traders' pooled information. If the security is non-separable, then there exists a common prior over the states of the world and an equilibrium such that information does not get aggregated. 
+Trading takes place in a bounded time interval and in every equilibrium; as time approaches the end of the interval, the market price of a \emph{separable} security converges in probability to its expected value conditional on the traders' pooled information. If the security is non-separable, then there exists a common prior over the states of the world and an equilibrium such that information does not get aggregated. 
 
 
 In these models the fact that securities are settled unambiguously implies that the state of the world is eventually observed.
@@ -220,19 +232,21 @@ The equivalence between trading shares and eliciting beliefs from a single agent
 % \cite{mckelvey1990public}
 % %Note also that if each player behaves myopically in each period, the prediction that he will make is his posterior belief about the expected value of the security, given his initial information and the history of revisions up to that point, and thus the Ã¢ÂÂ¬ÃÂgameÃ¢ÂÂ¬ÃÂ turns into the communication process of Geanakoplos and Polemarchakis (1982).
 
-Initiating with the equivalence between market scoring rules and regularized follow-the-leader algorithms in (\cite{chen2010new}) and a series of follow up works (\cite{abernethy2013efficient, frongillo2012interpreting, hu2014multi, frongillo2015convergence}) map prediction markets to learning algorithms. 
-How the wealth (and thus accuracy of prices) is concentrated between informed trades in a sequence of markets, using a natural if highly specific trader model (Kelly bettors, equivalently log utility maximizers) is studied in (\cite{beygelzimer2012learning}).
+Initiating with the equivalence between market scoring rules and regularized follow-the-leader algorithms in (\cite{chen2010new}), a series of follow up works (\cite{abernethy2013efficient, frongillo2012interpreting, hu2014multi, frongillo2015convergence}) map prediction markets to learning algorithms. 
+How the wealth (and thus the accuracy of prices) is concentrated between informed trades in a sequence of markets, using a natural if highly specific trader model (Kelly bettors, equivalently log utility maximizers), is studied in (\cite{beygelzimer2012learning}).
 
 The subject's freedom makes no difference in the analysis of the fully supervised setting; since there is no action to take, there is no sense in which a subject may not follow along. To the degree the information these prediction markets surface is not being used by participants in the world in a way that affects it (as the models assume), we can perfectly evaluate how accurate they are regardless of the other agents' reports.
+%TODO the last sentence does not parse
 
 
 \section{Decision Markets}
 
-Can markets be used not just to understand the underlying distribution over future states of the world, but to select which action to take so as to induce the best distribution? In the vivid image of (\cite{mackenzie2008engine}), a market as \emph{an engine, not a camera}.
+Can markets be used not just to understand the underlying distribution over future states of the world, but to select which action to take so as to induce the best distribution? In the vivid image of (\cite{mackenzie2008engine}), a market as \emph{an engine, not a camera}. %TODO one examiner does not like the use of this metaphor. also this is not a full sentence.
 The idea of using prediction markets for decision support originates in (\cite{berg2003prediction,hanson2002decision}). 
 These mechanisms rely on running a prediction market for the outcome variable of interest for each possible action that the decision maker can take, and voiding those markets for the action not taken.
 
-In (\cite{othman2010decision}) argue that corporate prediction markets do not capture the right problem for their clients. In particular, by focusing on eliciting probabilities after decisions have been made about what their effects will be, they cannot be used to inform those decisions. It then considers the manipulability of a decision market where (in our terminology) the subject seeks to maximize their utility by always selecting the action that the market prices indicate is best, the \emph{max decision rule}. It is then shown that there are no incentive compatible market scoring rules (and thus by equivalence cost function) markets under this decision rule with multiple experts.
+%TODO what is a corporate predictopn market?
+In (\cite{othman2010decision}), the authors argue that corporate prediction markets do not capture the right problem for their clients. In particular, by focusing on eliciting probabilities about what their effects will be after decisions have been made, they cannot be used to inform those decisions. It then considers the manipulability of a decision market where (in our terminology) the subject seeks to maximize their utility by always selecting the action that the market prices indicate is best, hence following the \emph{max decision rule}. It is then shown that there are no incentive compatible market scoring rules (and thus by equivalence cost function) markets under this decision rule with multiple experts. %TODO incentive compatible market scoring rules markets?
 The intuition is elementary: the last expert to trade with the market can force which of the conditional markets will be settled, so they maximize their profits by changing the price that is most incorrect, and lowering the price of all other actions bellow that.
 These results are formally generalized in (\cite{chen2014eliciting}), to show that the subject must use a decision rule with full support to create the right incentives in conditional prediction markets that are used for decision support.
 
