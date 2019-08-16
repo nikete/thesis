@@ -34,12 +34,12 @@ Note the top-level bandit is \emph{not} in an i.i.d. environment even when the e
    	 Bandit $\cH$ running \texttt{NoRegretAlgorithm} compatible with adaptive environments, with arms corresponding to $\cB_i$ above
     \FOR{$t=1$ {\bfseries to} $T$}
 	\STATE Draw bandit $i\in\{1,2,3\}$ from $\cH$ and arm $j$ from $\cB_i$
-	\STATE Pull arm $j$ of $\cB_i$; observe reward $r^{(t)}$; observe compliance
-	\STATE Update $\cH$ with reward $r^{(t)}$ applied to bandit-arm $i$
+	\STATE Pull arm $j$ of $\cB_i$; observe loss $\ell_j^{(t)}$; observe compliance
+	\STATE Update $\cH$ with loss $\ell_j^{(t)}$ applied to bandit-arm $i$
 	\IF{$i=1$}
-	\STATE Update $\cB_1$ with reward $r^{(t)}$ applied to treatment-arm $j$
+	\STATE Update $\cB_1$ with loss $\ell_j^{(t)}$ applied to treatment-arm $j$
 	\ENDIF
-	\STATE Update $\cB_{2/3}$ with reward $r^{(t)}$ according to protocols \chosen\, and \actual\, respectively
+	\STATE Update $\cB_{2/3}$ with loss $\ell_j^{(t)}$ according to protocols \chosen\, and \actual\, respectively
    	\ENDFOR
 
        	\end{algorithmic}
@@ -47,62 +47,75 @@ Note the top-level bandit is \emph{not} in an i.i.d. environment even when the e
 
 \subsection{Regret analysis}
 
-This section shows that constructing a hierarchical bandit with \texttt{EXP3} (\cite{auer:02b}) as the top-level bandit algorithm yields a no-regret algorithm. The result is straightforward; we include it for completeness. A similar result was shown in \cite{chang:05}. 
+This section shows that constructing a hierarchical bandit with \texttt{Exp3} as the top-level bandit algorithm yields a no-regret algorithm. The result is straightforward; we include it for completeness. A similar result was shown in \cite{chang:05}. 
 
-%TODO a few words about exp3 plx
+The \texttt{Exp3} Algorithm (\cite{auer:02b}) is a bandit algorithm worst case regret bound robust to adaptive environments.
 
 \begin{algorithm}
-   \caption{\texttt{EXP3}}
+   \caption{\texttt{Exp3}}
    \label{alg:exp3}
    \begin{algorithmic}   
-   \STATE {\bfseries Input:}
-   	A vector $P_{t=0}$, initially the uniform distribution over actions.
+      \STATE {\bfseries Input:} $\gamma\in[0,1]$\\
+   \STATE Initialize weight vector $w^{(1)}_{i}=1$ for $i\in[N]$ where $N$ is the number of arms;
    \FOR{$t=1$ {\bfseries to} $T$}
-	\STATE Select an arm according $to P_{t}$
-	\STATE Pull arm $i$; incur reward $r_{t,i}$
-	\STATE Update $P_{t+1,i} = \frac{  P_{ti}  exp(\gamma \hat{X_{ti}}) }{  \sum_j P_{tj}  exp(\gamma \hat{X_{tj}}) }  $  where $\hat{X}$ is the 
+	   \STATE Define probabilities $x_i^{(t)} = (1-\gamma)\frac{w_i^{(t)}}{ \sum_j w_{j}^{(t)} } + \gamma\frac{1}{N}$
+	   \STATE Draw an arm $i^{(t)} \sim\mathbf{x}^{(t)}$
+	\STATE Pull arm $i^{(t)} $
+	   \STATE Incur loss $\ell^{(t)}$
+	   \STATE Update:
+	   \begin{align}
+		w^{(t+1)}_i & = \begin{cases}
+		   w_{i}^{(t)} \cdot \exp(-\gamma \frac{\ell^{(t)}}{N\cdot x_{i^{(t)}}})
+			 & \text{if } i=i^{(t)} \\
+			w^{(t)}_{i} & \text{else}
+		\end{cases}		
+		\end{align}
     \ENDFOR
        	\end{algorithmic}
 \end{algorithm}         
-%TODO write it out, baby...bob wants you to.
  
 %TODO what does hedge do?
-First, we construct a hierarchical version of \texttt{Hedge} (\cite{chang:05}), Algorithm~\ref{alg:meta-hedge}, which is applicable in the full-information setting. On the bottom-level are $M$ instantiations of \texttt{Hedge}. Instantiation $i$, for $i\in[M]$, plays an $N$-dimensional weight vector and receives $N$-dimensional loss vector $\loss^{(t)}_{i}$ on round $t$. We impose the assumption that all instantiations play $N$-vectors for notational convenience. The top-level is another instantiation of \texttt{Hedge}, which plays a weighted combination of the bottom-level instantiations.
+To obtain a hierarchical algorithm using \texttt{Exp3} as top level, we first construct a hierarchical version of \texttt{Hedge}, Algorithm~\ref{alg:meta-hedge}, which is applicable in the full-information setting. We then modify it using the principle from $\texttt{EXP3}$ to make it work for bandit feedback settings.
+
+\texttt{Hedge} (\cite{chang:05}) is an algorithm with bounded regret in the expert setting.
+On the bottom-level of our hierarchical version, there are $M$ instantiations of \texttt{Hedge}. Instantiation $i$, for $i\in[M]$, plays an $N$-dimensional weight vector and receives $N$-dimensional loss vector $\loss^{(t)}_{i}$ on round $t$. We impose the assumption that all instantiations play $N$-vectors for notational convenience. The top-level is another instantiation of \texttt{Hedge}, which plays a weighted combination of the bottom-level instantiations.
 
 \begin{algorithm}
    \caption{\texttt{Hierarchical Hedge (HHedge)}}
    \label{alg:meta-hedge}
    \begin{algorithmic}   
    	\STATE {\bfseries Input:} $\eta,\rho>0$\\
-   	 $v^{(1)}_{i}=1$ for $i\in[M]$;\\ 
-   	 $w^{(1)}_{i,j}=1$ for $(i,j)\in[M]\times[N]$
+   	\STATE $v^{(1)}_{i}=1$ for $i\in[M]$
+   	\STATE $w^{(1)}_{i,j}=1$ for $(i,j)\in[M]\times[N]$
 	\FOR{$t=1$ {\bfseries to} $T$}
-	\STATE Set $\x^{(t)} \leftarrow \vt^{(t)}/X^{(t)}$ where $X^{(t)} = \sum_{i=1}^M v^{(t)}_{i}$.
-	\STATE Set $\y^{(t)}_{i} \leftarrow \wt^{(t)}_{i}/Y^{(t)}_{i}$ where $Y^{(t)}_{i} = \sum_{j=1}^N w^{(t)}_{i,j}$.
-	\STATE Receive feedback $\loss^{(t)}\in [0,1]^{M\times N}$ 
-	\STATE Incur loss $\sum_{i,j=1}^{M,N} x^{(t)}_{i}\cdot\ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j}$
-	\STATE Updates:
-	\begin{align}
-		v^{(t+1)}_i & \leftarrow v^{(t)}_{i}\cdot \exp\big(-\eta \sum_{j=1}^N\ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j}\big)
-		\\
-		w^{(t+1)}_{i,j} & \leftarrow w^{(t)}_{i,j}\cdot \exp\big(-\rho\cdot \ell^{(t)}_{i,j}\big)
-	\end{align}
-   	\ENDFOR
+	   \STATE Set $\x^{(t)} = \vt^{(t)}\cdot\left(\sum_{i\in[M]} v^{(t)}_{i}\right)^{-1}$
+	   \STATE Set $\y^{(t)}_{i} = \wt^{(t)}_{i}\cdot \left(\sum_{j\in[N]} w^{(t)}_{i,j}\right)^{-1}$ for $i\in[M]$.
+		\STATE Receive feedback $\loss^{(t)}\in [0,1]^{M\times N}$
+		\STATE Incur loss $\sum_{i=1}^{M} x^{(t)}_{i}\cdot\sum_{j=1}^N\ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j}$
+		\STATE Update weights for all $i,j$:
+		\begin{align}
+			v^{(t+1)}_i & = v^{(t)}_{i}\cdot \exp\big(-\eta \sum_{j=1}^N\ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j}\big)
+			\\
+			w^{(t+1)}_{i,j} & = w^{(t)}_{i,j}\cdot \exp\big(-\rho\cdot \ell^{(t)}_{i,j}\big)
+		\end{align}
+    	\ENDFOR
    	\end{algorithmic}
-\end{algorithm} %TODO no understand. write down this algo correctly, so you can write down the next one correctly, so you bob is happy.
+\end{algorithm}
 
 We have the following lemma:
 
 \begin{lem}\label{lem:meta-hedge}
-	Introduce compound loss vector $\tilde{\loss}$ with $\tilde{\ell}^{(t)}_i := \sum_j \ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j}$. Then $\rho$ can be chosen in \texttt{HHedge} such that
+	Introduce compound loss vectors $\tilde{\loss}^{(t)}$ with 
+	$$\tilde{\ell}^{(t)}_i := \sum_j \ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j}$$
+	Then $\rho$ can be chosen in \texttt{HHedge} such that for all $i\in[M]$,
 	\begin{equation}
 		\sum_{t=1}^T \langle \x^{(t)},\tilde{\loss}^{(t)}\rangle 
-		\leq  \sum_{t=1}^T \tilde{\loss}^{(t)}_i +
-		\leq O(\sqrt{T \log M})\quad\forall i.
-	\end{equation} %TODO something missing in that formula...
-	Moreover, $\rho$ and $\eta$ can be chosen such that, for all $i$,
+		\leq  \sum_{t=1}^T \tilde{\ell}^{(t)}_i +
+		 O(\sqrt{T \log M})
+	\end{equation}
+	Moreover, $\rho$ and $\eta$ can be chosen such that for all $i\in[M]$ and all $j\in[N]$,
 	\begin{equation}
-		\sum_{t,i,j=1}^{T,M,N} x^{(t)}_{i}\ell^{(t)}_{i,j} y^{(t)}_{i,j}
+	   \sum_{t=1}^T \langle \x^{(t)},\tilde{\loss}^{(t)}\rangle 
 		\leq \sum_{t=1}^T\ell^{(t)}_{i,j}
 		+ O(\sqrt{T \log M} + \sqrt{T \log N}).
 	\end{equation}
@@ -115,65 +128,66 @@ We have the following lemma:
 Lemma~\ref{lem:meta-hedge} says, firstly, that \texttt{HHedge} has bounded regret relative to the bottom-level instantiations and, secondly, that it has bounded regret relative to any of the $M\times N$ experts on the bottom-level.
 
 
-Algorithm~\ref{alg:meta-exp2} modifies \texttt{HHedge} so that it is suitable for bandit feedback, yielding \texttt{HEXP3}. A corresponding no-regret bound follows immediately:
+Algorithm~\ref{alg:meta-exp2} modifies \texttt{HHedge} so that it is suitable for bandit feedback, yielding \texttt{HExp3}. A corresponding no-regret bound follows immediately:
 
 \begin{lem}\label{lem:meta-exp}
-	Define $\tilde{\loss}$ as in Lemma~\ref{lem:meta-hedge}. Then $\rho$ can be chosen in \texttt{HEXP3} such that
+	Define $\tilde{\loss}^{(t)}$ as in Lemma~\ref{lem:meta-hedge}. Then $\rho$ can be chosen in \texttt{HExp3} such that for all $i\in[M]$
 	\begin{equation}
-		\expec\left[\sum_{t=1}^T\ell_{x^{(t)},y^{(t)}}\right]
+		\expec\left[\sum_{t=1}^T\ell^{(t)}_{i^{(t)},j^{(t)}}\right]
 		\leq \sum_{t=1}^T \tilde{\ell}^{(t)}_{i}
-		+ O(\sqrt{MT\log M})
+		+ O(\sqrt{T M\log M})
 	\end{equation}
 	Moreover, $\rho$ and $\eta$ can be chosen such that
 	\begin{equation}
-		\expec\left[\sum_{t=1}^{T} \ell^{(t)}_{x^{(t)},y^{(t)}}\right]
-		\leq \sum_{t=1}^T\ell^{(t)}_{i,j}
+		\expec\left[\sum_{t=1}^{T} \ell^{(t)}_{i^{(t)},j^{(t)}}\right]
+		\leq \sum_{t=1}^T\ell^{(t)}_{i^{(t)},j^{(t)}}
 		+ O(\sqrt{TM \log M} + \sqrt{T N\log N})
 	\end{equation}
 \end{lem}
 \begin{proof}
-	Follows from Lemma~\ref{lem:meta-hedge} and the bound for \texttt{EXP3} (Theorem 3.1 in \cite{auer:02b}).
+	Follows from Lemma~\ref{lem:meta-hedge} and the bound for \texttt{Exp3} (Corollary 3.2 in \cite{auer:02b}).
 \end{proof}
 
 \begin{algorithm}[tb]
-   \caption{\texttt{Hierarchical EXP3 (HEXP3)}}
+   \caption{\texttt{Hierarchical Exp3 (HEXP3)}}
    \label{alg:meta-exp2}
    \begin{algorithmic}   
-   \STATE {\bfseries Input:} $\eta,\rho>0$\\
-   	 $v^{(1)}_{i}=1$ for $i\in[M]$;\\ 
-   	 $w^{(1)}_{i,j}=1$ for $(i,j)\in[M]\times[N]$
+      \STATE {\bfseries Input:} $\eta,\rho\in[0,1]$\\
+      \STATE $v^{(1)}_{i}=1$ for $i\in[M]$
+   	\STATE $w^{(1)}_{i,j}=1$ for $(i,j)\in[M]\times[N]$
 	\FOR{$t=1$ {\bfseries to} $T$}
-	\STATE Set $\x^{(t)} \leftarrow \vt^{(t)}/X^{(t)}$ where $X^{(t)} = \sum_{i=1}^M v^{(t)}_{i}$.
-	\STATE Set $\y^{(t)}_{i} \leftarrow \wt^{(t)}_{i}/Y^{(t)}_{i}$ where $Y^{(t)}_{i} = \sum_{j=1}^N w^{(t)}_{i,j}$.
-	\STATE Draw $x^{(t)}\sim \x^{(t)}$ and $y^{(t)}\sim \y^{(t)}_{x^{(t)}}$.
-	\STATE Incur loss $\ell^{(t)}_{x^{(t)},y^{(t)}}\in [0,1]$ 
-	\STATE Updates:
+	   \STATE Set $\x^{(t)} = (1-\eta) \frac{\vt^{(t)}}{\sum_{i\in[M]} v^{(t)}_{i}} + \eta\frac{1}{M}$
+	   \STATE Set $\y^{(t)}_{i} = (1-\rho)\frac{\wt^{(t)}_{i}}{\sum_{j\in[N]} w^{(t)}_{i,j}} + \rho\frac{1}{N}$ for $i\in[M]$
+	\STATE Draw bandit $i^{(t)}\sim \x^{(t)}$ and arm $j^{(t)}\sim \y^{(t)}_{i^{(t)}}$
+	\STATE Pull arm $j^{(t)}$ on bandit $i^{(t)}$
+	   \STATE Incur loss $\ell =\ell_{i^{(t)}, j^{(t)}}^{(t)}\in [0,1]$ 
+	\STATE Update:
 	\begin{align}
-		v^{(t+1)}_i & \leftarrow \begin{cases}
+		v^{(t+1)}_i & = \begin{cases}
 			v^{(t)}_{i}\cdot 
-			\exp\big(-\eta\frac{\ell^{(t)}_{i,j}}{x_i}\big) & i=x^{(t)} \\
+			\exp\big(-\eta \frac{\ell}{M\cdot x_{i}^{(t)}}\big) & \text{if } i=i^{(t)} \\
 			v^{(t)}_{i} & \text{else}
 		\end{cases}		 
 		\\
-		w^{(t+1)}_{i,j} & \leftarrow \begin{cases}
-			w^{(t)}_{i,j}\cdot \exp\big(-\rho\frac{\ell^{(t)}_{i,j}}{x_iy_{i,j}}\big) 
-			& \text{if }(i,j)=(x^{(t)}, y^{(t)}) \\
+		w^{(t+1)}_{i,j} & = \begin{cases}
+			w^{(t)}_{i,j}\cdot \exp\big(-\rho\frac{\ell}{N\cdot x_i^{(t)}\cdot y_{i,j}^{(t)}}\big) 
+			& \text{if }(i,j)=(i^{(t)}, j^{(t)}) \\
 			w^{(t)}_{i,j} &\text{else}
 		\end{cases}
 	\end{align}
    	\ENDFOR
    	\end{algorithmic}
-\end{algorithm}%TODO bob complains here but i cannot understand why.
+\end{algorithm}
 
 
 \begin{thm}[No-regret with respect to \actual, \comply\, and individual treatment advice]\label{thm:cexp}\eod
-	Let \texttt{EXP3} be the no-regret algorithm used in Algorithm~\ref{alg:hier-exp} for both the bottom and top-level bandits, with suitable choice of learning rate. Then, \texttt{HB} satisfies
+	Let \texttt{Exp3} be the no-regret algorithm used in Algorithm~\ref{alg:hier-exp} for both the bottom and top-level bandits, with suitable choice of learning rate. Then, \texttt{HB} satisfies
 	\begin{equation}
 		\expec\left[\sum_{t=1}^T\ell^{(t)}_{a^{(t)}}\right]
 		\leq \sum_{t=1}^T \tilde{\ell}^{(t)}_{\actual/\comply}
 		+ O(\sqrt{T})
 	\end{equation}
-	where $\tilde{\ell}^{(t)}_{\actual/\comply}$ denotes the expected loss vector of \texttt{EXP3} under the respective protocol on round $t$. 
+	where $\tilde{\ell}^{(t)}_{\actual/\comply}$ denotes the expected loss vector of \texttt{Exp3} under the respective protocol on round $t$. 
 	Furthermore, the regret against individual treatments $j\in[k]$ is bounded by
 	\begin{equation}
 		\expec\left[\sum_{t=1}^{T} \ell^{(t)}_{a^{(t)}}\right]
