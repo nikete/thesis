@@ -27,17 +27,17 @@ In both situations it is natural to assume that the patients have the last say o
 In a more abstract sense the \emph{subject} who takes the action and lives through its consequences retains their freedom; their actions are not externally determined by the system which helps to inform them.
 \emph{Maintaining freedom} for the subject in decision support thus implies that the actions the system suggests need not be those the subject takes.
 
-These two motivating interaction patterns, ignoring considerations on the subject's freedom, are found reflected in two previously separate parts of the literature: the first is the classic bandit setting (introduced in \cite{thompson:33}); the second is the more recent and relatively obscure literature on decision markets (\cite{berg2003prediction,hanson2002decision,othman2010decision,boutilier2012eliciting,chen2014eliciting}). In both it is widely assumed that the action selected by the algorithm or mechanism is the one carried out by the subject.
+These two motivating interaction patterns, ignoring considerations on the subject's freedom, are found reflected in two previously separate parts of the literature: the first is the classic bandit setting (introduced in \citep{thompson:33}); the second is the more recent and relatively obscure literature on decision markets \citep{berg2003prediction,hanson2002decision,othman2010decision,boutilier2012eliciting,chen2014eliciting}). In both it is widely assumed that the action selected by the algorithm or mechanism is the one carried out by the subject.
 %TODO it is not clear to me from the two given example situations which patterns you mean. maybe spare a sentence to explain the connection to bandits and decision markets respectively. you might even want to explain the bandit and decision markets.
 
-This is implicit in most of the bandit literature, where no variable encodes the potential distinction between the algorithm's and the subject's choices of actions; rarely consideration is given to the possibility that they can differ. Incentive-compatible bandits \cite{kremer2014implementing,mansour2015bayesian,mansour2016bayesian} are a noteworthy exception.
+This is implicit in most of the bandit literature, where no variable encodes the potential distinction between the algorithm's and the subject's choices of actions; rarely consideration is given to the possibility that they can differ. Incentive-compatible bandits \citep{kremer2014implementing,mansour2015bayesian,mansour2016bayesian} are a noteworthy exception.
 
 The subject's follow-through of the algorithm's or mechanism's selected action is explicit in the decision market literature. Those mechanisms based on sequential proper scoring rules contingent on the action taken (voiding the markets contingent on the actions not taken) require not only that the subject follow the mechanism's choice, but select ex-post dominated actions with positive probability to incentivize experts.
 
 Operationally, in the bandit setting, our notion of the subject's freedom can be captured by considering, in addition to the usual variable which encodes the action that the algorithm or mechanism selects, a second variable for the action that the subject actually takes. Naively using such a variable and simply replacing the chosen with the observed action (in a standard worst case sub-linear regret algorithm) leads to linear regret in the worst case.
 %TODO give outlook on the non-naive approach you will take, or delete the last sentence
 
-In the mechanism design problem of expert elicitation for decision making, maintaining freedom rules out classes of mechanisms that rely on the subject taking dominated actions with positive probability. Previously, no mechanisms that are incentive compatible with many experts where the subject retains its freedom (is not knowingly required to take an ex-post dominated action with positive probability) were known (\cite{othman2010decision,chen2014eliciting}).
+In the mechanism design problem of expert elicitation for decision making, maintaining freedom rules out classes of mechanisms that rely on the subject taking dominated actions with positive probability. Previously, no mechanisms that are incentive compatible with many experts where the subject retains its freedom (is not knowingly required to take an ex-post dominated action with positive probability) were known \citep{othman2010decision,chen2014eliciting}).
 
 
 
@@ -52,11 +52,11 @@ In the bandit setting, preserving the freedom of the subject requires that the a
 This opens the possibility that the algorithm's choice of action for a round is different from the action the principal carries out.
 
 In the work on the normative implications for incentive schemes used in part II we assume a utility maximizing principal; mechanisms that retain their freedom allow them to pick the action that maximizes their utility.
-In the decision market mechanisms previously proposed in the literature, incentive compatibility of the max decision rule for the experts necessitates (\cite{othman2010decision,chen2014eliciting}) violating the freedom of the subject by dictating that the distribution of actions they take have full support. This rules out subjects that always take their optimal decision.
+In the decision market mechanisms previously proposed in the literature, incentive compatibility of the max decision rule for the experts necessitates \citep{othman2010decision,chen2014eliciting}) violating the freedom of the subject by dictating that the distribution of actions they take have full support. This rules out subjects that always take their optimal decision.
 %TODO that citation seems to be in the wrong place in that sentence.
 
 
-It is worth noting this design criterion clashes with other desirable ones, most notably the utilitarian objective of maximizing social welfare, where the principal is an abstract social planner who aims to maximize the sum over all agents' utility. This social welfare objective means that optimal mechanisms there \cite{kremer2014implementing,mansour2015bayesian,mansour2016bayesian} constrain the information set revealed to the subjects (e.g. the patient who is or is not taking the treatment at a given point in time for the clinical case).
+It is worth noting this design criterion clashes with other desirable ones, most notably the utilitarian objective of maximizing social welfare, where the principal is an abstract social planner who aims to maximize the sum over all agents' utility. This social welfare objective means that optimal mechanisms there \citep{kremer2014implementing,mansour2015bayesian,mansour2016bayesian} constrain the information set revealed to the subjects (e.g. the patient who is or is not taking the treatment at a given point in time for the clinical case).
 
 
 
@@ -139,13 +139,17 @@ When we focus on incentive compatibility, we do so for the experts, not the subj
 Assuming a utility maximizing subject -- one that uses the max decision rule -- restricts the freedom of that subject.
 For example, having unstable preferences that will change once the mechanism commences brings both limits and possibilities.
 While it limits the richness of the mechanics we can use (since we need to account for a subject that may or may not respond to incentives), it also liberates the analysis from constraints created by assuming all subjects are rational.
-For example, in bayesian  exploration (\cite{mansour2015bayesian}) there are priors over arms rewards where some arms are never explored, even through they may be optimal with positive probability \footnote{They might even be optimal with a probability of almost one half}. The possibility of some share of agents not being utility maximizers means the mechanism can explore such arms.
+For example, in bayesian  exploration \citep{mansour2015bayesian}) there are priors over arms rewards where some arms are never explored, even through they may be optimal with positive probability \footnote{They might even be optimal with a probability of almost one half}. The possibility of some share of agents not being utility maximizers means the mechanism can explore such arms.
 %TODO one examiner thinks this needs more explanation.
 
 While the direct decision elicitation mechanism we propose sidesteps the main problems of previously proposed mechanisms, it makes very strong use of a common prior assumption that extends over both compliance probabilities of subjects and a common prior probability distribution accross experts over their joint signals. This creates a tension with the canonical concern of Wilson (1987):
 %TODO cite properly
 
-\quote{Game theory has a great advantage in explicitly analyzing the consequences of trading rules that presumably are really common knowledge; it is deficient to the extent it assumes other features to be common knowledge, such as one agents probability assessment about another's preferences or information. I foresee the progress of game theory as depending on successive reductions in the base of common knowledge required to conduct useful analyses of practical problems. Only by repeated weakening of common knowledge assumptions will the theory approximate reality.}
+
+\begin{quote}
+Game theory has a great advantage in explicitly analyzing the consequences of trading rules that presumably are really common knowledge; it is deficient to the extent it assumes other features to be common knowledge, such as one agents probability assessment about another's preferences or information. I foresee the progress of game theory as depending on successive reductions in the base of common knowledge required to conduct useful analyses of practical problems. Only by repeated weakening of common knowledge assumptions will the theory approximate reality.
+\end{quote}
+
 
 This motivates our second mechanism, which retains the structure of the direct mechanism but replaces signals with bids. We analyze different information structures to understand when information can still aggregate appropriately in this setting.
 
@@ -172,9 +176,9 @@ The relation between the different settings considered in this thesis and in the
 
 \section{Publications and Collaborations}
 
-Most of chapters 3 and 4 on compliance aware bandits appears in (\cite{della2016compliance}). The work in Chapters 5 and 6 on decision elicitation from multiple experts has benefited from feedback of David Balduzzi.
+Most of chapters 3 and 4 on compliance aware bandits appears in \citep{della2016compliance}. The work in Chapters 5 and 6 on decision elicitation from multiple experts has benefited from feedback of David Balduzzi.
 
-During the course of the PhD I also collaborated on related publications in, prediction markets (\cite{frongillo2012interpreting}), market making (\cite{kinathil2014closed,kinathil2016symbolic}), crowdsourcing (\cite{della2012crowd}) and medical applications (\cite{della2016out}).
+During the course of the PhD I also collaborated on related publications in, prediction markets \citep{frongillo2012interpreting}, market making \citep{kinathil2014closed,kinathil2016symbolic}, crowdsourcing \citep{della2012crowd} and medical applications \citep{della2016out}.
 
 
 \section{Thesis Outline}
