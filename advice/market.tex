@@ -19,7 +19,7 @@ Preserving subject freedom is an inherently desirable practical design criterion
 
 
 
-The main contribution of this chapter is casting this setting as one of a single unit efficient allocation with interdependent valuations \citep{milgrom1982theory,maskin1992auctions,ausubel1999generalized,mclean2004informational,roughgarden2016optimal,eden2018interdependent}).
+The main contribution of this chapter is casting this setting as one of a single unit efficient allocation with interdependent valuations (\cite{milgrom1982theory,maskin1992auctions,ausubel1999generalized,mclean2004informational,roughgarden2016optimal,eden2018interdependent}).
 This allows us to leverage existing results in that setting, which provide both necessary conditions for efficient allocations (single crossing conditions on the signal structure) and impossibility results when those are not met.
 
 % Each bidder reports her type to the auctioneer. Given the reports, the auctioneer determines the allocation that maximizes surplus.
@@ -46,15 +46,15 @@ By having the mechanism select the expert instead of the choice, it also becomes
 
 One way to incentivize the experts is by applying the machinery of prediction markets based on sequentially shared proper scoring rules to the expected reward conditional on the action.
 A challenge that presents itself is how to settle the markets for the reward conditional on the action which is not taken.
-One natural approach is to void the trades in the markets for these actions, this being the originally proposed mechanism in this line of work \citep{hanson2002decision}, and only settling the markets where actions are taken.
-While seemingly natural, this is not incentive compatible for the experts, even in the weak myopic sense, as shown in \citep{othman2010decision}. 
+One natural approach is to void the trades in the markets for these actions, this being the originally proposed mechanism in this line of work \cite{hanson2002decision}, and only settling the markets where actions are taken.
+While seemingly natural, this is not incentive compatible for the experts, even in the weak myopic sense, as shown in \cite{othman2010decision}. 
 
 To understand why this is the case, consider a last trader facing the prediction market (sequential proper scoring rule)  where the  price is correct (matches the expected reward) for the optimal action, but there is some other action that is mispriced. The profit maximizing move for this trader is to lower the price of the optimal action below the true price of the previously mispriced action, and correct the mispriced action to its true  price. 
 The utility maximizing subject would then carry out the suboptimal action, the expert would be rewarded for correctly predicting it and would receive no punishment for the error she introduced into the reward of the optimal action. 
 %A mechanism is called Bayes Nash Incentive Compatible (BNIC) if there is a equilibrium were every agent reports their signal truthfully and this maximizes their reward in expectation (over the state of the world).
 %TODO why is this commented? bob requested an explanation!
-The mechanism proposed in \citep{hanson2002decision} is not BNIC for the experts who provide advice, as witnessed by the example above (and shown in \citep{othman2010decision,chen2014eliciting}).
-More generally, any sequential proper scoring rule based mechanism that is incentive compatible for the experts is incompatible with maintaining the subject's freedom to select the action that appears optimal ex-post \citep{ chen2014eliciting}. 
+The mechanism proposed in \cite{hanson2002decision} is not BNIC for the experts who provide advice, as witnessed by the example above (and shown in \cite{othman2010decision,chen2014eliciting}).
+More generally, any sequential proper scoring rule based mechanism that is incentive compatible for the experts is incompatible with maintaining the subject's freedom to select the action that appears optimal ex-post (\cite{ chen2014eliciting}). 
 
 %Interdependent Values without Single-Crossing
 %Alon Eden, Michal Feldman, Amos Fiat, Kira Goldner
@@ -64,7 +64,7 @@ More generally, any sequential proper scoring rule based mechanism that is incen
 %In the interdependent value setting, all previous work has assumed a so-called {\sl single-crossing condition}. Single-crossing means that the impact of agent i's private signal, si, on her own valuation is greater than the impact of si on the valuation of any other agent. It is known that without the single-crossing condition an efficient outcome cannot be obtained. We study welfare maximization for interdependent valuations through the lens of approximation. 
 
 
-%\citep{eden2018interdependent}
+%\cite{eden2018interdependent}
 %We show that, in general, without the single-crossing condition, one cannot hope to approximate the optimal social welfare any better than the approximation given by assigning the item to a random bidder. 
 %Consequently, we introduce a relaxed version of single-crossing, {\sl c-single-crossing}, parameterized by c≥1, which means that the impact of si on the valuation of agent i is at least 1/c times the impact of si on the valuation of any other agent (c=1 is single-crossing). Using this parameterized notion, we obtain a host of positive results. 
 
@@ -93,7 +93,7 @@ We then consider two practical indirect variations of the procedure, which remov
 
 
 As before, the subject seeks advice on a decision they will take from some finite set of alternatives $\cA$. Let $c\in\cA$ be the choice that is given as advice to the subject and $a\in\cA$ the decision that the subject actually takes.
-The rest of our model and notation largely follow that of \citep{eden2018interdependent}. %\footnote{Relative to their notation and to maintain coherency with the other chapters in the thesis, in our setting the number of potential actions is $q$ instead of $k$, while  }.
+The rest of our model and notation largely follow that of \cite{eden2018interdependent}. %\footnote{Relative to their notation and to maintain coherency with the other chapters in the thesis, in our setting the number of potential actions is $q$ instead of $k$, while  }.
 
 Potential signals for expert $i \in \{1, \ldots, n\}$ form a discrete signal space $S_i$.
 Each expert receives a single signal $s_i\in S_i$ which is known only to expert $i$.
@@ -125,15 +125,15 @@ $$x_i(\vec{s}) \cdot v_i(\vec{s}) - p_i(\vec{s}) \geq x_i(b_i, \vec{s}_{-i}) \cd
 
 
 
-%As in \citep{mclean2004informational} an experts  information may be of two qualitatively different kinds: information about the objective characteristics of the subject and the effects of their alternative decisions and how generally persuasive they are to find the recommended action.
+%As in \cite{mclean2004informational} an experts  information may be of two qualitatively different kinds: information about the objective characteristics of the subject and the effects of their alternative decisions and how generally persuasive they are to find the recommended action.
 %Idiosyncratic information about the agent himself: their ability to aggregate the signals efficiently, and how persuasive the would result as the advisors who selected $c$ in the second stage of the game. 
 %The former is of interest to other agents—and consequently is the cause of the interdependence of agents’ values—while the latter is irrelevant to other agents in calculating their values.
 
 
 \section{A Direct Reward Sharing Mechanism}
 
-The simplest class of mechanisms to incentivize advice is based on sharing a fraction of the rewards with the experts. For the single expert case this is mentioned by \citep{othman2010decision}. Here, the idea is extended to the multiple experts case. We do this by instantiating our notion of advice auctions with a simple mechanism,
-the generalized VCG mechanism proposed by \citep{maskin1992auctions}. This mechanism is \emph{direct} in the standard sense that agents report their signals. 
+The simplest class of mechanisms to incentivize advice is based on sharing a fraction of the rewards with the experts. For the single expert case this is mentioned by \cite{othman2010decision}. Here, the idea is extended to the multiple experts case. We do this by instantiating our notion of advice auctions with a simple mechanism,
+the generalized VCG mechanism proposed by \cite{maskin1992auctions}. This mechanism is \emph{direct} in the standard sense that agents report their signals. 
 
 The core of the mechanism is simple. Since there is knowledge by the mechanism over the value function for a given vector of signals, it can use the reported signals to select the highest value expert. The net payment to that expert is then just her share of the reward minus her value at the lowest signal she could have misreported and still obtained the allocation give the other reports. More formally:
 
@@ -170,21 +170,21 @@ The generalized direct VCG mechanism is deterministic and prior-free.
 	An allocation function $x_i$ is said to be \emph{monotone} if for every $\vec{b}_{-i}$, $x_i(b_i,\vec{b}_{-i})$ is monotone non-decreasing in $b_i$.
 \end{defn}
 
-Truthful mechanisms can be characterized as follows \citep{roughgarden2016optimal}.
+Truthful mechanisms can be characterized as follows \cite{roughgarden2016optimal}.
 
 \begin{prop}\label{prop:char-ic}
 	Monotonicity is a necessary and sufficient condition for allocation functions $x$ to be \emph{implementable}, {\sl i.e.}, there exist payment functions $p$ such that the mechanism $(x,p)$ is truthful.  Moreover, an analogue of Myerson's payment identity holds, so the payment is uniquely determined by the allocation function.%TODO give reference to Myerson.
 \end{prop}
 
 It follows that constructing a truthful mechanism is equivalent to constructing a monotone allocation function.
-For deterministic truthful mechanisms, the payment identity of \citept{roughgarden2016optimal} implies the following about the cost charged to a chosen expert (from \citep{eden2018interdependent}).
+For deterministic truthful mechanisms, the payment identity of \citet{roughgarden2016optimal} implies the following about the cost charged to a chosen expert (from \cite{eden2018interdependent}).
 
 \begin{prop}\label{prop:deterministic_payment}
 	Let agent $i$ be the allocated winner at report profile $\vec{b}$ in a deterministic truthful mechanism. Then her cost is her value at the critical signal.
 \end{prop}
 
 
-A single-crossing condition captures the idea that bidder $i$'s signal has a greater effect on experts $i$'s value than on any other expert's value. We follow the definition in \citep{eden2018interdependent}:
+A single-crossing condition captures the idea that bidder $i$'s signal has a greater effect on experts $i$'s value than on any other expert's value. We follow the definition in \cite{eden2018interdependent}:
 
 For $s_i = 1, \ldots, k_i$, define $$\frac{\partial v_j(s_i, \vec{s}_{-i})}{\partial s_i} = v_j(s_i, \vec{s}_{-i}) - v_j(s_i - 1, \vec{s}_{-i})$$
 %TODO what is k_i?
@@ -207,12 +207,12 @@ Allocating to the bidder with the highest value is a monotone allocation rule, a
 
 Further, one cannot do better than this, as per Proposition~\ref{prop:char-ic} monotonicity of the allocation rule is necessary for an efficient and truthful mechanism with interdependent values. Hence, without single-crossing, it is impossible to have a truthful advice auction in general.
 
-This procedure for a direct advice elicitation mechanism based on the advice auction procedure was here instantiated using \citep{maskin1992auctions}  as the underlying auction mechanism, but the procedure is generic. It could be, for example, instantiated instead with the randomized mechanism of \citep{eden2018interdependent}, and would obtain the approximation properties that algorithm provides in auctions in our advice setting.
+This procedure for a direct advice elicitation mechanism based on the advice auction procedure was here instantiated using \cite{maskin1992auctions}  as the underlying auction mechanism, but the procedure is generic. It could be, for example, instantiated instead with the randomized mechanism of \cite{eden2018interdependent}, and would obtain the approximation properties that algorithm provides in auctions in our advice setting.
 
 
 \section{Practical mechanisms: Advice Auctions}
 
-The assumptions in \citep{roughgarden2016optimal} that are used for the above result are extremely minimal relative to the existing literature in most of decision markets and auctions with interdependent values.
+The assumptions in \cite{roughgarden2016optimal} that are used for the above result are extremely minimal relative to the existing literature in most of decision markets and auctions with interdependent values.
 
 However, the mechanism having access to the value functions seems highly impractical in most potential applications.
 Given the practical settings that motivate this work, 
@@ -295,7 +295,7 @@ For contrast consider the identical mechanism but without the experts submitting
  \end{mech}
  
  For some very limited information structures the bidding mechanism still aggregates information efficiently. 
- These information structures correspond to the standard private values settings in which the Vickrey auction is efficient \citep{vickrey1961}.
+ These information structures correspond to the standard private values settings in which the Vickrey auction is efficient \cite{vickrey1961}.
  Private values occur when other experts' signals are not informative of the value for an expert of being assigned the rights bundle to make the choice.%TODO what?
  An example situation is when each expert's signal is only informative about the expected outcome conditional on one action, and  there is one expert who is informed about each action.
  
@@ -313,6 +313,6 @@ For contrast consider the identical mechanism but without the experts submitting
 \section{Conclusion}
 
 This chapter shows how to use the bundle of rights perspective on advisers to recast the incentives for decision elicitation from multiple experts into the thriving literature on VCG with interdependent valuations.
-We then use a result of \citep{roughgarden2016optimal} for the generalized VCG mechanism of \citep{maskin1992auctions} to allocate the rights results in a direct incentive compatible and efficient mechanism when signals have a single crossing property.
+We then use a result of \cite{roughgarden2016optimal} for the generalized VCG mechanism of \cite{maskin1992auctions} to allocate the rights results in a direct incentive compatible and efficient mechanism when signals have a single crossing property.
 We then explore two practical variations of the mechanism that relax the assumption that the mechanism cannot access the value functions of experts and that signals cannot be transmitted between experts. We give sufficient conditions on the structure of the signals so that the variations of the mechanisms preserve truthfulness and efficiency.
 %TODO should this not be the introduction rather than the conclusion of this section?
