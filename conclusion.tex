@@ -8,14 +8,14 @@ We provide a summary of thesis and discuss future directions in which to extend 
 The first part of the thesis introduced compliance information into the bandit setting. 
 Compliance information reflects the choice actually taken by the subject, rather than the algorithm's recommendation. 
 In many cases compliance information can be used to accelerate learning.
-Further, for situations where the number of arms is large relative to the number of time steps, and the subjects non-compliance is towards the higher reward arms, compliance awareness can make learning possible in problems where otherwise it is not. 
+Further, for situations where the number of arms is large relative to the number of time steps, and the subject's non-compliance is towards the higher reward arms, compliance awareness can make learning possible in problems where otherwise it is not. 
 However, naively incorporating compliance information leads to algorithms with linear regret, as seen in Example~\ref{eg:rich}. 
-We have therefore developed hybrid strategies that are the first algorithms that simultaneously incorporate compliance information while maintaining a worst-case guarantee. 
+We have therefore developed hybrid strategies that are the first algorithms that incorporate compliance information while maintaining a worst-case guarantee. 
 
 The second part of the thesis studied the elicitation of information from self interested experts for decision making.
-For the single decision case, which had previously been analyzed in the decisions market literature. We introduce the first mechanism for multiple experts with a good ex-post nash equilibrium that preserves freedom.
-It achieves the incentive compatibility for the experts without requiring randomized strategies with full support as previous mechanisms. And entry into the mechanism is positive expectation for both useful experts and subjects.
-We also introduced the first model for the repeated case, which generalizes both the one shot multi-expert elicitation and contextual bandit models.
+For the single decision case, which had previously been analyzed in the decisions market literature, we introduce the first mechanism for multiple experts with a good ex-post Nash equilibrium that preserves freedom.
+It achieves incentive compatibility for the experts without requiring randomized strategies with full support from the subject, as previous mechanisms do. Further, entry into the mechanism has positive expectation for both useful experts and subjects.
+We also introduced the first model for the repeated case, which generalizes both one shot multi-expert elicitation and contextual bandit models.
 
 %several smaller contributions
 %the recycling trick in chapter 2
@@ -31,13 +31,13 @@ We also introduced the first model for the repeated case, which generalizes both
 
 While many decision do repeat themselves with new subjects, including those that motivate most papers in the one shot decision market literature , others are more unique. 
 The crucial problem is to estimate the counter-factual reward obtained had a different action been taken.
-Some form of peer elicitation seems inevitable, but it is unclear how to combine with the signal aggregation aspects of optimal decision advise that are embodied by the bidding mechanism. 
+Some form of peer elicitation seems inevitable, but it is unclear how to combine this with the signal aggregation aspects of optimal decision advice that are embodied by the bidding mechanism. 
 
 
 \subsection{Generalization}
 
-The final model explored in the thesis has the previous two chapters as special cases.
-The bandit model has a vast range of extensions and special cases in which more specialized algorithms can make substantial advantage. Tt is interesting to consider the self-interested experts variations of those settings and see if more specialized mechanisms can also do better.
+The final model explored in the thesis has the settings described in the previous two chapters as special cases.
+The bandit model has a vast range of extensions and special cases in which more specialized algorithms can make substantial advantage. It is interesting to consider the self-interested experts variations of those settings and see if more specialized mechanisms can also do better.
 
 
 
@@ -45,13 +45,13 @@ Natural directions for further generalization beyond our final model are:
 
 \begin{enumerate}
 
-\item Settings with more supervision. Prediction markets and learning from expert advice have a tight connection, and as we have bandits and repeated advice elicitation can be seen as two potentially complementary sources of information to aid decisions. However, the two connections are quite different. It could be valuable to extend feedback graphs and other notions that interpolate between the bandit and full supervision settings to take into account incentivizes experts as in our model. 
+\item Settings with more supervision. Prediction markets and learning from expert advice are tightly connected. Bandit algorithms and repeated advice elicitation can be seen as two potentially complementary sources of information to aid decisions. However, the two connections are quite different. It could be valuable to extend feedback graphs and other notions that interpolate between the bandit and full supervision settings to take into account incentivized experts as in our model. 
 
-\item Incorporating general sources of information that are observed after the action has been chosen by the algorithm. Compliance has a very specific structural relation to the arms selected, what can be said generically about what structure the information has to have to be potentially useful to incorporate even when it arrives along with the reward.
+\item Incorporating general sources of information that are observed after the action has been chosen by the algorithm. Compliance has a very specific structural relation to the arms selected. It is interesting to explore what can be said generically about what structure the information has to have to be potentially useful to incorporate even when it arrives along with the reward.
 
-\item Costly signal acquisition. It is natural to consider a situation in which experts signals are costly for the experts to acquire. How can the scale of the rewards that re shared be optimally chosen?
+\item Costly signal acquisition. It is natural to consider a situation in which experts' signals are costly for the experts to acquire. How can the scale of the rewards that are shared be optimally chosen?
 
-\item Learning valuation functions from bid and signal data. Our mechanisms in chapter 5 face a severe limitation in what signal structures support truthfulness when it does not know the value function of experts. Is it possible to learn the value functions from previous bid and signal reports?
+\item Learning valuation functions from bid and signal data. Our mechanism in chapter 5 faces a severe limitation in what signal structures support truthfulness when it does not know the value function of experts. Is it possible to learn the value functions from previous bid and signal reports?
 
 \end{enumerate}
 
