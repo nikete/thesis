@@ -190,11 +190,11 @@ Algorithm~\ref{alg:meta-exp2} modifies \texttt{HHedge} so that it is suitable fo
 		+ O(\sqrt{T})
 	\end{equation}
 	where $\tilde{\ell}^{(t)}_{\actual/\comply}$ denotes the expected loss vector of \texttt{Exp3} under the respective protocol on round $t$. 
-	Furthermore, the regret against individual treatments $j\in[k]$ is bounded by
+	Furthermore, the regret against individual treatments $j\in[K]$ is bounded by
 	\begin{equation}
 		\expec\left[\sum_{t=1}^{T} \ell^{(t)}_{a^{(t)}}\right]
 		\leq \sum_{t=1}^T\ell^{(t)}_{j}
-		+ O(\sqrt{T k\log k})
+		+ O(\sqrt{T K\log K})
 	\end{equation}
 \end{thm}
 
