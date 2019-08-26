@@ -59,7 +59,8 @@ When $|\cA|=k=2$ (e.g., control and treatment), we can list the compliance-behav
 %	Let $p_s:= \expec_{u\sim \bP(U)}[\indic_{[\nu(u)=s]}]$ denote the probability of sampling from subpopulation $s\in\{\fN,\fA,\fC, \fD\}$.
    %TODO also never used i think...
 \end{defn}
-Unfortunately, the subpopulations cannot be distinguished from observations. For example, a patient that takes a prescribed treatment may be a complier or an always-taker. Nevertheless, observing compliance-behavior provides potentially useful side-information. The setting differs from contextual bandits because the side-information is only available \emph{after} the bandit algorithm chooses an arm.
+
+Unfortunately, the subpopulations cannot be distinguished from observations. For example, a patient that takes a prescribed treatment may be a complier or an always-taker. Nevertheless, observing compliance-behavior provides potentially useful side-information. The setting can be contrasted from contextual bandits because the side-information is only available \emph{after} the bandit algorithm chooses an arm.
 %TODO why do you say this here?
 
 \begin{defn}[stochastic reward model]\label{def:reward_model}\eod
@@ -72,175 +73,10 @@ Unfortunately, the subpopulations cannot be distinguished from observations. For
 	\end{equation}		
 \end{defn}
 
-The goal is to maximize the cumulative reward received,
-i.e. choose a sequence of actions $(c^{(t)})_{t\in [T]}$ that maximizes 
+The goal is to maximize the cumulative reward received, i.e. choose a sequence of actions $(c^{(t)})_{t\in [T]}$ that maximizes 
+
 \begin{equation}
    \expec_{u\sim \bP(U)}\left[\sum_{t\in[T]}r(\nu(u),\nu(u)(c^{(t)}), u)\right]
 \end{equation}
-We quantify the performance of algorithms in terms of regret, which compares the cumulative reward against that of the best action in hindsight.
-%TODO proper definition of regret?
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Reward protocols}
-\label{sec:protocols}
-
-Since compliance information is only available after pulling an arm, it cannot be used directly when selecting arms. However, compliance information can be used to modify the updates performed by the algorithm. For example, if the algorithm recommends taking a treatment, and the patient does not do so, we can choose whether to reward the arm that was recommended (treatment) or the arm that the patient pulled (control).
-
-\begin{defn}[reward protocols]\label{def:protocols}\eod
-	We consider three protocols for assigning rewards to arms at time step $t$:
-	\begin{enumerate}[P1.]
-		\item \textbf{\chosen: chosen-treatment updates.}
-		   Assign reward $r^{(t)}$ to the arm $c^{(t)}$ that was chosen by the algorithm.
-		\item \textbf{\actual: actual-treatment updates.}
-		   Assign reward $r^{(t)}$ to the arm $a^{(t)}$ that was actually pulled.
-		\item \textbf{\comply: compliance-based updates.}
-		   If $c^{(t)}=a^{(t)}$, assign reward $r^{(t)}$ to that arm. Else, do not update and proceed to the next time step.
-	\end{enumerate}
-\end{defn}
-Each protocol can be combined with any multi-armed bandit algorithm. 
-
-\subsection{Rewards assigned to arms by the three protocols}
-\label{sec:protocol_table}
-
-The rewards assigned to each arm by the three protocols are summarized in the table below.
-\begin{center}
-\begin{tabular}{| l | c | c | c |}
-\hline
-Arm updated & \chosen & \actual & \comply \\
-\hline
-      & $r_{\fN,0}$ & $r_{\fN,0}$ & $r_{\fN,0}$ \\
-$i=0$ & $r_{\fA,1}$ &             &             \\
-      & $r_{\fC,0}$ & $r_{\fC,0}$ & $r_{\fC,0}$ \\
-      & $r_{\fD,1}$ & $r_{\fD,0}$ &             \\
-\hline
-      & $r_{\fN,0}$ &             &             \\
-$i=1$ & $r_{\fA,1}$ & $r_{\fA,1}$ & $r_{\fA,1}$ \\
-      & $r_{\fC,1}$ & $r_{\fC,1}$ & $r_{\fC,1}$ \\
-      & $r_{\fD,0}$ & $r_{\fD,1}$ &             \\
-\hline
-\end{tabular}
-\end{center}
-Each protocol has strengths and weaknesses. None of the protocols successfully isolates the compliers. It follows that which protocol is optimal depends on the structure of the population, which is unknown to the learner.
-
-
-\paragraph{Protocol \#1: \chosen.}
-Under \chosen, the algorithm advises the patient on which treatment to take, and ignores whether or not the patient complies. 
-
-\begin{prop}\label{prop:chosen}
-	Standard regret bounds hold for any algorithm under \chosen.
-\end{prop}
-%TODO proof sketch?
-
-
-\paragraph{Protocol \#2: \actual.} 
-Expected rewards (Eq.~\eqref{eq:exp_rew}) depend on the treatment chosen by the patient, and not directly on the arm recommended by the algorithm. Thus, a natural alternative to \chosen\, is \actual, where reward is assigned to the treatment that the patient actually used -- which may in general not coincide with the arm that the bandit algorithm pulled.
-
-\begin{prop}\label{prop:actual}
-	There are settings where \actual\, outperforms \chosen\, and \comply.
-\end{prop}
-\begin{proof}
-	Suppose that $r_{s,j}=r_j$ depends on the treatment but not the subpopulation. Further suppose the population is a mix of always-takers, never-takers, and compliers but no defiers. 
-	Always-takers and never-takers ignore the algorithm's recommendations, which therefore only interacts with the compliers. 
-
-   Let $C$ be the choice taken by the algorithm, let $A$ be the action actually carried out, and let $p_s$ denote the probability of encountering subpopulation $s$.
-	The rewards $R$ used to update \chosen\, are, in expectation, 
-	\begin{equation}
-		\expec[R\,|\,C=0] 
-		= (1-p_\fA)\cdot r_0 + p_\fA\cdot r_1
-	\end{equation} and 
-	\begin{equation}
-		\expec[R\,|\,C=1]
-		= p_\fN\cdot r_0 + (1-p_\fN)\cdot r_1
-	\end{equation}
-	whereas the rewards used to update \actual\, are
-	\begin{equation}
-	   \expec[R\,|\,A=0] = r_0
-	\end{equation} and 
-	\begin{equation}
-	\expec[R\,|\,A=1] = r_1
-	\end{equation}
-	It follows that
-	\begin{equation}
-		r_{\fC,0} = \expec[R\,|\,A=0] \neq \expec[R\,|\,C=0]
-	\end{equation} and 
-	\begin{equation}
-		r_{\fC,1} = \expec[R\,|\,A=1] \neq \expec[R\,|\,C=1].
-	\end{equation}
-	Thus, \actual\, assigns rewards to arms based on their effect on compliers (which are the only subpopulation interacting with the bandit), whereas the rewards assigned to arms by \chosen\, are diluted by patients who do not take the treatment. Finally, \actual\, outperforms \comply\, because it updates more frequently.
-\end{proof}
-%TODO last sentence is unclear. also a rigid notion of performance as well as a proper proof would be nice.
-
-However, \actual\, can fail completely.
-\begin{eg}[\actual\, has linear regret; defiers]\label{eg:defiers}\eod
-	Suppose that the population consists only of defiers, and further suppose the treatment has a positive effect, hence $r_{\fD,0}=0$ and $r_{\fD,1}=1$.
-	Bandit algorithms using protocol \#2 will learn to pull arm $c_1$, causing defiers to pull arm $0$. The best move in hindsight is the opposite.
-\end{eg}
-Defiers are arguably a pathological case. The next scenario is more realistic in clinical trials:
-\begin{eg}[\actual\, has linear regret; harmful treatment]\label{eg:rich}\eod
-	Suppose there are two sub-populations: the first consists of rich, healthy patients who always take the treatment. The second consists of poor, less healthy patients who only take the treatment if prescribed. Finally, suppose the treatment \emph{reduces} well-being by $0.25$ on some metric. We then have
-	\begin{equation}
-	    \expec[R|A=0] = p_\fC \cdot r_{\fC,0} = 0p_\fC 
-	\end{equation} and 
-	
-	\begin{equation}
-	    \expec[R|A=1] = p_\fC \cdot r_{\fC,1} + p_\fA\cdot r_{\fA,1}
-	    = -0.25p_\fC + 0.75p_\fA
-	\end{equation}
-	%TODO reward can be negative? why is 0.75 the reward for taking?
-	If the population of healthy always-takers, and hence $p_\fA$, is sufficiently large, \actual\, assigns higher reward to the \emph{harmful} treatment arm.
-\end{eg}
-
-
-\paragraph{Protocol \#3: \comply.}
-Finally, \chosen\, and \actual\, can be combined to form \comply, which only rewards an arm if it both was chosen by the algorithm and the patient followed the algorithm's advice.
-
-\begin{prop}\label{prop:comply}
-	There are settings where \comply\, outperforms \chosen\, and \actual.
-\end{prop}
-
-\begin{proof}
-	It is easy to see that \comply\, outperforms \chosen\, in the setting of Proposition~\ref{prop:actual}.
-	
-	Consider a population of never-takers, always-takers and compliers. Suppose that never-takers are healthier than compliers, so
-	\begin{align}
-	   r_{\fN,0}> r_{\fC,0}\\
-	   r_{\fN,0}> r_{\fC,1}
-	\end{align}
-	whereas always-takers are less healthy, so
-	\begin{align}
-	   r_{\fA,0}< r_{\fC,0}\\
-	   r_{\fA,0}< r_{\fC,1}
-	\end{align}
-
-    The expected rewards received by \chosen\, are
-	\begin{align}
-		\expec[R\,|\,C=0]
-		& = p_{\fC}r_{\fC,0} + p_\fN r_{\fN,0} + p_\fA r_{\fA,1}\\
-		\quad\text{and}\quad\\
-		\expec[R\,|\,C=1]
-		& = p_{\fC}r_{\fC,1} + p_\fN r_{\fN,0} + p_\fA r_{\fA,1}
-	\end{align}
-	
-	Let $q_0$ and $q_1$ be the probability that the bandit algorithm chooses arms 0 and 1 respectively. The expected rewards received by \actual\, are
-	\begin{align}
-		\expec[R\,|\,A=0]
-		& = \frac{q_0 p_{\fC}r_{\fC,0} + p_\fN r_{\fN,0}}{q_0p_\fC + p_\fN}\\
-		\quad\text{and}\quad\\
-		\expec[R\,|\,A=1]
-		& = \frac{p_\fA r_{\fA,1} + q_1p_\fC r_{\fC,1}}{p_\fA + q_1 p_\fC}
-	\end{align}
-	whereas the rewards used to update \comply\, are
-	\begin{align}
-		\expec[R\,|\,C=0,A=0] &= \frac{p_{\fC}r_{\fC,0} + p_\fN r_{\fN,0}}{p_\fC + p_\fN}\\
-		\quad\text{and}\quad\\
-		\expec[R\,|\,C=1,A=1] &= \frac{p_\fA r_{\fA,1} + p_{\fC}r_{\fC,1}}{p_\fA + p_\fC}
-	\end{align}
-	It follows that $r_{\fC,0} \leq\expec[R\,|\,C=0,A=0]\leq \expec[R\,|\,A=0]$ and $r_{\fC,1} \geq\expec[R\,|\,C=1,A=1] \geq \expec[R\,|\,A=1]$.
-	The reward estimates for compliers are diluted under both \texttt{Actual} and \texttt{Comply}. However, \comply's estimate is more accurate.
-\end{proof}
-
-It is easy to see that \comply\, also has unbounded regret on example~\ref{eg:rich}.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

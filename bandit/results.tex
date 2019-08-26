@@ -62,13 +62,14 @@ Empirically, \texttt{TB} achieved a surplus of 8.9 extra survivals (that is, hum
 \texttt{HB} with \texttt{Epsilon Greedy} as the base algorithm achieved a surplus of 9.2 (CI: $[8.3,10.0]$)
 In contrast, the best performing strategy that was not compliance aware was Thompson sampling, which yielded 7.9 extra survivals (CI: $[7.2,8.7]$). 
 %TODO bob wants you to interpret results: Tell the reader what one can conclude (and perhaps what one can not conclude) from the experimental results.
+% The data in the IST is for a large worldwide trial for a widely available moderate effect intervention ( ) 
 
 The gains were largely concentrated in the Aspirin trial, which is consistent with the lack of benefits or severe ill effects found in the original study \cite{ist:97} for heparin, and with the small but beneficial effect found for aspirin. 
 If the underlying treatment has no positive or negative effect, side-information after the fact alone cannot be helpful.
 Note that \actual, and to a lesser extent \comply, performed better than either \chosen\, or the hybrid algorithms. However, these are problematic to use directly since no guarantees apply to their worst case performance. The performance of the hybrids benefits from the information encoded in \actual\, and \comply\, whilst keeping the guarantees of \chosen. 
 
 
-A striking secondary finding is the strong interaction between the learning algorithm and the nature of the feedback used. In particular, our naive implementation of \texttt{EXP3} performed extremely badly under both \actual\, and \comply, in both the aspirin and heparin simulations. Remarkably, \texttt{EXP3} performs well when used as a top-level algorithm in \texttt{HB} in both trials, and other algorithms on the same data with the same protocol are able to learn better than \chosen, while \texttt{EXP3} does worse than random (note the \texttt{EXP3} guarantees are only for the \chosen\, protocol, so they do not apply here).
+A striking secondary empirical observation from the experiments is the strong interaction between the base learning algorithm and the nature of the feedback used. In particular, our naive implementation of \texttt{EXP3} performed extremely badly under both \actual\, and \comply, in both the aspirin and heparin simulations. In contrast, \texttt{EXP3} performs well when used as a top-level algorithm in \texttt{HB} in both trials, and other algorithms on the same data with the same protocol are able to learn better than \chosen, while \texttt{EXP3} does worse than random (note the \texttt{EXP3} guarantees are only for the \chosen\, protocol, so they do not apply here).
 %TODO this is not a sentence i think...
 
 

@@ -17,9 +17,7 @@ A quite different setting is online advertising, where bandit algorithms are ext
 Clearly, the bandit algorithm should be able to learn more efficiently if it is provided  with information about which ads were actually shown.
 
 Unfortunately, despite its importance in medical applications (\cite{vrijens:12,hugtenburg:13}), compliance has not been analyzed in the bandit literature.
-In this chapter, we introduce compliance awareness into the bandit setting (\cite{bubeck:12}).
-%TODO why the citation here??
-
+In this chapter, we introduce compliance awareness into the bandit setting.
 In the classic multi-armed bandit setting, the player chooses one of $K$ arms on each round and receives a reward( \cite{auer:02b,auer:02}). The player is not told what the reward would have been had they chosen a different arm. The goal is to minimize the cumulative regret over a series of $T$ rounds. In the more general compliance setting, the action chosen by the algorithm is not necessarily the action that is finally carried out, see section~\ref{sec:formal}. Instead, a compliance process mediates between the algorithm's recommendation and the action that is actually taken. Importantly, the compliance process may depend on latent characteristics of the subject of the decision. We focus on the case where the outcome of the compliance process is observable.
 
 Unfortunately, compliance information is a two-edged sword. There are settings where it is useful; but  it can also lead to linear regret. We present sub-linear regret algorithms that incorporate compliance information and provide worst case regret guarantees that match the standard ones for multi-armed bandits (which we term the chosen strategy) up to multiplicative constants. We also show stylized example situations where compliance aware algorithms have bounded regret and standard ones do not.
