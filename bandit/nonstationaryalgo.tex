@@ -7,8 +7,18 @@
 %TODO what?
 %In the non-compliance setting there is additional information available to the algorithm. Ignoring the compliance-information (\chosen) reduces to the standard bandit setting. However, it is possible to improve performance by taking advantage of observations about when treatments are \emph{actually} applied. Using compliance information is not trivial, since bandit algorithms that rely purely on treatments (\actual) or (\comply) instead  have linear regret.
 
+
 %Consider the regret not relative to a fixed best fixed action in hindsight as usual, but relative to an algorithm that has access to compliance information.%TODO fixed fixed? define regret.
 %We show that this regret scales $O(T)$ in the non-stationary setting if the regime from which rewards are drawn changes frequently enough. We also show that within each regime the compliance awareness helps converge faster, for example due to very high rates of noncompliance of subjects that don't have different underlying characteristics, making \actual\, perform well, or due to subjects having information that helps them switch to the best arm.
+
+In the non-compliance setting there is additional information available to the algorithm. Ignoring the compliance-information (\chosen) reduces to the standard bandit setting. However, it should be possible to improve performance by taking advantage of observations about when treatments are \emph{actually} applied. Using compliance information is not trivial, since bandit algorithms that rely purely on treatments (\actual) or purely on compliance (\comply) can have linear regret.
+
+This section proposes two hybrid algorithms that take advantage of compliance information, have bounded regret, and empirically outperform algorithms running the \chosen\, protocol.
+
+
+Consider the regret not relative to a best fixed action as usual, but relative to an algorithm that has access to compliance information.
+We show that this regret scales $O(T)$ in the non-stationary setting if the regime from which losses are drawn changes frequently enough. We also show that within each regime the compliance awareness helps converge faster, for example due to very high rates of noncompliance of subjects that don't have different underlying characteristics, making \actual\, perform well, or due to subjects having information that helps them switch to the best arm.
+
 
 %\NDP{Formalize into a theorem, example/witness}
 
@@ -29,13 +39,13 @@ Note the top-level bandit is \emph{not} in an i.i.d. environment even when the e
    	 \STATE {\bfseries Input:}
    	 Bandit $\cH$ running \texttt{NoRegretAlgorithm} compatible with adaptive environments, with arms corresponding to $\cB_i$ above
     \FOR{$t=1$ {\bfseries to} $T$}
-	\STATE Draw bandit $i\in\{1,2,3\}$ from $\cH$ and arm $j$ from $\cB_i$
-	\STATE Pull arm $j$ of $\cB_i$; observe loss $\ell_j^{(t)}$; observe compliance
-	\STATE Update $\cH$ with loss $\ell_j^{(t)}$ applied to bandit-arm $i$
-	\IF{$i=1$}
-	\STATE Update $\cB_1$ with loss $\ell_j^{(t)}$ applied to treatment-arm $j$
+	   \STATE Draw bandit $i^{(t)}\in\{1,2,3\}$ from $\cH$ and arm $j^{(t)}$ from $\cB_{i^{(t)}}$
+	   \STATE Pull arm $j^{(t)}$ of $\cB_{i^{(t)}}$; observe loss $\ell=\ell_{i^{(t)},j^{(t)}}^{(t)}$; observe compliance
+	\STATE Update $\cH$ with loss $\ell$ applied to bandit-arm $i^{(t)}$
+	\IF{$i^{(t)}=1$}
+	\STATE Update $\cB_1$ with loss $\ell$ applied to treatment-arm $j^{(t)}$
 	\ENDIF
-	\STATE Update $\cB_{2/3}$ with loss $\ell_j^{(t)}$ according to protocols \chosen\, and \actual\, respectively
+	\STATE Update $\cB_{2/3}$ with loss $\ell$ according to protocols \chosen\, and \actual\, respectively
    	\ENDFOR
 
        	\end{algorithmic}
@@ -43,9 +53,16 @@ Note the top-level bandit is \emph{not} in an i.i.d. environment even when the e
 
 \subsection{Regret analysis}
 
-This section shows that constructing a hierarchical bandit with \texttt{Exp3} as the top-level bandit algorithm yields a no-regret algorithm. The result is straightforward; we include it for completeness. A similar result was shown in \cite{chang:05}. 
+\begin{defn}[Regret]
+   The \emph{regret} of an online learning algorithm \texttt{A} is
+   $$\texttt{Regret}_\texttt{A}(T) = \sum_{t\in[T]}\ell_{j^{(t)}}^{(t)}  - \min_j\sum_{t\in[T]}\ell_j^{(t)}$$
+   where $j^{(t)}$ is the action chosen by the algorithm in time step $t$, and $\min_j\sum_{t\in[T]}\ell_j^{(t)}$ is the minimal accumulated loss one can obtain when fixing an action and choosing that same fixed action each step.
+\end{defn}
+	
 
-The \texttt{Exp3} Algorithm (\cite{auer:02b}) is a bandit algorithm worst case regret bound robust to adaptive environments.
+This section shows that constructing a hierarchical bandit with \texttt{Exp3} (Algorithm \ref{alg:exp3}) as the top-level bandit algorithm yields a no-regret algorithm. The result is straightforward; we include it for completeness. A similar result was shown in \cite{chang:05}. 
+
+The \texttt{Exp3} Algorithm (\cite{auer:02b}) is a bandit algorithm whose worst case regret bound is robust to adaptive environments.
 
 \begin{algorithm}
    \caption{\texttt{Exp3}}
@@ -73,7 +90,8 @@ The \texttt{Exp3} Algorithm (\cite{auer:02b}) is a bandit algorithm worst case r
 %TODO what does hedge do?
 To obtain a hierarchical algorithm using \texttt{Exp3} as top level, we first construct a hierarchical version of \texttt{Hedge} \citep{littlestone1994weighted, freund1997decision}, Algorithm~\ref{alg:meta-hedge}, which is applicable in the full-information variant of our setting (the model where the counterfactual value of actions can be observed). We then modify it using the principle from $\texttt{EXP3}$ to make it work for bandit feedback settings.
 
-On the bottom-level of our hierarchical version, there are $M$ instantiations of \texttt{Hedge}. Instantiation $i$, for $i\in[M]$, plays an $N$-dimensional weight vector and receives $N$-dimensional loss vector $\loss^{(t)}_{i}$ on round $t$. We impose the assumption that all instantiations play $N$-vectors for notational convenience. The top-level is another instantiation of \texttt{Hedge}, which plays a weighted combination of the bottom-level instantiations.
+\texttt{Hedge} (\cite{chang:05}) is an algorithm with bounded regret in the expert setting.
+On the bottom-level of our hierarchical version (Algorithm \ref{alg:meta-hedge}), there are $M$ instantiations of \texttt{Hedge}. Instantiation $i$, for $i\in[M]$, plays an $N$-dimensional weight vector and receives $N$-dimensional loss vector $\loss^{(t)}_{i}$ on round $t$. We impose the assumption that all instantiations play $N$-vectors for notational convenience. The top-level is another instantiation of \texttt{Hedge}, which plays a weighted combination of the bottom-level instantiations.
 
 \begin{algorithm}
    \caption{\texttt{Hierarchical Hedge (HHedge)}}
@@ -83,9 +101,9 @@ On the bottom-level of our hierarchical version, there are $M$ instantiations of
    	\STATE $v^{(1)}_{i}=1$ for $i\in[M]$
    	\STATE $w^{(1)}_{i,j}=1$ for $(i,j)\in[M]\times[N]$
 	\FOR{$t=1$ {\bfseries to} $T$}
-	   \STATE Set $\x^{(t)} = \vt^{(t)}\cdot\left(\sum_{i\in[M]} v^{(t)}_{i}\right)^{-1}$
-	   \STATE Set $\y^{(t)}_{i} = \wt^{(t)}_{i}\cdot \left(\sum_{j\in[N]} w^{(t)}_{i,j}\right)^{-1}$ for $i\in[M]$.
-		\STATE Receive feedback $\loss^{(t)}\in [0,1]^{M\times N}$
+	   \STATE Set $\x^{(t)} = \frac{\vt^{(t)}}{\sum_{i\in[M]} v^{(t)}_{i}}$
+	   \STATE Set $\y^{(t)}_{i} = \frac{\wt^{(t)}_{i}}{\sum_{j\in[N]} w^{(t)}_{i,j}}$ for $i\in[M]$.
+		\STATE Receive feedback $\loss^{(t)}\in [0,1]^{M\times N}$ %TODO TODO why do the lower levels get different feedback each?
 		\STATE Incur loss $\sum_{i=1}^{M} x^{(t)}_{i}\cdot\sum_{j=1}^N\ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j}$
 		\STATE Update weights for all $i,j$:
 		\begin{align}
@@ -101,7 +119,7 @@ We have the following lemma:
 
 \begin{lem}\label{lem:meta-hedge}
 	Introduce compound loss vectors $\tilde{\loss}^{(t)}$ with 
-	$$\tilde{\ell}^{(t)}_i := \sum_j \ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j}$$
+	$$\tilde{\ell}^{(t)}_i := \sum_{j=1}^N \ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j}$$
 	Then $\rho$ can be chosen in \texttt{HHedge} such that for all $i\in[M]$,
 	\begin{equation}
 		\sum_{t=1}^T \langle \x^{(t)},\tilde{\loss}^{(t)}\rangle 
@@ -115,8 +133,6 @@ We have the following lemma:
 		+ O(\sqrt{T \log M} + \sqrt{T \log N}).
 	\end{equation}
 \end{lem}
-
-%the 2005 paper has a parameter free version
 
 
 %TODO check reference for those bounds
@@ -156,19 +172,22 @@ Lemma~\ref{lem:meta-hedge} says, firstly, that \texttt{HHedge} has bounded regre
 Algorithm~\ref{alg:meta-exp2} modifies \texttt{HHedge} so that it is suitable for bandit feedback, yielding \texttt{HExp3}. A corresponding no-regret bound follows immediately:
 
 \begin{lem}\label{lem:meta-exp}
-	Define $\tilde{\loss}^{(t)}$ as in Lemma~\ref{lem:meta-hedge}. Then $\rho$ can be chosen in \texttt{HExp3} such that for all $i\in[M]$
+	Define $\tilde{\loss}^{(t)}$ as in Lemma~\ref{lem:meta-hedge} to obtain the expected loss for the upper-level \texttt{Exp3} instances:
+	$$\tilde{\ell}^{(t)}_i := \sum_{j=1}^N \ell^{(t)}_{i,j}\cdot y^{(t)}_{i,j} = \expec\left[ \ell^{(t)}_{i,j^{(t)}}\right]$$
+	Then $\rho$ can be chosen in \texttt{HExp3} such that for all $i\in[M]$
 	\begin{equation}
 		\expec\left[\sum_{t=1}^T\ell^{(t)}_{i^{(t)},j^{(t)}}\right]
 		\leq \sum_{t=1}^T \tilde{\ell}^{(t)}_{i}
 		+ O(\sqrt{T M\log M})
 	\end{equation}
-	Moreover, $\rho$ and $\eta$ can be chosen such that
+	Moreover, $\rho$ and $\eta$ can be chosen such that for all $i\in[M]$ and $j\in[N]$
 	\begin{equation}
 		\expec\left[\sum_{t=1}^{T} \ell^{(t)}_{i^{(t)},j^{(t)}}\right]
-		\leq \sum_{t=1}^T\ell^{(t)}_{i^{(t)},j^{(t)}}
+		\leq \sum_{t=1}^T\ell^{(t)}_{i,j}
 		+ O(\sqrt{TM \log M} + \sqrt{T N\log N})
 	\end{equation}
 \end{lem}
+
 \begin{proof}
  The bound for \texttt{Exp3} with $M$ actions and loss $\loss^{(t)}_i$(Corollary 3.2 in \cite{auer:02b}) is:
  
@@ -207,8 +226,9 @@ Combining these yields the lemma
 
 \end{proof}
 
+
 \begin{algorithm}[tb]
-   \caption{\texttt{Hierarchical Exp3 (HEXP3)}}
+   \caption{\texttt{Hierarchical Exp3 (HExp3)}}
    \label{alg:meta-exp2}
    \begin{algorithmic}   
       \STATE {\bfseries Input:} $\eta,\rho\in[0,1]$\\
@@ -247,11 +267,11 @@ Combining these yields the lemma
 		+ O(\sqrt{T})
 	\end{equation}
 	where $\tilde{\ell}^{(t)}_{\actual/\comply}$ denotes the expected loss vector of \texttt{Exp3} under the respective protocol on round $t$. 
-	Furthermore, the regret against individual treatments $j\in[k]$ is bounded by
+	Furthermore, the regret against individual treatments $j\in[K]$ is bounded by
 	\begin{equation}
 		\expec\left[\sum_{t=1}^{T} \ell^{(t)}_{a^{(t)}}\right]
 		\leq \sum_{t=1}^T\ell^{(t)}_{j}
-		+ O(\sqrt{T k\log k})
+		+ O(\sqrt{T K\log K})
 	\end{equation}
 \end{thm}
 
@@ -260,5 +280,3 @@ Combining these yields the lemma
 \end{proof}
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
