@@ -139,10 +139,11 @@ When we focus on incentive compatibility, we do so for the experts, not the subj
 Assuming a utility maximizing subject -- one that uses the max decision rule -- restricts the freedom of that subject.
 For example, having unstable preferences that will change once the mechanism commences brings both limits and possibilities.
 While it limits the richness of the mechanics we can use (since we need to account for a subject that may or may not respond to incentives), it also liberates the analysis from constraints created by assuming all subjects are rational.
-For example, in bayesian  exploration \citep{mansour2015bayesian} there are priors over arms rewards where some arms are never explored, even through they may be optimal with positive probability \footnote{They might even be optimal with a probability of almost one half}. The possibility of some share of agents not being utility maximizers means the mechanism can explore such arms.
+For example, in bayesian  exploration \citep{mansour2015bayesian} there are priors over arms rewards where some arms are never explored, even through they may be optimal with positive probability \footnote{They might even be optimal with a probability of almost one half}. The reason for this is that a rational selfish agent does not internalize the benefit of exploration when exploitation will be carried out by later agents. The possibility of some share of agents not being expected utility maximizers means such arms may be explored. 
+
 %TODO one examiner thinks this needs more explanation.
 
-While the direct decision elicitation mechanism we propose sidesteps the main problems of previously proposed mechanisms, it makes very strong use of a common prior assumption that extends over both compliance probabilities of subjects and a common prior probability distribution accross experts over their joint signals. This creates a tension with the canonical concern of Wilson (1987):
+While the direct decision elicitation mechanism we propose sidesteps the main problems of previously proposed mechanisms, it makes very strong use of a common prior assumption that extends over both compliance probabilities of subjects and a common prior probability distribution accross experts over their joint signals. This creates a tension with the canonical concern of \citep{wilson1987}:
 %TODO cite properly
 
 
@@ -162,12 +163,12 @@ The relation between the different settings considered in this thesis and in the
 		\midrule
 		Forecasting & T  & past rewards for all actions & Minimax  \\
 		Bandit & T  & past rewards &  Minimax  \\
-		Peer Prediction & 1 & N strategic reports & BNE \\
-		Prediction Market & 1 & N reports, full reward vector &  NE\\
-		Decision Market & 1 & N reports, reward for action & NE  \\
-		Advice Auction  & 1 & N reports, reward for action, taken action & NE  \\
-		Compliance Aware Bandit & T  & reward for action and compliance & minimax \\
-		N sided Advice Markets  & T  &  N  reports and rewards for actions & NE  \\
+		Peer Prediction & 1 & N reports & BNE \\
+		Prediction Market & 1 & N reports, reward vector &  NE\\
+		Decision Market & 1 & N reports, reward  & NE  \\
+		Advice Auction  & 1 & N reports, reward, taken action & NE  \\
+		Compliance Aware Bandit & T  & reward and taken action & minimax \\
+		N sided Advice Markets  & T  &  N  reports, rewards taken action & NE  \\
 		\bottomrule
 	\end{tabular}
 	\caption{Relation between learning settings in the thesis and literature.}
@@ -184,7 +185,7 @@ During the course of the PhD I also collaborated on related publications in, pre
 \section{Thesis Outline}
 \label{sec:outline}
 
-In Chapter~\ref{cha:background}, we provide background about the two settings that this thesis makes contributions to. In Chapter~\ref{cha:bandit}, we present two novel classes of algorithms and associated regret guarantees that take into account the underlying freedom not to comply with an algorithm's chosen treatment. We then study the empirical performance  of these algorithms based on both synthetic and real data in Chapter~\ref{cha:empirical}.
+In Chapter~\ref{cha:background}, we provide background on the two settings that this thesis contributes to. In Chapter~\ref{cha:bandit}, we present two novel classes of algorithms and associated regret guarantees that take into account the underlying freedom not to comply with an algorithm's chosen treatment. We then study the empirical performance  of these algorithms based on both synthetic and real data in Chapter~\ref{cha:empirical}.
 In Chapter~\ref{cha:market}, we turn our attention to eliciting an optimal action, and offer the first incentive compatible algorithm for elicitation from multiple experts that does not restrict the agent's freedom. We show it to be optimal while exploring some of its practical limitations from its extensive use of a common prior, as well as what is lost when we move to a simpler mechanism that relies on bids instead of signals.
 In Chapter~\ref{cha:twosided}, we present a novel setting with both multiple experts and multiple subjects that arrive sequentially, which we term \emph{two sided decision markets}. We propose an extension of the simple mechanism based on a sequence of second price auctions that internalizes the benefits of exploration, while rewarding only valuable experts.
 

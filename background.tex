@@ -66,8 +66,7 @@ For each round:
 \item The algorithm observes the reward which depends on its realized action and the realized action of the environment
 \end{enumerate}
 
-A crucial aspect of online learning is the feedback model. Two fundamental extremes are full feedback and the bandit setting. In the first, after realizing a reward, the reward that would have been obtained for any other choice of action by the algorithm is also revealed. In the second, only the reward of the chosen action is revealed. %TODO revealed to whom?
-More generally, prediction with partial monitoring \cite{cesa2006regret} generalizes this as follows:
+A crucial aspect of online learning is the feedback model, that is what about the received reward is revealed to the decision making process, be it an agent or an algorithm. Two fundamental extremes are full feedback and the bandit setting. In the first, after realizing a reward, the reward that would have been obtained for any other choice of action by the algorithm is also revealed. In the second, only the reward of the chosen action is revealed. More generally, prediction with partial monitoring \cite{cesa2006regret} generalizes this as follows:
 
 \begin{enumerate}
 \item The environment chooses an action without revealing it
@@ -84,17 +83,19 @@ The feedback and loss matrices are known. In the full information setting, the f
 \subsection{Bandit Algorithms}
 %TODO what is a bandit algorithm?!
 
-Our conceptual contributions are largely agnostic about the underlying algorithm that is used.
+A one-armed bandit is a anachronistic term for a slot machine. A motivating example in the literature is that of a gambler faced with a set of slot machines, each of which has a different expected reward, and the gambler wishes to find a good strategy to eventually concentrate their play in that with the highest payout. Replacing such slot machines with potential medical treatments (in our motivating example) or with potential online advertisements on the web (in the motivation of much contemporary machine learning research). Two lines of analysis of the regret of algorithms in this settings depend on if the payout distribution is assume fixed (the stochastic setting) or is allowed to vary arbitrarily (the adversarial setting). Within the adversarial setting,  variation in the rewards that can be instantiated before the game (non-adaptive) or at each step of the game (an adaptive adversary). 
+
 Three main families of algorithms with theoretical guarantees exist in the literature, and are based on Bayesian, upper confidence bounds and exponential weights. We also explore a  heuristic algorithm, epsilon greedy, which has been observed to often have good empirical performance \cite{kuleshov:14}.
 
-Thompson Sampling is a very natural bayesian algorithm with good practical performance, first proposed in the literature by \cite{thompson:33}: it plays each action with probability equal to its posterior probability of being the best action, given the rewards observed up to that point.
+Thompson Sampling is a very natural bayesian strategy first proposed in \cite{thompson:33}. It selects each action with probability equal to its posterior probability of being the best action, given the prior and rewards observed up to that point. It has excellent practical performance characteristics \cite{chapelle2011empirical}. It analysis in the stochastic case has been 
 
 A second family of algorithms encountered in the literature are based on Upper Confidence Bounds (UCB) and originate in (\cite{lai:85,katehakis1995sequential,agrawal1995sample}). They play the action with the highest upper bound on its expected value. This embodies the principle of optimism in the face of uncertainty. A finite time analysis of the regret was presented in (\cite{auer:02a}).
 
-A third family, based on exponential weights, offers maximally robust guarantees, in the sense that it has close optimal (minimax) performance with regard to arbitrary non-stochastic underlying sequences of rewards. This becomes useful when we wish to create hierarchical bandits when the original sequence may not be independent and identically distributed (IID); the sequence that results from a bandit algorithm's choices will not be by construction.
+A third family, based on exponential weights, offers maximally robust guarantees, in the sense that it has close optimal (minimax) performance with regard to arbitrary non-stochastic underlying sequences of rewards. This becomes useful when we wish to create hierarchical bandits when the original sequence may not be independent and identically distributed (IID); the sequence that results from a bandit algorithm's choices will not be so by construction.
 
-A thorough analysis of bandit algorithms with adversarial regret guarantees can be found in( \cite{bubeck:12, banditalgo2016}). 
-%TODO one examiner wants more explanations of the whole section, especially thompson sampling
+ Our conceptual contributions are agnostic about the specific underlying algorithm that is used, as long a regret guarantee against a adaptive adversary holds. A thorough analysis of bandit algorithms with adversarial regret guarantees can be found in( \cite{bubeck:12, banditalgo2016}). The underlying intuition as to why a adaptive adversary is sufficient is that whatever dependencies are introduced into the sequential process by the compliance aware algorithm cannot be worse than those, since otherwise the adaptive adversary could adapt such a strategy.
+ 
+
 
 \section{Mechanism Design}
 
@@ -241,11 +242,12 @@ The subject's freedom makes no difference in the analysis of the fully supervise
 
 \section{Decision Markets}
 
-Can markets be used not just to understand the underlying distribution over future states of the world, but to select which action to take so as to induce the best distribution? In the vivid image of (\cite{mackenzie2008engine}), a market as \emph{an engine, not a camera}. %TODO one examiner does not like the use of this metaphor. also this is not a full sentence.
-The idea of using prediction markets for decision support originates in (\cite{berg2003prediction,hanson2002decision}). 
+Can markets be used not just to understand the underlying distribution over future states of the world, but to select which action to take so as to induce the best distribution? %In the vivid image of (\cite{mackenzie2008engine}), a market as \emph{an engine, not a camera}.%TODO one examiner does not like the use of this metaphor. also this is not a full sentence.
+The idea of using prediction markets for decision support originates at least as far back as (\cite{berg2003prediction,hanson2002decision}). 
 These mechanisms rely on running a prediction market for the outcome variable of interest for each possible action that the decision maker can take, and voiding those markets for the action not taken.
 
-%TODO what is a corporate predictopn market?
+Corporate prediction markets (\cite{ortner1998forecasting,cowgill2015corporate})  are attempts to have corporate insiders trade claims whose payouts is contigent on a event of interest to their company, such the date a product will ship. In some cases the claims are traded via double auction as in stock markets, while in others a automated market maker is used to provide liquidity. 
+
 In (\cite{othman2010decision}), the authors argue that corporate prediction markets do not capture the right problem for their clients. In particular, by focusing on eliciting probabilities about what their effects will be after decisions have been made, they cannot be used to inform those decisions. It then considers the manipulability of a decision market where (in our terminology) the subject seeks to maximize their utility by always selecting the action that the market prices indicate is best, hence following the \emph{max decision rule}. It is then shown that there are no incentive compatible market scoring rules (and thus by equivalence cost function) markets under this decision rule with multiple experts. %TODO incentive compatible market scoring rules markets?
 The intuition is elementary: the last expert to trade with the market can force which of the conditional markets will be settled, so they maximize their profits by changing the price that is most incorrect, and lowering the price of all other actions bellow that.
 These results are formally generalized in (\cite{chen2014eliciting}), to show that the subject must use a decision rule with full support to create the right incentives in conditional prediction markets that are used for decision support.

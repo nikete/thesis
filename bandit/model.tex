@@ -37,13 +37,13 @@ The standard bandit setting is when $a^{(t)}$ is either unobserved or $a^{(t)}=c
 %Let $A$ be the random variable describing the action that is carried out, $C$ the random variable describing the choice taken by the subject, and let $U$ be the latent variables. We define the ``noncompliance level'' $n(c, u)$ for a specific choice $c$ and latent variable value $u$ mean the probability that $A \neq c$ given those values, that is, $n(c, u) = 1 - P(A=c|C=c, U=u)$.
 %TODO you never use the noncompliance level again in this thesis!?
 
-The set of compliance behaviors is the set of functions $\cC=\{\nu:\cA\rightarrow\cA\}$ from advice to taken treatment \cite{koller:09}. 
+The set of compliance behaviors is the set of functions $\cC=\{\nu:\cA\rightarrow\cA\}$ from chosen to taken action.% \cite{koller:09}. 
 
 \begin{defn}[model assumptions]\label{def:assumptions}\eod
 	We make the following assumptions:
 	\begin{enumerate}
-		\item Compliance $\nu(u)\in\cC$ depends on a latent variable sampled i.i.d. for each time step from unknown distribution $\bP(U)$ over a set $U$.
-		\item Outcomes $r(\nu(u),a,u)$ depend on compliance behavior, treatment taken and the latent $u$. That is, outcomes are a fixed function $r:\cC\times \cA\times U\rightarrow[0,1]$
+		\item Compliance $\nu \in\cC$ depends on a latent variable sampled i.i.d. for each time step from unknown distribution $\bP(U)$ over a set $U$. Denote by $\nu_u$ the compliance behaviour under a given instance $u$ of the latent variable. 
+		\item Outcomes $r(a,u)$ depend on treatment taken and the latent $u$, a fixed function $r: \cA\times U\rightarrow[0,1]$. In other words, the chosen action of the algorithm can only affect the reward received by affecting the actual action taken. 
 	\end{enumerate}
 \end{defn}
 
@@ -67,7 +67,7 @@ Unfortunately, the subpopulations cannot be distinguished from observations. For
 	The expected reward given subpopulation $s$ and the actual treatment $a\in\cA$ is
 	\begin{equation}
 		r_{s,a} 
-		:= \expec_{u\sim \bP(U)}\big[r(\nu(u),a,u)\,\big|\, \nu(u)=s\big]
+		:= \expec_{u\sim \bP(U)}\big[r(a,u)\,\big|\, \nu_u=s\big]
 		\quad\text{for }s\in \{\fN, \fA,\fC,\fD\}.
 		\label{eq:exp_rew}		
 	\end{equation}		
@@ -76,7 +76,7 @@ Unfortunately, the subpopulations cannot be distinguished from observations. For
 The goal is to maximize the cumulative reward received, i.e. choose a sequence of actions $(c^{(t)})_{t\in [T]}$ that maximizes 
 
 \begin{equation}
-   \expec_{u\sim \bP(U)}\left[\sum_{t\in[T]}r(\nu(u),\nu(u)(c^{(t)}), u)\right]
+   \expec_{u\sim \bP(U)}\left[\sum_{t\in[T]}r(\nu_u(c^{(t)}), u)\right]
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

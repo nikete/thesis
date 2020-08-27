@@ -91,7 +91,7 @@ The \texttt{Exp3} Algorithm (\cite{auer:02b}) is a bandit algorithm whose worst 
 To obtain a hierarchical algorithm using \texttt{Exp3} as top level, we first construct a hierarchical version of \texttt{Hedge} \citep{littlestone1994weighted, freund1997decision}, Algorithm~\ref{alg:meta-hedge}, which is applicable in the full-information variant of our setting (the model where the counterfactual value of actions can be observed). We then modify it using the principle from $\texttt{EXP3}$ to make it work for bandit feedback settings.
 
 \texttt{Hedge} (\cite{chang:05}) is an algorithm with bounded regret in the expert setting.
-On the bottom-level of our hierarchical version (Algorithm \ref{alg:meta-hedge}), there are $M$ instantiations of \texttt{Hedge}. Instantiation $i$, for $i\in[M]$, plays an $N$-dimensional weight vector and receives $N$-dimensional loss vector $\loss^{(t)}_{i}$ on round $t$. We impose the assumption that all instantiations play $N$-vectors for notational convenience. The top-level is another instantiation of \texttt{Hedge}, which plays a weighted combination of the bottom-level instantiations.
+On the bottom-level of our hierarchical version (Algorithm~\ref{alg:meta-hedge}), there are $M$ instantiations of \texttt{Hedge}. Instantiation $i$, for $i\in[M]$, plays an $N$-dimensional weight vector and receives $N$-dimensional loss vector $\loss^{(t)}_{i}$ on round $t$. We impose the assumption that all instantiations play $N$-vectors for notational convenience. The top-level is another instantiation of \texttt{Hedge}, which plays a weighted combination of the bottom-level instantiations.
 
 \begin{algorithm}
    \caption{\texttt{Hierarchical Hedge (HHedge)}}
@@ -276,7 +276,7 @@ Combining these yields the lemma
 \end{thm}
 
 \begin{proof}
-	Apply Lemma~\ref{lem:meta-exp} to $\texttt{HierarchicalBandit}$.
+	Apply Lemma~\ref{lem:meta-exp} to  $\texttt{HierarchicalBandit}$. Since chosen is one of the higher level arms in the $\texttt{HierarchicalBandit}$ the bound holds immediately. 
 \end{proof}
 
 

@@ -1,6 +1,6 @@
 %!TEX root = main.tex
 
-\subsection{Introduction}
+\section{Introduction}
 
 This chapter differs from the previous ones in its relationship to the thesis. 
 While before we seek to extend the understanding of previously presented settings (bandit algorithms and decision markets), this chapter seeks to introduce a new setting that generalizes these two.
@@ -52,7 +52,7 @@ The game occurs over $T$ steps. At each step:
 \begin{enumerate}
 \item A new subject $t$ arrives and each $i$ of $K$ experts receives a signal $s_{t,i}$ for that subject. The mechanism  randomly allocates a contingent transfer payment of $\vec{\gamma_t}$ for each of the possible actions facing the subject. %TODO what is a transfer payment?
 \item Each expert $i$ reports ${b}_{t,i}$ to the mechanism. After all reports are received, the mechanism selects an expert $i^{*}$ to suggest an action $c_t$.
-\item The subject observes $c_t$, $a_t'$ and ${b}_{t,i}$, picks an action $a_t$, and receives a reward $r_t$. %TODO what is a_t'?
+\item The subject observes $c_t$ and ${b}_{t,i}$, picks an action $a_t$, and receives a reward $r_t$. %TODO what is a_t'?
 \item The mechanism provides feedback about $s_t$, $c_t$, $a_t$, and $r_t$ to experts. %TODO do you mean \vec s?
 \end{enumerate}
 
@@ -85,7 +85,7 @@ One could attempt running the direct mechanism of chapter 5 repeatedly, once for
 \[
     \pi_i = \sum_1^T 
 \begin{cases}
-   \alpha (r - \expec[\hat{r^{(t)}}_{-i}]) & \text{if } \hat{c}^{(t)}_{-i} \neq c^{(t)}\\
+   \alpha (r - \expec[\hat{r_{t}}_{-i}]) & \text{if } \hat{c}^{(t)}_{-i} \neq c^{(t)}\\
     0              & \text{otherwise}
 \end{cases}
 \]
@@ -113,7 +113,7 @@ Note that the example weakly satisfies a single crossing signal structure on a s
  \end{defn}
 
 
-Under full disclosure, a repeated version of the Chapter 5 Direct Reward Sharing Mechanism (DRSM) in Example~\ref{eg:2regimes} has a NE results in the greedy policy. %TODO this sentence seems to have two endings? choose one.
+Under full disclosure, a repeated version of the Chapter 5 Direct Reward Sharing Mechanism (DRSM) when applied to this chapters Example~\ref{eg:2regimes} has a NE that results in the greedy policy. %TODO this sentence seems to have two endings? choose one.
 Given that there is no winner's curse due to the signal structure\footnote{that is, the winner of the auction who  bids her value without conditioning that value on having won the auction (which implies having the highest signal) gets the same payoff as if they do condition.}, both agents bid their valuations. %TODO blue handwriting friend wants to know what the wintter's curse is
 If the winner of the auction does not choose the safe arm, and instead explores in that period, she receives a lower payoff in expectation in that period. In future periods their bid, and by symmetry and under full disclosure the other agents' bids, are higher, since they can now deduce the higher payoff arm, and that is their new expected value. Thus given the second price mechanism their payoffs are no higher in later periods. Exploration is not in equilibrium. 
 
@@ -147,7 +147,7 @@ To overcome the exploration limitation of the repeated one shot mechanism, a mec
 This naturally motivates a mechanism that generalizes the expert bidding mechanism, by providing the expert with rewards proportional to all future periods when it wins the auction.
 
 \begin{mech}[Bidding for Ownership of Choice Mechanism  (BOCM)]
-An expert $i$ is the \emph{owner} at a given time period $t$ if she has won the last auction that had a winner (if no bids in an auction meet the reserve price, the owner remains unchanged).
+An expert $i$ is the \emph{owner} at a given time period $t$ if she has won the auction, or if she has won the last auction that had a winner (if no bids in an auction meet the reserve price, the owner remains unchanged). 
    Denote by $o^{(t)}_{i}$ an indicator variable that takes value $1$ if the agent $i$ was the \emph{owner} of the choice at time $t$, and $0$ otherwise. Further, let $\check b^{(t)}$ denote the second highest bid that was placed in round $t$. The payment rule of this mechanism is
 
 \[
