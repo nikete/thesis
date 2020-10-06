@@ -9,8 +9,8 @@ The first part of the thesis introduced compliance information into the bandit s
 Compliance information reflects the choice actually taken by the subject, rather than the algorithm's recommendation. 
 In many cases compliance information can be used to accelerate learning.
 Further, for situations where the number of arms is large relative to the number of time steps, and the subject's non-compliance is towards the higher reward arms, compliance awareness can make learning possible in problems where otherwise it is not. 
-However, naively incorporating compliance information leads to algorithms with linear regret, as seen in Example~\ref{eg:rich}. 
-We have therefore developed hybrid strategies that are the first algorithms that incorporate compliance information while maintaining a worst-case guarantee. 
+However, naively incorporating compliance information leads to algorithms with linear regret.
+The thesis presents hybrid strategies that are the first algorithms that incorporate compliance information while maintaining a worst-case guarantee. 
 
 The second part of the thesis studied the elicitation of information from self interested experts for decision making.
 For the single decision case, which had previously been analyzed in the decisions market literature, we introduce the first mechanism for multiple experts with a good ex-post Nash equilibrium that preserves freedom.
@@ -27,19 +27,18 @@ We also introduced the first model for the repeated case, which generalizes both
 %Note that in the asymptotic regime, these algorithms are basically optimal  ?
 
 \section{Future Work} \label{sec:future}
-\subsection{More Practical Mechanisms for the one shot setting}
+\subsection{More Practical Mechanisms In One Shot Setting}
 
 While many decision do repeat themselves with new subjects, including those that motivate most papers in the one shot decision market literature , others are more unique. 
 The crucial problem is to estimate the counter-factual reward obtained had a different action been taken.
 Some form of peer elicitation seems inevitable, but it is unclear how to combine this with the signal aggregation aspects of optimal decision advice that are embodied by the bidding mechanism. 
-
+Obtaining a sufficient and necessary condition on the valuation profile and the mechanism for efficient advice in the one shot setting also remains a tantalizing open problem.
 
 \subsection{Generalization}
 
 The final model explored in the thesis has the settings described in the previous two chapters as special cases.
-The bandit model has a vast range of extensions and special cases in which more specialized algorithms can make substantial advantage. It is interesting to consider the self-interested experts variations of those settings and see if more specialized mechanisms can also do better.
-
-
+The bandit model has a vast range of extensions and special cases in which more specialized algorithms can have a  substantial advantage. It is interesting to consider the self-interested experts variations of those settings and see if more specialized mechanisms can also do better.
+Obtaining a model that reduces to the one shot or no-experts models special cases also seems like a natural objective for future research. 
 
 Natural directions for further generalization beyond our final model are:
 

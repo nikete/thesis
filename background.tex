@@ -87,7 +87,7 @@ A one-armed bandit is a anachronistic term for a slot machine. A motivating exam
 
 Three main families of algorithms with theoretical guarantees exist in the literature, and are based on Bayesian, upper confidence bounds and exponential weights. We also explore a  heuristic algorithm, epsilon greedy, which has been observed to often have good empirical performance \cite{kuleshov:14}.
 
-Thompson Sampling is a very natural bayesian strategy first proposed in \cite{thompson:33}. It selects each action with probability equal to its posterior probability of being the best action, given the prior and rewards observed up to that point. It has excellent practical performance characteristics \cite{chapelle2011empirical}. It analysis in the stochastic case has been 
+Thompson Sampling is a very natural bayesian strategy first proposed in \cite{thompson:33}. It selects each action with probability equal to its posterior probability of being the best action, given the prior and rewards observed up to that point. It has excellent practical performance characteristics \cite{chapelle2011empirical}. 
 
 A second family of algorithms encountered in the literature are based on Upper Confidence Bounds (UCB) and originate in (\cite{lai:85,katehakis1995sequential,agrawal1995sample}). They play the action with the highest upper bound on its expected value. This embodies the principle of optimism in the face of uncertainty. A finite time analysis of the regret was presented in (\cite{auer:02a}).
 

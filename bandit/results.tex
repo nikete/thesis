@@ -22,7 +22,7 @@ Data from drug abuse clinical trials is used in (\cite{kuleshov:14}). However, n
 Given there is substantial loss of follow up at the 6 month measure we focus on the 14 day outcome.
 
 
-\subsection{Construction of Actual Actions from Compliance Variables}
+\subsection{Construction of Actual Actions from Compliance}
 The main sources of non-compliance in the dataset are the initial event not being a stroke, clinical decision, administration problems and the patient missing out more than 3 doses. A detailed table and counts of these are included in the dataset's open access article ( \cite{ist:11}). 
 While these might initially seem like reasons to discard the patients from the dataset, non-compliance is not necessarily random. Discarding these patients could cause algorithms to have unbounded regret (since the loss we care about is over all patients). In particular, misdiagnoses, administrative problems, not taking doses and other sources of noncompliance can be confounded with a patient's socio-economic status, age, and overall health. 
 
@@ -31,28 +31,51 @@ This is well-defined in the Aspirin case, which only has two arms, and thus non-
 Assigning an actual arm pulled in the heparin part of the trial is less clear cut, as it has three arms: no, low and medium dosage. We construct the actual arm variable by combining assignment and non-compliance. Non-compliance to low and medium assigned treatments is coded as not-takers, while non-compliance by a patient prescribed ``none'' is coded as low.
 
 
+
 \subsection{Results}
 
 \begin{figure}
 \begin{center}
 	%\textwidth, angle=90
-\includegraphics[width=1\columnwidth]{bandit/figs/fig1a.png}
-\caption{\textbf{14 Day survivals:} average lives saved over uniform random policy per 10,000 patients in 10,000 simulated trials of both Aspirin and Heparin combined.}
+\includegraphics[width=1\columnwidth]{bandit/figs/fig1-1.jpg}
+\includegraphics[width=1\columnwidth]{bandit/figs/fig1-2.jpg}
+\caption{\textbf{14 Day survivals:} average lives saved over uniform random policy per 10,000 patients in 10,000 simulated trials of Aspirin and Heparin, with Exp3 as the base bandit.}
+\end{center}
+\end{figure} 
+\begin{figure}
+\begin{center}
+\includegraphics[width=1\columnwidth]{bandit/figs/fig1-3.jpg}
+\includegraphics[width=1\columnwidth]{bandit/figs/fig1-4.jpg}
+\caption{\textbf{14 Day survivals:} average lives saved over uniform random policy per 10,000 patients in 10,000 simulated trials of Aspirin and Heparin, with Epsilon Greedy as the base bandit.}
+\end{center}
+\end{figure} 
+\begin{figure}
+\begin{center}
+\includegraphics[width=1\columnwidth]{bandit/figs/fig1-5.jpg}
+\includegraphics[width=1\columnwidth]{bandit/figs/fig1-6.jpg}
+\caption{\textbf{14 Day survivals:} average lives saved over uniform random policy per 10,000 patients in 10,000 simulated trials of Aspirin and Heparin, with UCB1 as the base bandit.}
+\end{center}
+\end{figure} 
+\begin{figure}
+\begin{center}
+\includegraphics[width=1\columnwidth]{bandit/figs/fig1-7.jpg}
+\includegraphics[width=1\columnwidth]{bandit/figs/fig1-8.jpg}
+\caption{\textbf{14 Day survivals:} average lives saved over uniform random policy per 10,000 patients in 10,000 simulated trials of Aspirin and Heparin, with Thompson sampling as the base bandit.}
 \label{fig1a}
 \end{center}
 \end{figure} 
 
-\begin{figure}
-\begin{center}
+%\begin{figure}
+%\begin{center}
 	%\textwidth, angle=90
-\includegraphics[width=1\columnwidth]{bandit/figs/fig1b.jpg}
-\caption{\textbf{14 Day survivals:} average lives saved over uniform random policy per 10,000 patients in 10,000 simulated trials of Aspirin and Heparin individually.}
-\label{fig1b}
-\end{center}
-\end{figure} 
+%\includegraphics[width=1\columnwidth]{bandit/figs/fig1b.jpg}
+%\caption{\textbf{14 Day survivals:} average lives saved over uniform random policy per 10,000 patients in 10,000 simulated trials of Aspirin and Heparin individually.}
+%\label{fig1b}
+%\end{center}
+%\end{figure} 
 
 
-We simulated 10,000 patients per run, which allowed us to not oversample the data in any single simulation. 2000 runs were performed, all algorithms were tested against the same draw of the run to minimize unnecessary sampling variation. 
+We simulated 10,000 patients per run, which allowed us to not oversample the data in any single simulation. A total of 2000 runs were performed, all algorithms were tested against the same draw of the run to minimize unnecessary sampling variation. 
 
 The \texttt{EXP3} gamma parameter was set ahead of time to 0.085, a choice determined by the regret-bounds for $T=10000$ and $K=2$ or $K=3$. Epsilon-Greedy used a standard annealing schedule. No data dependent parameter tuning was used.
 The simulation was carried out by creating a ``counter-factual patient'': one patient was sampled i.i.d. from each treatment and control groups in the clinical trial. If the algorithm selected the treatment, it received the reward and observed the action taken by the subject sampled form the treatment group, and vice versa for the control.
@@ -82,25 +105,36 @@ To better understand the behavior of the algorithms in a more varied range of se
 
 
 \subsection{Selection of treatment on unobservables}
-The first simulation illustrates Example~\eqref{eg:rich}, supposing there are two equally sized subpopulations of rich, healthy patients who always take the treatment, and poor, less healthy patients who only take the treatment if prescribed. Suppose the treatment reduces the probability for survival by 0.25. Assume that the rich patients would all do well (receive reward of 1) if they didn't take the treatment, but they all take it and so face only a 0.75 chance of survival. Poor patients who face a baseline survival of 0.75 only take the treatment if instructed, which brings their survival probability down to 0.5.
+%illustrates Example~\eqref{eg:rich}
+The first simulation has two equally sized subpopulations of rich, healthy patients who always take the treatment, and poor, less healthy patients who only take the treatment if prescribed. Suppose the treatment reduces the probability for survival by 0.25. Assume that the rich patients would all do well (receive reward of 1) if they didn't take the treatment, but they all take it and so face only a 0.75 chance of survival. Poor patients who face a baseline survival of 0.75 only take the treatment if instructed, which brings their survival probability down to 0.5.
 
 For comparison, $T$ was kept at 10,000, and we simulated the binary outcome case. We assigned half the patients to rich and half to poor randomly. Fig.~\eqref{fig:ex2} shows that the performance of \actual\, and \comply\, is much worse than \chosen\, and the hybrid algorithms. Results are for 100 samples.
 %TODO discuss results
 %\input{tables/ex2}
 
+ A lack of useful information about underlying treatments in the compliance behaviour, their misleading nature, drives high regret in naive strategies for using compliance information. 
 %\input{figs/ex2}
 
 
 \begin{figure}
-	\centering	
-	\includegraphics[width=1\columnwidth]{bandit/figs/ex2.jpg}\hspace{1cm}
 	\label{fig:ex2}
-	\caption{Worse than random regret across estimators with naive uses of compliance awareness with simulated data from 100 simulations sampled from a model of a harmful treatment that is profound by selection into treatment.}
+	\centering	
+	\includegraphics[width=1\columnwidth]{bandit/figs/ex2.png}\hspace{1cm}
+		\caption{The naive ways of incorporating compliance, actual and comply based policies, perform poorly in this example, due to the non-compliance being in the opposing direction to the better choice.}
 \end{figure}
 
+%\begin{figure}
+%	\centering	
+	
+%	\includegraphics[width=1\columnwidth]{bandit/figs/ex2-3.jpg}\hspace{1cm}
+%	\includegraphics[width=1\columnwidth]{bandit/figs/ex2-4.jpg}\hspace{1cm}
+%
+%	\caption{Worse than random regret across estimators with naive uses of compliance awareness with simulated data from 100 simulations sampled from a model of a harmful treatment that is profound by selection into treatment.}
+%\end{figure}
 
 
-\subsection{Small $T$}
+
+\subsection{Short time periods}
 
 The second simulation concerns small $T$. A motivation for very small $T$ adaptive clinical trials is provided by rare diseases. The overall size of the patient population is very restricted in this setting.
 The priors for the mechanisms of action are also often poorly understood, so potential alternative treatments can have radically different probabilities of success. 
@@ -110,7 +144,15 @@ While our bounds are vacuous in this setting, it is interesting that there is, o
 
 \begin{figure}[t]
 	\centering	
-	\includegraphics[width=0.9\textwidth]{bandit/figs/ex3.png}\hspace{1cm}
+	\includegraphics[width=0.9\textwidth]{bandit/figs/ex3-1.jpg}\hspace{1cm}
+	\includegraphics[width=0.9\textwidth]{bandit/figs/ex3-2.jpg}\hspace{1cm}
+	\caption{Results from 1000 simulations with $T=12$ and synthetic data:with two treatments and expected rewards drawn uniformly from the unit interval, and compliance uniformly at random.}	
+	\end{figure}
+\begin{figure}[t]
+
+	\includegraphics[width=0.9\textwidth]{bandit/figs/ex3-3.jpg}\hspace{1cm}
+	\includegraphics[width=0.9\textwidth]{bandit/figs/ex3-4.jpg}\hspace{1cm}
+	
 	\label{fig:ex3}
 	\caption{Results from 1000 simulations with $T=12$ and synthetic data:with two treatments and expected rewards drawn uniformly from the unit interval, and compliance uniformly at random.}
 \end{figure}
@@ -131,7 +173,12 @@ They allow later subjects to benefit from the information that previous subjects
 
 \begin{figure}[t]
 	\centering	
-	\includegraphics[width=0.9\textwidth]{bandit/figs/ex4.png}\hspace{1cm}
+	\includegraphics[width=0.9\textwidth]{bandit/figs/ex4-1.jpg}\hspace{1cm}	\includegraphics[width=0.9\textwidth]{bandit/figs/ex4-2.jpg}\hspace{1cm}
+	\caption{Noncompliance for best arm: 100 simulations from synthetic data of $T=10,000$ with noncompliance proportional to how much better the best arm is than the algorithm selection.}
+\end{figure}	
+\begin{figure}[t]
+	\includegraphics[width=0.9\textwidth]{bandit/figs/ex4-3.jpg}\hspace{1cm}
+	\includegraphics[width=0.9\textwidth]{bandit/figs/ex4-4.jpg}\hspace{1cm}
 	\label{fig:ex4}
 	\caption{Noncompliance for best arm: 100 simulations from synthetic data of $T=10,000$ with noncompliance proportional to how much better the best arm is than the algorithm selection.}
 \end{figure}

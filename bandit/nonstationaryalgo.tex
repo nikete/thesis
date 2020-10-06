@@ -276,7 +276,35 @@ Combining these yields the lemma
 \end{thm}
 
 \begin{proof}
-	Apply Lemma~\ref{lem:meta-exp} to  $\texttt{HierarchicalBandit}$. Since chosen is one of the higher level arms in the $\texttt{HierarchicalBandit}$ the bound holds immediately. 
+	For the first bound, from Lemma~\ref{lem:meta-exp}, we have that $\rho$ can be chosen in \texttt{HExp3} such that for all $i\in[M]$, which includes $\actual$ and $\comply$ as elements,
+	
+	\begin{equation}
+		\expec\left[\sum_{t=1}^T\ell^{(t)}_{i^{(t)},j^{(t)}}\right]
+		\leq \sum_{t=1}^T \tilde{\ell}^{(t)}_{i}
+		+ O(\sqrt{T M\log M})
+	\end{equation}
+	
+	Note that $M\log M$ is fixed and thus  $ O(\sqrt{T M\log M}) =  O(\sqrt{T})$.
+	
+	For the second bound, note that from Lemma~\ref{lem:meta-exp} $\rho$ and $\eta$ can be chosen so that for all $i\in[M]$and $j\in[N]$
+	
+	\begin{equation}
+		\expec\left[\sum_{t=1}^{T} \ell^{(t)}_{i^{(t)},j^{(t)}}\right]
+		\leq \sum_{t=1}^T\ell^{(t)}_{i,j}
+		+ O(\sqrt{TM \log M} + \sqrt{T N\log N})
+	\end{equation}
+	
+	Applied to $\texttt{HierarchicalBandit}$ we have that $M=3$ since that is the set of underlying actions, and  $N=K$ the set of higher level actions (actual, chosen, comply):
+	
+	$$ O(\sqrt{TM \log M} + \sqrt{T N\log N}) 
+	= O(\sqrt{T 3\log 3} + \sqrt{TK \log K}) $$
+	$$
+	=  O(\sqrt{TK \log K})$$
+	
+	
+	
 \end{proof}
 
 
+%the second equation in the lemma corresponds to the second equation in the theorem,
+%explain why i does not depend on t anymore, why M=K, and where the sqrt(T NlogN) 
